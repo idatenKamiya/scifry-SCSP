@@ -1,0 +1,52 @@
+PCR Master Mix Plate Setup Protocol
+Source: protocols.io (example)
+
+GOAL:
+Prepare a 96-well PCR plate with DNA templates and PCR master mix for thermal cycling.
+
+MATERIALS REQUIRED:
+- DNA template samples (96 samples in tube rack)
+- PCR master mix (contains primers, Taq polymerase, dNTPs, buffer)
+- 96-well PCR plate (Biorad or equivalent)
+- P20 and P300 single-channel pipettes
+- 20 µL and 300 µL tip racks
+
+PROCEDURE:
+
+STEP 1: Preparation
+Transfer DNA template samples from the tube rack to the PCR plate.
+Each sample tube contains approximately 10 µL of DNA template (approximately 100-500 ng total).
+
+STEP 2: DNA Template Distribution
+Using a P20 pipette:
+a) Pick up a fresh 20 µL tip
+b) Aspirate 10 µL from tube A1 of the template rack
+c) Dispense into well A1 of the PCR plate
+d) Discard the tip
+e) Repeat for all 96 samples
+
+STEP 3: PCR Master Mix Addition
+Using a P300 pipette:
+a) Pick up a fresh 300 µL tip
+b) Aspirate 40 µL of PCR master mix from the master mix tube
+c) Dispense into each well of the PCR plate (wells A1-H12)
+d) After dispensing into each well, gently mix by pipetting up and down 3 times with 30 µL volume
+e) Change to a fresh tip every 24 wells to prevent contamination
+
+STEP 4: Mixing
+Gently mix the contents of each well by pipetting up and down 3-5 times with 30 µL volume.
+Do NOT vortex as this may cause aerosol formation.
+
+STEP 5: Plate Sealing
+Seal the PCR plate with a clear adhesive seal.
+Press firmly on all edges to ensure a good seal.
+
+STEP 6: Final Check
+Visually inspect the plate for any spilled liquid or contamination.
+Keep the sealed plate on ice until thermal cycling.
+
+NOTES:
+- All pipetting should be performed carefully to avoid creating aerosols
+- Master mix should be kept on ice until use
+- If any sample is accidentally spilled, the well should be refilled with fresh template
+- Thermal cycling should begin within 2 hours of plate preparation
