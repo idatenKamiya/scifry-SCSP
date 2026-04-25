@@ -8,9 +8,13 @@ import os
 import requests
 import json
 
-# Use the client access token
-PROTOCOLS_TOKEN = "<REDACTED_PROTOCOLS_IO_ACCESS_TOKEN>"
-HEADERS = {"Authorization": f"Bearer {PROTOCOLS_TOKEN}"}
+try:
+    from dotenv import load_dotenv
+    load_dotenv(".env.local")
+except ImportError:
+    pass
+
+PROTOCOLS_TOKEN = os.getenv("PROTOCOLS_IO_ACCESS_TOKEN")
 
 # The specific URIs for PCR/qPCR protocols
 URIS = [
@@ -40,6 +44,12 @@ def setup_directories():
         print(f"✓ Created: {d}")
 
 def download_protocols():
+    if not PROTOCOLS_TOKEN:
+        print("✗ Missing PROTOCOLS_IO_ACCESS_TOKEN.")
+        print("  Set it in environment or ProtocolIR/.env.local")
+        return 0
+
+    headers = {"Authorization": f"Bearer {PROTOCOLS_TOKEN}"}
     setup_directories()
 
     print(f"\n📥 Downloading {len(URIS)} protocols from protocols.io...")
@@ -52,7 +62,7 @@ def download_protocols():
         try:
             # 1. Fetch full protocol metadata & content
             meta_url = f"https://www.protocols.io/api/v4/protocols/{uri}?last_version=1&content_format=markdown"
-            meta_res = requests.get(meta_url, headers=HEADERS, timeout=10)
+            meta_res = requests.get(meta_url, headers=headers, timeout=10)
 
             if meta_res.status_code == 200:
                 with open(f"data/protocols_io_raw/json/{safe_name}.json", 'w') as f:
@@ -60,7 +70,7 @@ def download_protocols():
 
                 # 2. Fetch specific steps
                 steps_url = f"https://www.protocols.io/api/v4/protocols/{uri}/steps?last_version=1&content_format=markdown"
-                steps_res = requests.get(steps_url, headers=HEADERS, timeout=10)
+                steps_res = requests.get(steps_url, headers=headers, timeout=10)
 
                 if steps_res.status_code == 200:
                     with open(f"data/protocols_io_raw/steps/{safe_name}.steps.json", 'w') as f:
