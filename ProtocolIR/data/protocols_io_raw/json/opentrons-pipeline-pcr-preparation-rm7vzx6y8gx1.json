@@ -1,0 +1,1116 @@
+{
+  "payload": {
+    "access": {
+      "can_preview": true,
+      "can_view": true,
+      "can_edit": false,
+      "can_remove": false,
+      "can_add": false,
+      "can_publish": false,
+      "can_get_doi": false,
+      "can_share": false,
+      "can_share_organization": false,
+      "can_move": false,
+      "can_move_outside": false,
+      "can_transfer": false,
+      "can_download": true,
+      "limited_run": false,
+      "limited_private_links": false,
+      "limited_blind_links": false,
+      "is_locked": false
+    },
+    "acknowledgements": "",
+    "authors": [
+      {
+        "first_name": "Jhakelin",
+        "last_name": "Reyes Vasquez",
+        "affiliation": "Imperial College London; Conservaci\u00f3n Amaz\u00f3nica-ACCA",
+        "note": "",
+        "guid": "03635451F8CC11ED9D4302C0B41BC903",
+        "username": "jhakelin-reyes-vasquez",
+        "name": "Jhakelin Reyes Vasquez",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "P.",
+        "last_name": "S\u00e1nchez-Vendiz\u00fa",
+        "affiliation": "Universidad Austral de Chile; Universidad Nacional Mayor de San Marcos; Conservaci\u00f3n Amaz\u00f3nica-ACCA",
+        "note": "",
+        "guid": "046E4F50F8CC11ED9D4302C0B41BC903",
+        "username": "m4xle1z1x1u4vle1",
+        "name": "P. S\u00e1nchez-Vendiz\u00fa",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Gideon",
+        "last_name": "Erkenswick",
+        "affiliation": "Field Projects International",
+        "note": "",
+        "guid": "0342A292F8CC11ED9D4302C0B41BC903",
+        "username": "gideon-erkenswick",
+        "name": "Gideon Erkenswick",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Alexandra",
+        "last_name": "Sacco",
+        "affiliation": "Washington University in Saint Louis; Field Projects International",
+        "note": "",
+        "guid": "05749537F8CC11ED9D4302C0B41BC903",
+        "username": "alexandra-sacco",
+        "name": "Alexandra Sacco",
+        "affiliation_url": null,
+        "link": "",
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Mrinalini",
+        "last_name": "Watsa",
+        "affiliation": "San Diego Wildlife Alliance",
+        "note": "",
+        "guid": "03427FC7F8CC11ED9D4302C0B41BC903",
+        "username": "mrinalini-watsa",
+        "name": "Mrinalini Watsa",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Thal\u00eda",
+        "last_name": "Silvestre",
+        "affiliation": "UNMSM",
+        "note": "",
+        "guid": "",
+        "username": "",
+        "name": "Thal\u00eda Silvestre",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": false,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      }
+    ],
+    "before_start": "Clean the OT2 deck and walls with: \n 10% Bleach Contributed by users  1 rinse \n Distilled Water Contributed by users   1 rinse \n 70% Alcohol Contributed by users  2 rinses\n\n\nAvoid wetting electronic parts.\n \n",
+    "created_on": 1695419791,
+    "creator": {
+      "affiliation": "Washington University in St. Louis",
+      "affiliation_url": null,
+      "affiliations": [
+        {
+          "affiliation": "Washington University in St. Louis",
+          "is_default": true,
+          "job_title": null,
+          "url": null
+        }
+      ],
+      "badges": [
+        {
+          "id": 2,
+          "image": {
+            "placeholder": "https://files.protocols.io/webapp/images/q2ckeg/badges/bronze.svg",
+            "source": "https://files.protocols.io/webapp/images/q2ckeg/badges/bronze.svg"
+          },
+          "name": "Author"
+        }
+      ],
+      "first_name": "",
+      "image": {
+        "placeholder": "https://www.protocols.io/img/avatars/001.png",
+        "source": "https://www.protocols.io/img/avatars/001.png"
+      },
+      "last_name": "",
+      "link": "",
+      "name": "Alexandra Sacco",
+      "username": "alexandra-sacco"
+    },
+    "cross_cloud_origin": null,
+    "description": "This protocol is a general automated pipeline to prepare mastermix at the plate level in a sterile way. The protocol volumes can be edited, as can sample numbers, to change the scale of the operation and optimise it to fit any end-point PCR. \n\nThis protocol was developed and optimised for the following:\n1. Platform: Opentrons OT-2 automated pipetting robot\n1. Tested with software version 6.3.1\n1.  GoTaq G2 Hot Start Green Master Mix Promega Catalog #M742B \n1. Tips Used: 1 box and 1 column of 20uL filtered Opentrons Tips\n1. Number of samples: 91 samples and 5 controls in a 96 well plate \n\n\nImportant: In an ideal situation, there would be two OT-2 robots involved in this process: the first to prepare sterile reagents and make and aliquot the mastermix, and the second to add the template. In the absence of this facility, we have developed a means of keeping each ingredient on the deck singly, rather than having all ingredients open on the deck at once. So please take note of the protocol pauses in built to replace each ingredient with the next. In this way, no two ingredients are open inside the OT2 hood at the same time. \n\nPython File Version 2.2.\n\n",
+    "disclaimer": "",
+    "documents": [],
+    "doi": "dx.doi.org/10.17504/protocols.io.rm7vzx6y8gx1/v1",
+    "ethics_statement": "",
+    "fork_id": null,
+    "funders": [
+      {
+        "funder_name": "Gordon and Betty Moore Foundation",
+        "grant_id": "9772"
+      },
+      {
+        "funder_name": "Gordon and Betty Moore Foundation",
+        "grant_id": "9776"
+      }
+    ],
+    "guid": "06E94E65DC4A4714B920DD19B5DA957E",
+    "guidelines": "Step 1: Please note we use a particular Taq but you can alter this to suit your needs. You can also edit your PCR mix recipe by following the template in this protocol.\n\nStep 5: Import the labware file BEFORE you import your protocol or it will give an error. This protocol has been validated against Opentrons software app version 6.3.1\n\nStep 10: Take note of the two possible ways of loading gDNA. A skirted plate will clip into the deck, and a non-skirted plate or strip tubes will need support (and the labware definition file attached to this protocol). \n\nStep 12: Note that we have specific wells in which we load controls, and for this you will need to remove the tips from the box so no template is added accidentally. We then load our controls later in a PCR hood.\n\n\n\n\n",
+    "id": 88226,
+    "image": {
+      "placeholder": null,
+      "source": "https://www.protocols.io/img/default_protocol.png",
+      "webp_placeholder": null,
+      "webp_source": null
+    },
+    "is_content_confidential": false,
+    "is_content_warning": false,
+    "is_doi_reserved": false,
+    "is_in_pending_publishing": false,
+    "is_in_transfer": null,
+    "is_owner": false,
+    "is_research": true,
+    "is_subprotocol": null,
+    "item_id": 1165422,
+    "keywords": "Opentrons,PCR,Mastermix,automated,insitulabs,OT2, opentrons pipeline, pcr preparation this protocol, pcr preparation, opentrons tips number of sample, sterile reagent, automated pipeline, opentron, filtered opentrons tips number, automated pipetting robot, pipeline, pipetting robot, mastermix at the plate level, pcr, ingredients open on the deck, open inside the ot2 hood, sterile way, process, robot, preparation, point pcr",
+    "link": "",
+    "manuscript_citation": "",
+    "materials": [],
+    "materials_text": "2 X [Opentrons 20\u00b5L Filter Tips](https://shop.opentrons.com/opentrons-20ul-filter-tips/)\n1 X [Opentrons Thermocycler Module - GEN2](https://shop.opentrons.com/thermocycler-module-1/)*\n1 X [Nest skirted PCR Plate](https://shop.opentrons.com/nest-0-2-ml-96-well-pcr-plate-full-skirt/)\n1 X [96-well Opentrons Aluminum Block](https://shop.opentrons.com/aluminum-block-set/)\n1 X [P20 Gen 2 Multichannel Pipette](https://shop.opentrons.com/8-channel-electronic-pipette/)\n1 X [P20 Gen 2 Single Pipette](https://shop.opentrons.com/single-channel-electronic-pipette-p20/) (optional)\n1 X [Nonskirted PCR plate](https://www.amazon.com/96-Well-Plate-0-2ml-No-Skirt%EF%BC%8820-Plates%EF%BC%89/dp/B09SDWGC5X/ref=dp_prsubs_sccl_1/141-2768025-3906961?pd_rd_w=w2jRc&content-id=amzn1.sym.2c74594d-9264-4cdf-bf3d-e4e41e237275&pf_rd_p=2c74594d-9264-4cdf-bf3d-e4e41e237275&pf_rd_r=J6HKMSKQTSVXHVHGV354&pd_rd_wg=dbVnN&pd_rd_r=f78b6d54-12d7-42a8-be99-633c131e1c55&pd_rd_i=B09SDWGC5X&th=1) (optional, see step 10)\n2 X  plate seals\n1 X [0.2mL PCR strip tubes](https://www.amazon.com/PCR-8-Tube-Strip-Strips-Attached/dp/B0B2JGV6S9/ref=sr_1_35?crid=2BO5DJFZZ1Z6E&keywords=pcr%2Bstrip%2Btubes&qid=1659391531&rnid=2941120011&s=industrial&sprefix=pcr%2Bstrip%2Btubes%2Caps%2C137&sr=1-35&th=1)\n1 x 1.5 mL microcentrifuge tube",
+    "protocol_image_file": {
+      "avg_color": "",
+      "created_at": 1753351270,
+      "file_name": "np9q4hq6.jpg",
+      "guid": "1FE2CA4C687511F08F960A58A9FEAC02",
+      "height": 0,
+      "mime": "binary/octet-stream",
+      "scan_status": 0,
+      "size": 18986,
+      "url": "https://files.protocols.io/external/np9q4hq6-1FE2CA4C687511F08F960A58A9FEAC02.jpg",
+      "width": 0
+    },
+    "protocol_references": "",
+    "public": true,
+    "published_on": 1695663830,
+    "reserved_doi": "",
+    "space_id": 105369,
+    "stats": {
+      "is_voted": false,
+      "number_of_views": 477,
+      "number_of_steps": 18,
+      "number_of_bookmarks": 3,
+      "number_of_comments": 0,
+      "number_of_bookmarked_comments": 0,
+      "number_of_steps_comments": 0,
+      "number_of_protocol_comments": 0,
+      "number_of_exports": 1,
+      "number_of_runs": 0,
+      "number_of_votes": 0,
+      "number_of_reagents": 10,
+      "number_of_equipments": 0,
+      "number_of_collections": 0,
+      "number_of_forks": {
+        "private": 1,
+        "public": 0
+      },
+      "number_of_accessible_forks": 0
+    },
+    "status": {
+      "id": 1,
+      "info": ""
+    },
+    "steps": [
+      {
+        "id": 1797867,
+        "guid": "93F4392D9FF14C9C9163BD43623ED345",
+        "previous_id": 0,
+        "previous_guid": null,
+        "section": "<p>Materials and reagents</p>",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Reagents List**\n GoTaq G2 Hot Start Green Master Mix Promega Catalog #M742B  \nPrimers Forward and Reverse 10 micromolar (\u00b5M)  or specific for each primer.\n Nuclease-Free Water-25mL Promega Catalog #MC1191  ",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797868,
+        "guid": "DD46943D9DB54C86B02CE7691B30059E",
+        "previous_id": 1797867,
+        "previous_guid": "93F4392D9FF14C9C9163BD43623ED345",
+        "section": "<p>Materials and reagents</p>",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Materials List**\n2 X [Opentrons 20\u00b5L Filter Tips](https://shop.opentrons.com/opentrons-20ul-filter-tips/)\n1 X [Opentrons Thermocycler Module - GEN2](https://shop.opentrons.com/thermocycler-module-1/)*\n1 X [Nest skirted PCR Plate](https://shop.opentrons.com/nest-0-2-ml-96-well-pcr-plate-full-skirt/)\n1 X [96-well Opentrons Aluminum Block](https://shop.opentrons.com/aluminum-block-set/)\n1 X [P20 Gen 2 Multichannel Pipette](https://shop.opentrons.com/8-channel-electronic-pipette/)\n1 X [P20 Gen 2 Single Pipette](https://shop.opentrons.com/single-channel-electronic-pipette-p20/) (optional)\n1 X [Nonskirted PCR plate](https://www.amazon.com/96-Well-Plate-0-2ml-No-Skirt%EF%BC%8820-Plates%EF%BC%89/dp/B09SDWGC5X/ref=dp_prsubs_sccl_1/141-2768025-3906961?pd_rd_w=w2jRc&content-id=amzn1.sym.2c74594d-9264-4cdf-bf3d-e4e41e237275&pf_rd_p=2c74594d-9264-4cdf-bf3d-e4e41e237275&pf_rd_r=J6HKMSKQTSVXHVHGV354&pd_rd_wg=dbVnN&pd_rd_r=f78b6d54-12d7-42a8-be99-633c131e1c55&pd_rd_i=B09SDWGC5X&th=1) (optional, see step 10)\n2 X plate seals\n1 X [0.2mL PCR strip tubes](https://www.amazon.com/PCR-8-Tube-Strip-Strips-Attached/dp/B0B2JGV6S9/ref=sr_1_35?crid=2BO5DJFZZ1Z6E&keywords=pcr%2Bstrip%2Btubes&qid=1659391531&rnid=2941120011&s=industrial&sprefix=pcr%2Bstrip%2Btubes%2Caps%2C137&sr=1-35&th=1)\n1 x 1.5 mL microcentrifuge tube\n\n\nThe thermocycler module is not a critical component of this protocol, but removing it would require the user to make some small modifications to the protocol and labware definitions indicating the location of the destination plate, and the plate type. You can prepare the plate and remove it and run it on any protocol.\n \n",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797872,
+        "guid": "E214736B7E8742A6BC12BEC79D04C688",
+        "previous_id": 1797868,
+        "previous_guid": "DD46943D9DB54C86B02CE7691B30059E",
+        "section": "<p>Items to prepare in advance</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Prepare your Master Mix following your specific protocol. \n\n<table class=\"component-table\">\n<thead>\n<tr>\n%s</tr>\n</thead>\n<tbody>\n%s\n</tbody>\n</table>\r\n      inventory IDstart conc.desired conc.Reaction number18.5Go Taq G2 Hot Start Green Master Mix216.2553.125forward P (10um)100.50.6255.3125reverse P (10um)100.50.6255.3125H2O (ultra pure)325.5 Volume:10.5\n",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "3",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797873,
+        "guid": "3DF599D055A64478A88DCFC756BB2D84",
+        "previous_id": 1797927,
+        "previous_guid": "F41CD534A4004B16AFEFCFC3D9774912",
+        "section": "<p>Items to prepare in advance</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Import the lab ware file to your Opentrons app: ** [denville_96_aluminumblock_200ul.json](https://content.protocols.io/files/nptx4hq6.json)** \n\nLoad python file to Opentrons app:  [Automated Opentrons Pipeline for PCR Preparation V2.2 ISL.py](https://content.protocols.io/files/npty4hq6.py) \n\nAttach a [P20 Gen 2 Multichannel Pipette](https://shop.opentrons.com/8-channel-electronic-pipette/) to the right pipette mount. \n\n(Optional) Attach a [P20 Gen 2 Single Pipette](https://shop.opentrons.com/single-channel-electronic-pipette-p20/) to the left pipette mount. Note this is not used in this protocol, but should you want to do less than a multiple of 8, you could edit the script to use this pipette to load those samples, potentially. ",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "5",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797874,
+        "guid": "34289E5F5B7A4C8EB7BD980E784E323E",
+        "previous_id": 1797873,
+        "previous_guid": "3DF599D055A64478A88DCFC756BB2D84",
+        "section": "<p>Items to prepare in advance</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "**Arrange the OT-2 deck as follows for 96 samples in a plate:**\n\n**Slot 1: **[96-well Aluminum Block](https://shop.opentrons.com/aluminum-block-set/) with 200uL PCR strip tube with prepared mastermix\n\n\n\nKeep the Aluminum Block cold until the protocol starts.\n_This slot is used for placing the master mix, and then later the genomic DNA template in a   _[Nest skirted PCR Plate](https://shop.opentrons.com/nest-0-2-ml-96-well-pcr-plate-full-skirt/)\n \n\n\n**Slot 3: ** [Opentrons 20\u00b5L Filter Tips](https://shop.opentrons.com/opentrons-20ul-filter-tips/)\n**Slot 6: ** [Opentrons 20\u00b5L Filter Tips](https://shop.opentrons.com/opentrons-20ul-filter-tips/)\n**Slot 7:  **[Opentrons Thermocycler Module - GEN2](https://shop.opentrons.com/thermocycler-module-1/) with an empty [Nest skirted PCR Plate](https://shop.opentrons.com/nest-0-2-ml-96-well-pcr-plate-full-skirt/) \n\n[image.png]](https://content.protocols.io/files/np9sb2cn7.jpg)\nPlacement of Labware and Tips in the OT2 Deck for transferring samples and Master Mix. ",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "5.1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797875,
+        "guid": "4F1F35A9AE0E44F989E6694AA320134A",
+        "previous_id": 1797874,
+        "previous_guid": "34289E5F5B7A4C8EB7BD980E784E323E",
+        "section": "<p>Items to prepare in advance</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "Calibrate the deck in the Opentrons app and follow instructions on the app. \n",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "5.2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797913,
+        "guid": "9360FF7E50584FCF8FDB1E328847F9A5",
+        "previous_id": 1797914,
+        "previous_guid": "43740F30989B44C8B49855093EF40D12",
+        "section": "<p>OT2 PCR script definitions</p>",
+        "section_color": "#84CE84",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**gDNA samples**\nTemplate DNA\n\n**Position: **Slot 1**, **[96-well Aluminum Block](https://shop.opentrons.com/aluminum-block-set/) with [Nest skirted PCR Plate](https://shop.opentrons.com/nest-0-2-ml-96-well-pcr-plate-full-skirt/)\n**Name in the Deck**: gDNA cleaned samples\n**Labware name in the protocol: **MM_and_samples_plate\n**Variable name in the script**: template",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "7",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797914,
+        "guid": "43740F30989B44C8B49855093EF40D12",
+        "previous_id": 1797875,
+        "previous_guid": "4F1F35A9AE0E44F989E6694AA320134A",
+        "section": "<p>OT2 PCR script definitions</p>",
+        "section_color": "#84CE84",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Master Mix**\nPCR Master Mix \n\n**Position**: Slot 1**, **1** **0.2mL PCR strip tube in [96-well Aluminum Block](https://shop.opentrons.com/aluminum-block-set/)\n**Name in the Deck**: MM\n**Labware name in the script protocol**: MM_and_samples_plate\n**Variable name in the script**: MMix",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "6",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797915,
+        "guid": "21B6ED84CE4446B4A66BA5B76951D2A4",
+        "previous_id": 1797913,
+        "previous_guid": "9360FF7E50584FCF8FDB1E328847F9A5",
+        "section": "<p>OT2 PCR script definitions</p>",
+        "section_color": "#84CE84",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**PCR samples**\nDestination for template + Master Mix \n\n**Position**: Slot 7**, **[Opentrons Thermocycler Module - GEN2](https://shop.opentrons.com/thermocycler-module-1/) with [Nest skirted PCR Plate](https://shop.opentrons.com/nest-0-2-ml-96-well-pcr-plate-full-skirt/) empty\n**Name in the Deck**: PCR plate\n**Labware name in the script protocol**: final_PCR_plate\n**Variable name in the script**: pcr_samples",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "8",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797916,
+        "guid": "237809DD72F24FDE94120A0A96A7314F",
+        "previous_id": 1797915,
+        "previous_guid": "21B6ED84CE4446B4A66BA5B76951D2A4",
+        "section": "<p>OT2 PCR script definitions</p>",
+        "section_color": "#84CE84",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Protocol variables definition**\nThe following variables can be edited within the python script in a text editor program to fit your specific PCR setup needs, by changing the **&#34;MM_vol&#34; **and **&#34;template_vol&#34; **definitions in the third line of the script. \n\nThe default protocol is written to use 2 \u00b5L   of Template + 10.5 \u00b5L  of Master Mix to reach 12.5 \u00b5L   as final volume. \n\n\n**Standard protocol variable definitions:**\n&#34;sample_number&#34; indicates the number of samples that you will process: **96 **\n&#34;MM_vol&#34; indicates the volume of Master Mix per well: **10.5 **  \n&#34;template_vol&#34; indicates the template volume added to each well: **2  **\n\n\nIt is better if sample_number is a multiple of 8 given that the OT-2 uses a multichannel pipettes for transferring samples\n \n",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "9",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797917,
+        "guid": "B00399760D1F4DB3A20FD98896891C25",
+        "previous_id": 1797916,
+        "previous_guid": "237809DD72F24FDE94120A0A96A7314F",
+        "section": "<p>OT2 Protocol: Transferring mastermix and samples </p>",
+        "section_color": "#FFED92",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Transferring Master Mix to final_PCR_plate**\n\n1. _**Place the PCR strip tube (already containing the MasterMix) in the first column of the **__**[96-well Aluminum Block](https://shop.opentrons.com/aluminum-block-set/)**__** **_\n\n\n10.5 \u00b5L  of Master Mix is transferred from the PCR strip tube in the aluminum block in Slot 1 to the PCR plate in the [Opentrons Thermocycler Module - GEN2](https://shop.opentrons.com/thermocycler-module-1/) in Slot 7\n\n**_Note: _**Only the first column of **tips** in the Slot 6 rack is used for dispensing Master Mix to all columns _of PCR plate_.\n\n1. Once this step is finished the robot will PAUSE. During this PROTOCOL PAUSE, carefully remove the PCR strip tube of MasterMix and now replace it with the plate of gDNA. \n\n\n\n\nYou have two options here:\n\n1. Either load your gDNA in a skirted NEST 100uL plate, which will clip into Slot 1, after you remove the aluminum block. If you do, you don&#39;t need the additional labware definition we have provided, and can simply edit the script to give the definition of the NEST plate (available on the \n\nOR\n\n2. Leave the aluminum block in, and add \na) a [set of strip tubes](https://www.amazon.com/PCR-8-Tube-Strip-Strips-Attached/dp/B0B2JGV6S9/ref=sr_1_35?crid=2BO5DJFZZ1Z6E&keywords=pcr%2Bstrip%2Btubes&qid=1659391531&rnid=2941120011&s=industrial&sprefix=pcr%2Bstrip%2Btubes%2Caps%2C137&sr=1-35&th=1) (no caps) with gDNA, OR\nb) a [non-skirted plate](https://www.amazon.com/96-Well-Plate-0-2ml-No-Skirt%EF%BC%8820-Plates%EF%BC%89/dp/B09SDWGC5X/ref=dp_prsubs_sccl_1/141-2768025-3906961?pd_rd_w=w2jRc&content-id=amzn1.sym.2c74594d-9264-4cdf-bf3d-e4e41e237275&pf_rd_p=2c74594d-9264-4cdf-bf3d-e4e41e237275&pf_rd_r=J6HKMSKQTSVXHVHGV354&pd_rd_wg=dbVnN&pd_rd_r=f78b6d54-12d7-42a8-be99-633c131e1c55&pd_rd_i=B09SDWGC5X&th=1) with gDNA. \n\nBoth products linked above will fit the labware definition provided in this protocol. \n\n \n\n\nThen, resume the run to continue with Step 11.",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "10",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797923,
+        "guid": "DCDA1C01A4A34632B467EE2EE93B9250",
+        "previous_id": 1797977,
+        "previous_guid": "C53DE0056CFD41BE9CB081743A017ABA",
+        "section": "<p>Manually adding controls</p>",
+        "section_color": "#EA9F6C",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Adding controls**\n\nAdd the controls in a sterile PCR cabinet, in the following pre-determined spaces. \n\n\n|  |  |  |  |  |  |  |  |  |  |  |  |\n|---|---|---|---|---|---|---|---|---|---|---|---|\n|  |  | Positive   control |  |  |  |  |  |  | Positive   control |  |  |\n|  |  |  |  |  |  |  |  |  |  |  |  |\n|  |  |  |  |  | Sample    control |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  |  |  |  |\n|  |  |  |  |  |  |  |  |  |  |  |  |\n|  |  | Negative control |  |  |  |  |  |  | Negative control |  |  |\n|  |  |  |  |  |  |  |  |  |  |  |  |\n \n",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "12",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797925,
+        "guid": "A2BDAFAD93874A02BA54B82E21C9F8BB",
+        "previous_id": 1797923,
+        "previous_guid": "DCDA1C01A4A34632B467EE2EE93B9250",
+        "section": "<p>Manually adding controls</p>",
+        "section_color": "#EA9F6C",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "The PCR plate is now ready to be loaded into a thermal cycler. ",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "13",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797927,
+        "guid": "F41CD534A4004B16AFEFCFC3D9774912",
+        "previous_id": 1797872,
+        "previous_guid": "E214736B7E8742A6BC12BEC79D04C688",
+        "section": "<p>Items to prepare in advance</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Dispense Master Mix in all 8 wells of a 0.2mL PCR strip tube equally. \n**Total volume per strip tube well =  **MasterMix total volume divided by 8",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "4",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1797977,
+        "guid": "C53DE0056CFD41BE9CB081743A017ABA",
+        "previous_id": 1797917,
+        "previous_guid": "B00399760D1F4DB3A20FD98896891C25",
+        "section": "<p>OT2 Protocol: Transferring mastermix and samples </p>",
+        "section_color": "#FFED92",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Transferring gDNA samples to final_PCR_plate**\n\n2 \u00b5L  of template** **are transferred from MM_and_samples_plate in Slot 1 to final_PCR_plate in [Opentrons Thermocycler Module - GEN2](https://shop.opentrons.com/thermocycler-module-1/)  \n\n_Tips in Slot 3 are used for this step _\n\n\n**IMPORTANT NOTE: Take out tips in Slot 3 for established positions for controls:**\nNegative controls: Positions G3, B10\nPositive controls: Positions B3, G10\nSample control: D6\n \n\n\nSamples are mixed in this step before and after transferring.\n \n\nNote: Once finished, cover the plate with a seal to move it into the PCR cabinet to add the controls.",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "11",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1798024,
+        "guid": "A8E676DB8BAB4BAB8EE3397CF96810D9",
+        "previous_id": 1797925,
+        "previous_guid": "A2BDAFAD93874A02BA54B82E21C9F8BB",
+        "section": "<p>CLEANUP</p>",
+        "section_color": "#E57785",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Clean the OT2 deck and walls with: \n 10% Bleach Contributed by users  1 rinse \n Distilled Water Contributed by users   1 rinse \n 70% Alcohol Contributed by users  2 rinses\n\nAvoid wetting any electronic parts.\n \n\n",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "14",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1798025,
+        "guid": "A01803BA122B474E854E0ABF828CA63A",
+        "previous_id": 1798024,
+        "previous_guid": "A8E676DB8BAB4BAB8EE3397CF96810D9",
+        "section": "<p>CLEANUP</p>",
+        "section_color": "#E57785",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Clean OT2 module with:\n 70% Alcohol Contributed by users  2 rinses\n\n\nAvoid wetting electronic parts.\n \n",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "15",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1798026,
+        "guid": "4D893EEAA40E4AF1BAE70AF4BAD96465",
+        "previous_id": 1798025,
+        "previous_guid": "A01803BA122B474E854E0ABF828CA63A",
+        "section": "<p>CLEANUP</p>",
+        "section_color": "#E57785",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Air dry OT2 robot and modules.",
+        "data": null,
+        "protocol_id": 88226,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "16",
+        "cases": [],
+        "critical": null
+      }
+    ],
+    "table_of_contents": [
+      {
+        "title": "<p>Materials and reagents</p>",
+        "color": "#A492FF",
+        "first_step_guid": "93F4392D9FF14C9C9163BD43623ED345"
+      },
+      {
+        "title": "<p>Items to prepare in advance</p>",
+        "color": "#94EBFF",
+        "first_step_guid": "E214736B7E8742A6BC12BEC79D04C688"
+      },
+      {
+        "title": "<p>OT2 PCR script definitions</p>",
+        "color": "#84CE84",
+        "first_step_guid": "43740F30989B44C8B49855093EF40D12"
+      },
+      {
+        "title": "<p>OT2 Protocol: Transferring mastermix and samples </p>",
+        "color": "#FFED92",
+        "first_step_guid": "B00399760D1F4DB3A20FD98896891C25"
+      },
+      {
+        "title": "<p>Manually adding controls</p>",
+        "color": "#EA9F6C",
+        "first_step_guid": "DCDA1C01A4A34632B467EE2EE93B9250"
+      },
+      {
+        "title": "<p>CLEANUP</p>",
+        "color": "#E57785",
+        "first_step_guid": "A8E676DB8BAB4BAB8EE3397CF96810D9"
+      }
+    ],
+    "title": "Opentrons  Pipeline: PCR Preparation",
+    "title_html": "Opentrons  Pipeline: PCR Preparation",
+    "translations": [
+      {
+        "lang": "de",
+        "title": "German",
+        "created_on": 1775230125
+      },
+      {
+        "lang": "es",
+        "title": "Spanish",
+        "created_on": 1775230125
+      },
+      {
+        "lang": "fr",
+        "title": "French",
+        "created_on": 1775230125
+      },
+      {
+        "lang": "ja",
+        "title": "Japanese",
+        "created_on": 1775230126
+      },
+      {
+        "lang": "zh",
+        "title": "Chinese - Simp/Trad",
+        "created_on": 1775230126
+      }
+    ],
+    "troubleshooting_items": null,
+    "type_id": 1,
+    "units": [
+      {
+        "id": 1,
+        "type_id": 3,
+        "name": "\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 2,
+        "type_id": 3,
+        "name": "mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 3,
+        "type_id": 3,
+        "name": "L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 4,
+        "type_id": 3,
+        "name": "\u00b5g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 5,
+        "type_id": 3,
+        "name": "mg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 6,
+        "type_id": 3,
+        "name": "g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 7,
+        "type_id": 3,
+        "name": "kg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 8,
+        "type_id": 3,
+        "name": "ng",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 9,
+        "type_id": 3,
+        "name": "Hz",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 10,
+        "type_id": 24,
+        "name": "\u00b0C",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 11,
+        "type_id": 24,
+        "name": "\u00b0\u041a",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 12,
+        "type_id": 24,
+        "name": "\u00b0F",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 13,
+        "type_id": 25,
+        "name": "Mass Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 14,
+        "type_id": 25,
+        "name": "% volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 15,
+        "type_id": 25,
+        "name": "Mass / % volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 16,
+        "type_id": 25,
+        "name": "Parts per Million (PPM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 17,
+        "type_id": 25,
+        "name": "Parts per Billion (PPB)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 18,
+        "type_id": 25,
+        "name": "Parts per Trillion (PPT)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 19,
+        "type_id": 25,
+        "name": "Mole Fraction",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 20,
+        "type_id": 25,
+        "name": "Mole Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 21,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 1
+      },
+      {
+        "id": 22,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 23,
+        "type_id": 25,
+        "name": "Genome copies per ml",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 24,
+        "type_id": 3,
+        "name": "\u03bcV",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 25,
+        "type_id": 3,
+        "name": "ms",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 26,
+        "type_id": 3,
+        "name": "pg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 27,
+        "type_id": 25,
+        "name": "Molarity dilutions",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 28,
+        "type_id": 25,
+        "name": "millimolar (mM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 29,
+        "type_id": 25,
+        "name": "micromolar (\u00b5M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 30,
+        "type_id": 25,
+        "name": "nanomolar (nM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 31,
+        "type_id": 25,
+        "name": "picomolar (pM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 32,
+        "type_id": 24,
+        "name": "Room temperature",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 33,
+        "type_id": 30,
+        "name": "rpm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 34,
+        "type_id": 30,
+        "name": "x g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 165,
+        "type_id": 24,
+        "name": "On ice",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 200,
+        "type_id": 32,
+        "name": "cm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 201,
+        "type_id": 32,
+        "name": "mm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 202,
+        "type_id": 32,
+        "name": "\u00b5m",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 203,
+        "type_id": 32,
+        "name": "nm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 204,
+        "type_id": 25,
+        "name": "mg/mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 205,
+        "type_id": 25,
+        "name": "\u00b5g/\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 206,
+        "type_id": 25,
+        "name": "% (v/v)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 207,
+        "type_id": 3,
+        "name": "V",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 208,
+        "type_id": 0,
+        "name": "Undetermined",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1324,
+        "type_id": 30,
+        "name": "rcf",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1359,
+        "type_id": 35,
+        "name": "Bar",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1360,
+        "type_id": 35,
+        "name": "Pa",
+        "can_manage": 0,
+        "read_only": 0
+      }
+    ],
+    "uri": "opentrons-pipeline-pcr-preparation-c2eaybae",
+    "url": "https://www.protocols.io/view/opentrons-pipeline-pcr-preparation-c2eaybae",
+    "version_class": 88226,
+    "version_data": null,
+    "version_id": 0,
+    "version_uri": "opentrons-pipeline-pcr-preparation-rm7vzx6y8gx1/v1",
+    "versions": [
+      {
+        "id": 88226,
+        "title": "Opentrons  Pipeline: PCR Preparation",
+        "title_html": "Opentrons  Pipeline: PCR Preparation",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.rm7vzx6y8gx1/v1",
+        "uri": "opentrons-pipeline-pcr-preparation-c2eaybae",
+        "published_on": 1695663830,
+        "modified_on": 1695663830,
+        "version_class": 88226,
+        "version_id": 0,
+        "version_code": "c2eaybae",
+        "version_uri": "opentrons-pipeline-pcr-preparation-rm7vzx6y8gx1/v1",
+        "created_on": 1695419791,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Alexandra Sacco",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "Washington University in St. Louis",
+          "affiliation_url": null,
+          "username": "alexandra-sacco",
+          "link": "",
+          "user_image_file": {
+            "guid": "00000000000000000000000000000001",
+            "file_name": "avatar.png",
+            "url": "https://www.protocols.io/img/avatars/001.png",
+            "mime": "image/png",
+            "size": 0,
+            "width": 100,
+            "height": 100,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 0
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "1FE2CA4C687511F08F960A58A9FEAC02",
+          "file_name": "np9q4hq6.jpg",
+          "url": "https://files.protocols.io/external/np9q4hq6-1FE2CA4C687511F08F960A58A9FEAC02.jpg",
+          "mime": "binary/octet-stream",
+          "size": 18986,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1753351270
+        }
+      }
+    ],
+    "warning": "Use PPE to handle all samples and liquids. Make sure to open ALL ingredients outside the OT2 deck, and place the plates in the deck only after any aerosols have dispersed. "
+  },
+  "status_code": 0
+}

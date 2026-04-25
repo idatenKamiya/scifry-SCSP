@@ -1,0 +1,763 @@
+{
+  "payload": {
+    "access": {
+      "can_preview": true,
+      "can_view": true,
+      "can_edit": false,
+      "can_remove": false,
+      "can_add": false,
+      "can_publish": false,
+      "can_get_doi": false,
+      "can_share": false,
+      "can_share_organization": false,
+      "can_move": false,
+      "can_move_outside": false,
+      "can_transfer": false,
+      "can_download": true,
+      "limited_run": false,
+      "limited_private_links": false,
+      "limited_blind_links": false,
+      "is_locked": false
+    },
+    "acknowledgements": "",
+    "authors": [
+      {
+        "first_name": "Ariel",
+        "last_name": "Rabines",
+        "affiliation": "J. Craig Venter Institute",
+        "note": "",
+        "guid": "04018E83F8CC11ED9D4302C0B41BC903",
+        "username": "w2y29433r2s2",
+        "name": "Ariel Rabines",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Rob",
+        "last_name": "Lampe",
+        "affiliation": "Scripps Institution of Oceanography",
+        "note": "",
+        "guid": "038B427AF8CC11ED9D4302C0B41BC903",
+        "username": "rob-lampe",
+        "name": "Rob Lampe",
+        "affiliation_url": "",
+        "link": "http://robhlampe.com",
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "CD7AE8F55B2A11EFA2EF0A58A9FEAC02",
+          "file_name": "i25t85be.jpg",
+          "url": "https://files.protocols.io/external/i25t85be-CD7AE8F55B2A11EFA2EF0A58A9FEAC02.jpg",
+          "mime": "image/jpeg",
+          "size": 22047,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1723742486
+        }
+      },
+      {
+        "first_name": "Andrew",
+        "last_name": "E Allen",
+        "affiliation": "Scripps Institution of Oceanography",
+        "note": "",
+        "guid": "02EBCBDBF8CC11ED9D4302C0B41BC903",
+        "username": "andrew-allen",
+        "name": "Andrew E Allen",
+        "affiliation_url": "https://scripps.ucsd.edu/",
+        "link": "https://scripps.ucsd.edu/labs/aallen/",
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "9AAD211A5B2A11EFA2EF0A58A9FEAC02",
+          "file_name": "bu8ier7e.jpg",
+          "url": "https://files.protocols.io/external/bu8ier7e-9AAD211A5B2A11EFA2EF0A58A9FEAC02.jpg",
+          "mime": "image/jpeg",
+          "size": 25627,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1723742401
+        }
+      }
+    ],
+    "before_start": "",
+    "created_on": 1590887300,
+    "creator": {
+      "affiliation": "Woods Hole Oceanographic Institution",
+      "affiliation_url": "",
+      "affiliations": [
+        {
+          "affiliation": "Woods Hole Oceanographic Institution",
+          "is_default": true,
+          "job_title": "",
+          "url": ""
+        }
+      ],
+      "badges": [
+        {
+          "id": 3,
+          "image": {
+            "placeholder": "https://files.protocols.io/webapp/images/q2ckeg/badges/silver.svg",
+            "source": "https://files.protocols.io/webapp/images/q2ckeg/badges/silver.svg"
+          },
+          "name": "Power author!"
+        }
+      ],
+      "first_name": "",
+      "image": {
+        "placeholder": "https://files.protocols.io/thumbnails/external/i25t85be-CD7AE8F55B2A11EFA2EF0A58A9FEAC02.jpg/thumbnail-w100xh100.jpg",
+        "source": "https://files.protocols.io/external/i25t85be-CD7AE8F55B2A11EFA2EF0A58A9FEAC02.jpg"
+      },
+      "last_name": "",
+      "link": "http://robhlampe.com",
+      "name": "Rob Lampe",
+      "username": "rob-lampe"
+    },
+    "cross_cloud_origin": null,
+    "description": "This protocol describes a fully-automated PCR cleanup in a 96-well PCR plate format with AMPure XP beads on an Eppendorf epMotion. Multichannel pipetting with the 300 uL and 50 uL pipettes is used. It is designed to use the thermomixer module; however, this can be replaced by modifying the program to mix by pipetting. The bead magnet used in this program is a Alpaqua Low Elution Magnet Plate. We also use Eppendorf twin.tec PCR plates (LoBind, skirted, 150uL).  \n\n**IMPORTANT: **The program is currently set to add 22 \u00b5L  of water to each well followed by 65 \u00b5L  beads. This results in an approximately 1:1.5 bead ratio with a starting volume of 22 \u00b5L  PCR product. Modify the first step accordingly with your starting volume and desired bead ratio.\n\nThe manufacturer&#39;s instructions are found here: [https://www.beckmancoulter.com/wsrportal/techdocs?docname=B37419](https://www.beckmancoulter.com/wsrportal/techdocs?docname=B37419)\n\nThe epMotion program is attached here.",
+    "disclaimer": "",
+    "documents": [
+      {
+        "id": 109565,
+        "guid": "",
+        "type_id": 0,
+        "filename": "",
+        "key": "",
+        "color": "",
+        "height": 0,
+        "width": 0,
+        "is_document": null,
+        "original_file_id": null,
+        "thumb_url": "https://www.protocols.io/img/extensions/export6.png",
+        "size": 9527,
+        "is_private": 0,
+        "is_new": 0,
+        "ofn": "Application_1x bead cleanup_210519_140208.export6",
+        "url": "https://content.protocols.io/files/dk9785be.export6",
+        "bucket_name": null,
+        "s3_webp_url": "",
+        "file_id": 109565
+      }
+    ],
+    "doi": "dx.doi.org/10.17504/protocols.io.dm6gpr19jvzp/v1",
+    "ethics_statement": "",
+    "fork_id": null,
+    "funders": [],
+    "guid": "31E63750A2DB11EA81EFF505AB641C31",
+    "guidelines": "",
+    "id": 37637,
+    "image": {
+      "placeholder": null,
+      "source": "https://www.protocols.io/img/default_protocol.png",
+      "webp_placeholder": null,
+      "webp_source": null
+    },
+    "is_content_confidential": false,
+    "is_content_warning": false,
+    "is_doi_reserved": false,
+    "is_in_pending_publishing": false,
+    "is_in_transfer": null,
+    "is_owner": false,
+    "is_research": true,
+    "is_subprotocol": null,
+    "item_id": 645100,
+    "keywords": "PCR purification,Eppendorf epMotion,bead cleanup,automatic, well pcr plate format with ampure xp bead, well pcr purification, pcr cleanup, automated pcr cleanup, well pcr purification this protocol, ampure xp bead, pcr product, pcr plate, well pcr plate format, pcr, bead ratio, bead magnet, thermomixer module, purification, bead",
+    "link": "",
+    "manuscript_citation": "",
+    "materials": [],
+    "materials_text": " Agencourt AMPure XP beads Contributed by users  \n Eppendorf twin.tec\u00ae PCR 96-well plate, skirted Eppendorf Catalog #951020401  \n Molecular grade water nuclease-free Contributed by users  \n 100% Molecular grade ethanol Contributed by users  \n LE Magnet Plate (Alpaqua, A000350) \n\n\n",
+    "protocol_image_file": {
+      "avg_color": "",
+      "created_at": 0,
+      "file_name": "avatar.png",
+      "guid": "00000000000000000000000000000001",
+      "height": 400,
+      "mime": "image/png",
+      "scan_status": 0,
+      "size": 0,
+      "url": "https://www.protocols.io/img/default_protocol.png",
+      "width": 400
+    },
+    "protocol_references": "",
+    "public": true,
+    "published_on": 1666626530,
+    "reserved_doi": "",
+    "space_id": 63,
+    "stats": {
+      "is_voted": false,
+      "number_of_views": 369,
+      "number_of_steps": 5,
+      "number_of_bookmarks": 2,
+      "number_of_comments": 0,
+      "number_of_bookmarked_comments": 0,
+      "number_of_steps_comments": 0,
+      "number_of_protocol_comments": 0,
+      "number_of_exports": 3,
+      "number_of_runs": 0,
+      "number_of_votes": 0,
+      "number_of_reagents": 4,
+      "number_of_equipments": 1,
+      "number_of_collections": 0,
+      "number_of_forks": {
+        "private": 0,
+        "public": 0
+      },
+      "number_of_accessible_forks": 0
+    },
+    "status": {
+      "id": 1,
+      "info": "We use this protocol and it's working"
+    },
+    "steps": [
+      {
+        "id": 1181065,
+        "guid": "122F7270B77811EBB5C4C3FAE405C4D8",
+        "previous_id": 0,
+        "previous_guid": null,
+        "section": "",
+        "section_color": "",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Take aliquot of beads out of refrigerator and allow to warm to room temperature.",
+        "data": null,
+        "protocol_id": 37637,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1181066,
+        "guid": "42463CF0B77811EBB5C4C3FAE405C4D8",
+        "previous_id": 1181129,
+        "previous_guid": "F73EC9C0B78611EB9D2639A445D24D41",
+        "section": "",
+        "section_color": "",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Prepare fresh 70% EtOH. \n\nFrom the Agencourt XP beads manual: &#34;Fresh 70% ethanol should be prepared for optimal results. There is also miscibility involved with ethanol and water. For example, measuring out 70 mL of ethanol and topping off to 100 mL with water will generate ~65% ethanol. Measuring 70 mL ethanol and 30 mL water separately, then combining them will generate ~95 mL of 70% ethanol.&#34;",
+        "data": null,
+        "protocol_id": 37637,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "4",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1181068,
+        "guid": "B69A34D0B77811EBB5C4C3FAE405C4D8",
+        "previous_id": 1181065,
+        "previous_guid": "122F7270B77811EBB5C4C3FAE405C4D8",
+        "section": "",
+        "section_color": "",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Start program and input the numer of samples you have. It will then tell you the minimum volumes for each reagent. The positions in the reservoir rack are:\n1. Molecular grade H2O\n3. Beads\n5. 70% EtOH\n7. Elution buffer (e.g. H2O, TRIS-Acetate (10 mM pH 8.0), or TE Buffer (10 mM Tris-Acetate pH 8.0, 1 mM EDTA))\n\nYou can use the level sensor to detect volumes or measure them with a serological pipette. Do not start the program until all of your items are in the correct positions.",
+        "data": null,
+        "protocol_id": 37637,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1181086,
+        "guid": "06DFB770B77A11EBB5C4C3FAE405C4D8",
+        "previous_id": 1181066,
+        "previous_guid": "42463CF0B77811EBB5C4C3FAE405C4D8",
+        "section": "",
+        "section_color": "",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Place reagents, your PCR plate, and a new clean plate on the epMotion. \n\nMaterials layout:\n[bead cleanup position.png]](https://content.protocols.io/files/jm7685be.jpg)\n \n\n\nRun the program. It will take approximately 1 hour for a full plate.",
+        "data": null,
+        "protocol_id": 37637,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "5",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1181129,
+        "guid": "F73EC9C0B78611EB9D2639A445D24D41",
+        "previous_id": 1181068,
+        "previous_guid": "B69A34D0B77811EBB5C4C3FAE405C4D8",
+        "section": "",
+        "section_color": "",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Mix beads well until they appear homogenous.",
+        "data": null,
+        "protocol_id": 37637,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "3",
+        "cases": [],
+        "critical": null
+      }
+    ],
+    "table_of_contents": [],
+    "title": "Automated 96-well PCR Purification",
+    "title_html": "Automated 96-well PCR Purification",
+    "translations": [
+      {
+        "lang": "de",
+        "title": "German",
+        "created_on": 1775225307
+      },
+      {
+        "lang": "es",
+        "title": "Spanish",
+        "created_on": 1775225307
+      },
+      {
+        "lang": "fr",
+        "title": "French",
+        "created_on": 1775225307
+      },
+      {
+        "lang": "ja",
+        "title": "Japanese",
+        "created_on": 1775225307
+      },
+      {
+        "lang": "zh",
+        "title": "Chinese - Simp/Trad",
+        "created_on": 1775225307
+      }
+    ],
+    "troubleshooting_items": null,
+    "type_id": 1,
+    "units": [
+      {
+        "id": 1,
+        "type_id": 3,
+        "name": "\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 2,
+        "type_id": 3,
+        "name": "mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 3,
+        "type_id": 3,
+        "name": "L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 4,
+        "type_id": 3,
+        "name": "\u00b5g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 5,
+        "type_id": 3,
+        "name": "mg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 6,
+        "type_id": 3,
+        "name": "g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 7,
+        "type_id": 3,
+        "name": "kg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 8,
+        "type_id": 3,
+        "name": "ng",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 9,
+        "type_id": 3,
+        "name": "Hz",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 10,
+        "type_id": 24,
+        "name": "\u00b0C",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 11,
+        "type_id": 24,
+        "name": "\u00b0\u041a",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 12,
+        "type_id": 24,
+        "name": "\u00b0F",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 13,
+        "type_id": 25,
+        "name": "Mass Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 14,
+        "type_id": 25,
+        "name": "% volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 15,
+        "type_id": 25,
+        "name": "Mass / % volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 16,
+        "type_id": 25,
+        "name": "Parts per Million (PPM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 17,
+        "type_id": 25,
+        "name": "Parts per Billion (PPB)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 18,
+        "type_id": 25,
+        "name": "Parts per Trillion (PPT)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 19,
+        "type_id": 25,
+        "name": "Mole Fraction",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 20,
+        "type_id": 25,
+        "name": "Mole Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 21,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 1
+      },
+      {
+        "id": 22,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 23,
+        "type_id": 25,
+        "name": "Genome copies per ml",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 24,
+        "type_id": 3,
+        "name": "\u03bcV",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 25,
+        "type_id": 3,
+        "name": "ms",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 26,
+        "type_id": 3,
+        "name": "pg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 27,
+        "type_id": 25,
+        "name": "Molarity dilutions",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 28,
+        "type_id": 25,
+        "name": "millimolar (mM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 29,
+        "type_id": 25,
+        "name": "micromolar (\u00b5M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 30,
+        "type_id": 25,
+        "name": "nanomolar (nM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 31,
+        "type_id": 25,
+        "name": "picomolar (pM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 32,
+        "type_id": 24,
+        "name": "Room temperature",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 33,
+        "type_id": 30,
+        "name": "rpm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 34,
+        "type_id": 30,
+        "name": "x g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 165,
+        "type_id": 24,
+        "name": "On ice",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 200,
+        "type_id": 32,
+        "name": "cm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 201,
+        "type_id": 32,
+        "name": "mm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 202,
+        "type_id": 32,
+        "name": "\u00b5m",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 203,
+        "type_id": 32,
+        "name": "nm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 204,
+        "type_id": 25,
+        "name": "mg/mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 205,
+        "type_id": 25,
+        "name": "\u00b5g/\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 206,
+        "type_id": 25,
+        "name": "% (v/v)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 207,
+        "type_id": 3,
+        "name": "V",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 208,
+        "type_id": 0,
+        "name": "Undetermined",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1324,
+        "type_id": 30,
+        "name": "rcf",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1359,
+        "type_id": 35,
+        "name": "Bar",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1360,
+        "type_id": 35,
+        "name": "Pa",
+        "can_manage": 0,
+        "read_only": 0
+      }
+    ],
+    "uri": "automated-96-well-pcr-purification-bgzdjx26",
+    "url": "https://www.protocols.io/view/automated-96-well-pcr-purification-bgzdjx26",
+    "version_class": 37637,
+    "version_data": null,
+    "version_id": 0,
+    "version_uri": "automated-96-well-pcr-purification-dm6gpr19jvzp/v1",
+    "versions": [
+      {
+        "id": 37637,
+        "title": "Automated 96-well PCR Purification",
+        "title_html": "Automated 96-well PCR Purification",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.dm6gpr19jvzp/v1",
+        "uri": "automated-96-well-pcr-purification-bgzdjx26",
+        "published_on": 1666626530,
+        "modified_on": 1666626530,
+        "version_class": 37637,
+        "version_id": 0,
+        "version_code": "bgzdjx26",
+        "version_uri": "automated-96-well-pcr-purification-dm6gpr19jvzp/v1",
+        "created_on": 1590887300,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Rob Lampe",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "Woods Hole Oceanographic Institution",
+          "affiliation_url": "",
+          "username": "rob-lampe",
+          "link": "http://robhlampe.com",
+          "user_image_file": {
+            "guid": "CD7AE8F55B2A11EFA2EF0A58A9FEAC02",
+            "file_name": "i25t85be.jpg",
+            "url": "https://files.protocols.io/external/i25t85be-CD7AE8F55B2A11EFA2EF0A58A9FEAC02.jpg",
+            "mime": "image/jpeg",
+            "size": 22047,
+            "width": 0,
+            "height": 0,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 1723742486
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/default_protocol.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 400,
+          "height": 400,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      }
+    ],
+    "warning": ""
+  },
+  "status_code": 0
+}

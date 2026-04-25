@@ -1,0 +1,879 @@
+{
+  "payload": {
+    "access": {
+      "can_preview": true,
+      "can_view": true,
+      "can_edit": false,
+      "can_remove": false,
+      "can_add": false,
+      "can_publish": false,
+      "can_get_doi": false,
+      "can_share": false,
+      "can_share_organization": false,
+      "can_move": false,
+      "can_move_outside": false,
+      "can_transfer": false,
+      "can_download": true,
+      "limited_run": false,
+      "limited_private_links": false,
+      "limited_blind_links": false,
+      "is_locked": false
+    },
+    "acknowledgements": "",
+    "authors": [
+      {
+        "first_name": "Sarah",
+        "last_name": "Hessen-Schmidt",
+        "affiliation": "University of Southern California",
+        "note": "",
+        "guid": "",
+        "username": "",
+        "name": "Sarah Hessen-Schmidt",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": false,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      }
+    ],
+    "before_start": "",
+    "created_on": 1468450332,
+    "creator": {
+      "affiliation": "University of Southern California",
+      "affiliation_url": "",
+      "affiliations": [
+        {
+          "affiliation": "University of Southern California",
+          "is_default": true,
+          "job_title": null,
+          "url": ""
+        }
+      ],
+      "badges": [
+        {
+          "id": 4,
+          "image": {
+            "placeholder": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg",
+            "source": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg"
+          },
+          "name": "Gold power author!"
+        },
+        {
+          "id": 5,
+          "image": {
+            "placeholder": "https://files.protocols.io/webapp/images/q2ckeg/badges/star.svg",
+            "source": "https://files.protocols.io/webapp/images/q2ckeg/badges/star.svg"
+          },
+          "name": "Early adopter"
+        }
+      ],
+      "first_name": "",
+      "image": {
+        "placeholder": "https://www.protocols.io/img/avatars/001.png",
+        "source": "https://www.protocols.io/img/avatars/001.png"
+      },
+      "last_name": "",
+      "link": "",
+      "name": "Sarah Hessen-Schmidt",
+      "username": "sarah-hessenschmidt"
+    },
+    "cross_cloud_origin": null,
+    "description": "",
+    "disclaimer": "",
+    "documents": null,
+    "doi": "dx.doi.org/10.17504/protocols.io.fbebije",
+    "ethics_statement": "",
+    "fork_id": null,
+    "funders": [],
+    "guid": "87A209FFB9DA11E99CA40242AC110005",
+    "guidelines": "",
+    "id": 3142,
+    "image": {
+      "placeholder": null,
+      "source": "https://www.protocols.io/img/default_protocol.png",
+      "webp_placeholder": null,
+      "webp_source": null
+    },
+    "is_content_confidential": false,
+    "is_content_warning": false,
+    "is_doi_reserved": false,
+    "is_in_pending_publishing": false,
+    "is_in_transfer": null,
+    "is_owner": false,
+    "is_research": true,
+    "is_subprotocol": null,
+    "item_id": 229906,
+    "keywords": "pcr hsp60, pcr, plate",
+    "link": "",
+    "manuscript_citation": "",
+    "materials": [],
+    "materials_text": "STEP MATERIALS\n PCR Water (nuclease free) Contributed by users Catalog #PCPW \n SYBR G Contributed by users \n SYBR G Contributed by users \n PCR Water (nuclease free) Contributed by users Catalog #PCPW \n SYBR G Contributed by users \n SYBR G Contributed by users ",
+    "protocol_image_file": {
+      "avg_color": "",
+      "created_at": 0,
+      "file_name": "avatar.png",
+      "guid": "00000000000000000000000000000001",
+      "height": 400,
+      "mime": "image/png",
+      "scan_status": 0,
+      "size": 0,
+      "url": "https://www.protocols.io/img/default_protocol.png",
+      "width": 400
+    },
+    "protocol_references": "",
+    "public": true,
+    "published_on": 1470867199,
+    "reserved_doi": "",
+    "space_id": 0,
+    "stats": {
+      "is_voted": false,
+      "number_of_views": 172,
+      "number_of_steps": 14,
+      "number_of_bookmarks": 1,
+      "number_of_comments": 0,
+      "number_of_bookmarked_comments": 0,
+      "number_of_steps_comments": 0,
+      "number_of_protocol_comments": 0,
+      "number_of_exports": 31,
+      "number_of_runs": 1,
+      "number_of_votes": 0,
+      "number_of_reagents": 9,
+      "number_of_equipments": 0,
+      "number_of_collections": 0,
+      "number_of_forks": {
+        "private": 2,
+        "public": 0
+      },
+      "number_of_accessible_forks": 0
+    },
+    "status": {
+      "id": 1,
+      "info": ""
+    },
+    "steps": [
+      {
+        "id": 157104,
+        "guid": "E30433B844EA41B2BD512FD501BC9BCB",
+        "previous_id": 0,
+        "previous_guid": null,
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Make PCR Master Mix for 100 samples in 15ml Falcon tube.",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157105,
+        "guid": "2EDF7E9BB98D44428E58FC58B958E10F",
+        "previous_id": 157104,
+        "previous_guid": "E30433B844EA41B2BD512FD501BC9BCB",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Add 850ul PCR Water\u00a0\nundetermined \n PCR Water (nuclease free) Contributed by users Catalog #PCPW ",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157106,
+        "guid": "B674B52E261B4622A7E5991D2AA8AEA9",
+        "previous_id": 157105,
+        "previous_guid": "2EDF7E9BB98D44428E58FC58B958E10F",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Dilute SYBR G 1:100 by adding 3ul SYBR G and 297ul PCR water to a new small tube. Vortex and spin down.\u00a0\n SYBR G Contributed by users ",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "3",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157107,
+        "guid": "4B5542FA26504DE3A3C058EF254512DE",
+        "previous_id": 157106,
+        "previous_guid": "B674B52E261B4622A7E5991D2AA8AEA9",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Add 250ul of SYBR 1:100 dilution to Falcon tube\nundetermined \n SYBR G Contributed by users ",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "4",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157108,
+        "guid": "B637FB034F144284A2E9EFA856CABA29",
+        "previous_id": 157107,
+        "previous_guid": "4B5542FA26504DE3A3C058EF254512DE",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Add 100ul of Primer 1: GOH-279-M13 10um to Falcon tube\nundetermined ",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "5",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157109,
+        "guid": "F535C2821A3343F0AFF1E49D0CCFC44C",
+        "previous_id": 157108,
+        "previous_guid": "B637FB034F144284A2E9EFA856CABA29",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Add 100ul of Primer 2: GOH-280-M13 10um to Falcon tube\nundetermined ",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "6",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157110,
+        "guid": "83B5FBC62FCB40E5A3B3634072323708",
+        "previous_id": 157109,
+        "previous_guid": "F535C2821A3343F0AFF1E49D0CCFC44C",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Add 1000ul of 5&#39; mix to Falcon tube\nundetermined ",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "7",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157111,
+        "guid": "9680528E77C94094AFF78AE1B7D3CFEB",
+        "previous_id": 157110,
+        "previous_guid": "83B5FBC62FCB40E5A3B3634072323708",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Quick vortex and spin down Falcon tube",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "8",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157112,
+        "guid": "30253718CB3E4857B0AC7AF117A9A201",
+        "previous_id": 157111,
+        "previous_guid": "9680528E77C94094AFF78AE1B7D3CFEB",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Label new green 96 microplate",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "9",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157113,
+        "guid": "0CE8F072ADCE4777AAA8D31702089D92",
+        "previous_id": 157112,
+        "previous_guid": "30253718CB3E4857B0AC7AF117A9A201",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Add 23ul of Master Mix to each well of green 96 microplate\nundetermined ",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "10",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157114,
+        "guid": "BAF2B229C60F4DE999E6639AE681CC16",
+        "previous_id": 157113,
+        "previous_guid": "0CE8F072ADCE4777AAA8D31702089D92",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Thaw and spin down plate with extracted DNA samples.\u00a0",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "11",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157115,
+        "guid": "1B32B03EAD3D439695ABBEE14BEBB350",
+        "previous_id": 157114,
+        "previous_guid": "BAF2B229C60F4DE999E6639AE681CC16",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Add 2ul of each extracted DNA sample to corresponding well of new plate with master mix.\nundetermined ",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "12",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157116,
+        "guid": "17FFA89713D54C9FA5D0DF918071D760",
+        "previous_id": 157115,
+        "previous_guid": "1B32B03EAD3D439695ABBEE14BEBB350",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Seal PCR plate with plastic film, spin down",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "13",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 157117,
+        "guid": "0F79D6EE19A04739B315F6674BB3EB95",
+        "previous_id": 157116,
+        "previous_guid": "17FFA89713D54C9FA5D0DF918071D760",
+        "section": null,
+        "section_color": null,
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Run plate on BioRad CFX with hsp60 qpcr 25ul 40 cycle program.",
+        "data": null,
+        "protocol_id": 3142,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "14",
+        "cases": [],
+        "critical": null
+      }
+    ],
+    "table_of_contents": [],
+    "title": "PCR HSP60 - 96 well plate",
+    "title_html": "PCR HSP60 - 96 well plate",
+    "translations": [
+      {
+        "lang": "de",
+        "title": "German",
+        "created_on": 1775220957
+      },
+      {
+        "lang": "es",
+        "title": "Spanish",
+        "created_on": 1775220957
+      },
+      {
+        "lang": "fr",
+        "title": "French",
+        "created_on": 1775220957
+      },
+      {
+        "lang": "ja",
+        "title": "Japanese",
+        "created_on": 1775220957
+      },
+      {
+        "lang": "zh",
+        "title": "Chinese - Simp/Trad",
+        "created_on": 1775220957
+      }
+    ],
+    "troubleshooting_items": null,
+    "type_id": 1,
+    "units": [
+      {
+        "id": 1,
+        "type_id": 3,
+        "name": "\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 2,
+        "type_id": 3,
+        "name": "mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 3,
+        "type_id": 3,
+        "name": "L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 4,
+        "type_id": 3,
+        "name": "\u00b5g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 5,
+        "type_id": 3,
+        "name": "mg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 6,
+        "type_id": 3,
+        "name": "g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 7,
+        "type_id": 3,
+        "name": "kg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 8,
+        "type_id": 3,
+        "name": "ng",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 9,
+        "type_id": 3,
+        "name": "Hz",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 10,
+        "type_id": 24,
+        "name": "\u00b0C",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 11,
+        "type_id": 24,
+        "name": "\u00b0\u041a",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 12,
+        "type_id": 24,
+        "name": "\u00b0F",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 13,
+        "type_id": 25,
+        "name": "Mass Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 14,
+        "type_id": 25,
+        "name": "% volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 15,
+        "type_id": 25,
+        "name": "Mass / % volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 16,
+        "type_id": 25,
+        "name": "Parts per Million (PPM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 17,
+        "type_id": 25,
+        "name": "Parts per Billion (PPB)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 18,
+        "type_id": 25,
+        "name": "Parts per Trillion (PPT)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 19,
+        "type_id": 25,
+        "name": "Mole Fraction",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 20,
+        "type_id": 25,
+        "name": "Mole Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 21,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 1
+      },
+      {
+        "id": 22,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 23,
+        "type_id": 25,
+        "name": "Genome copies per ml",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 24,
+        "type_id": 3,
+        "name": "\u03bcV",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 25,
+        "type_id": 3,
+        "name": "ms",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 26,
+        "type_id": 3,
+        "name": "pg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 27,
+        "type_id": 25,
+        "name": "Molarity dilutions",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 28,
+        "type_id": 25,
+        "name": "millimolar (mM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 29,
+        "type_id": 25,
+        "name": "micromolar (\u00b5M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 30,
+        "type_id": 25,
+        "name": "nanomolar (nM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 31,
+        "type_id": 25,
+        "name": "picomolar (pM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 32,
+        "type_id": 24,
+        "name": "Room temperature",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 33,
+        "type_id": 30,
+        "name": "rpm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 34,
+        "type_id": 30,
+        "name": "x g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 165,
+        "type_id": 24,
+        "name": "On ice",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 200,
+        "type_id": 32,
+        "name": "cm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 201,
+        "type_id": 32,
+        "name": "mm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 202,
+        "type_id": 32,
+        "name": "\u00b5m",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 203,
+        "type_id": 32,
+        "name": "nm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 204,
+        "type_id": 25,
+        "name": "mg/mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 205,
+        "type_id": 25,
+        "name": "\u00b5g/\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 206,
+        "type_id": 25,
+        "name": "% (v/v)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 207,
+        "type_id": 3,
+        "name": "V",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 208,
+        "type_id": 0,
+        "name": "Undetermined",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1324,
+        "type_id": 30,
+        "name": "rcf",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1359,
+        "type_id": 35,
+        "name": "Bar",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1360,
+        "type_id": 35,
+        "name": "Pa",
+        "can_manage": 0,
+        "read_only": 0
+      }
+    ],
+    "uri": "PCR-HSP60-96-well-plate-fbebije",
+    "url": "https://www.protocols.io/view/PCR-HSP60-96-well-plate-fbebije",
+    "version_class": 3142,
+    "version_data": null,
+    "version_id": 0,
+    "version_uri": "PCR-HSP60-96-well-plate-36wgqjoxvk57/v1",
+    "versions": [
+      {
+        "id": 3142,
+        "title": "PCR HSP60 - 96 well plate",
+        "title_html": "PCR HSP60 - 96 well plate",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.fbebije",
+        "uri": "PCR-HSP60-96-well-plate-fbebije",
+        "published_on": 1470867199,
+        "modified_on": 1510247633,
+        "version_class": 3142,
+        "version_id": 0,
+        "version_code": "fbebije",
+        "version_uri": "PCR-HSP60-96-well-plate-36wgqjoxvk57/v1",
+        "created_on": 1468450332,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Sarah Hessen-Schmidt",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "University of Southern California",
+          "affiliation_url": "",
+          "username": "sarah-hessenschmidt",
+          "link": "",
+          "user_image_file": {
+            "guid": "00000000000000000000000000000001",
+            "file_name": "avatar.png",
+            "url": "https://www.protocols.io/img/avatars/001.png",
+            "mime": "image/png",
+            "size": 0,
+            "width": 100,
+            "height": 100,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 0
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/default_protocol.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 400,
+          "height": 400,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      }
+    ],
+    "warning": ""
+  },
+  "status_code": 0
+}

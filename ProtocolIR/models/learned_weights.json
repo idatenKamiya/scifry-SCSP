@@ -1,0 +1,56 @@
+{
+  "coefficients": [
+    -0.709998259076666,
+    -0.709998259076666,
+    0.0,
+    -0.709998259076666,
+    0.0,
+    0.05428833623848087,
+    0.045602413850672915,
+    0.06157055602851252,
+    0.11109171146148063,
+    0.2118480764513346
+  ],
+  "intercept": 1.7349404137915985,
+  "scaler_mean": [
+    0.4,
+    0.2,
+    0.0,
+    0.2,
+    0.0,
+    8.0,
+    3.8,
+    3.6,
+    0.5,
+    2.6
+  ],
+  "scaler_scale": [
+    0.8,
+    0.4,
+    1.0,
+    0.4,
+    1.0,
+    9.370165420097983,
+    5.418486873657626,
+    4.294182110716778,
+    1.2041594578792296,
+    2.4576411454889016
+  ],
+  "feature_names": [
+    "violation_count",
+    "contamination_violations",
+    "pipette_range_violations",
+    "well_overflow_violations",
+    "missing_mix_violations",
+    "total_operations",
+    "aspirate_count",
+    "dispense_count",
+    "mix_count",
+    "tip_changes"
+  ],
+  "accuracy": 1.0,
+  "training_samples": 10,
+  "positive_examples": "8 expert Opentrons scripts (COVID-19, Aldatu, SoundAg, Liam Hawkins)",
+  "negative_examples": "2 corrupted traces (cross-contamination, overflow)",
+  "data_source": "Real production protocols + expert demonstrations"
+}

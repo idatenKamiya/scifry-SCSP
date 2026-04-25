@@ -1,0 +1,637 @@
+{
+  "payload": {
+    "access": {
+      "can_preview": true,
+      "can_view": true,
+      "can_edit": false,
+      "can_remove": false,
+      "can_add": false,
+      "can_publish": false,
+      "can_get_doi": false,
+      "can_share": false,
+      "can_share_organization": false,
+      "can_move": false,
+      "can_move_outside": false,
+      "can_transfer": false,
+      "can_download": true,
+      "limited_run": false,
+      "limited_private_links": false,
+      "limited_blind_links": false,
+      "is_locked": false
+    },
+    "acknowledgements": "",
+    "authors": [
+      {
+        "first_name": "Carolina",
+        "last_name": "Lopez",
+        "affiliation": "Washington University",
+        "note": "",
+        "guid": "EA611EE8992F11EEA3C60A58A9FEAC02",
+        "username": "n4vle112y1u4tle1",
+        "name": "Carolina Lopez",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "FE7B2D5F5B2C11EFA2EF0A58A9FEAC02",
+          "file_name": "pbdnca62f.jpg",
+          "url": "https://files.protocols.io/external/pbdnca62f-FE7B2D5F5B2C11EFA2EF0A58A9FEAC02.jpg",
+          "mime": "image/jpeg",
+          "size": 10587,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1723743427
+        }
+      }
+    ],
+    "before_start": "",
+    "created_on": 1716925642,
+    "creator": {
+      "affiliation": "Washington University",
+      "affiliation_url": null,
+      "affiliations": [
+        {
+          "affiliation": "Washington University",
+          "is_default": true,
+          "job_title": null,
+          "url": null
+        }
+      ],
+      "badges": [
+        {
+          "id": 4,
+          "image": {
+            "placeholder": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg",
+            "source": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg"
+          },
+          "name": "Gold power author!"
+        }
+      ],
+      "first_name": "",
+      "image": {
+        "placeholder": "https://files.protocols.io/thumbnails/external/pbdnca62f-FE7B2D5F5B2C11EFA2EF0A58A9FEAC02.jpg/thumbnail-w100xh100.jpg",
+        "source": "https://files.protocols.io/external/pbdnca62f-FE7B2D5F5B2C11EFA2EF0A58A9FEAC02.jpg"
+      },
+      "last_name": "",
+      "link": null,
+      "name": "Carolina Lopez",
+      "username": "n4vle112y1u4tle1"
+    },
+    "cross_cloud_origin": null,
+    "description": "Protocol for qPCR using SYBR Green",
+    "disclaimer": "",
+    "documents": null,
+    "doi": "dx.doi.org/10.17504/protocols.io.8epv5rxw6g1b/v1",
+    "ethics_statement": "",
+    "fork_id": null,
+    "funders": [],
+    "guid": "CF37897695CD4D81829C54187FC9AB6F",
+    "guidelines": "",
+    "id": 100777,
+    "image": {
+      "placeholder": null,
+      "source": "https://www.protocols.io/img/default_protocol.png",
+      "webp_placeholder": null,
+      "webp_source": null
+    },
+    "is_content_confidential": false,
+    "is_content_warning": false,
+    "is_doi_reserved": false,
+    "is_in_pending_publishing": false,
+    "is_in_transfer": null,
+    "is_owner": false,
+    "is_research": true,
+    "is_subprotocol": null,
+    "item_id": 1255000,
+    "keywords": "protocol for qpcr, green protocol, qpcr, protocol",
+    "link": "",
+    "manuscript_citation": "",
+    "materials": [],
+    "materials_text": "\n[Screen Shot 2024-05-28 at 2.48.18 PM.png]](https://protocols-files.s3.amazonaws.com/files/qpccceigx.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222234Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=8bd39be6559a58c48c5035c66e3d62023d961f9c81e1e6684114679f36db1f62)\n \n",
+    "protocol_image_file": {
+      "avg_color": "",
+      "created_at": 0,
+      "file_name": "avatar.png",
+      "guid": "00000000000000000000000000000001",
+      "height": 400,
+      "mime": "image/png",
+      "scan_status": 0,
+      "size": 0,
+      "url": "https://www.protocols.io/img/default_protocol.png",
+      "width": 400
+    },
+    "protocol_references": "Updated 2023.05.01 RBR",
+    "public": true,
+    "published_on": 1738532730,
+    "reserved_doi": "",
+    "space_id": 112580,
+    "stats": {
+      "is_voted": false,
+      "number_of_views": 2100,
+      "number_of_steps": 2,
+      "number_of_bookmarks": 1,
+      "number_of_comments": 0,
+      "number_of_bookmarked_comments": 0,
+      "number_of_steps_comments": 0,
+      "number_of_protocol_comments": 0,
+      "number_of_exports": 0,
+      "number_of_runs": 0,
+      "number_of_votes": 0,
+      "number_of_reagents": 0,
+      "number_of_equipments": 0,
+      "number_of_collections": 0,
+      "number_of_forks": {
+        "private": 5,
+        "public": 0
+      },
+      "number_of_accessible_forks": 0
+    },
+    "status": {
+      "id": 1,
+      "info": "We use this protocol and it's working"
+    },
+    "steps": [
+      {
+        "id": 2076768,
+        "guid": "9744B843360E45AD80E92836AD67366A",
+        "previous_id": 0,
+        "previous_guid": null,
+        "section": "<p>qPCR \u2013 Power SYBR -</p>",
+        "section_color": "#A492FF",
+        "section_duration": 120,
+        "is_substep": false,
+        "step": "1. If needed, prepare **5\u03bcM Working Primer Dilutions** for each gene of interest\n        a) 20 \u00b5L  100 micromolar (\u00b5M)  Forward primer (final concentration: 2.5 \u03bcM) \n        b) 20 \u00b5L  100 micromolar (\u00b5M)  Reverse primer (final concentration: 2.5 \u03bcM)\n        c) 760 \u00b5L  nuclease-free water \n\nd) In general, 100 micromolar (\u00b5M)  primers should be stored in the general lab primer boxes at -20 \u00b0C . Once you make your own Working Primer Dilution, you may keep this in your personal -20 \u00b0C  box for further use.\n \n        e) IMPORTANT: Dilute both virus primers and housekeeping genes using this procedure, ALL PRIMERS SHOULD BE THE SAME CONCENTRATION. If the primer concentration is too high, there may be non-specific binding/amplification. \n\n2. **Prepare your plate map and PCR tubes**. **Quick tip:**\n[]](https://lh7-us.googleusercontent.com/KcARkaGFbj5xD2AMLS7KPgC_1JNGXy0zgiRB0gtDsAVjbCOgmIcZkBZ0I3BTyaXiwOT8xDjSNjDOX04XY9n-hL5x6wwbhpz7P3IzwC7w67GGMuF2qm1kpeyO2RDfQrsNRpRhXshkrOXSVp59NDCluA)\n \nOrganize your cDNA samples in PCR tubes so you can use the multichannel pipette properly. The pipette only fits every other row/column in the 384 well qPCR plate. Therefore, you want to split your cDNA samples into groups, alternating the order between groups. For the SYBR Green/Primer Master Mix, you will need to aliquot your mix into multiple PCR tubes. To determine the number of tubes, take # of samples in plate (rows)/2 and round up if needed.\n        a) Ex: for 12 samples, will need GAPDH Master Mix in 6 separate PCR tubes to use the multichannel pipette.\n\n\n\n[]](https://lh7-us.googleusercontent.com/wDSswEeR8S1u1vIBoGyvO58xyElLbyhm4ZGc3VQY9LOTb1T2g6tmrrNKoEYjbXaNfmhP98Abo5T2bIHsNlGTpNFKif4QucLoP39kNvUUVpTvVHy-pfh-cQzeGWm1Rziq1iU8Fs_gu4WO)\n \n 3. **Prepare cDNA **(will use 4 \u00b5L  per well). Need a 1:40 dilution from an RT reaction with 250 ng-2 \u03bcg of starting material (500 ng-1 \u03bcg is preferred). Prepare the dilutions in 0.2 mL  PCR tubes, mix each dilution (pipet or vortex) and spin down on a benchtop centrifuge.\n        a) Example dilutions to obtain 1:40 (*use nuclease free water):\n                  i. 1 \u00b5L  cDNA in 39 \u03bcL H2O\n                 ii. 2 \u00b5L  cDNA in 78 \u03bcL H2O\n                iii. 3 \u00b5L  cDNA in 117 \u03bcL H2O\n                iv. 4 \u00b5L  cDNA in 156 \u03bcL H2O\n        b) Amount of cDNA needed: # of genes x # of repetitions x 4 \u03bcL x 1.25\n        c) Do at least 3 technical replicates per sample (the x1.25 accounts for errors)\n\n4. **Prepare SYBR Green + Primer Master Mix** (will use 6 \u00b5L  per well). Prepare the dilutions in 0.2 mL  PCR tubes or 1.5mL eppendorf tubes, mix each Master Mix well (pipet or vortex) and spin down quickly in the benchtop centrifuge. If needed, can split into multiple tubes for easy multichannel pipetting (see Step 2).\n        a) SYBR Green (will use 5 \u00b5L  per well)\n                i. Amount needed = # of samples x # of repetitions x 5 \u03bcL x 1.25\n        b) Working Primer Dilution 5 \u03bcM (will use 1 \u00b5L  per well)\n                i. Amount needed = # of samples x # of repetitions x 1 \u03bcL x 1.25\n\n\n5. **Add ****4 \u00b5L **** of cDNA per well** (use multichannel pipette with 12.5 \u00b5L  filter pipet tips)\n        a) Can gently tap plate after to bring cDNA to the bottom of each well\n        b) Best to visually inspect the multichannel to ensure you are drawing up the correct volume in each tip.\n\n6. **Add ****6 \u00b5L **** of SYBR Green + Primer Master Mix** per well\n        a) Mix gently using the pipet, being careful to avoid air bubbles.\n        b) Best to visually inspect the multichannel to ensure you are drawing up the correct volume in each tip.\n\n7. **Seal plate** with plate cover. It is important the plate is fully sealed or the reaction mix will evaporate during the run. Use the scraper edge to seal each edge of the plate cover VERY well. \n\n8. **Spin plate** at 2000 rpm for 00:02:00 .\n\n9. **Run** the Standard Lopez Lab Protocol \u2013 Power SYBR on qPCR machineSettings are set as what is listed below. Double check the settings are correct before each run!\n        a) **Lopez Lap Protocol \u2013 Power SYBR settings**\n                i. Experiment Properties:\n                        - Block type: 384-Well Block\n                        - Experiment type: Comparative CT (\u2206\u2206CT)\n                        - Chemistry: SYBR\u2031 Green Reagents\n                        - Run Mode: Standard\n                ii. Experiment Method: \n                        - Volume: 10 \u00b5L \n                        - Cover: 105 \u00b0C \n                iii. Plate Attributes:\n                        - Passive Reference: ROX\n                        - Reference Sample: Sample 1\n                        - Endogenous Control: Varies from experiment \n\n[Screen Shot 2024-05-28 at 3.00.28 PM.png]](https://protocols-files.s3.amazonaws.com/files/qpceceigx.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222233Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=848350fcbeb16c26f0fa6d53ab14570b45521b87caf856e841b8b77ab1c26650)\n*Image capture/data collection point \n\n10. When your experiment is done, export your data from the machine and analyze. \n\n\n        ",
+        "data": null,
+        "protocol_id": 100777,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 120,
+        "original_id": 0,
+        "number": "1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2258444,
+        "guid": "6B792281223447D986585198B7883CD0",
+        "previous_id": 2076768,
+        "previous_guid": "9744B843360E45AD80E92836AD67366A",
+        "section": "<p>qPCR \u2013 Power SYBR -</p>",
+        "section_color": "#A492FF",
+        "section_duration": 120,
+        "is_substep": false,
+        "step": "**Data Export and Analysis (Lopez-Lab specific)**\n\nAt this point, it can be helpful to look at your data on the qPCR machine. In particular, the melt and amplification curves are useful. For the amplification curves, you should look to see that your technical replicates are as close to overlapping as possible. For the melting curves, you want to see a single peak for each gene of interest, and the peaks should be clustered together.. If your curves do not look correct, there was a problem during some step of the protocol (ie sample and plate preparation, primer design, machine, etc). \n\n11. Save your raw data. This file is very important and needs to be saved in your RAW DATA folder. \n\n12. To analyze your data, open the Lopez Lab qPCR Data Analysis template. \n        a) Locate the template in the Google Drive qPCR Protocol Folder under the name: \u201cDO NOT EDIT_qPCR analysis template_with fold induction_DO NOT EDIT\u201d\n        b) Do not edit the analysis template in the Google Drive\n        c) Download your own copy of the template. Each time the template is used, the \u201cSave As\u201d function should be used to create a new excel file with your processed data from the experiment. The template should always remain the same.\n\n13. Go to the RESULTS tab on the raw data excel file (the file saved from the qPCR machine). Copy the CT values from each of your samples into the Analysis Template. Make sure your samples and genes of interest are properly labeled and there are no errors in the copy/pasting. \n\n14. If there are any samples that have an undefined CT, assign a value of 40 (because the PCR ran for 40 cycles). \n\n15. At this point, the analysis template should auto-populate. The CT values for each of the housekeeping genes will be averaged to create a housekeeping index (HKI). Then the CT values for each gene of interest will be used to calculate Copy Numbers and Fold Induction. \n\nFor the fold induction, the template is set up so that Sample 1 is the control (ie the sample entered in the first row). If this is not your control, change the excel calculations accordingly.\n \n\n16. For more reading on qPCR data analysis, there are references in the Google Drive (REFERENCE DOCUMENTS -&gt; RT-qPCR)",
+        "data": null,
+        "protocol_id": 100777,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "2",
+        "cases": [],
+        "critical": null
+      }
+    ],
+    "table_of_contents": [
+      {
+        "title": "<p>qPCR \u2013 Power SYBR -</p>",
+        "color": "#A492FF",
+        "first_step_guid": "9744B843360E45AD80E92836AD67366A"
+      }
+    ],
+    "title": "qPCR \u2013 Power SYBR Green Protocol ",
+    "title_html": "<p>qPCR \u2013 Power SYBR Green Protocol </p>",
+    "translations": [
+      {
+        "lang": "de",
+        "title": "German",
+        "created_on": 1775232361
+      },
+      {
+        "lang": "es",
+        "title": "Spanish",
+        "created_on": 1775232361
+      },
+      {
+        "lang": "fr",
+        "title": "French",
+        "created_on": 1775232361
+      },
+      {
+        "lang": "ja",
+        "title": "Japanese",
+        "created_on": 1775232361
+      },
+      {
+        "lang": "zh",
+        "title": "Chinese - Simp/Trad",
+        "created_on": 1775232361
+      }
+    ],
+    "troubleshooting_items": null,
+    "type_id": 1,
+    "units": [
+      {
+        "id": 1,
+        "type_id": 3,
+        "name": "\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 2,
+        "type_id": 3,
+        "name": "mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 3,
+        "type_id": 3,
+        "name": "L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 4,
+        "type_id": 3,
+        "name": "\u00b5g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 5,
+        "type_id": 3,
+        "name": "mg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 6,
+        "type_id": 3,
+        "name": "g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 7,
+        "type_id": 3,
+        "name": "kg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 8,
+        "type_id": 3,
+        "name": "ng",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 9,
+        "type_id": 3,
+        "name": "Hz",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 10,
+        "type_id": 24,
+        "name": "\u00b0C",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 11,
+        "type_id": 24,
+        "name": "\u00b0\u041a",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 12,
+        "type_id": 24,
+        "name": "\u00b0F",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 13,
+        "type_id": 25,
+        "name": "Mass Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 14,
+        "type_id": 25,
+        "name": "% volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 15,
+        "type_id": 25,
+        "name": "Mass / % volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 16,
+        "type_id": 25,
+        "name": "Parts per Million (PPM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 17,
+        "type_id": 25,
+        "name": "Parts per Billion (PPB)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 18,
+        "type_id": 25,
+        "name": "Parts per Trillion (PPT)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 19,
+        "type_id": 25,
+        "name": "Mole Fraction",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 20,
+        "type_id": 25,
+        "name": "Mole Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 21,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 1
+      },
+      {
+        "id": 22,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 23,
+        "type_id": 25,
+        "name": "Genome copies per ml",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 24,
+        "type_id": 3,
+        "name": "\u03bcV",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 25,
+        "type_id": 3,
+        "name": "ms",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 26,
+        "type_id": 3,
+        "name": "pg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 27,
+        "type_id": 25,
+        "name": "Molarity dilutions",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 28,
+        "type_id": 25,
+        "name": "millimolar (mM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 29,
+        "type_id": 25,
+        "name": "micromolar (\u00b5M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 30,
+        "type_id": 25,
+        "name": "nanomolar (nM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 31,
+        "type_id": 25,
+        "name": "picomolar (pM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 32,
+        "type_id": 24,
+        "name": "Room temperature",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 33,
+        "type_id": 30,
+        "name": "rpm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 34,
+        "type_id": 30,
+        "name": "x g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 165,
+        "type_id": 24,
+        "name": "On ice",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 200,
+        "type_id": 32,
+        "name": "cm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 201,
+        "type_id": 32,
+        "name": "mm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 202,
+        "type_id": 32,
+        "name": "\u00b5m",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 203,
+        "type_id": 32,
+        "name": "nm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 204,
+        "type_id": 25,
+        "name": "mg/mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 205,
+        "type_id": 25,
+        "name": "\u00b5g/\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 206,
+        "type_id": 25,
+        "name": "% (v/v)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 207,
+        "type_id": 3,
+        "name": "V",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 208,
+        "type_id": 0,
+        "name": "Undetermined",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1324,
+        "type_id": 30,
+        "name": "rcf",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1359,
+        "type_id": 35,
+        "name": "Bar",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1360,
+        "type_id": 35,
+        "name": "Pa",
+        "can_manage": 0,
+        "read_only": 0
+      }
+    ],
+    "uri": "qpcr-power-sybr-green-protocol-denh3db6",
+    "url": "https://www.protocols.io/view/qpcr-power-sybr-green-protocol-denh3db6",
+    "version_class": 100777,
+    "version_data": null,
+    "version_id": 0,
+    "version_uri": "qpcr-power-sybr-green-protocol-8epv5rxw6g1b/v1",
+    "versions": [
+      {
+        "id": 100777,
+        "title": "qPCR \u2013 Power SYBR Green Protocol ",
+        "title_html": "<p>qPCR \u2013 Power SYBR Green Protocol </p>",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.8epv5rxw6g1b/v1",
+        "uri": "qpcr-power-sybr-green-protocol-denh3db6",
+        "published_on": 1738532730,
+        "modified_on": 1738532730,
+        "version_class": 100777,
+        "version_id": 0,
+        "version_code": "denh3db6",
+        "version_uri": "qpcr-power-sybr-green-protocol-8epv5rxw6g1b/v1",
+        "created_on": 1716925642,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Carolina Lopez",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "Washington University",
+          "affiliation_url": null,
+          "username": "n4vle112y1u4tle1",
+          "link": null,
+          "user_image_file": {
+            "guid": "FE7B2D5F5B2C11EFA2EF0A58A9FEAC02",
+            "file_name": "pbdnca62f.jpg",
+            "url": "https://files.protocols.io/external/pbdnca62f-FE7B2D5F5B2C11EFA2EF0A58A9FEAC02.jpg",
+            "mime": "image/jpeg",
+            "size": 10587,
+            "width": 0,
+            "height": 0,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 1723743427
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/default_protocol.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 400,
+          "height": 400,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      }
+    ],
+    "warning": ""
+  },
+  "status_code": 0
+}

@@ -1,0 +1,897 @@
+{
+  "payload": {
+    "access": {
+      "can_preview": true,
+      "can_view": true,
+      "can_edit": false,
+      "can_remove": false,
+      "can_add": false,
+      "can_publish": false,
+      "can_get_doi": false,
+      "can_share": false,
+      "can_share_organization": false,
+      "can_move": false,
+      "can_move_outside": false,
+      "can_transfer": false,
+      "can_download": true,
+      "limited_run": false,
+      "limited_private_links": false,
+      "limited_blind_links": false,
+      "is_locked": false
+    },
+    "acknowledgements": "",
+    "authors": [
+      {
+        "first_name": "Jenny",
+        "last_name": "Molloy",
+        "affiliation": "University of Cambridge, Beneficial Bio",
+        "note": "",
+        "guid": "",
+        "username": "",
+        "name": "Jenny Molloy",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": false,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Stephane",
+        "last_name": "Fadanka",
+        "affiliation": "Mboalab, Beneficial Bio",
+        "note": "",
+        "guid": "",
+        "username": "",
+        "name": "Stephane Fadanka",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": false,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Nadine",
+        "last_name": "Mowoh",
+        "affiliation": "Mboalab, Beneficial Bio",
+        "note": "",
+        "guid": "0493C064F8CC11ED9D4302C0B41BC903",
+        "username": "nadine-------------mowoh",
+        "name": "Nadine Mowoh",
+        "affiliation_url": null,
+        "link": "",
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Cordellia",
+        "last_name": "Cordellia Fulai",
+        "affiliation": "Mboalab",
+        "note": "",
+        "guid": "04988B0AF8CC11ED9D4302C0B41BC903",
+        "username": "cordellia-fulai",
+        "name": "Cordellia Cordellia Fulai",
+        "affiliation_url": null,
+        "link": "",
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "9AB45B435B2B11EFA2EF0A58A9FEAC02",
+          "file_name": "ieymbrdwp.jpg",
+          "url": "https://files.protocols.io/external/ieymbrdwp-9AB45B435B2B11EFA2EF0A58A9FEAC02.jpg",
+          "mime": "image/jpeg",
+          "size": 1932135,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1723742831
+        }
+      }
+    ],
+    "before_start": "1. Ensure that the cellular reagent (OpenVent enzyme) to be used is available and has been pre-tested for functionality.\n1. Ensure that all the other components needed to prepare the PCR mix are available and free from contaminants..",
+    "created_on": 1659443481,
+    "creator": {
+      "affiliation": "",
+      "affiliation_url": null,
+      "affiliations": [],
+      "badges": [
+        {
+          "id": 4,
+          "image": {
+            "placeholder": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg",
+            "source": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg"
+          },
+          "name": "Gold power author!"
+        }
+      ],
+      "first_name": "",
+      "image": {
+        "placeholder": "https://www.protocols.io/img/avatars/001.png",
+        "source": "https://www.protocols.io/img/avatars/001.png"
+      },
+      "last_name": "",
+      "link": "",
+      "name": "Nadine Mowoh",
+      "username": "nadine-------------mowoh"
+    },
+    "cross_cloud_origin": null,
+    "description": "This protocol documents the production of BenBio 1X PCR Master Mix &#34;Wet&#34; and &#34;Dry&#34; formulations including the different colors of the Wet formulations (Rubis or oink and Saphir or blue). This method uses  OpenVent cellular reagents. The PCR master mixes are then stored for subsequent PCR reactions.\n\nCellular reagents are defined as common molecular biology enzymes expressed in E.coli but not subsequently purified before use i.e. dried E.coli cells are used as the reagent (Bhadra et al (2018)). \n\n\n",
+    "disclaimer": "",
+    "documents": null,
+    "doi": "dx.doi.org/10.17504/protocols.io.14egn737zv5d/v2",
+    "ethics_statement": "",
+    "fork_id": null,
+    "funders": [],
+    "guid": "9A0E7C4AC0CF40F28E5BE3543FAD464D",
+    "guidelines": "This protocol describes the steps in preparing and testing the functionality of 1X PCR master mix.",
+    "id": 68073,
+    "image": {
+      "placeholder": null,
+      "source": "https://www.protocols.io/img/default_protocol.png",
+      "webp_placeholder": null,
+      "webp_source": null
+    },
+    "is_content_confidential": false,
+    "is_content_warning": false,
+    "is_doi_reserved": false,
+    "is_in_pending_publishing": false,
+    "is_in_transfer": null,
+    "is_owner": false,
+    "is_research": true,
+    "is_subprotocol": null,
+    "item_id": 981266,
+    "keywords": "Preparing 1x PCR Master mix, 1x PCR Master mix formulation, production of benbio 1x pcr master mix, preparing 1x pcr master mix, benbio 1x pcr master mix, 1x pcr master mix this protocol document, pcr master mix, openvent cellular reagent, cellular reagent, subsequent pcr reaction, wet formulation, different colors of the wet formulation, pcr, reagent, formulation, molecular biology",
+    "link": "",
+    "manuscript_citation": "",
+    "materials": [],
+    "materials_text": "**Equipment**\nThermocycler\nMicropipette \n0.2 uL PCR tubes\n1.5 mL Eppendorf tubes\nMicrowave\nGel casting tray\nWell comb\nUV transilluminator\nVoltage source (Electrophoresis unit)\n\n**Reagents**\nOpenVent DNA polymerase\nPCR Primers\nAgarose (electrophoresis grade)\nDNA template PCR amplicon ( Lambda 0.5 and 1kb or other)\nCommercial 1x TBE buffer ([Recipe here](https://www.protocols.io/view/preparing-10x-tbe-electrophoresis-buffer-j8nlkkok5l5r/v1)), prepared from a 10x TBE stock\nDNA loading dye (6x NEB) \nDNA ladder (Bioline 1kb) \nDNA gel stain (SYBR Safe or other Ethidium bromide, EtBr stain)\nTrehalose\nAzorubine\nBromophenol blue\n",
+    "protocol_image_file": {
+      "avg_color": "",
+      "created_at": 1753351029,
+      "file_name": "irg5bq77x.jpg",
+      "guid": "9064FDB4687411F08F960A58A9FEAC02",
+      "height": 0,
+      "mime": "binary/octet-stream",
+      "scan_status": 0,
+      "size": 63170,
+      "url": "https://files.protocols.io/external/irg5bq77x-9064FDB4687411F08F960A58A9FEAC02.jpg",
+      "width": 0
+    },
+    "protocol_references": "",
+    "public": true,
+    "published_on": 1659545266,
+    "reserved_doi": "",
+    "space_id": 43584,
+    "stats": {
+      "is_voted": false,
+      "number_of_views": 2488,
+      "number_of_steps": 7,
+      "number_of_bookmarks": 3,
+      "number_of_comments": 1,
+      "number_of_bookmarked_comments": 0,
+      "number_of_steps_comments": 0,
+      "number_of_protocol_comments": 1,
+      "number_of_exports": 1,
+      "number_of_runs": 0,
+      "number_of_votes": 0,
+      "number_of_reagents": 0,
+      "number_of_equipments": 0,
+      "number_of_collections": 0,
+      "number_of_forks": {
+        "private": 0,
+        "public": 0
+      },
+      "number_of_accessible_forks": 0
+    },
+    "status": {
+      "id": 1,
+      "info": "We use this protocol and it's working"
+    },
+    "steps": [
+      {
+        "id": 1450806,
+        "guid": "3C9A3FF15F5342D4B722D8602F89626A",
+        "previous_id": null,
+        "previous_guid": null,
+        "section": "<p><strong>Cellular reagents preparation</strong></p>",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "\n\nBefore making Master mixes, we typically start by producing the cellular reagents which will be used. The cellular reagents then under go a quality control tests to ensure the enzymes are functional and free from contaminating nucleases.\n \n\n- ** **Prepare a fresh batch of cellular reagents (OpenVent) following BenBio protocol for [plate protein expression on autoinduction media](https://www.protocols.io/view/plate-protein-expression-on-autoinduction-media-q26g78n91lwz/v3).\n\n",
+        "data": null,
+        "protocol_id": 68073,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 86400,
+        "original_id": 1393647,
+        "number": "1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1450807,
+        "guid": "386559059EB145FC90919175994F7384",
+        "previous_id": 1450806,
+        "previous_guid": "3C9A3FF15F5342D4B722D8602F89626A",
+        "section": "<p><strong>Functionality test</strong></p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "\nRemove the enzymes from storage, reconstitute and test for functionality as described in the [BenBio protocol](https://www.protocols.io/view/functionality-test-openvent-polymerase-pcr-master-x54v9y5r4g3e/v2) using the specific test that apply for cellular reagents (OpenVent enzyme).\n",
+        "data": null,
+        "protocol_id": 68073,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 9000,
+        "original_id": 1355760,
+        "number": "2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1450808,
+        "guid": "A2AD8B8B3D034548BD9C96D7AD3B1A4B",
+        "previous_id": 1450807,
+        "previous_guid": "386559059EB145FC90919175994F7384",
+        "section": "<p><strong>Preparation of 1x PCR Master mix formulations</strong></p>",
+        "section_color": "#84CE84",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Preparing the work surface and materials:**\n-  Clean the working surface first with 1:10 dilution of Bleach, then70 % (v/v)  Ethanol\n- Clean the micropipettes with 70 % (v/v) alcohol then with Lookout DNA erase solution; keep on a clean surface throughout manipulation.\n- Crush enough ice to fill the PCR box or a beaker bowl till it&#39;s 3/4 filled.\n- Remove all reagents needed from -20 \u00b0C  and 4 \u00b0C  and thaw On ice \n- Prepare a sterile labelled 1.5 mL  microcentrifuge tubes or larger volume tubes depending on amount of PCR mix needed, and leave open On ice .\n\n",
+        "data": null,
+        "protocol_id": 68073,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 300,
+        "original_id": 1448307,
+        "number": "3",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 1450809,
+        "guid": "E18825CFC694411F972A8E1A3E5F4AB2",
+        "previous_id": 1450812,
+        "previous_guid": "29CF2DB0125F11EDBB835DBDA3F911B1",
+        "section": "<p><strong>Preparation of 1x PCR Master mix formulations</strong></p>",
+        "section_color": "#84CE84",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Pipetting components to make up the &#34;Wet&#34; mix**\n\n1. Pipette the corresponding amount of PCR grade water to reconstitute the enzyme as was determined during preparation (_in this case 30 uL PCR water is used to reconstitute the enzyme)_ and place on ice.\n1. Pipette all reagents in the tube following the order stated in the table below:\n\n\n\n1. We adopt 2 formulations of 1x PCR Master mix using 2 different dyes as trackers ( Azorubine and Bromophenol blue), and have 2 states of the mix formulations as &#34;Wet&#34; and &#34;Dry&#34;.\n1. Also a 2x concentration of the PCR master mix can be done to reduce the volume of water used for the preparation to ease drying and enhance shelf life of the PCR master mix formulation.\n \n\n \n<table class=\"component-table\">\n<thead>\n<tr>\n%s</tr>\n</thead>\n<tbody>\n%s\n</tbody>\n</table>\r\n   OrderComponentsWet Formulation (20% Trehalose)1PCR grade H2O8.8 ul2dNTPs mix (25 mM)0.6 ul310x Thermopol Buffer2 ul4MgSO4 (100mM)0.6 ul5Cellular reagents (Freshly prepared and heat treated)3ul620% (w/v) Trehalose stock solution4.5 ul7*Bromophenol Blue 0.25% (w/v)Azorubine 0.25% (w/v)0.5 ulTotal20 ul\n\n1. Determine the total volume needed and make necessary calculations to adjust the amount of each component to be pipetted.\n1. Mix well by gentle agitations (avoid using vortex as the mixture will foam)\n\n\n\n1. At this point the Wet master mix formulation is ready for use after performing [functionality tests](https://www.protocols.io/view/functionality-test-openvent-polymerase-pcr-master-x54v9y5r4g3e/v2) and can be aliquoted into desired size screw cap tubes in the desired volume for long term storage (avoid frequent freezing and thawing). \n1. If the dry formulation is desired, continue with the steps described below.\n \n\n**Aliquoting to make a &#34;Dry&#34; mix**\n\n- Carefully pipette 25 \u00b5L of Mix formulation into each 0.2ml PCR tubes\n- Place PCR tubes (left Opened) in an Airtight container filled halfway with silica beads. \n- Place the container in an incubator and dry at37 \u00b0C Overnight \n- Store dried down tubes at4 \u00b0C  in air-tied sachet or containers filled halfway with silica beads. \n\n\n\n",
+        "data": null,
+        "protocol_id": 68073,
+        "case_id": 0,
+        "critical_ids": "3",
+        "duration": 600,
+        "original_id": 1393646,
+        "number": "5",
+        "cases": [],
+        "critical": [
+          {
+            "id": 3,
+            "title": "Pipetting",
+            "icon": "PipettingIcon"
+          }
+        ]
+      },
+      {
+        "id": 1450810,
+        "guid": "C1B04BB82CC1453487EA6A2FAF56DE42",
+        "previous_id": 1450809,
+        "previous_guid": "E18825CFC694411F972A8E1A3E5F4AB2",
+        "section": "<p><strong>Quality control - Functionality testing</strong></p>",
+        "section_color": "#FFED92",
+        "section_duration": 9000,
+        "is_substep": false,
+        "step": "\nCheck the functionality of the produced PCR Master Mix by running control PCR reactions.\n\nWe generally use the [BenBio internal protocol](https://www.protocols.io/view/functionality-test-openvent-polymerase-pcr-master-x54v9y5r4g3e/v2) which can be modified depending on the PCR master mix formulation and concentration being tested.\n\n\nFor functionality of** 1x Wet mix formulation** we make a 20 \u00b5L  total volume PCR reaction as follows: \n1. Pipette 17 \u00b5L  of the mix into a 0.2 mL  PCR tube and add1 \u00b5L of each PCR primer and 1 \u00b5L of DNA template and run the thermocycling process following the specific protocol for the DNA template and primers used.\n\n\n**For 1x Dry formulation:**\n\n1. Rehydrate the dried mix tube with 17 \u00b5L  PCR water add1 \u00b5L of each PCR primer and 1 \u00b5L of DNA template and run the thermocycling process following the specific protocol for the DNA template and primers used.\n\n\n \n\n",
+        "data": null,
+        "protocol_id": 68073,
+        "case_id": 0,
+        "critical_ids": "4",
+        "duration": 7200,
+        "original_id": 1395238,
+        "number": "6",
+        "cases": [],
+        "critical": [
+          {
+            "id": 4,
+            "title": "PCR",
+            "icon": "PCRIcon"
+          }
+        ]
+      },
+      {
+        "id": 1450811,
+        "guid": "705B53EF5F05474AB3B69CD8F2BD2E11",
+        "previous_id": 1450810,
+        "previous_guid": "C1B04BB82CC1453487EA6A2FAF56DE42",
+        "section": "<p><strong>Quality control - Functionality testing</strong></p>",
+        "section_color": "#FFED92",
+        "section_duration": 9000,
+        "is_substep": false,
+        "step": "**Running Agarose gel and Visualization**\n\nAfter running the PCR reaction, the samples are visualized to check for amplification as follows:\n\n1. Prepare 1.5% agarose gel and run the gel electrophoresis to completion.\n1. Visualize to check for DNA bands which signify amplification to show that the enzyme or PCR master mix are functional (able to amplify a specific region of a test DNA template).",
+        "data": null,
+        "protocol_id": 68073,
+        "case_id": 0,
+        "critical_ids": "7",
+        "duration": 1800,
+        "original_id": 1431393,
+        "number": "7",
+        "cases": [],
+        "critical": [
+          {
+            "id": 7,
+            "title": "Analyze",
+            "icon": "AnalyzeIcon"
+          }
+        ]
+      },
+      {
+        "id": 1450812,
+        "guid": "29CF2DB0125F11EDBB835DBDA3F911B1",
+        "previous_id": 1450808,
+        "previous_guid": "A2AD8B8B3D034548BD9C96D7AD3B1A4B",
+        "section": "<p><strong>Preparation of 1x PCR Master mix formulations</strong></p>",
+        "section_color": "#84CE84",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Preparing reagent stocks**\n\n**20 Mass / % volume **** Trehalose (10 mL)**\n\n1. Weigh 2 g  of trehalose powder into a clean 50 mL capacity beaker.\n1. Measure 10 mL of distilled water and pour into the beaker to dissolve the powder.\n1. Filter the trehalose stock solution obtained through a 0.22 uM syringe filter in a sterile 15 mL eppendorf tube.\n1. Store at 4 \u00b0C for up to 12 months.\n\n\n**0.25 Mass / % volume **** Azorubine and ****0.25 Mass / % volume **** Bromophenol blue (10mL)**\n\n1. Use a weighing balance to accurately 0.025 g  of Bromophenol blue or Azorubine dye into a 15 mL centrifuge tube.\n1. From a 20 % trehalose stock, aliquot some volume into the Eppendorf tube to dissolve the dye powder, to make a 10 mL (dye) solution.\n1. Cork tightly the eppendorf tube and mix the content gently to homogenize (vortex can be used).\n1. Label the tube and either store it at room temperature (away from light) or 4 \u00b0C for up to 12 months.",
+        "data": null,
+        "protocol_id": 68073,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "4",
+        "cases": [],
+        "critical": null
+      }
+    ],
+    "table_of_contents": [
+      {
+        "title": "<p><strong>Cellular reagents preparation</strong></p>",
+        "color": "#A492FF",
+        "first_step_guid": "3C9A3FF15F5342D4B722D8602F89626A"
+      },
+      {
+        "title": "<p><strong>Functionality test</strong></p>",
+        "color": "#94EBFF",
+        "first_step_guid": "386559059EB145FC90919175994F7384"
+      },
+      {
+        "title": "<p><strong>Preparation of 1x PCR Master mix formulations</strong></p>",
+        "color": "#84CE84",
+        "first_step_guid": "A2AD8B8B3D034548BD9C96D7AD3B1A4B"
+      },
+      {
+        "title": "<p><strong>Quality control - Functionality testing</strong></p>",
+        "color": "#FFED92",
+        "first_step_guid": "C1B04BB82CC1453487EA6A2FAF56DE42"
+      }
+    ],
+    "title": "Preparing 1x PCR Master Mix",
+    "title_html": "Preparing 1x PCR Master Mix",
+    "translations": [
+      {
+        "lang": "de",
+        "title": "German",
+        "created_on": 1775228140
+      },
+      {
+        "lang": "es",
+        "title": "Spanish",
+        "created_on": 1775228139
+      },
+      {
+        "lang": "fr",
+        "title": "French",
+        "created_on": 1775228139
+      },
+      {
+        "lang": "ja",
+        "title": "Japanese",
+        "created_on": 1775228139
+      },
+      {
+        "lang": "zh",
+        "title": "Chinese - Simp/Trad",
+        "created_on": 1775228139
+      }
+    ],
+    "troubleshooting_items": null,
+    "type_id": 1,
+    "units": [
+      {
+        "id": 1,
+        "type_id": 3,
+        "name": "\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 2,
+        "type_id": 3,
+        "name": "mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 3,
+        "type_id": 3,
+        "name": "L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 4,
+        "type_id": 3,
+        "name": "\u00b5g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 5,
+        "type_id": 3,
+        "name": "mg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 6,
+        "type_id": 3,
+        "name": "g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 7,
+        "type_id": 3,
+        "name": "kg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 8,
+        "type_id": 3,
+        "name": "ng",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 9,
+        "type_id": 3,
+        "name": "Hz",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 10,
+        "type_id": 24,
+        "name": "\u00b0C",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 11,
+        "type_id": 24,
+        "name": "\u00b0\u041a",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 12,
+        "type_id": 24,
+        "name": "\u00b0F",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 13,
+        "type_id": 25,
+        "name": "Mass Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 14,
+        "type_id": 25,
+        "name": "% volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 15,
+        "type_id": 25,
+        "name": "Mass / % volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 16,
+        "type_id": 25,
+        "name": "Parts per Million (PPM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 17,
+        "type_id": 25,
+        "name": "Parts per Billion (PPB)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 18,
+        "type_id": 25,
+        "name": "Parts per Trillion (PPT)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 19,
+        "type_id": 25,
+        "name": "Mole Fraction",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 20,
+        "type_id": 25,
+        "name": "Mole Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 21,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 1
+      },
+      {
+        "id": 22,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 23,
+        "type_id": 25,
+        "name": "Genome copies per ml",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 24,
+        "type_id": 3,
+        "name": "\u03bcV",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 25,
+        "type_id": 3,
+        "name": "ms",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 26,
+        "type_id": 3,
+        "name": "pg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 27,
+        "type_id": 25,
+        "name": "Molarity dilutions",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 28,
+        "type_id": 25,
+        "name": "millimolar (mM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 29,
+        "type_id": 25,
+        "name": "micromolar (\u00b5M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 30,
+        "type_id": 25,
+        "name": "nanomolar (nM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 31,
+        "type_id": 25,
+        "name": "picomolar (pM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 32,
+        "type_id": 24,
+        "name": "Room temperature",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 33,
+        "type_id": 30,
+        "name": "rpm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 34,
+        "type_id": 30,
+        "name": "x g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 165,
+        "type_id": 24,
+        "name": "On ice",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 200,
+        "type_id": 32,
+        "name": "cm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 201,
+        "type_id": 32,
+        "name": "mm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 202,
+        "type_id": 32,
+        "name": "\u00b5m",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 203,
+        "type_id": 32,
+        "name": "nm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 204,
+        "type_id": 25,
+        "name": "mg/mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 205,
+        "type_id": 25,
+        "name": "\u00b5g/\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 206,
+        "type_id": 25,
+        "name": "% (v/v)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 207,
+        "type_id": 3,
+        "name": "V",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 208,
+        "type_id": 0,
+        "name": "Undetermined",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1324,
+        "type_id": 30,
+        "name": "rcf",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1359,
+        "type_id": 35,
+        "name": "Bar",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1360,
+        "type_id": 35,
+        "name": "Pa",
+        "can_manage": 0,
+        "read_only": 0
+      }
+    ],
+    "uri": "preparing-1x-pcr-master-mix-ceqhtdt6",
+    "url": "https://www.protocols.io/view/preparing-1x-pcr-master-mix-ceqhtdt6",
+    "version_class": 58851,
+    "version_data": null,
+    "version_id": 1,
+    "version_uri": "preparing-1x-pcr-master-mix-14egn737zv5d/v2",
+    "versions": [
+      {
+        "id": 58851,
+        "title": "Preparing 1x PCR Master Mix",
+        "title_html": "Preparing 1x PCR Master Mix",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": null,
+        "uri": "preparing-1x-pcr-master-mix-b5qbq5sn",
+        "published_on": 1659009440,
+        "modified_on": 1659009440,
+        "version_class": 58851,
+        "version_id": 0,
+        "version_code": "b5qbq5sn",
+        "version_uri": "preparing-1x-pcr-master-mix-14egn737zv5d/v1",
+        "created_on": 1646058262,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Nadine Mowoh",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": null,
+          "affiliation_url": null,
+          "username": "nadine-------------mowoh",
+          "link": "",
+          "user_image_file": {
+            "guid": "00000000000000000000000000000001",
+            "file_name": "avatar.png",
+            "url": "https://www.protocols.io/img/avatars/001.png",
+            "mime": "image/png",
+            "size": 0,
+            "width": 100,
+            "height": 100,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 0
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "3F1A05D4687411F08F960A58A9FEAC02",
+          "file_name": "ipbrbq77x.jpg",
+          "url": "https://files.protocols.io/external/ipbrbq77x-3F1A05D4687411F08F960A58A9FEAC02.jpg",
+          "mime": "binary/octet-stream",
+          "size": 63170,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1753350893
+        }
+      },
+      {
+        "id": 68073,
+        "title": "Preparing 1x PCR Master Mix",
+        "title_html": "Preparing 1x PCR Master Mix",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.14egn737zv5d/v2",
+        "uri": "preparing-1x-pcr-master-mix-ceqhtdt6",
+        "published_on": 1659545266,
+        "modified_on": 1659545266,
+        "version_class": 58851,
+        "version_id": 1,
+        "version_code": "ceqhtdt6",
+        "version_uri": "preparing-1x-pcr-master-mix-14egn737zv5d/v2",
+        "created_on": 1659443481,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Nadine Mowoh",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": null,
+          "affiliation_url": null,
+          "username": "nadine-------------mowoh",
+          "link": "",
+          "user_image_file": {
+            "guid": "00000000000000000000000000000001",
+            "file_name": "avatar.png",
+            "url": "https://www.protocols.io/img/avatars/001.png",
+            "mime": "image/png",
+            "size": 0,
+            "width": 100,
+            "height": 100,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 0
+          }
+        },
+        "stats": {
+          "number_of_comments": 1,
+          "last_comment_time": 1693104646
+        },
+        "protocol_image_file": {
+          "guid": "9064FDB4687411F08F960A58A9FEAC02",
+          "file_name": "irg5bq77x.jpg",
+          "url": "https://files.protocols.io/external/irg5bq77x-9064FDB4687411F08F960A58A9FEAC02.jpg",
+          "mime": "binary/octet-stream",
+          "size": 63170,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1753351029
+        }
+      }
+    ],
+    "warning": "1. Wear protective clothing like Lab coats, with gloves and face masks during the process and avoid dust formation from any powders. \n1. Take special care when handling the EtBr gel stain and the UV transilluminator"
+  },
+  "status_code": 0
+}

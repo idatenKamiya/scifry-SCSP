@@ -1,0 +1,45 @@
+{
+  "payload": [
+    {
+      "id": 2076768,
+      "guid": "9744B843360E45AD80E92836AD67366A",
+      "previous_id": 0,
+      "previous_guid": null,
+      "section": "<p>qPCR \u2013 Power SYBR -</p>",
+      "section_color": "#A492FF",
+      "section_duration": 120,
+      "is_substep": false,
+      "step": "1. If needed, prepare **5\u03bcM Working Primer Dilutions** for each gene of interest\n        a) 20 \u00b5L  100 micromolar (\u00b5M)  Forward primer (final concentration: 2.5 \u03bcM) \n        b) 20 \u00b5L  100 micromolar (\u00b5M)  Reverse primer (final concentration: 2.5 \u03bcM)\n        c) 760 \u00b5L  nuclease-free water \n\nd) In general, 100 micromolar (\u00b5M)  primers should be stored in the general lab primer boxes at -20 \u00b0C . Once you make your own Working Primer Dilution, you may keep this in your personal -20 \u00b0C  box for further use.\n \n        e) IMPORTANT: Dilute both virus primers and housekeeping genes using this procedure, ALL PRIMERS SHOULD BE THE SAME CONCENTRATION. If the primer concentration is too high, there may be non-specific binding/amplification. \n\n2. **Prepare your plate map and PCR tubes**. **Quick tip:**\n[]](https://lh7-us.googleusercontent.com/KcARkaGFbj5xD2AMLS7KPgC_1JNGXy0zgiRB0gtDsAVjbCOgmIcZkBZ0I3BTyaXiwOT8xDjSNjDOX04XY9n-hL5x6wwbhpz7P3IzwC7w67GGMuF2qm1kpeyO2RDfQrsNRpRhXshkrOXSVp59NDCluA)\n \nOrganize your cDNA samples in PCR tubes so you can use the multichannel pipette properly. The pipette only fits every other row/column in the 384 well qPCR plate. Therefore, you want to split your cDNA samples into groups, alternating the order between groups. For the SYBR Green/Primer Master Mix, you will need to aliquot your mix into multiple PCR tubes. To determine the number of tubes, take # of samples in plate (rows)/2 and round up if needed.\n        a) Ex: for 12 samples, will need GAPDH Master Mix in 6 separate PCR tubes to use the multichannel pipette.\n\n\n\n[]](https://lh7-us.googleusercontent.com/wDSswEeR8S1u1vIBoGyvO58xyElLbyhm4ZGc3VQY9LOTb1T2g6tmrrNKoEYjbXaNfmhP98Abo5T2bIHsNlGTpNFKif4QucLoP39kNvUUVpTvVHy-pfh-cQzeGWm1Rziq1iU8Fs_gu4WO)\n \n 3. **Prepare cDNA **(will use 4 \u00b5L  per well). Need a 1:40 dilution from an RT reaction with 250 ng-2 \u03bcg of starting material (500 ng-1 \u03bcg is preferred). Prepare the dilutions in 0.2 mL  PCR tubes, mix each dilution (pipet or vortex) and spin down on a benchtop centrifuge.\n        a) Example dilutions to obtain 1:40 (*use nuclease free water):\n                  i. 1 \u00b5L  cDNA in 39 \u03bcL H2O\n                 ii. 2 \u00b5L  cDNA in 78 \u03bcL H2O\n                iii. 3 \u00b5L  cDNA in 117 \u03bcL H2O\n                iv. 4 \u00b5L  cDNA in 156 \u03bcL H2O\n        b) Amount of cDNA needed: # of genes x # of repetitions x 4 \u03bcL x 1.25\n        c) Do at least 3 technical replicates per sample (the x1.25 accounts for errors)\n\n4. **Prepare SYBR Green + Primer Master Mix** (will use 6 \u00b5L  per well). Prepare the dilutions in 0.2 mL  PCR tubes or 1.5mL eppendorf tubes, mix each Master Mix well (pipet or vortex) and spin down quickly in the benchtop centrifuge. If needed, can split into multiple tubes for easy multichannel pipetting (see Step 2).\n        a) SYBR Green (will use 5 \u00b5L  per well)\n                i. Amount needed = # of samples x # of repetitions x 5 \u03bcL x 1.25\n        b) Working Primer Dilution 5 \u03bcM (will use 1 \u00b5L  per well)\n                i. Amount needed = # of samples x # of repetitions x 1 \u03bcL x 1.25\n\n\n5. **Add ****4 \u00b5L **** of cDNA per well** (use multichannel pipette with 12.5 \u00b5L  filter pipet tips)\n        a) Can gently tap plate after to bring cDNA to the bottom of each well\n        b) Best to visually inspect the multichannel to ensure you are drawing up the correct volume in each tip.\n\n6. **Add ****6 \u00b5L **** of SYBR Green + Primer Master Mix** per well\n        a) Mix gently using the pipet, being careful to avoid air bubbles.\n        b) Best to visually inspect the multichannel to ensure you are drawing up the correct volume in each tip.\n\n7. **Seal plate** with plate cover. It is important the plate is fully sealed or the reaction mix will evaporate during the run. Use the scraper edge to seal each edge of the plate cover VERY well. \n\n8. **Spin plate** at 2000 rpm for 00:02:00 .\n\n9. **Run** the Standard Lopez Lab Protocol \u2013 Power SYBR on qPCR machineSettings are set as what is listed below. Double check the settings are correct before each run!\n        a) **Lopez Lap Protocol \u2013 Power SYBR settings**\n                i. Experiment Properties:\n                        - Block type: 384-Well Block\n                        - Experiment type: Comparative CT (\u2206\u2206CT)\n                        - Chemistry: SYBR\u2031 Green Reagents\n                        - Run Mode: Standard\n                ii. Experiment Method: \n                        - Volume: 10 \u00b5L \n                        - Cover: 105 \u00b0C \n                iii. Plate Attributes:\n                        - Passive Reference: ROX\n                        - Reference Sample: Sample 1\n                        - Endogenous Control: Varies from experiment \n\n[Screen Shot 2024-05-28 at 3.00.28 PM.png]](https://protocols-files.s3.amazonaws.com/files/qpceceigx.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222234Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ebfcd440fc6cdd00be7227371de982e87000a5bebe869d31e5b3559144716b62)\n*Image capture/data collection point \n\n10. When your experiment is done, export your data from the machine and analyze. \n\n\n        ",
+      "data": null,
+      "protocol_id": 100777,
+      "case_id": 0,
+      "critical_ids": "",
+      "duration": 120,
+      "original_id": 0,
+      "number": "1",
+      "cases": [],
+      "critical": null
+    },
+    {
+      "id": 2258444,
+      "guid": "6B792281223447D986585198B7883CD0",
+      "previous_id": 2076768,
+      "previous_guid": "9744B843360E45AD80E92836AD67366A",
+      "section": "<p>qPCR \u2013 Power SYBR -</p>",
+      "section_color": "#A492FF",
+      "section_duration": 120,
+      "is_substep": false,
+      "step": "**Data Export and Analysis (Lopez-Lab specific)**\n\nAt this point, it can be helpful to look at your data on the qPCR machine. In particular, the melt and amplification curves are useful. For the amplification curves, you should look to see that your technical replicates are as close to overlapping as possible. For the melting curves, you want to see a single peak for each gene of interest, and the peaks should be clustered together.. If your curves do not look correct, there was a problem during some step of the protocol (ie sample and plate preparation, primer design, machine, etc). \n\n11. Save your raw data. This file is very important and needs to be saved in your RAW DATA folder. \n\n12. To analyze your data, open the Lopez Lab qPCR Data Analysis template. \n        a) Locate the template in the Google Drive qPCR Protocol Folder under the name: \u201cDO NOT EDIT_qPCR analysis template_with fold induction_DO NOT EDIT\u201d\n        b) Do not edit the analysis template in the Google Drive\n        c) Download your own copy of the template. Each time the template is used, the \u201cSave As\u201d function should be used to create a new excel file with your processed data from the experiment. The template should always remain the same.\n\n13. Go to the RESULTS tab on the raw data excel file (the file saved from the qPCR machine). Copy the CT values from each of your samples into the Analysis Template. Make sure your samples and genes of interest are properly labeled and there are no errors in the copy/pasting. \n\n14. If there are any samples that have an undefined CT, assign a value of 40 (because the PCR ran for 40 cycles). \n\n15. At this point, the analysis template should auto-populate. The CT values for each of the housekeeping genes will be averaged to create a housekeeping index (HKI). Then the CT values for each gene of interest will be used to calculate Copy Numbers and Fold Induction. \n\nFor the fold induction, the template is set up so that Sample 1 is the control (ie the sample entered in the first row). If this is not your control, change the excel calculations accordingly.\n \n\n16. For more reading on qPCR data analysis, there are references in the Google Drive (REFERENCE DOCUMENTS -&gt; RT-qPCR)",
+      "data": null,
+      "protocol_id": 100777,
+      "case_id": 0,
+      "critical_ids": "",
+      "duration": 0,
+      "original_id": 0,
+      "number": "2",
+      "cases": [],
+      "critical": null
+    }
+  ],
+  "status_code": 0
+}

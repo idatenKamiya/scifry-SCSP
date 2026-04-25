@@ -1,0 +1,992 @@
+{
+  "payload": {
+    "access": {
+      "can_preview": true,
+      "can_view": true,
+      "can_edit": false,
+      "can_remove": false,
+      "can_add": false,
+      "can_publish": false,
+      "can_get_doi": false,
+      "can_share": false,
+      "can_share_organization": false,
+      "can_move": false,
+      "can_move_outside": false,
+      "can_transfer": false,
+      "can_download": true,
+      "limited_run": false,
+      "limited_private_links": false,
+      "limited_blind_links": false,
+      "is_locked": false
+    },
+    "acknowledgements": "",
+    "authors": [
+      {
+        "first_name": "Vanessa",
+        "last_name": "Howland",
+        "affiliation": "Van Andel Institute",
+        "note": "",
+        "guid": "",
+        "username": "",
+        "name": "Vanessa Howland",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": false,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Yue",
+        "last_name": "Ma",
+        "affiliation": "Van Andel Institute",
+        "note": "",
+        "guid": "05836C6AF8CC11ED9D4302C0B41BC903",
+        "username": "n4tle112u115wle1",
+        "name": "Yue Ma",
+        "affiliation_url": "",
+        "link": "",
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "5FBB78C95B2C11EFA2EF0A58A9FEAC02",
+          "file_name": "AGNmyxaXvIy1USfIO3lvanopYIH-lnlMQajSqgTCbmsy=s96-c.png",
+          "url": "https://files.protocols.io/external/AGNmyxaXvIy1USfIO3lvanopYIHlnlMQajSqgTCbmsys96c-5FBB78C95B2C11EFA2EF0A58A9FEAC02.png",
+          "mime": "image/png",
+          "size": 1154,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1723743161
+        }
+      }
+    ],
+    "before_start": "",
+    "created_on": 1764963796,
+    "creator": {
+      "affiliation": "VanAndelInstitute",
+      "affiliation_url": "",
+      "affiliations": [
+        {
+          "affiliation": "VanAndelInstitute",
+          "is_default": true,
+          "job_title": "",
+          "url": ""
+        }
+      ],
+      "badges": [
+        {
+          "id": 3,
+          "image": {
+            "placeholder": "https://files.protocols.io/webapp/images/q2ckeg/badges/silver.svg",
+            "source": "https://files.protocols.io/webapp/images/q2ckeg/badges/silver.svg"
+          },
+          "name": "Power author!"
+        }
+      ],
+      "first_name": "",
+      "image": {
+        "placeholder": "https://files.protocols.io/thumbnails/external/AGNmyxaXvIy1USfIO3lvanopYIHlnlMQajSqgTCbmsys96c-5FBB78C95B2C11EFA2EF0A58A9FEAC02.png/thumbnail-w100xh100.png",
+        "source": "https://files.protocols.io/external/AGNmyxaXvIy1USfIO3lvanopYIHlnlMQajSqgTCbmsys96c-5FBB78C95B2C11EFA2EF0A58A9FEAC02.png"
+      },
+      "last_name": "",
+      "link": "",
+      "name": "Yue Ma",
+      "username": "n4tle112u115wle1"
+    },
+    "cross_cloud_origin": null,
+    "description": "qPCR protocol",
+    "disclaimer": "",
+    "documents": null,
+    "doi": "dx.doi.org/10.17504/protocols.io.bp2l6zjwrgqe/v1",
+    "ethics_statement": "",
+    "fork_id": null,
+    "funders": [],
+    "guid": "A4D755F6D21211F09A000A58A9FEAC02",
+    "guidelines": "",
+    "id": 234300,
+    "image": {
+      "placeholder": null,
+      "source": "https://www.protocols.io/img/default_protocol.png",
+      "webp_placeholder": null,
+      "webp_source": null
+    },
+    "is_content_confidential": false,
+    "is_content_warning": false,
+    "is_doi_reserved": true,
+    "is_in_pending_publishing": false,
+    "is_in_transfer": null,
+    "is_owner": false,
+    "is_research": true,
+    "is_subprotocol": null,
+    "item_id": 1598147,
+    "keywords": "ASAPCRN, qpcr protocol, protocol, sybr",
+    "link": "",
+    "manuscript_citation": "",
+    "materials": [],
+    "materials_text": "- PowerUp\u2122 SYBR\u2122 Green Master Mix (2X)\n- Forward and reverse primers (300-800nM)\n- cDNA (1-10ng)\n- H2O",
+    "protocol_image_file": {
+      "avg_color": "",
+      "created_at": 0,
+      "file_name": "avatar.png",
+      "guid": "00000000000000000000000000000001",
+      "height": 400,
+      "mime": "image/png",
+      "scan_status": 0,
+      "size": 0,
+      "url": "https://www.protocols.io/img/default_protocol.png",
+      "width": 400
+    },
+    "protocol_references": "",
+    "public": true,
+    "published_on": 1764964634,
+    "reserved_doi": "10.17504/protocols.io.bp2l6zjwrgqe/v1",
+    "space_id": 8782,
+    "stats": {
+      "is_voted": false,
+      "number_of_views": 119,
+      "number_of_steps": 18,
+      "number_of_bookmarks": 0,
+      "number_of_comments": 0,
+      "number_of_bookmarked_comments": 0,
+      "number_of_steps_comments": 0,
+      "number_of_protocol_comments": 0,
+      "number_of_exports": 0,
+      "number_of_runs": 0,
+      "number_of_votes": 0,
+      "number_of_reagents": 0,
+      "number_of_equipments": 0,
+      "number_of_collections": 0,
+      "number_of_forks": {
+        "private": 1,
+        "public": 0
+      },
+      "number_of_accessible_forks": 0
+    },
+    "status": {
+      "id": 1,
+      "info": "We use this protocol and it's working"
+    },
+    "steps": [
+      {
+        "id": 8575439,
+        "guid": "A4A28AB7D21211F09A000A58A9FEAC02",
+        "previous_id": 0,
+        "previous_guid": null,
+        "section": "<p>Prepare the reagents</p>",
+        "section_color": "#69ad99",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Swirl the PowerUp\u2122 SYBR\u2122 Green Master Mix to mix thoroughly.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575440,
+        "guid": "A4A28DDFD21211F09A000A58A9FEAC02",
+        "previous_id": 8575439,
+        "previous_guid": "A4A28AB7D21211F09A000A58A9FEAC02",
+        "section": "<p>Prepare the reagents</p>",
+        "section_color": "#69ad99",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Thaw the DNA samples and primers on ice, vortex to mix, then centrifuge briefly.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575441,
+        "guid": "A4A29010D21211F09A000A58A9FEAC02",
+        "previous_id": 8575440,
+        "previous_guid": "A4A28DDFD21211F09A000A58A9FEAC02",
+        "section": "<p>Set up the PCR reactions</p>",
+        "section_color": "#bb5f1d",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Prepare the appropriate number of reactions, plus 10% overage.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "3",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575442,
+        "guid": "A4A29241D21211F09A000A58A9FEAC02",
+        "previous_id": 8575456,
+        "previous_guid": "FA88D832D5CE4A619F87CC5772F47D9B",
+        "section": "<p>Set up the PCR reactions</p>",
+        "section_color": "#bb5f1d",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Mix the components thoroughly, then centrifuge briefly to spin down the contents and eliminate any air bubbles.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "5",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575443,
+        "guid": "A4A29417D21211F09A000A58A9FEAC02",
+        "previous_id": 8575442,
+        "previous_guid": "A4A29241D21211F09A000A58A9FEAC02",
+        "section": "<p>Set up the PCR reactions</p>",
+        "section_color": "#bb5f1d",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Transfer the appropriate volume of each reaction to each well of an optical plate.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "6",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575444,
+        "guid": "A4A296E3D21211F09A000A58A9FEAC02",
+        "previous_id": 8575443,
+        "previous_guid": "A4A29417D21211F09A000A58A9FEAC02",
+        "section": "<p>Set up the PCR reactions</p>",
+        "section_color": "#bb5f1d",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Seal the plate with an optical adhesive cover, then centrifuge briefly to spin down the contents and eliminate any air bubbles.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "7",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575445,
+        "guid": "A4A2991AD21211F09A000A58A9FEAC02",
+        "previous_id": 8575444,
+        "previous_guid": "A4A296E3D21211F09A000A58A9FEAC02",
+        "section": "<p>Set up the PCR reactions</p>",
+        "section_color": "#bb5f1d",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "PCR can be performed on the reaction plate up to 72 hours after completing the setup, when stored at room temperature. Protect the reaction plate from light if the PCR is not started immediately after the reactions are set up.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "7.1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575446,
+        "guid": "A4A29BCBD21211F09A000A58A9FEAC02",
+        "previous_id": 8575445,
+        "previous_guid": "A4A2991AD21211F09A000A58A9FEAC02",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Place the reaction plate in the real-time PCR instrument.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "8",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575447,
+        "guid": "A4A29D47D21211F09A000A58A9FEAC02",
+        "previous_id": 8575446,
+        "previous_guid": "A4A29BCBD21211F09A000A58A9FEAC02",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Set the thermal cycling conditions using the default PCR thermal cycling conditions specified in the following tables according to the instrument cycling parameters and melting temperatures of the specific primers. (Easiest is to use the computer software for plate setup)",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "9",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575448,
+        "guid": "A4A2A04FD21211F09A000A58A9FEAC02",
+        "previous_id": 8575447,
+        "previous_guid": "A4A29D47D21211F09A000A58A9FEAC02",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "[https://protocols-files.s3.amazonaws.com/files/v9ejb578p.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJYFAX46LHRVQMGOA%2F20251205%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251205T194316Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=53d0daa8eae51d892643a226697c6beba94fba4e1fe267b5871f1ab502955ca9]](https://content.protocols.io/files/v9erb578p.jpg)\nStandard cycling mode (primer Tm \u226560\u00b0C)  ",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "10",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575449,
+        "guid": "A4D73A99D21211F09A000A58A9FEAC02",
+        "previous_id": 8575458,
+        "previous_guid": "650382A0B01648EEB8658FC65839EB38",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Set the instrument to perform a default dissociation step.\nA dissociation step can be performed up to 72 hours after the real-time PCR run if the plate is stored in the dark and up to 24 hours after the real-time PCR run if the plate is exposed to light.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "12",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575450,
+        "guid": "A4D73F34D21211F09A000A58A9FEAC02",
+        "previous_id": 8575459,
+        "previous_guid": "288AFB811FAD4B97B9C7E45A60B3F509",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Use the following settings for Applied Biosystems\u2122 instruments:\nExperiment type: Standard curve or Relative Quantification\nReagent: SYBR\u2122 Green reagents\nReporter: SYBR\u2122\nQuencher: None\nPassive reference dye: ROX\u2122\nRamp speed: Standard or fast (choose the same setting as in step 2)\nMelt curve ramp increment: Continuous",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "14",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575451,
+        "guid": "A4D74960D21211F09A000A58A9FEAC02",
+        "previous_id": 8575450,
+        "previous_guid": "A4D73F34D21211F09A000A58A9FEAC02",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "Set the reaction volume appropriate for the type of plate being used for your PCR reaction.\nPay attention to whether you are using a 0.1 or 0.2 ml 96 well plate, the experiment files are not compatible between the two plate sizes.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "14.1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575452,
+        "guid": "A4D74D66D21211F09A000A58A9FEAC02",
+        "previous_id": 8575451,
+        "previous_guid": "A4D74960D21211F09A000A58A9FEAC02",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Start the run.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "15",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575453,
+        "guid": "A4D74F34D21211F09A000A58A9FEAC02",
+        "previous_id": 8575452,
+        "previous_guid": "A4D74D66D21211F09A000A58A9FEAC02",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "When the run is finished, make sure to export the results to your USB.",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "16",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575456,
+        "guid": "FA88D832D5CE4A619F87CC5772F47D9B",
+        "previous_id": 8575441,
+        "previous_guid": "A4A29010D21211F09A000A58A9FEAC02",
+        "section": "<p>Set up the PCR reactions</p>",
+        "section_color": "#bb5f1d",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": " \n<table class=\"component-table\">\n<thead>\n<tr>\n%s</tr>\n</thead>\n<tbody>\n%s\n</tbody>\n</table>\r\n \n ",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "4",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575458,
+        "guid": "650382A0B01648EEB8658FC65839EB38",
+        "previous_id": 8575448,
+        "previous_guid": "A4A2A04FD21211F09A000A58A9FEAC02",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": " \n<table class=\"component-table\">\n<thead>\n<tr>\n%s</tr>\n</thead>\n<tbody>\n%s\n</tbody>\n</table>\r\n \n ",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "11",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 8575459,
+        "guid": "288AFB811FAD4B97B9C7E45A60B3F509",
+        "previous_id": 8575449,
+        "previous_guid": "A4D73A99D21211F09A000A58A9FEAC02",
+        "section": "<p>Set up and run the real-time PCR instrument</p>",
+        "section_color": "#aa90fe",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": " \n<table class=\"component-table\">\n<thead>\n<tr>\n%s</tr>\n</thead>\n<tbody>\n%s\n</tbody>\n</table>\r\n \n ",
+        "data": null,
+        "protocol_id": 234300,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "13",
+        "cases": [],
+        "critical": null
+      }
+    ],
+    "table_of_contents": [
+      {
+        "title": "<p>Prepare the reagents</p>",
+        "color": "#69ad99",
+        "first_step_guid": "A4A28AB7D21211F09A000A58A9FEAC02"
+      },
+      {
+        "title": "<p>Set up the PCR reactions</p>",
+        "color": "#bb5f1d",
+        "first_step_guid": "A4A29010D21211F09A000A58A9FEAC02"
+      },
+      {
+        "title": "<p>Set up and run the real-time PCR instrument</p>",
+        "color": "#aa90fe",
+        "first_step_guid": "A4A29BCBD21211F09A000A58A9FEAC02"
+      }
+    ],
+    "title": "qPCR (SYBR Green)",
+    "title_html": "<p>qPCR (SYBR Green)</p>",
+    "translations": [
+      {
+        "lang": "de",
+        "title": "German",
+        "created_on": 1775236625
+      },
+      {
+        "lang": "es",
+        "title": "Spanish",
+        "created_on": 1775236624
+      },
+      {
+        "lang": "fr",
+        "title": "French",
+        "created_on": 1775236625
+      },
+      {
+        "lang": "ja",
+        "title": "Japanese",
+        "created_on": 1775236624
+      },
+      {
+        "lang": "zh",
+        "title": "Chinese - Simp/Trad",
+        "created_on": 1775236625
+      }
+    ],
+    "troubleshooting_items": null,
+    "type_id": 1,
+    "units": [
+      {
+        "id": 1,
+        "type_id": 3,
+        "name": "\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 2,
+        "type_id": 3,
+        "name": "mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 3,
+        "type_id": 3,
+        "name": "L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 4,
+        "type_id": 3,
+        "name": "\u00b5g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 5,
+        "type_id": 3,
+        "name": "mg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 6,
+        "type_id": 3,
+        "name": "g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 7,
+        "type_id": 3,
+        "name": "kg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 8,
+        "type_id": 3,
+        "name": "ng",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 9,
+        "type_id": 3,
+        "name": "Hz",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 10,
+        "type_id": 24,
+        "name": "\u00b0C",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 11,
+        "type_id": 24,
+        "name": "\u00b0\u041a",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 12,
+        "type_id": 24,
+        "name": "\u00b0F",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 13,
+        "type_id": 25,
+        "name": "Mass Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 14,
+        "type_id": 25,
+        "name": "% volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 15,
+        "type_id": 25,
+        "name": "Mass / % volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 16,
+        "type_id": 25,
+        "name": "Parts per Million (PPM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 17,
+        "type_id": 25,
+        "name": "Parts per Billion (PPB)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 18,
+        "type_id": 25,
+        "name": "Parts per Trillion (PPT)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 19,
+        "type_id": 25,
+        "name": "Mole Fraction",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 20,
+        "type_id": 25,
+        "name": "Mole Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 21,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 1
+      },
+      {
+        "id": 22,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 23,
+        "type_id": 25,
+        "name": "Genome copies per ml",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 24,
+        "type_id": 3,
+        "name": "\u03bcV",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 25,
+        "type_id": 3,
+        "name": "ms",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 26,
+        "type_id": 3,
+        "name": "pg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 27,
+        "type_id": 25,
+        "name": "Molarity dilutions",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 28,
+        "type_id": 25,
+        "name": "millimolar (mM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 29,
+        "type_id": 25,
+        "name": "micromolar (\u00b5M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 30,
+        "type_id": 25,
+        "name": "nanomolar (nM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 31,
+        "type_id": 25,
+        "name": "picomolar (pM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 32,
+        "type_id": 24,
+        "name": "Room temperature",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 33,
+        "type_id": 30,
+        "name": "rpm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 34,
+        "type_id": 30,
+        "name": "x g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 165,
+        "type_id": 24,
+        "name": "On ice",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 200,
+        "type_id": 32,
+        "name": "cm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 201,
+        "type_id": 32,
+        "name": "mm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 202,
+        "type_id": 32,
+        "name": "\u00b5m",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 203,
+        "type_id": 32,
+        "name": "nm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 204,
+        "type_id": 25,
+        "name": "mg/mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 205,
+        "type_id": 25,
+        "name": "\u00b5g/\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 206,
+        "type_id": 25,
+        "name": "% (v/v)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 207,
+        "type_id": 3,
+        "name": "V",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 208,
+        "type_id": 0,
+        "name": "Undetermined",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1324,
+        "type_id": 30,
+        "name": "rcf",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1359,
+        "type_id": 35,
+        "name": "Bar",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1360,
+        "type_id": 35,
+        "name": "Pa",
+        "can_manage": 0,
+        "read_only": 0
+      }
+    ],
+    "uri": "qpcr-sybr-green-hg24b3ygx",
+    "url": "https://www.protocols.io/view/qpcr-sybr-green-hg24b3ygx",
+    "version_class": 234300,
+    "version_data": null,
+    "version_id": 0,
+    "version_uri": "qpcr-sybr-green-bp2l6zjwrgqe/v1",
+    "versions": [
+      {
+        "id": 234300,
+        "title": "qPCR (SYBR Green)",
+        "title_html": "<p>qPCR (SYBR Green)</p>",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.bp2l6zjwrgqe/v1",
+        "uri": "qpcr-sybr-green-hg24b3ygx",
+        "published_on": 1764964634,
+        "modified_on": 1764964634,
+        "version_class": 234300,
+        "version_id": 0,
+        "version_code": "hg24b3ygx",
+        "version_uri": "qpcr-sybr-green-bp2l6zjwrgqe/v1",
+        "created_on": 1764963796,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Yue Ma",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "VanAndelInstitute",
+          "affiliation_url": "",
+          "username": "n4tle112u115wle1",
+          "link": "",
+          "user_image_file": {
+            "guid": "5FBB78C95B2C11EFA2EF0A58A9FEAC02",
+            "file_name": "AGNmyxaXvIy1USfIO3lvanopYIH-lnlMQajSqgTCbmsy=s96-c.png",
+            "url": "https://files.protocols.io/external/AGNmyxaXvIy1USfIO3lvanopYIHlnlMQajSqgTCbmsys96c-5FBB78C95B2C11EFA2EF0A58A9FEAC02.png",
+            "mime": "image/png",
+            "size": 1154,
+            "width": 0,
+            "height": 0,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 1723743161
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/default_protocol.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 400,
+          "height": 400,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      }
+    ],
+    "warning": ""
+  },
+  "status_code": 0
+}

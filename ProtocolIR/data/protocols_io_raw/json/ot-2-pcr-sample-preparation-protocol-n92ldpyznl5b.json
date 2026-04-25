@@ -1,0 +1,1396 @@
+{
+  "payload": {
+    "access": {
+      "can_preview": true,
+      "can_view": true,
+      "can_edit": false,
+      "can_remove": false,
+      "can_add": false,
+      "can_publish": false,
+      "can_get_doi": false,
+      "can_share": false,
+      "can_share_organization": false,
+      "can_move": false,
+      "can_move_outside": false,
+      "can_transfer": false,
+      "can_download": true,
+      "limited_run": false,
+      "limited_private_links": false,
+      "limited_blind_links": false,
+      "is_locked": false
+    },
+    "acknowledgements": "",
+    "authors": [
+      {
+        "first_name": "Ana Mariya",
+        "last_name": "Anhel",
+        "affiliation": "Centro de Biotecnolog\u00eda y Gen\u00f3mica de Plantas, Universidad Polit\u00e9cnica de Madrid (UPM)-Instituto Nacional de Investigaci\u00f3n y Tecnolog\u00eda Agraria y Alimentaria (INIA/CSIC), Madrid, Spain",
+        "note": "",
+        "guid": "050D4E40F8CC11ED9D4302C0B41BC903",
+        "username": "ana-mariya-anhel",
+        "name": "Ana Mariya Anhel",
+        "affiliation_url": null,
+        "link": "",
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Lorea",
+        "last_name": "Alejaldre",
+        "affiliation": "Centro de Biotecnolog\u00eda y Gen\u00f3mica de Plantas, Universidad Polit\u00e9cnica de Madrid (UPM)-Instituto Nacional de Investigaci\u00f3n y Tecnolog\u00eda Agraria y Alimentaria (INIA/CSIC), Madrid, Spain",
+        "note": "",
+        "guid": "050BD09AF8CC11ED9D4302C0B41BC903",
+        "username": "n4qle142y1w4tle1",
+        "name": "Lorea Alejaldre",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "Manuel",
+        "last_name": "Gimenez",
+        "affiliation": "Centro de Biotecnolog\u00eda y Gen\u00f3mica de Plantas, Universidad Polit\u00e9cnica de Madrid (UPM)-Instituto Nacional de Investigaci\u00f3n y Tecnolog\u00eda Agraria y Alimentaria (INIA/CSIC), Madrid, Spain",
+        "note": "",
+        "guid": "",
+        "username": "",
+        "name": "Manuel Gimenez",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": false,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      },
+      {
+        "first_name": "\u00c1ngel",
+        "last_name": "o\u00f1i-Moreno",
+        "affiliation": "Centro Nacional de Biotecnolog\u00eda (CNB-CSIC)",
+        "note": "angel.goni@cnb.csic.es",
+        "guid": "051036BBF8CC11ED9D4302C0B41BC903",
+        "username": "x2u2c423u2w2",
+        "name": "\u00c1ngel Go\u00f1i-Moreno",
+        "affiliation_url": null,
+        "link": null,
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "00000000000000000000000000000001",
+          "file_name": "avatar.png",
+          "url": "https://www.protocols.io/img/avatars/001.png",
+          "mime": "image/png",
+          "size": 0,
+          "width": 100,
+          "height": 100,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 0
+        }
+      }
+    ],
+    "before_start": "Note that if more than one primer set wants to be used in the same final plate, the protocol should be re-run to create the new PCR master mix, the new starting position in the final plate should be specified. ",
+    "created_on": 1717751187,
+    "creator": {
+      "affiliation": "CNB-CSIC",
+      "affiliation_url": "",
+      "affiliations": [
+        {
+          "affiliation": "CNB-CSIC",
+          "is_default": true,
+          "job_title": "",
+          "url": ""
+        }
+      ],
+      "badges": [
+        {
+          "id": 4,
+          "image": {
+            "placeholder": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg",
+            "source": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg"
+          },
+          "name": "Gold power author!"
+        }
+      ],
+      "first_name": "",
+      "image": {
+        "placeholder": "https://www.protocols.io/img/avatars/001.png",
+        "source": "https://www.protocols.io/img/avatars/001.png"
+      },
+      "last_name": "",
+      "link": "https://biocomputationlab.com",
+      "name": "Biocomputation Lab",
+      "username": "biocomputation-lab"
+    },
+    "cross_cloud_origin": null,
+    "description": "This protocol is meant to create a PCR mastermix with 1 or more primer sets, distribute it in 1 or more 96-well plates, inoculate from 1 or more 96-well plates containing the template and run the reaction in an OT-2 thermocycler (if available). \n\nThis protocol is run by using a [LAP format](https://www.laprepo.com/lap-format/) script and its corresponding .xlsx file were different customizable variables such as volumes of transfer, type of plates, number of primers per set, and availability of OT-2 thermocycler are indicated. \nSpecifically, this protocol provides a set of instructions or description of the [LAP repository](http://www.laprepo.com) entry **LAP-PCR-OT2-2.0.0. **You can find the script and complementary information for this specific version of the protocol in the [LAP entry link](https://www.laprepo.com/protocol/pcr-mix-preparation-and-temperature-profile-v-2-0-0/) and [GitHub link to LAP entry documents](https://github.com/BiocomputationLab/LAPrepository/tree/main/LAPEntries/LAP-PCR-OT2-2.0.0)\n\nIn our laboratory, this protocol has been used as part of the &#34;High-throughput workflow for the genotypic characterization of transposon insertion library variants&#34; also available in protocols.io to prepare arbitrary and spurious PCR samples.\n\n_The current version incorporates the following modifications:_\n1. **Description of robot and protocol setup in a separate protocols.io entry** (Setting and Customizing OT-2 for LAP Entries)\n1. When transferring the polymerase and primers, **change tip every time it aspirates from source tubes**\n1. **Wells with controls can be anywhere in the plate**\n1. **New variable** in Sheet &#39;ModuleVariables&#39; called &#39;Max Volume Per Mix Tube In Shaker&#39;",
+    "disclaimer": "",
+    "documents": null,
+    "doi": "dx.doi.org/10.17504/protocols.io.n92ldpyznl5b/v3",
+    "ethics_statement": "",
+    "fork_id": null,
+    "funders": [
+      {
+        "funder_name": "Comunidad de Madrid",
+        "grant_id": "Y2020/TCS-6555, 2019-T1/BIO-14053 "
+      },
+      {
+        "funder_name": "MCIN/AEI",
+        "grant_id": "CEX2020-000999-S, PID2020-117205GA-I00, CNS2022-135951, PID2023-152470NB-I00"
+      },
+      {
+        "funder_name": "European Research Council",
+        "grant_id": "101044360"
+      }
+    ],
+    "guid": "38D29F4724AD11EF8D4F0A58A9FEAC02",
+    "guidelines": "This protocol has been tested with cultures from _Pseudomonas putida_ KT2440 and PCR products as part of the High-throughput workflow for the genotypic characterization of transposon insertion library variants. Software requirements to run this protocol are the following: \n1. Python 3 (Developed with Python 3.7.1)\n1. Opentrons Protocol API version &gt;= 2.14\n1. Opentrons App software Version &gt;= 7.0.2\n1. Python packages needed (version moment of development): opentrons (7.0.2), pandas (0.25.3), numpy (1.15.1), openpyxl (3.1.2), math, random",
+    "id": 101396,
+    "image": {
+      "placeholder": null,
+      "source": "https://www.protocols.io/img/default_protocol.png",
+      "webp_placeholder": null,
+      "webp_source": null
+    },
+    "is_content_confidential": false,
+    "is_content_warning": false,
+    "is_doi_reserved": false,
+    "is_in_pending_publishing": false,
+    "is_in_transfer": null,
+    "is_owner": false,
+    "is_research": true,
+    "is_subprotocol": null,
+    "item_id": 1258677,
+    "keywords": "PCR sample preparation, automation, opentrons, pcr sample preparation protocol, pcr mastermix, pcr, spurious pcr sample, description of the lap repository entry lap, throughput workflow for the genotypic characterization, transposon insertion library variant, lap repository, protocol in the lap entry link, lap repository entry lap, version of the protocol, ot2, set of instruction, lap format script, protocol, protocol setup",
+    "link": "",
+    "manuscript_citation": "",
+    "materials": [],
+    "materials_text": "**Software**\n1. python 3.7.1\n1. python packages: pandas, random, math, numpy, opentrons, openpyxl\n1. OT App\n1. Excel\n\n\n\n**OT-2 Labware**\n\n1. Opentrons Tipracks\n\n Opentrons 96 Tip Rack 300 \u00b5L (Tip rack, Opentrons, -, [https://labware.opentrons.com/opentrons_96_tiprack_300ul?category=tipRack](https://labware.opentrons.com/opentrons_96_tiprack_300ul?category=tipRack)) \n\n Opentrons 96 Tip Rack 20 \u00b5L (Tip rack, Opentrons, -, [https://labware.opentrons.com/opentrons_96_tiprack_20ul?category=tipRack](https://labware.opentrons.com/opentrons_96_tiprack_20ul?category=tipRack)) \n\n1. 96-well plates\n\n 96-well plates, flat bottom, non treated (Cell culture plates, VWR, 734-2781, [https://es.vwr.com/store/catalog/product.jsp?catalog_number=734-2781](https://es.vwr.com/store/catalog/product.jsp?catalog_number=734-2781), [Well-Plate.Jpg](https://s3.amazonaws.com/protocols-files/files/jhaibxsu7.jpg)) \n\n1. PCR plates\n1. Opentrons Falcon tuberack\n\n\n Opentrons 15 Tube Rack with Falcon 15 mL Conical (OT Tube Rack, Opentrons, -, [https://labware.opentrons.com/opentrons_15_tuberack_falcon_15ml_conical/](https://labware.opentrons.com/opentrons_15_tuberack_falcon_15ml_conical/), [Tuberack.Jpg](https://s3.amazonaws.com/protocols-files/files/jhajbxsu7.jpg)) \n\n1. 1.5mL eppendorfs (without the cap)\n1. 4\u00baC cold-block with adaptor (file attach)\n\n BRAND\u2122 Centrifuge Tube Mini-Cooler (ColdBlock, BRAND, 10141921, [https://www.fishersci.es/shop/products/brandtech-scientific-brand-centrifuge-tube-mini-cooler-3/10141921](https://www.fishersci.es/shop/products/brandtech-scientific-brand-centrifuge-tube-mini-cooler-3/10141921)) \n [adaptor_OT_coldblock.stl](https://content.protocols.io/files/ji5wbxsu7.stl) \n\n**Reactives:**\n\n** Phire Green Hot Start II PCR Master Mix Fisher Scientific Catalog #15391732 ** This is the reason why the transfering of the polymerase is done with a slower aspiration and dispensing rate, due to the viscosity of the reactive\n Thermo Scientific\u2122 Phire Hot Start II PCR Master Mix Fisher Scientific Catalog #15361732 \n MilliQ water Contributed by users  \n\n_Oligonucleotides:_\n1. For spurious integration control: PS3, PS4, PS5, PS6 (Silva-Rocha et al. 2013 doi:\u00a0[10.1093/nar/gks1119](https://doi.org/10.1093%2Fnar%2Fgks1119))\n1. For arbitrary PCR: ARB2, ME-O-Km-Ext-F, ME-O-Km-Int-F, ME-O-Sm-Ext-F, ME-O-Sm-Int-F, ME-O-Gm-Ext-F, ME-O-Gm-Ext-R (Martinez-Garcia et al. 2013 [https://doi.org/10.3389/fbioe.2014.00046](https://doi.org/10.3389/fbioe.2014.00046))\n1. For optional insert control: PSMCS\n\n\n\n**Equipment:**\n OT-2 (Liquid handler, Opentrons, OT-2) \n\n Single Channel Electronic Pipette (GEN2) 300uL (Opentrons Pipette, Opentrons, -, [https://shop.opentrons.com/single-channel-electronic-pipette-p20/](https://shop.opentrons.com/single-channel-electronic-pipette-p20/)) \n\n Single Channel Electronic Pipette (GEN2) 20uL (Opentrons Pipette, Opentrons, -, [https://shop.opentrons.com/single-channel-electronic-pipette-p20/](https://shop.opentrons.com/single-channel-electronic-pipette-p20/)) \n\n\n ",
+    "protocol_image_file": {
+      "avg_color": "",
+      "created_at": 1753351435,
+      "file_name": "jn6xbxpzf.jpg",
+      "guid": "820E9972687511F08F960A58A9FEAC02",
+      "height": 0,
+      "mime": "binary/octet-stream",
+      "scan_status": 0,
+      "size": 6103,
+      "url": "https://files.protocols.io/external/jn6xbxpzf-820E9972687511F08F960A58A9FEAC02.jpg",
+      "width": 0
+    },
+    "protocol_references": "**pBLAM1-x: standardized transposon tools for\u00a0high-throughput screening **_(Synthetic Biology) _[https://doi.org/10.1093/synbio/ysad012](https://doi.org/10.1093/synbio/ysad012)\n\n**The Laboratory Automation Protocol (LAP) Format and Repository: A Platform for Enhancing Workflow Efficiency in Synthetic Biology** (_ACS Synth. Biol._) [https://doi.org/10.1021/acssynbio.3c00397](https://doi.org/10.1021/acssynbio.3c00397)",
+    "public": true,
+    "published_on": 1760969729,
+    "reserved_doi": "",
+    "space_id": 72276,
+    "stats": {
+      "is_voted": false,
+      "number_of_views": 424,
+      "number_of_steps": 28,
+      "number_of_bookmarks": 1,
+      "number_of_comments": 0,
+      "number_of_bookmarked_comments": 0,
+      "number_of_steps_comments": 0,
+      "number_of_protocol_comments": 0,
+      "number_of_exports": 0,
+      "number_of_runs": 0,
+      "number_of_votes": 0,
+      "number_of_reagents": 3,
+      "number_of_equipments": 8,
+      "number_of_collections": 0,
+      "number_of_forks": {
+        "private": 0,
+        "public": 0
+      },
+      "number_of_accessible_forks": 0
+    },
+    "status": {
+      "id": 1,
+      "info": "We use this protocol and it's working"
+    },
+    "steps": [
+      {
+        "id": 2089399,
+        "guid": "3914D18E24AD11EF8D4F0A58A9FEAC02",
+        "previous_id": null,
+        "previous_guid": null,
+        "section": "<p>Files Preparation</p>",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Preparing Customized Template**\n\nPreparing the template (a .xlsx) with the specific variables for each experiment.\n\nHere we attach one Excel with several sheets and a PDF file explaining each variable:\n\n- **GeneralVariables:** variables related mainly to the labware that is going to be used\n- **SamplesPlateVariables:** variables related to the specifications of each source plate\n- **PipetteVariables:** variables related to the pipette(s) that are going to be used\n- **ReagentsPerReaction:** variables that will determine the final mix of the wells\n- **ModuleVariables:** variables related to the modules used in the protocol, the thermocycler and the heater-shaker\n- **TemperatureProfile (Optional):** PCR program that will be performed in the thermocycler if set as True in the ModuleVariables sheet\n- **Maps (Optional): **sheet(s) with the names of the samples in the source plates and will be reflected in the final plate map(s) \u2013&gt; not included in the template but needed to be included if the variable Map IDs has a value.\n\n\n [PCRInstructions_v200.pdf](https://protocols-files.s3.amazonaws.com/files/qvx9bxsu7.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=daee54d7c8da888ea28603b0dd36af7b6ef2a474953a1e257a423233d4f81f49) \n [TemplateVariablesPCR.xlsx](https://protocols-files.s3.amazonaws.com/files/qs9gbxsu7.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=6613e164cfaa04761f172ef645e5342dbbf4c3136fcfe0d72d6381aaff290fe2) \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1485690,
+        "number": "1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2089401,
+        "guid": "391666D924AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2089413,
+        "previous_guid": "3925875224AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>After-running</p>",
+        "section_color": "#84CE84",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Retrieve labware from the OT**",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1485692,
+        "number": "5",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2089403,
+        "guid": "3917C9C124AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2093499,
+        "previous_guid": "E7D72599A86F4C89A9BB9708ECC27F45",
+        "section": "<p>Files Preparation</p>",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Transferring variables file to Robot**\n\nFor this protocol to work we need to transfer the _VariablesPCRs.xlsx_ to the directory _/data/user_storage_ of the OT system that we will use to perform the protocol\n\nAs well, if we are using custom labware we need to upload it to the OT App and send it to the directory _/data/labware/v2/custom_definitions/custom_beta_ if the labware is not there yet.\n\nFinally, we need to make sure the package _openpyxl_ is installed in the robot system\n\nWe can do this entire step by following the protocol _Setting and Customizing OT-2 for LAP Entries _with the specifications given in the text above\n<img src=\"https://files.protocols.io/external/qkygbxsu7-79B6D4CD687511F08F960A58A9FEAC02.svg\" width=\"30\" height=\"30\"/> [Setting and Customizing OT-2 for LAP Entries](https://www.protocols.io/view/setting-and-customizing-ot-2-for-lap-entries-ddud26s6) by [Biocomputation Lab](https://www.protocols.io/researchers/biocomputation-lab) \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1485698,
+        "number": "2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2089406,
+        "guid": "391C545D24AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2089403,
+        "previous_guid": "3917C9C124AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Load script in OT-App**\n\nNow that we have transferred the variable files to the robot, we can load the script and run it in the selected robot\n\n\nThis whole step has been developed and tested with version 7.0.2 of the OT-App\n\n**Indications may vary from version to version of the opentrons App and the version of the script.**\n \n\nOpentrons App \nWindows >=10, Mac >=10 , Ubuntu >=12.04\nhttps://opentrons.com/ot-app/ Opentrons\n \n\n\nUpdated script versions can be found at our Github\n[https://github.com/BiocomputationLab/LAPrepository/tree/main/LAPEntries](https://github.com/BiocomputationLab/LAPrepository/tree/main/LAPEntries) or LAP repository [https://www.laprepo.com/repository/](https://www.laprepo.com/repository) in the directory and entry named **LAP-PCR-OT2** followed by the version.\n \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1485702,
+        "number": "3",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2089407,
+        "guid": "391D02F524AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2089401,
+        "previous_guid": "391666D924AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>After-running</p>",
+        "section_color": "#84CE84",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Importing layout output maps from robot**\n\nThere will be 1 final excel file with the name set in variable &#39;Final Map Name&#39; from sheet &#39;GeneralVariables&#39; with as many maps as final plates with the following structure of names: _FinalMap _followed by the _PositionSlot_ where that final plate was\n\nLayout maps will be in directory _/data/user_storage_ of the robot where the protocol was run\n\nFor additional information on how to retrieve the maps from the OT-2 liquid handler:\n<img src=\"https://files.protocols.io/external/qkygbxsu7-79B6D4CD687511F08F960A58A9FEAC02.svg\" width=\"30\" height=\"30\"/> [Setting and Customizing OT-2 for LAP Entries](https://www.protocols.io/view/setting-and-customizing-ot-2-for-lap-entries-ddud26s6) by [Biocomputation Lab](https://www.protocols.io/researchers/biocomputation-lab) \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "11",
+        "duration": 0,
+        "original_id": 1485703,
+        "number": "6",
+        "cases": [],
+        "critical": [
+          {
+            "id": 11,
+            "title": "Optional step",
+            "icon": "OptionalIcon"
+          }
+        ]
+      },
+      {
+        "id": 2089411,
+        "guid": "392429BD24AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2089406,
+        "previous_guid": "391C545D24AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "_Load the script in the App_\n\n**Protocols -&gt; Import -&gt; Drag Python script**\n\nThis version of the protocol was developed when the last version available of LAP-PCR-OT2 was the 2.0.0 which script you can find attached\n\n [ScriptPCR_v200.py](https://protocols-files.s3.amazonaws.com/files/quzgbxsu7.py?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=13aa65c8d13929b4ac5d9e574c170d77d53a66466043e6944511bcac180b6348) \n\n\nThe App with version 7.0.2 analyzes your protocol before setting a robot to run, so the labware will not be shown before assigning the protocol to a specific robot when you import it into the App.\n \n\n\nThe App with version 7.0.2 analyzes your protocol before setting a robot to run, so the labware will not be shown before assigning the protocol to a specific robot when you import it into the App.\n \n\n\n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1486342,
+        "number": "3.1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2089412,
+        "guid": "3924D85424AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2093139,
+        "previous_guid": "C49137BE1F3949649FB4F74B7368D784",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "_Labware position check_ is performed (if needed)",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "11",
+        "duration": 0,
+        "original_id": 1486343,
+        "number": "4.2",
+        "cases": [],
+        "critical": [
+          {
+            "id": 11,
+            "title": "Optional step",
+            "icon": "OptionalIcon"
+          }
+        ]
+      },
+      {
+        "id": 2089413,
+        "guid": "3925875224AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2089423,
+        "previous_guid": "3930CD6324AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "_Start Run_\n\nThe procedure that the robot is going to do is mainly divided in 3 parts:\n\n- Creation of primer sets combining water, primer(s) and polymerase\n- Mixing and distributing the primer set(s)\n- Transferring samples to the corresponding wells of all set of primers\n\n\n\nOne or more final plates (usually PCR plates) with the mix for each set of primers combined with the colony samples and an excel file containig th emapping of each final plate in the folder _/data/user_storage_ of the robot\n \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1486344,
+        "number": "4.6",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2089419,
+        "guid": "392CC8F724AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2089399,
+        "previous_guid": "3914D18E24AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Files Preparation</p>",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "_Fill the template_ with the corresponding values (PCR conditions, number of primer pairs, output map, availability of OT-2 thermocycler  etc...) and save file as _**VariablesPCR.xlsx**_ (if the file has another name the LAP format script will not read the file).\n\n\nVerify volume range of the OT-2 pipettes available with the volume of a single reaction.\n\nThis can be a source of the errors displayed by the app in later steps\n \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1487133,
+        "number": "1.1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2089421,
+        "guid": "392ED98E24AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2089412,
+        "previous_guid": "3924D85424AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "_Wipe the surface of the deck with 70% ethanol to clean and desinfect the surfaces_\n\n\nFor more information in how to clean the robot go to the following link [https://support.opentrons.com/s/article/Cleaning-the-robot-s-surfaces](https://support.opentrons.com/s/article/Cleaning-the-robot-s-surfaces)\n \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1487205,
+        "number": "4.3",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2089422,
+        "guid": "392FE2ED24AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2089421,
+        "previous_guid": "392ED98E24AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "_Set the respective labwares_ in the slots as the OT App and the instruction file set\n\n\nMake sure that the source and final A1 wells are at the left top (common mistake), and each labware fits appropierly.\n \n\n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1487206,
+        "number": "4.4",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2089423,
+        "guid": "3930CD6324AD11EF8D4F0A58A9FEAC02",
+        "previous_id": 2089422,
+        "previous_guid": "392FE2ED24AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "_Set the different reactives_ in their respective coldblock positions, as stated in the instruction file\n\n\nMake sure that the caps of these 1.5mL eppendorfors are removed (cut them) so they are not hanging and the pipette(s) do not have the possibility to crash with them\n \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 1487207,
+        "number": "4.5",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093139,
+        "guid": "C49137BE1F3949649FB4F74B7368D784",
+        "previous_id": 2093147,
+        "previous_guid": "E49FB82E73C54BBD935E70C9E69BAAC3",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "Make sure the needed _calibrations_ are done",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "4.1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093146,
+        "guid": "FD606FEFB2B04ACF8560A0A5C3BA5F6D",
+        "previous_id": 2089411,
+        "previous_guid": "392429BD24AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "_Select Robot to Perform Script_\n\n**Click in the protocol -&gt; Start setup -&gt; Choose the OT where the file** **_VariablesPlateIncubation.xlsx_** **is -&gt; Proceed To Setup**\n\nAfter clicking on Proceed to Setup, you should obtain the labware positions in the_ Labware_ tab and the reagents, with their corresponding volume, in the_ Liquids_ tab.\n\nIn case the protocol with the set variables cannot run, an error will occur during the run. Many errors are contemplated already and have a specific message that hints the user what could have gone wrong.\n\n\nThe volume of the initial samples is established to be 90% of the max volume of the well, but this is only a recommendation. **Just** **make sure that there is enough volume to transfer to all the final plates.**\n\nOn the other hand, the volume of the reagents is precisely what is needed, so it is **suggested always to add more to consider the pipetting error**.\n \n\n\n**It is recommended that you perform a labware position check.**\n\nYou can do it with test plates after loading the script but before cleaning the surface. That way, you reduce the probability of contamination (using test plates and labware) and pipetting errors (position check).\n \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "3.2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093147,
+        "guid": "E49FB82E73C54BBD935E70C9E69BAAC3",
+        "previous_id": 2093146,
+        "previous_guid": "FD606FEFB2B04ACF8560A0A5C3BA5F6D",
+        "section": "<p>Running Protocol</p>",
+        "section_color": "#94EBFF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "**Run Protocol in OT**",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "4",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093151,
+        "guid": "828844FAD28E46AD9E09B8C44EC6CE93",
+        "previous_id": 2089407,
+        "previous_guid": "391D02F524AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": false,
+        "step": "**We want to perform a PCR mix preparation of 93 colonies and 2 controls that are in 2 source plates (40 colonies + 2 control samples in 1 plate and 54 colonies starting from the A4 well in the other plate but we dont want to take the sample in the well D6) with 2 primer sets. The first plate will have a map of identities(names) but the second one wont.**\n\n**We are going to have a heater-shaker module available but not a thermocycler. We are going to set the shaker to a high RPMs so we want the maximum volume on the mixing tubes, the tube sthat will contain the PCR mix with primers, polymerase mix and water, to be 1mL**\n\nWe will use a computer with a Windows 10 system",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "7",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093153,
+        "guid": "8C2288F6DE6A45978BC6BA8B48989C4C",
+        "previous_id": 2093151,
+        "previous_guid": "828844FAD28E46AD9E09B8C44EC6CE93",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Prepare variable file_\n\nExcel temple filled and saved with the name _VariablesPCR.xlsx_\n\n_ [VariablesPCR.xlsx](https://protocols-files.s3.amazonaws.com/files/qsszbxsu7.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=62e3dc86c6518f7f96a53bccfd96cf565dadd9e48b715e8720db764ddee20f80)_ \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 600,
+        "original_id": 0,
+        "number": "7.1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093154,
+        "guid": "7CB564962DA340E8B2B9FFC05726B8E4",
+        "previous_id": 2093153,
+        "previous_guid": "8C2288F6DE6A45978BC6BA8B48989C4C",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Upload custom labware to app_\n\nWe are using a custom labware called _vwrblueprintdepth105_96_wellplate_390ul_ and _3dprinted_opentrons_shaker_1.5mleppendorf_ that has been created with the labware creator that opentrons offer ([https://labware.opentrons.com/create/](https://labware.opentrons.com/create))\n\n [3dprinted_opentrons_shaker_1.5mleppendorf.json](https://protocols-files.s3.amazonaws.com/files/qsrsbxsu7.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=1ca4402a65217f7d8aa4f5d341609636f03d01dfccdfd23756be34ee422b6630)  [vwrblueprintdepth105_96_wellplate_390ul.json](https://protocols-files.s3.amazonaws.com/files/qsrtbxsu7.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=463087b4d26aef81b176e8951e2cae102ccd4b79b482a6a0c228688a0d67810b) \n\nWe upload it to the opentrons app (make sure that is in the robot app)  and the robot system as stated in the protocol in step go to step #2  \n\n [vwrblueprintdepth105_96_wellplate_390ul.zip](https://protocols-files.s3.amazonaws.com/files/qsrvbxsu7.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=7d147c973d611809dc1982a7b24ab04407bf8aedbb90d9b51b0b8b6c63cbeb6a)  [3dprinted_opentrons_shaker_1.5mleppendorf.zip](https://protocols-files.s3.amazonaws.com/files/qsrwbxsu7.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=c810e343103eb244c89440529924bc85bf68d7ca2eb8f6062437d5348d043734) \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 120,
+        "original_id": 0,
+        "number": "7.2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093155,
+        "guid": "1CC6AA10AC6646A598A0E323852CC9CA",
+        "previous_id": 2093154,
+        "previous_guid": "7CB564962DA340E8B2B9FFC05726B8E4",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Export the variable file to the /data/user_storage folder  in the robot_\n[transfer_variablesPCR_file.PNG]](https://protocols-files.s3.amazonaws.com/files/qsrxbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=10b412afcbc968605af7330aaf45d06da56b3f1e845dd08e96d02719a6574976)\ncommand line window with scp commands to transfer the variables .xlsx from our computer to the OT-2 \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFor more information about sending files to the OT-2 go to step #2  \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 30,
+        "original_id": 0,
+        "number": "7.3",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093156,
+        "guid": "3F179363A2A549CBB91EF00F573857F6",
+        "previous_id": 2093155,
+        "previous_guid": "1CC6AA10AC6646A598A0E323852CC9CA",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Import the script_\n\nImport to the OT App the script that we have downloaded from the step go to step #3  (I named it _Example-PCR.py_)\n\n [Example-PCR.py](https://protocols-files.s3.amazonaws.com/files/quzhbxsu7.py?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=abf1e505ea9a0dad82bb1e8db88c79f27a57cb6cfaa31e1b361a374e2d62540a) \n\n[scriptPCR_opentrons.PNG]](https://protocols-files.s3.amazonaws.com/files/qsrzbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=49af34b58a5ee8a77d46faabdd24192adfb90fa46450480735f59e19328181e9)\nResult of importing the Python script in the OT-App \n\nAs we can see, we have an error, but that is programmed because the script is meant to work in the robot but not in your computer",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 60,
+        "original_id": 0,
+        "number": "7.4",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093157,
+        "guid": "7A69609A2313405BAC1D3086947D163D",
+        "previous_id": 2093156,
+        "previous_guid": "3F179363A2A549CBB91EF00F573857F6",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Run the protocol in the robot that we have transferred the Excel file_\n\n**Example-PCR.py -&gt; Start setup -&gt; Select robot** in which we are going to run the protocol\n\nIf we do not have any errors, the output should look similar to the following pictures\n\n[general_layoutPCR-example.PNG]](https://protocols-files.s3.amazonaws.com/files/qtctbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222230Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=af7ef637964906063c1ff6b1ae7aca770d73f9470a1eea39bece7da316e826c9)\nLabware and liquid set-up layout \n\n[list_liquids_examplePCR.PNG]](https://protocols-files.s3.amazonaws.com/files/qtcvbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222230Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=7f16037d277fd341f62c9673da634e3e5c6c7233e20e6d5e97ddabb8900f6046)\nVolumes of the different reagents needed to perform the protocol \n\nIf we **click to the different reagents and the labware where they are** or go to **Map view** and click in the different labware with liquids we can see the distribution and volumes of each tube/well in the different labwares like the following pictures.\n\n[samples_plate1.PNG]](https://protocols-files.s3.amazonaws.com/files/qs6dbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222230Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=79aa4f5de6ba51245f6b3f83ca3c81d3cc8791abda4f033e20bfe4d886f09ec6)\nPosition and volume of all the samples in the Plate in Slot 2 that are going to be picked to be mixed with the different sets of PCR mix \n\n[controls_plate1.PNG]](https://protocols-files.s3.amazonaws.com/files/qs6fbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222230Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=cad2327f54f040f93cfd83450c786450e81f6dd2ab0c0300c45103defbbe4bd1)\nPositions and volume of the samples in the Plate in Slot 2 are going to be used as control \n\n[notpicksamples_plate2.PNG]](https://protocols-files.s3.amazonaws.com/files/qs6hbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0235b454e8c339ed9374d11c6f6c047da6ec9db0f3d35fdb04fc600f86cd2b20)\nPosition and volume of all the samples in the Plate in Slot 3 that are NOT going to be picked to be mixed with the different sets of PCR mix \n\n[tube_polymerase.PNG]](https://protocols-files.s3.amazonaws.com/files/qtcxbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0f0eeb07046f5ab6687ace64a3f681d701531d0a5c9b21bbf81f27e0fc740db2)\nPosition and volume of the tube that is going to contain the polymerase mix \n\n[tube_water.PNG]](https://protocols-files.s3.amazonaws.com/files/qtczbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=1a3c2631bfcee52967dbd75f5737fde1f40d9ca9b79bcae5ae72b725c2ff78b3)\nPosition and volume of the tube that is going to contain MiliQ water \n\n[tube_primer1.PNG]](https://protocols-files.s3.amazonaws.com/files/qtc3bxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=81df53aed4be4549bd0796043f61d217d39a3756c55d04e4679144ae29dfbc95)\nPosition and volume of the tube that is going to contain 1 of the primers that are going to be in the final PCR sets \n\n[tubes_set1.PNG]](https://protocols-files.s3.amazonaws.com/files/qs6rbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222229Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=429ab46e26f11ab40c3363fdea7bb210d1121f7301559cd95d259397c32f1dd1)\nPositions of the final tubes containing the set of primers, in this case Primer 1 and Primer 2, in the heater-shaker situated in the Slot 1 \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 30,
+        "original_id": 0,
+        "number": "7.5",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093158,
+        "guid": "BC174C7A7E33430280FD065C4F9F5EDE",
+        "previous_id": 2093157,
+        "previous_guid": "7A69609A2313405BAC1D3086947D163D",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Turn the HEPA filter module_",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "11",
+        "duration": 30,
+        "original_id": 0,
+        "number": "7.6",
+        "cases": [],
+        "critical": [
+          {
+            "id": 11,
+            "title": "Optional step",
+            "icon": "OptionalIcon"
+          }
+        ]
+      },
+      {
+        "id": 2093159,
+        "guid": "848C948BC4854136AFF0D96139BB5D3D",
+        "previous_id": 2093158,
+        "previous_guid": "BC174C7A7E33430280FD065C4F9F5EDE",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Clean the platform of the robot that we are going to perform the protocol_",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 120,
+        "original_id": 0,
+        "number": "7.7",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093160,
+        "guid": "4BC50BDBACD343C5AADE8D6095AC339F",
+        "previous_id": 2093159,
+        "previous_guid": "848C948BC4854136AFF0D96139BB5D3D",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Prepare all reagents and labware_ in the places the App is showing and take into account the notes in stepgo to step #3.2  \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 300,
+        "original_id": 0,
+        "number": "7.8",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093161,
+        "guid": "5607EDB760924D35B8C80AAA4800067C",
+        "previous_id": 2093160,
+        "previous_guid": "4BC50BDBACD343C5AADE8D6095AC339F",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Start run_\n\n\n\n[final_layout_final_plates_source_plates.PNG]](https://protocols-files.s3.amazonaws.com/files/qs6tbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222230Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=40e2358f210e10030833022d60cd47df8fa37506b4f174f536367a56ef394793)\nFinal layout of source and final plates in the run \n\n\n[example_content_1well_slot4.png]](https://protocols-files.s3.amazonaws.com/files/qtc5bxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222230Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f8f94d83e4d123088d96118e5452e44fbeec011dedfd3cf1ce9a746ea89ec65e)\nContent of A4 in the labware Final Plate 1 Slot 4 at the end of the run \nHere, we will obtain the mix between the PCR mixes and the samples selected by the values in the variable file. These positions are seen in the images by the grey wells, and we can see the info of the plate and the media in the well A4 of the final plate on slot 4 in the second image.\n \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 7200,
+        "original_id": 0,
+        "number": "7.9",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093162,
+        "guid": "F03F41D9B3174DB89C670092A483531E",
+        "previous_id": 2093161,
+        "previous_guid": "5607EDB760924D35B8C80AAA4800067C",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "_Retrieve labwares from the OT_",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 300,
+        "original_id": 0,
+        "number": "7.10",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093163,
+        "guid": "B2DA531E5A404EA5A545EFC67789E28F",
+        "previous_id": 2093162,
+        "previous_guid": "F03F41D9B3174DB89C670092A483531E",
+        "section": "<p>Example</p>",
+        "section_color": "#FFED92",
+        "section_duration": 9060,
+        "is_substep": true,
+        "step": "Retrieve the final maps that are going to be in the file. In this case, they will be called _mapPCR-example.xlsx_ (name that is stated in the variable file in the variable&#39; Final Map Name&#39;)\n\n[map-tocomputer.PNG]](https://protocols-files.s3.amazonaws.com/files/qs6xbxsu7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222230Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=d2ad04b3015a18dfe252ccf6c7c65cd8a2a3d22369d73cdc72da055bb1f2209a)\ncommand line windows with the transfer command of the final file with the map(s) from the OT to our computer \n\n [mapPCR-example.xlsx](https://protocols-files.s3.amazonaws.com/files/qs9qbxsu7.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWFTFYUBUZ2U2JGOS%2F20260425%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260425T222230Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=3b762f757393cf99e02557ece3009783962cb665929f7707ccce5c50d04f0abc) \n\nFor more information about how to transfer files from one system to another one, in this case from the OT to your computer, go to step #2   \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 60,
+        "original_id": 0,
+        "number": "7.11",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 2093499,
+        "guid": "E7D72599A86F4C89A9BB9708ECC27F45",
+        "previous_id": 2089419,
+        "previous_guid": "392CC8F724AD11EF8D4F0A58A9FEAC02",
+        "section": "<p>Files Preparation</p>",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": true,
+        "step": "_Store it_ with the name _VariablesPCR.xlsx_\n\n\nThe file should be spelt** exactly **_VariablesPCR.xlsx_  or the Python script won&#39;t work correctly\n \n",
+        "data": null,
+        "protocol_id": 101396,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 0,
+        "number": "1.2",
+        "cases": [],
+        "critical": null
+      }
+    ],
+    "table_of_contents": [
+      {
+        "title": "<p>Files Preparation</p>",
+        "color": "#A492FF",
+        "first_step_guid": "3914D18E24AD11EF8D4F0A58A9FEAC02"
+      },
+      {
+        "title": "<p>Running Protocol</p>",
+        "color": "#94EBFF",
+        "first_step_guid": "391C545D24AD11EF8D4F0A58A9FEAC02"
+      },
+      {
+        "title": "<p>After-running</p>",
+        "color": "#84CE84",
+        "first_step_guid": "391666D924AD11EF8D4F0A58A9FEAC02"
+      },
+      {
+        "title": "<p>Example</p>",
+        "color": "#FFED92",
+        "first_step_guid": "828844FAD28E46AD9E09B8C44EC6CE93"
+      }
+    ],
+    "title": "OT-2 PCR sample preparation protocol  ",
+    "title_html": "OT-2 PCR sample preparation protocol \u00a0",
+    "translations": [
+      {
+        "lang": "de",
+        "title": "German",
+        "created_on": 1775232475
+      },
+      {
+        "lang": "es",
+        "title": "Spanish",
+        "created_on": 1775232475
+      },
+      {
+        "lang": "fr",
+        "title": "French",
+        "created_on": 1775232475
+      },
+      {
+        "lang": "ja",
+        "title": "Japanese",
+        "created_on": 1775232475
+      },
+      {
+        "lang": "zh",
+        "title": "Chinese - Simp/Trad",
+        "created_on": 1775232475
+      }
+    ],
+    "troubleshooting_items": null,
+    "type_id": 1,
+    "units": [
+      {
+        "id": 1,
+        "type_id": 3,
+        "name": "\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 2,
+        "type_id": 3,
+        "name": "mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 3,
+        "type_id": 3,
+        "name": "L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 4,
+        "type_id": 3,
+        "name": "\u00b5g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 5,
+        "type_id": 3,
+        "name": "mg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 6,
+        "type_id": 3,
+        "name": "g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 7,
+        "type_id": 3,
+        "name": "kg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 8,
+        "type_id": 3,
+        "name": "ng",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 9,
+        "type_id": 3,
+        "name": "Hz",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 10,
+        "type_id": 24,
+        "name": "\u00b0C",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 11,
+        "type_id": 24,
+        "name": "\u00b0\u041a",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 12,
+        "type_id": 24,
+        "name": "\u00b0F",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 13,
+        "type_id": 25,
+        "name": "Mass Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 14,
+        "type_id": 25,
+        "name": "% volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 15,
+        "type_id": 25,
+        "name": "Mass / % volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 16,
+        "type_id": 25,
+        "name": "Parts per Million (PPM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 17,
+        "type_id": 25,
+        "name": "Parts per Billion (PPB)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 18,
+        "type_id": 25,
+        "name": "Parts per Trillion (PPT)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 19,
+        "type_id": 25,
+        "name": "Mole Fraction",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 20,
+        "type_id": 25,
+        "name": "Mole Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 21,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 1
+      },
+      {
+        "id": 22,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 23,
+        "type_id": 25,
+        "name": "Genome copies per ml",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 24,
+        "type_id": 3,
+        "name": "\u03bcV",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 25,
+        "type_id": 3,
+        "name": "ms",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 26,
+        "type_id": 3,
+        "name": "pg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 27,
+        "type_id": 25,
+        "name": "Molarity dilutions",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 28,
+        "type_id": 25,
+        "name": "millimolar (mM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 29,
+        "type_id": 25,
+        "name": "micromolar (\u00b5M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 30,
+        "type_id": 25,
+        "name": "nanomolar (nM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 31,
+        "type_id": 25,
+        "name": "picomolar (pM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 32,
+        "type_id": 24,
+        "name": "Room temperature",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 33,
+        "type_id": 30,
+        "name": "rpm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 34,
+        "type_id": 30,
+        "name": "x g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 165,
+        "type_id": 24,
+        "name": "On ice",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 200,
+        "type_id": 32,
+        "name": "cm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 201,
+        "type_id": 32,
+        "name": "mm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 202,
+        "type_id": 32,
+        "name": "\u00b5m",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 203,
+        "type_id": 32,
+        "name": "nm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 204,
+        "type_id": 25,
+        "name": "mg/mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 205,
+        "type_id": 25,
+        "name": "\u00b5g/\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 206,
+        "type_id": 25,
+        "name": "% (v/v)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 207,
+        "type_id": 3,
+        "name": "V",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 208,
+        "type_id": 0,
+        "name": "Undetermined",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1324,
+        "type_id": 30,
+        "name": "rcf",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1359,
+        "type_id": 35,
+        "name": "Bar",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1360,
+        "type_id": 35,
+        "name": "Pa",
+        "can_manage": 0,
+        "read_only": 0
+      }
+    ],
+    "uri": "ot-2-pcr-sample-preparation-protocol-de9u3h6w",
+    "url": "https://www.protocols.io/view/ot-2-pcr-sample-preparation-protocol-de9u3h6w",
+    "version_class": 70383,
+    "version_data": null,
+    "version_id": 2,
+    "version_uri": "ot-2-pcr-sample-preparation-protocol-n92ldpyznl5b/v3",
+    "versions": [
+      {
+        "id": 70383,
+        "title": "OT-2 PCR sample preparation protocol  ",
+        "title_html": "OT-2 PCR sample preparation protocol \u00a0",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.n92ldpyznl5b/v1",
+        "uri": "ot-2-pcr-sample-preparation-protocol-cgyptxvn",
+        "published_on": 1666875556,
+        "modified_on": 1666875556,
+        "version_class": 70383,
+        "version_id": 0,
+        "version_code": "cgyptxvn",
+        "version_uri": "ot-2-pcr-sample-preparation-protocol-n92ldpyznl5b/v1",
+        "created_on": 1663854031,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Biocomputation Lab",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "CNB-CSIC",
+          "affiliation_url": "",
+          "username": "biocomputation-lab",
+          "link": "https://biocomputationlab.com",
+          "user_image_file": {
+            "guid": "00000000000000000000000000000001",
+            "file_name": "avatar.png",
+            "url": "https://www.protocols.io/img/avatars/001.png",
+            "mime": "image/png",
+            "size": 0,
+            "width": 100,
+            "height": 100,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 0
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "9F1C1E58687411F08F960A58A9FEAC02",
+          "file_name": "jn6xbxpzf.jpg",
+          "url": "https://files.protocols.io/external/jn6xbxpzf-9F1C1E58687411F08F960A58A9FEAC02.jpg",
+          "mime": "binary/octet-stream",
+          "size": 6103,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1753351054
+        }
+      },
+      {
+        "id": 90844,
+        "title": "OT-2 PCR sample preparation protocol  ",
+        "title_html": "OT-2 PCR sample preparation protocol \u00a0",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.n92ldpyznl5b/v2",
+        "uri": "ot-2-pcr-sample-preparation-protocol-c4x4yxqw",
+        "published_on": 1703272804,
+        "modified_on": 1703272804,
+        "version_class": 70383,
+        "version_id": 1,
+        "version_code": "c4x4yxqw",
+        "version_uri": "ot-2-pcr-sample-preparation-protocol-n92ldpyznl5b/v2",
+        "created_on": 1699871964,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Biocomputation Lab",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "CNB-CSIC",
+          "affiliation_url": "",
+          "username": "biocomputation-lab",
+          "link": "https://biocomputationlab.com",
+          "user_image_file": {
+            "guid": "00000000000000000000000000000001",
+            "file_name": "avatar.png",
+            "url": "https://www.protocols.io/img/avatars/001.png",
+            "mime": "image/png",
+            "size": 0,
+            "width": 100,
+            "height": 100,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 0
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "324E93F1687511F08F960A58A9FEAC02",
+          "file_name": "pd49bxpzf.jpg",
+          "url": "https://files.protocols.io/external/pd49bxpzf-324E93F1687511F08F960A58A9FEAC02.jpg",
+          "mime": "binary/octet-stream",
+          "size": 6101,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1753351301
+        }
+      },
+      {
+        "id": 101396,
+        "title": "OT-2 PCR sample preparation protocol  ",
+        "title_html": "OT-2 PCR sample preparation protocol \u00a0",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.n92ldpyznl5b/v3",
+        "uri": "ot-2-pcr-sample-preparation-protocol-de9u3h6w",
+        "published_on": 1760969729,
+        "modified_on": 1760969729,
+        "version_class": 70383,
+        "version_id": 2,
+        "version_code": "de9u3h6w",
+        "version_uri": "ot-2-pcr-sample-preparation-protocol-n92ldpyznl5b/v3",
+        "created_on": 1717751187,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Biocomputation Lab",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "CNB-CSIC",
+          "affiliation_url": "",
+          "username": "biocomputation-lab",
+          "link": "https://biocomputationlab.com",
+          "user_image_file": {
+            "guid": "00000000000000000000000000000001",
+            "file_name": "avatar.png",
+            "url": "https://www.protocols.io/img/avatars/001.png",
+            "mime": "image/png",
+            "size": 0,
+            "width": 100,
+            "height": 100,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 0
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "820E9972687511F08F960A58A9FEAC02",
+          "file_name": "jn6xbxpzf.jpg",
+          "url": "https://files.protocols.io/external/jn6xbxpzf-820E9972687511F08F960A58A9FEAC02.jpg",
+          "mime": "binary/octet-stream",
+          "size": 6103,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1753351435
+        }
+      }
+    ],
+    "warning": ""
+  },
+  "status_code": 0
+}

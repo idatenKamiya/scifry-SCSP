@@ -1,0 +1,163 @@
+{
+  "payload": [
+    {
+      "id": 1450806,
+      "guid": "3C9A3FF15F5342D4B722D8602F89626A",
+      "previous_id": null,
+      "previous_guid": null,
+      "section": "<p><strong>Cellular reagents preparation</strong></p>",
+      "section_color": "#A492FF",
+      "section_duration": 0,
+      "is_substep": false,
+      "step": "\n\nBefore making Master mixes, we typically start by producing the cellular reagents which will be used. The cellular reagents then under go a quality control tests to ensure the enzymes are functional and free from contaminating nucleases.\n \n\n- ** **Prepare a fresh batch of cellular reagents (OpenVent) following BenBio protocol for [plate protein expression on autoinduction media](https://www.protocols.io/view/plate-protein-expression-on-autoinduction-media-q26g78n91lwz/v3).\n\n",
+      "data": null,
+      "protocol_id": 68073,
+      "case_id": 0,
+      "critical_ids": "",
+      "duration": 86400,
+      "original_id": 1393647,
+      "number": "1",
+      "cases": [],
+      "critical": null
+    },
+    {
+      "id": 1450807,
+      "guid": "386559059EB145FC90919175994F7384",
+      "previous_id": 1450806,
+      "previous_guid": "3C9A3FF15F5342D4B722D8602F89626A",
+      "section": "<p><strong>Functionality test</strong></p>",
+      "section_color": "#94EBFF",
+      "section_duration": 0,
+      "is_substep": false,
+      "step": "\nRemove the enzymes from storage, reconstitute and test for functionality as described in the [BenBio protocol](https://www.protocols.io/view/functionality-test-openvent-polymerase-pcr-master-x54v9y5r4g3e/v2) using the specific test that apply for cellular reagents (OpenVent enzyme).\n",
+      "data": null,
+      "protocol_id": 68073,
+      "case_id": 0,
+      "critical_ids": "",
+      "duration": 9000,
+      "original_id": 1355760,
+      "number": "2",
+      "cases": [],
+      "critical": null
+    },
+    {
+      "id": 1450808,
+      "guid": "A2AD8B8B3D034548BD9C96D7AD3B1A4B",
+      "previous_id": 1450807,
+      "previous_guid": "386559059EB145FC90919175994F7384",
+      "section": "<p><strong>Preparation of 1x PCR Master mix formulations</strong></p>",
+      "section_color": "#84CE84",
+      "section_duration": 0,
+      "is_substep": false,
+      "step": "**Preparing the work surface and materials:**\n-  Clean the working surface first with 1:10 dilution of Bleach, then70 % (v/v)  Ethanol\n- Clean the micropipettes with 70 % (v/v) alcohol then with Lookout DNA erase solution; keep on a clean surface throughout manipulation.\n- Crush enough ice to fill the PCR box or a beaker bowl till it&#39;s 3/4 filled.\n- Remove all reagents needed from -20 \u00b0C  and 4 \u00b0C  and thaw On ice \n- Prepare a sterile labelled 1.5 mL  microcentrifuge tubes or larger volume tubes depending on amount of PCR mix needed, and leave open On ice .\n\n",
+      "data": null,
+      "protocol_id": 68073,
+      "case_id": 0,
+      "critical_ids": "",
+      "duration": 300,
+      "original_id": 1448307,
+      "number": "3",
+      "cases": [],
+      "critical": null
+    },
+    {
+      "id": 1450809,
+      "guid": "E18825CFC694411F972A8E1A3E5F4AB2",
+      "previous_id": 1450812,
+      "previous_guid": "29CF2DB0125F11EDBB835DBDA3F911B1",
+      "section": "<p><strong>Preparation of 1x PCR Master mix formulations</strong></p>",
+      "section_color": "#84CE84",
+      "section_duration": 0,
+      "is_substep": false,
+      "step": "**Pipetting components to make up the &#34;Wet&#34; mix**\n\n1. Pipette the corresponding amount of PCR grade water to reconstitute the enzyme as was determined during preparation (_in this case 30 uL PCR water is used to reconstitute the enzyme)_ and place on ice.\n1. Pipette all reagents in the tube following the order stated in the table below:\n\n\n\n1. We adopt 2 formulations of 1x PCR Master mix using 2 different dyes as trackers ( Azorubine and Bromophenol blue), and have 2 states of the mix formulations as &#34;Wet&#34; and &#34;Dry&#34;.\n1. Also a 2x concentration of the PCR master mix can be done to reduce the volume of water used for the preparation to ease drying and enhance shelf life of the PCR master mix formulation.\n \n\n \n<table class=\"component-table\">\n<thead>\n<tr>\n%s</tr>\n</thead>\n<tbody>\n%s\n</tbody>\n</table>\r\n   OrderComponentsWet Formulation (20% Trehalose)1PCR grade H2O8.8 ul2dNTPs mix (25 mM)0.6 ul310x Thermopol Buffer2 ul4MgSO4 (100mM)0.6 ul5Cellular reagents (Freshly prepared and heat treated)3ul620% (w/v) Trehalose stock solution4.5 ul7*Bromophenol Blue 0.25% (w/v)Azorubine 0.25% (w/v)0.5 ulTotal20 ul\n\n1. Determine the total volume needed and make necessary calculations to adjust the amount of each component to be pipetted.\n1. Mix well by gentle agitations (avoid using vortex as the mixture will foam)\n\n\n\n1. At this point the Wet master mix formulation is ready for use after performing [functionality tests](https://www.protocols.io/view/functionality-test-openvent-polymerase-pcr-master-x54v9y5r4g3e/v2) and can be aliquoted into desired size screw cap tubes in the desired volume for long term storage (avoid frequent freezing and thawing). \n1. If the dry formulation is desired, continue with the steps described below.\n \n\n**Aliquoting to make a &#34;Dry&#34; mix**\n\n- Carefully pipette 25 \u00b5L of Mix formulation into each 0.2ml PCR tubes\n- Place PCR tubes (left Opened) in an Airtight container filled halfway with silica beads. \n- Place the container in an incubator and dry at37 \u00b0C Overnight \n- Store dried down tubes at4 \u00b0C  in air-tied sachet or containers filled halfway with silica beads. \n\n\n\n",
+      "data": null,
+      "protocol_id": 68073,
+      "case_id": 0,
+      "critical_ids": "3",
+      "duration": 600,
+      "original_id": 1393646,
+      "number": "5",
+      "cases": [],
+      "critical": [
+        {
+          "id": 3,
+          "title": "Pipetting",
+          "icon": "PipettingIcon"
+        }
+      ]
+    },
+    {
+      "id": 1450810,
+      "guid": "C1B04BB82CC1453487EA6A2FAF56DE42",
+      "previous_id": 1450809,
+      "previous_guid": "E18825CFC694411F972A8E1A3E5F4AB2",
+      "section": "<p><strong>Quality control - Functionality testing</strong></p>",
+      "section_color": "#FFED92",
+      "section_duration": 9000,
+      "is_substep": false,
+      "step": "\nCheck the functionality of the produced PCR Master Mix by running control PCR reactions.\n\nWe generally use the [BenBio internal protocol](https://www.protocols.io/view/functionality-test-openvent-polymerase-pcr-master-x54v9y5r4g3e/v2) which can be modified depending on the PCR master mix formulation and concentration being tested.\n\n\nFor functionality of** 1x Wet mix formulation** we make a 20 \u00b5L  total volume PCR reaction as follows: \n1. Pipette 17 \u00b5L  of the mix into a 0.2 mL  PCR tube and add1 \u00b5L of each PCR primer and 1 \u00b5L of DNA template and run the thermocycling process following the specific protocol for the DNA template and primers used.\n\n\n**For 1x Dry formulation:**\n\n1. Rehydrate the dried mix tube with 17 \u00b5L  PCR water add1 \u00b5L of each PCR primer and 1 \u00b5L of DNA template and run the thermocycling process following the specific protocol for the DNA template and primers used.\n\n\n \n\n",
+      "data": null,
+      "protocol_id": 68073,
+      "case_id": 0,
+      "critical_ids": "4",
+      "duration": 7200,
+      "original_id": 1395238,
+      "number": "6",
+      "cases": [],
+      "critical": [
+        {
+          "id": 4,
+          "title": "PCR",
+          "icon": "PCRIcon"
+        }
+      ]
+    },
+    {
+      "id": 1450811,
+      "guid": "705B53EF5F05474AB3B69CD8F2BD2E11",
+      "previous_id": 1450810,
+      "previous_guid": "C1B04BB82CC1453487EA6A2FAF56DE42",
+      "section": "<p><strong>Quality control - Functionality testing</strong></p>",
+      "section_color": "#FFED92",
+      "section_duration": 9000,
+      "is_substep": false,
+      "step": "**Running Agarose gel and Visualization**\n\nAfter running the PCR reaction, the samples are visualized to check for amplification as follows:\n\n1. Prepare 1.5% agarose gel and run the gel electrophoresis to completion.\n1. Visualize to check for DNA bands which signify amplification to show that the enzyme or PCR master mix are functional (able to amplify a specific region of a test DNA template).",
+      "data": null,
+      "protocol_id": 68073,
+      "case_id": 0,
+      "critical_ids": "7",
+      "duration": 1800,
+      "original_id": 1431393,
+      "number": "7",
+      "cases": [],
+      "critical": [
+        {
+          "id": 7,
+          "title": "Analyze",
+          "icon": "AnalyzeIcon"
+        }
+      ]
+    },
+    {
+      "id": 1450812,
+      "guid": "29CF2DB0125F11EDBB835DBDA3F911B1",
+      "previous_id": 1450808,
+      "previous_guid": "A2AD8B8B3D034548BD9C96D7AD3B1A4B",
+      "section": "<p><strong>Preparation of 1x PCR Master mix formulations</strong></p>",
+      "section_color": "#84CE84",
+      "section_duration": 0,
+      "is_substep": false,
+      "step": "**Preparing reagent stocks**\n\n**20 Mass / % volume **** Trehalose (10 mL)**\n\n1. Weigh 2 g  of trehalose powder into a clean 50 mL capacity beaker.\n1. Measure 10 mL of distilled water and pour into the beaker to dissolve the powder.\n1. Filter the trehalose stock solution obtained through a 0.22 uM syringe filter in a sterile 15 mL eppendorf tube.\n1. Store at 4 \u00b0C for up to 12 months.\n\n\n**0.25 Mass / % volume **** Azorubine and ****0.25 Mass / % volume **** Bromophenol blue (10mL)**\n\n1. Use a weighing balance to accurately 0.025 g  of Bromophenol blue or Azorubine dye into a 15 mL centrifuge tube.\n1. From a 20 % trehalose stock, aliquot some volume into the Eppendorf tube to dissolve the dye powder, to make a 10 mL (dye) solution.\n1. Cork tightly the eppendorf tube and mix the content gently to homogenize (vortex can be used).\n1. Label the tube and either store it at room temperature (away from light) or 4 \u00b0C for up to 12 months.",
+      "data": null,
+      "protocol_id": 68073,
+      "case_id": 0,
+      "critical_ids": "",
+      "duration": 0,
+      "original_id": 0,
+      "number": "4",
+      "cases": [],
+      "critical": null
+    }
+  ],
+  "status_code": 0
+}

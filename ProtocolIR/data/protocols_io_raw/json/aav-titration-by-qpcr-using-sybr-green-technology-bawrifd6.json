@@ -1,0 +1,776 @@
+{
+  "payload": {
+    "access": {
+      "can_preview": true,
+      "can_view": true,
+      "can_edit": false,
+      "can_remove": false,
+      "can_add": false,
+      "can_publish": false,
+      "can_get_doi": false,
+      "can_share": false,
+      "can_share_organization": false,
+      "can_move": false,
+      "can_move_outside": false,
+      "can_transfer": false,
+      "can_download": true,
+      "limited_run": false,
+      "limited_private_links": false,
+      "limited_blind_links": false,
+      "is_locked": false
+    },
+    "acknowledgements": "",
+    "authors": [
+      {
+        "first_name": "Addgene",
+        "last_name": "the nonprofit plasmid repository",
+        "affiliation": "Addgene",
+        "note": "",
+        "guid": "0373D796F8CC11ED9D4302C0B41BC903",
+        "username": "addgene-the-nonprofit-plasmid-repository",
+        "name": "Addgene The Nonprofit Plasmid Repository",
+        "affiliation_url": "https://www.addgene.org",
+        "link": "https://www.addgene.org",
+        "is_private_profile": false,
+        "is_verified_user": true,
+        "user_image_file": {
+          "guid": "C935D29A5B2A11EFA2EF0A58A9FEAC02",
+          "file_name": "bvcz7esn.png",
+          "url": "https://files.protocols.io/external/bvcz7esn-C935D29A5B2A11EFA2EF0A58A9FEAC02.png",
+          "mime": "image/png",
+          "size": 9749,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1723742479
+        }
+      }
+    ],
+    "before_start": "\n",
+    "created_on": 1577832519,
+    "creator": {
+      "affiliation": "Addgene",
+      "affiliation_url": "https://www.addgene.org",
+      "affiliations": [
+        {
+          "affiliation": "Addgene",
+          "is_default": true,
+          "job_title": null,
+          "url": "https://www.addgene.org"
+        }
+      ],
+      "badges": [
+        {
+          "id": 4,
+          "image": {
+            "placeholder": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg",
+            "source": "https://files.protocols.io/webapp/images/q2ckeg/badges/gold.svg"
+          },
+          "name": "Gold power author!"
+        }
+      ],
+      "first_name": "",
+      "image": {
+        "placeholder": "https://files.protocols.io/thumbnails/external/bvcz7esn-C935D29A5B2A11EFA2EF0A58A9FEAC02.png/thumbnail-w100xh100.png",
+        "source": "https://files.protocols.io/external/bvcz7esn-C935D29A5B2A11EFA2EF0A58A9FEAC02.png"
+      },
+      "last_name": "",
+      "link": "https://www.addgene.org",
+      "name": "Addgene The Nonprofit Plasmid Repository",
+      "username": "addgene-the-nonprofit-plasmid-repository"
+    },
+    "cross_cloud_origin": null,
+    "description": "This protocol goes through AAV titration by qPCR using SYBR Green Technology. To see the full abstract and additional resources, visit the [Addgene protocol page](https://www.addgene.org/protocols/aav-titration-qpcr-using-sybr-green-technology/).\n\n**Sample Data**\n\n[aavprotocolstandardcurve.png__500x314_q85_subsampling-2_upscale.png]](https://content.protocols.io/public/5acd19e056bdf88808866a63dd76bebaf3bfacef4acb2f29cfb4ece3805005bf/bqis7esn.png)\n**Figure 1:** Example of a valid 8-point standard curve. \n\n\n[aavprotocolfig1.png__500x309_q85_subsampling-2_upscale.png]](https://content.protocols.io/public/5acd19e056bdf88808866a63dd76bebaf3bfacef4acb2f29cfb4ece3805005bf/bqit7esn.png)\n**Figure 2:** Example of the amplification plots obtained from an AAV sample. Each curve represent a dilution. \n\n**References**\nAurnhammer C, Haase M, Muether N, Hausl M, Rauschhuber C, Huber I, Nitschko H, Busch U, Sing A, Ehrhardt A, Baiker A. Universal real-time PCR for the detection and quantification of adeno-associated virus serotype 2-derived inverted terminal repeat sequences. Hum Gene Ther Methods. 2012 Feb;23(1):18-28.[PMID: 22428977](https://www.ncbi.nlm.nih.gov/pubmed/22428977)\n\n",
+    "disclaimer": "",
+    "documents": null,
+    "doi": "dx.doi.org/10.17504/protocols.io.bawrifd6",
+    "ethics_statement": "",
+    "fork_id": null,
+    "funders": [],
+    "guid": "79CE9FAEF1A74DC6898332B478A8FC55",
+    "guidelines": "**General Considerations**\n\n1. Always run standards and samples in duplicate at least\n1. If possible, include an AAV reference sample (AAV2 Reference Material or internal reference)\n1. Always include a No Template Control (NTC), i.e master mix + water\n1. Whenever possible use a multichannel pipet to minimize pipetting error and variability\n1. Mix samples very well by pipetting back and forth multiple times at each step\n\n\n\n**Workflow Timeline**\n\n1. **Plate set-up:** 2 hours\n1. **qPCR run: **1.5 hours\n1. **Data analysis:** 30 minutes",
+    "id": 31409,
+    "image": {
+      "placeholder": null,
+      "source": "https://www.protocols.io/img/default_protocol.png",
+      "webp_placeholder": null,
+      "webp_source": null
+    },
+    "is_content_confidential": false,
+    "is_content_warning": false,
+    "is_doi_reserved": false,
+    "is_in_pending_publishing": false,
+    "is_in_transfer": null,
+    "is_owner": false,
+    "is_research": true,
+    "is_subprotocol": null,
+    "item_id": 563675,
+    "keywords": "aav titration by qpcr, quantification of adeno, associated virus serotype, virus serotype, aav titration, time pcr for the detection, hum gene ther method, sybr green technology this protocol, qpcr, inverted terminal repeat sequence, time pcr, pcr, terminal repeat sequence, using sybr green technology, sybr green technology, adeno, addgene protocol page",
+    "link": "https://www.addgene.org/protocols/aav-titration-qpcr-using-sybr-green-technology/",
+    "manuscript_citation": "",
+    "materials": [],
+    "materials_text": "**Equipment**\n\n1. qPCR instrument\n1. Heating plate\n1. Pipettors\n1. Multi-channel pipette (optional, but strongly recommended)\n\n\n**Reagents**\n\n1. Universal SYBR Master Mix 2X\n1. Primer pair targeting AAV2 ITR ([Aurnhammer et al., 2012](https://www.addgene.org/protocols/aav-titration-qpcr-using-sybr-green-technology/#refs))\n1. fwd ITR primer, 5&#39;-GGAACCCCTAGTGATGGAGTT\n1. rev ITR primer, 5&#39;-CGGCCTCAGTGAGCGAITR-containing plasmid for standard curve\n1. RNase-free DNase\n1. 10X DNase buffer\n1. Nuclease-free water\n1. Microcentrifuge tubes\n1. 96-well optical plate\n1. Pipettes\n1. Pipette tips\n\n\n**Reagent Preparation**\n\n**Master Mix:** count the number of samples (n) and prepare master mix for an additional 10 samples (n+10 - the additional amount will ensure that there is enough master mix for all samples). Each sample requires 15 \u03bcL of master mix.\n\n***Pro-Tips* **\n1. Use a \u201cUniversal\u201d SYBR master mix which contains a a high- quality DNA polymerase and a blend of dTTP/dUTP to minimize carryover contamination. The master mix should also contain an internal passive reference (typically ROX dye), to normalize non-PCR\u2013related fluorescence fluctuations and to minimize well-to-well variability that result from a variety of causes, such as pipetting error and sample evaporation.\n1. Make the master mix after all the samples have been added to the qPCR plate. Start by adding water, then SYBR master mix, then the forward and reverse primers. Vortex briefly, immediately before use.\n1. Use a reservoir and a multichannel pipette to dispense the master mix into the wells.\n \n\n[image.png]](https://content.protocols.io/bmfu7esn.png)\n \n",
+    "protocol_image_file": {
+      "avg_color": "",
+      "created_at": 1753350584,
+      "file_name": "bwex7esn.png",
+      "guid": "8744072F687311F08F960A58A9FEAC02",
+      "height": 0,
+      "mime": "image/png",
+      "scan_status": 0,
+      "size": 9749,
+      "url": "https://files.protocols.io/external/bwex7esn-8744072F687311F08F960A58A9FEAC02.png",
+      "width": 0
+    },
+    "protocol_references": "",
+    "public": true,
+    "published_on": 1577832557,
+    "reserved_doi": "",
+    "space_id": 5133,
+    "stats": {
+      "is_voted": false,
+      "number_of_views": 2390,
+      "number_of_steps": 6,
+      "number_of_bookmarks": 1,
+      "number_of_comments": 0,
+      "number_of_bookmarked_comments": 0,
+      "number_of_steps_comments": 0,
+      "number_of_protocol_comments": 0,
+      "number_of_exports": 175,
+      "number_of_runs": 0,
+      "number_of_votes": 1,
+      "number_of_reagents": 0,
+      "number_of_equipments": 0,
+      "number_of_collections": 0,
+      "number_of_forks": {
+        "private": 5,
+        "public": 0
+      },
+      "number_of_accessible_forks": 0
+    },
+    "status": {
+      "id": 1,
+      "info": "We use this protocol and it's working"
+    },
+    "steps": [
+      {
+        "id": 865993,
+        "guid": "343C6F4D45C9407FB7D8075F8FE9833B",
+        "previous_id": null,
+        "previous_guid": null,
+        "section": "Procedure",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Prepare a plasmid stock of 2x109molecules/\u03bcl to generate a standard curve:\n\n\nOne option is to use plasmid [#59462](https://www.addgene.org/59462/) from [Addgene](http://www.addgene.org/). The values highlighted below in red were calculated using this plasmid, but will change if you use a different plasmid.\n \n\n \n[image.png]](https://content.protocols.io/bmfv7esn.png)\n \n_To obtain a solution at 2x10__9_ _molecules/\u03bcL:_  \n  1. 1.59 x 1011 / 2x109 = 79.8x dilution 100 \u03bcL / 79.8 = 1.25 \u00b5L \n  1. Therefore we need to dilute 1.25 \u00b5L  stock into 98.74 \u00b5L  H20  \n\n***Pro-Tips***\n1. Once a validated standard curve is obtained, make a small aliquot of each standard (enough for 1 or 2 plates) and store at -20 \u00b0C . Once a standard is thawed do not freeze it again but store at 4 \u00b0C  and use within 1 week.\n1. Keep track of the Ct value for each standard over time. They should remain within 0.5 Ct of their initial value. If the Ct value of the standard starts to drift, it\u2019s time to make a new one.\n1. When developing the assay multiple plasmids containing ITR were tested. Plasmid [#59462](https://www.addgene.org/59462/) is one plasmid that gave reliable and consistent results. Use the recommended plasmid, or test multiple plasmids to find a suitable one.\n1. Some labs have reported better results when the plasmid is linearized.\n \n",
+        "data": null,
+        "protocol_id": 31409,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 776416,
+        "number": "1",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 865994,
+        "guid": "7A68686A3A334492BC16CC7356DEFB71",
+        "previous_id": 865993,
+        "previous_guid": "343C6F4D45C9407FB7D8075F8FE9833B",
+        "section": "Procedure",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Treat the purified AAV samples with DNase I to eliminate any contaminating plasmid DNA carried over from the production process (DNase does not penetrate the virion).\n- 5 \u00b5L  sample + 39 \u00b5L  H2O + 5 \u00b5L  10x DNase buffer + 1 \u00b5L  DNase\n- Gently mix sample (do not vortex)\n- Incubate 00:30:00  at 37 \u00b0C .\n- Transfer to ice\n\n**** Critical: do NOT treat your plasmid standard with DNase ****",
+        "data": null,
+        "protocol_id": 31409,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 776417,
+        "number": "2",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 865995,
+        "guid": "5ADA7CF11CE44748A9656913C283C893",
+        "previous_id": 865994,
+        "previous_guid": "7A68686A3A334492BC16CC7356DEFB71",
+        "section": "Procedure",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Make 6 serial dilutions, in duplicate, of your standard curve plasmid (2x109stock made in step #1):\n[image.png]](https://content.protocols.io/bmfw7esn.png)\n \n\n***Pro-Tip***\nTo help stabilize the standards add carrier DNA to a final concentration of 4 ug/mL to each standard dilution.\n \n",
+        "data": null,
+        "protocol_id": 31409,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 776418,
+        "number": "3",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 865996,
+        "guid": "C7B6B86324F74DC78B1263B9EB2E4103",
+        "previous_id": 865995,
+        "previous_guid": "5ADA7CF11CE44748A9656913C283C893",
+        "section": "Procedure",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Dilute DNase-treated and AAV reference samples according to the dilution scheme in the table below:\n[image.png]](https://content.protocols.io/bmfx7esn.png)\n \n_Dilutions highlighted in green are the ones loaded onto the qPCR plate for most samples._\n\n1. If sample is expected to have a titer &lt;1x1012 GC/mL, use dilutions 3-6\n1. If sample is expected to have a titer &gt;3x1013 GC/mL, use dilutions 5-8\n\n\nNote, at Addgene we use 2 different AAV reference depending on whether we expect our sample(s) to have a low (&lt;1-3x1012) or high titer (&gt;7x1012).\n\n1. Low titer reference: AAV RSM2, 3.28 x 1010 GC/mL, available from ATCC (cat# VR-1616)\n1. High titer reference: internal AAV vector, 3.0 x1013 GC/mL\n \n\n\n***Pro-Tips***\n1. The quality of the sample dilution series is critical. Make sure to pipet each dilution up and down at least 10 times, and use at least half of the final volume (mix with &gt;50 \u00b5L  if your well contains 100 \u00b5L )\n1. Use a multichannel pipette to load the standards and samples onto the qPCR plate\n\n\n\n \n\n",
+        "data": null,
+        "protocol_id": 31409,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 776419,
+        "number": "4",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 865997,
+        "guid": "512F68A5359E47ECA56D989AB6B8E23C",
+        "previous_id": 865996,
+        "previous_guid": "C7B6B86324F74DC78B1263B9EB2E4103",
+        "section": "Procedure",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Set up and load the 96-well plate:\n\n- Load 5 \u00b5L  of each standard in duplicate\n- Load 5 \u00b5L  of each sample in duplicate. Do not forget to include a no template control (_NTC = master mix + water_).\n- Add 15 \u00b5L  of Master Mix per well and mix well by pipetting back and forth at least 5 times.\n- Seal plate with transparent film.\n- Centrifuge at 3,000 rpm for 00:02:00  to bring the sample to the bottom of the tube.\n- Run the following protocol in your qPCR instrument using SYBR detection:\n\n              \n    98 \u00b0C  for 00:03:00  / 98 \u00b0C  for 00:00:15  / 58 \u00b0C  for 00:00:30  / read plate/ repeat 39x from step 3 / melt curve\n\n_Example of plate set-up:_\n[image.png]](https://content.protocols.io/bmfy7esn.png)\n ",
+        "data": null,
+        "protocol_id": 31409,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 776420,
+        "number": "5",
+        "cases": [],
+        "critical": null
+      },
+      {
+        "id": 865998,
+        "guid": "17656ABCD17E4BB1A65F719760E0E889",
+        "previous_id": 865997,
+        "previous_guid": "512F68A5359E47ECA56D989AB6B8E23C",
+        "section": "Procedure",
+        "section_color": "#A492FF",
+        "section_duration": 0,
+        "is_substep": false,
+        "step": "Perform data analysis using the instrument\u2019s software. Determine the physical titer of samples (viral genomes (vg)/mL) based on the standard curve and the sample dilutions.\n\n***Pro-Tips*** \nMake sure that the qPCR is valid by checking to the following:\n1. Standard curve: R2(coefficient of correlation) ~ 1.0, E (efficiency of PCR) ~100% (90%-110% range is acceptable)\n1. Baseline removal: all samples will have some small amount of background signal that is most evident during initial PCR cycles. This background signal must be removed to accurately determine differences between samples.\n1. Melt curve analysis: a single peak should be seen. The presence of a second peak at a temperature of ~70-75\u00b0C usually indicates the presence of primer dimers which can increase background signal and alter the Ct values of your samples.\n1. Quality of your standard curve: you should observe differences in Ct values that make sense for your dilutions (~3.3 difference Ct for a 10-fold dilution is appropriate).\n1. Quality of duplicates: Exclude duplicates from analyses if there is more than a 0.5 Ct difference between them.\n \n",
+        "data": null,
+        "protocol_id": 31409,
+        "case_id": 0,
+        "critical_ids": "",
+        "duration": 0,
+        "original_id": 776426,
+        "number": "6",
+        "cases": [],
+        "critical": null
+      }
+    ],
+    "table_of_contents": [
+      {
+        "title": "Procedure",
+        "color": "#A492FF",
+        "first_step_guid": "343C6F4D45C9407FB7D8075F8FE9833B"
+      }
+    ],
+    "title": "AAV Titration by qPCR Using SYBR Green Technology",
+    "title_html": "AAV Titration by qPCR Using SYBR Green Technology",
+    "translations": [
+      {
+        "lang": "de",
+        "title": "German",
+        "created_on": 1775224834
+      },
+      {
+        "lang": "es",
+        "title": "Spanish",
+        "created_on": 1775224834
+      },
+      {
+        "lang": "fr",
+        "title": "French",
+        "created_on": 1775224833
+      },
+      {
+        "lang": "ja",
+        "title": "Japanese",
+        "created_on": 1775224833
+      },
+      {
+        "lang": "zh",
+        "title": "Chinese - Simp/Trad",
+        "created_on": 1775224833
+      }
+    ],
+    "troubleshooting_items": null,
+    "type_id": 1,
+    "units": [
+      {
+        "id": 1,
+        "type_id": 3,
+        "name": "\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 2,
+        "type_id": 3,
+        "name": "mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 3,
+        "type_id": 3,
+        "name": "L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 4,
+        "type_id": 3,
+        "name": "\u00b5g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 5,
+        "type_id": 3,
+        "name": "mg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 6,
+        "type_id": 3,
+        "name": "g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 7,
+        "type_id": 3,
+        "name": "kg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 8,
+        "type_id": 3,
+        "name": "ng",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 9,
+        "type_id": 3,
+        "name": "Hz",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 10,
+        "type_id": 24,
+        "name": "\u00b0C",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 11,
+        "type_id": 24,
+        "name": "\u00b0\u041a",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 12,
+        "type_id": 24,
+        "name": "\u00b0F",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 13,
+        "type_id": 25,
+        "name": "Mass Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 14,
+        "type_id": 25,
+        "name": "% volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 15,
+        "type_id": 25,
+        "name": "Mass / % volume",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 16,
+        "type_id": 25,
+        "name": "Parts per Million (PPM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 17,
+        "type_id": 25,
+        "name": "Parts per Billion (PPB)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 18,
+        "type_id": 25,
+        "name": "Parts per Trillion (PPT)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 19,
+        "type_id": 25,
+        "name": "Mole Fraction",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 20,
+        "type_id": 25,
+        "name": "Mole Percent",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 21,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 1
+      },
+      {
+        "id": 22,
+        "type_id": 25,
+        "name": "Molarity (M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 23,
+        "type_id": 25,
+        "name": "Genome copies per ml",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 24,
+        "type_id": 3,
+        "name": "\u03bcV",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 25,
+        "type_id": 3,
+        "name": "ms",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 26,
+        "type_id": 3,
+        "name": "pg",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 27,
+        "type_id": 25,
+        "name": "Molarity dilutions",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 28,
+        "type_id": 25,
+        "name": "millimolar (mM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 29,
+        "type_id": 25,
+        "name": "micromolar (\u00b5M)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 30,
+        "type_id": 25,
+        "name": "nanomolar (nM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 31,
+        "type_id": 25,
+        "name": "picomolar (pM)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 32,
+        "type_id": 24,
+        "name": "Room temperature",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 33,
+        "type_id": 30,
+        "name": "rpm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 34,
+        "type_id": 30,
+        "name": "x g",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 165,
+        "type_id": 24,
+        "name": "On ice",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 200,
+        "type_id": 32,
+        "name": "cm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 201,
+        "type_id": 32,
+        "name": "mm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 202,
+        "type_id": 32,
+        "name": "\u00b5m",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 203,
+        "type_id": 32,
+        "name": "nm",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 204,
+        "type_id": 25,
+        "name": "mg/mL",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 205,
+        "type_id": 25,
+        "name": "\u00b5g/\u00b5L",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 206,
+        "type_id": 25,
+        "name": "% (v/v)",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 207,
+        "type_id": 3,
+        "name": "V",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 208,
+        "type_id": 0,
+        "name": "Undetermined",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1324,
+        "type_id": 30,
+        "name": "rcf",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1359,
+        "type_id": 35,
+        "name": "Bar",
+        "can_manage": 0,
+        "read_only": 0
+      },
+      {
+        "id": 1360,
+        "type_id": 35,
+        "name": "Pa",
+        "can_manage": 0,
+        "read_only": 0
+      }
+    ],
+    "uri": "aav-titration-by-qpcr-using-sybr-green-technology-bawrifd6",
+    "url": "https://www.protocols.io/view/aav-titration-by-qpcr-using-sybr-green-technology-bawrifd6",
+    "version_class": 25548,
+    "version_data": null,
+    "version_id": 1,
+    "version_uri": "aav-titration-by-qpcr-using-sybr-green-technology-bp2l645drvqe/v2",
+    "versions": [
+      {
+        "id": 25548,
+        "title": "AAV Titration by qPCR Using SYBR Green Technology",
+        "title_html": "AAV Titration by qPCR Using SYBR Green Technology",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.47kgzkw",
+        "uri": "aav-titration-by-qpcr-using-sybr-green-technology-47kgzkw",
+        "published_on": 1574184549,
+        "modified_on": 1574184549,
+        "version_class": 25548,
+        "version_id": 0,
+        "version_code": "47kgzkw",
+        "version_uri": "aav-titration-by-qpcr-using-sybr-green-technology-bp2l645drvqe/v1",
+        "created_on": 1562345617,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Addgene The Nonprofit Plasmid Repository",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "Addgene",
+          "affiliation_url": "https://www.addgene.org",
+          "username": "addgene-the-nonprofit-plasmid-repository",
+          "link": "https://www.addgene.org",
+          "user_image_file": {
+            "guid": "C935D29A5B2A11EFA2EF0A58A9FEAC02",
+            "file_name": "bvcz7esn.png",
+            "url": "https://files.protocols.io/external/bvcz7esn-C935D29A5B2A11EFA2EF0A58A9FEAC02.png",
+            "mime": "image/png",
+            "size": 9749,
+            "width": 0,
+            "height": 0,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 1723742479
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "6A398A28687311F08F960A58A9FEAC02",
+          "file_name": "bqiq7esn.png",
+          "url": "https://files.protocols.io/external/bqiq7esn-6A398A28687311F08F960A58A9FEAC02.png",
+          "mime": "image/png",
+          "size": 107703,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1753350536
+        }
+      },
+      {
+        "id": 31409,
+        "title": "AAV Titration by qPCR Using SYBR Green Technology",
+        "title_html": "AAV Titration by qPCR Using SYBR Green Technology",
+        "image": {
+          "placeholder": null,
+          "source": "https://www.protocols.io/img/default_protocol.png",
+          "webp_placeholder": null,
+          "webp_source": null
+        },
+        "doi": "dx.doi.org/10.17504/protocols.io.bawrifd6",
+        "uri": "aav-titration-by-qpcr-using-sybr-green-technology-bawrifd6",
+        "published_on": 1577832557,
+        "modified_on": 1577832557,
+        "version_class": 25548,
+        "version_id": 1,
+        "version_code": "bawrifd6",
+        "version_uri": "aav-titration-by-qpcr-using-sybr-green-technology-bp2l645drvqe/v2",
+        "created_on": 1577832519,
+        "categories": null,
+        "type_id": 1,
+        "creator": {
+          "name": "Addgene The Nonprofit Plasmid Repository",
+          "first_name": "",
+          "last_name": "",
+          "affiliation": "Addgene",
+          "affiliation_url": "https://www.addgene.org",
+          "username": "addgene-the-nonprofit-plasmid-repository",
+          "link": "https://www.addgene.org",
+          "user_image_file": {
+            "guid": "C935D29A5B2A11EFA2EF0A58A9FEAC02",
+            "file_name": "bvcz7esn.png",
+            "url": "https://files.protocols.io/external/bvcz7esn-C935D29A5B2A11EFA2EF0A58A9FEAC02.png",
+            "mime": "image/png",
+            "size": 9749,
+            "width": 0,
+            "height": 0,
+            "avg_color": "",
+            "scan_status": 0,
+            "created_at": 1723742479
+          }
+        },
+        "stats": {
+          "number_of_comments": 0,
+          "last_comment_time": 0
+        },
+        "protocol_image_file": {
+          "guid": "8744072F687311F08F960A58A9FEAC02",
+          "file_name": "bwex7esn.png",
+          "url": "https://files.protocols.io/external/bwex7esn-8744072F687311F08F960A58A9FEAC02.png",
+          "mime": "image/png",
+          "size": 9749,
+          "width": 0,
+          "height": 0,
+          "avg_color": "",
+          "scan_status": 0,
+          "created_at": 1753350584
+        }
+      }
+    ],
+    "warning": "See SDS (Safety Data Sheet) for safety warnings and hazards"
+  },
+  "status_code": 0
+}
