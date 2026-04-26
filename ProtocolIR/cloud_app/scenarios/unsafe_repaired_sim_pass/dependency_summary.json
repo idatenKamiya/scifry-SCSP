@@ -1,0 +1,38 @@
+{
+  "chains": [
+    {
+      "root_cause": "Missing tip-attachment step before liquid handling",
+      "reason": "Pipette state enters aspirate/dispense operations without a tip.",
+      "cascading_violations": [
+        "ASPIRATE_NO_TIP: aspirate attempted with no tip attached",
+        "DISPENSE_NO_TIP: dispense attempted with no tip attached"
+      ],
+      "impact": "High contamination risk and batch invalidation.",
+      "fix": "Insert PickUpTip before first aspirate and enforce tip state transitions.",
+      "severity": "CRITICAL"
+    },
+    {
+      "root_cause": "Volume planning exceeds physical capacities",
+      "reason": "Dispense/aspirate plans exceed well or tip capacity bounds.",
+      "cascading_violations": [
+        "WELL_OVERFLOW/TIP_OVER_CAPACITY: physical limit violations",
+        "Potential deck spill and contamination cascade"
+      ],
+      "impact": "Operational failure and possible hardware contamination.",
+      "fix": "Split transfers and enforce capacity-aware scheduling.",
+      "severity": "HIGH"
+    },
+    {
+      "root_cause": "Incompatible pipette selection for requested volume",
+      "reason": "Requested transfer volume outside pipette calibrated range.",
+      "cascading_violations": [
+        "PIPETTE_RANGE_VIOLATION: inaccurate or unsafe volume request"
+      ],
+      "impact": "Reduced accuracy and potential experiment drift.",
+      "fix": "Select a compatible pipette or split volume into safe increments.",
+      "severity": "MEDIUM"
+    }
+  ],
+  "total_chains": 3,
+  "root_causes": 3
+}

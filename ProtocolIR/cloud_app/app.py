@@ -331,7 +331,13 @@ def render_replay_mode() -> None:
         c2.metric("Risk Level", risk_level)
         c3.metric("Violations", total_v)
 
-        if scenario.get("status") == "PASS":
+        scenario_class = scenario.get("classification")
+        if scenario_class == "repair_positive":
+            st.success(
+                "Interpretation: This is an unsafe-input recovery case. The system detected violations, "
+                "applied repairs, and reached a simulator-validated SAFE outcome."
+            )
+        elif scenario.get("status") == "PASS":
             st.success(
                 "Interpretation: This run is a positive sanity case. The protocol completed "
                 "with a SAFE verdict and auditable artifacts."

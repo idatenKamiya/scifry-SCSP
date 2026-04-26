@@ -1,0 +1,654 @@
+[
+  {
+    "op": "LoadLabware",
+    "name": "biorad_96_wellplate_200ul_pcr",
+    "opentrons_name": "biorad_96_wellplate_200ul_pcr",
+    "slot": 1,
+    "alias": "plate",
+    "max_volume_ul": 200.0,
+    "well_count": 96
+  },
+  {
+    "op": "LoadLabware",
+    "name": "opentrons_24_tuberack_nest_1.5ml_snapcap",
+    "opentrons_name": "opentrons_24_tuberack_nest_1.5ml_snapcap",
+    "slot": 2,
+    "alias": "template_rack",
+    "max_volume_ul": 1500.0,
+    "well_count": 24
+  },
+  {
+    "op": "LoadLabware",
+    "name": "opentrons_24_tuberack_nest_1.5ml_snapcap",
+    "opentrons_name": "opentrons_24_tuberack_nest_1.5ml_snapcap",
+    "slot": 3,
+    "alias": "master_mix_rack",
+    "max_volume_ul": 1500.0,
+    "well_count": 24
+  },
+  {
+    "op": "LoadLabware",
+    "name": "opentrons_96_tiprack_20ul",
+    "opentrons_name": "opentrons_96_tiprack_20ul",
+    "slot": 4,
+    "alias": "tiprack_20",
+    "max_volume_ul": 20.0,
+    "well_count": 96
+  },
+  {
+    "op": "LoadLabware",
+    "name": "opentrons_96_tiprack_300ul",
+    "opentrons_name": "opentrons_96_tiprack_300ul",
+    "slot": 5,
+    "alias": "tiprack_300",
+    "max_volume_ul": 300.0,
+    "well_count": 96
+  },
+  {
+    "op": "LoadInstrument",
+    "name": "p20",
+    "opentrons_name": "p20_single_gen2",
+    "alias": "p20",
+    "mount": "left",
+    "tipracks": [
+      "tiprack_20"
+    ],
+    "min_volume": 1.0,
+    "max_volume": 20.0
+  },
+  {
+    "op": "LoadInstrument",
+    "name": "p300",
+    "opentrons_name": "p300_single_gen2",
+    "alias": "p300",
+    "mount": "right",
+    "tipracks": [
+      "tiprack_300"
+    ],
+    "min_volume": 20.0,
+    "max_volume": 300.0
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "source": "template_rack/A1",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "destination": "plate/A1",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "source": "template_rack/A2",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "destination": "plate/A2",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A2",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "source": "template_rack/A3",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "destination": "plate/A3",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A3",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "source": "template_rack/A4",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "destination": "plate/A4",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A4",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "source": "template_rack/A5",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "destination": "plate/A5",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A5",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "source": "template_rack/A6",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "destination": "plate/A6",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A6",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "source": "template_rack/B1",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "destination": "plate/A7",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A7",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "source": "template_rack/B2",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p20",
+    "volume_ul": 10.0,
+    "destination": "plate/A8",
+    "reagent": "DNA template"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A8",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p20",
+    "volume_ul": 40.0,
+    "source": "master_mix_rack/A1",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p20",
+    "volume_ul": 40.0,
+    "destination": "plate/A1",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 32.0,
+    "location": "plate/A1",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "source": "master_mix_rack/A1",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "destination": "plate/A2",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p300",
+    "volume_ul": 32.0,
+    "location": "plate/A2",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "source": "master_mix_rack/A1",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "destination": "plate/A3",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p300",
+    "volume_ul": 32.0,
+    "location": "plate/A3",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "source": "master_mix_rack/A1",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "destination": "plate/A4",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p300",
+    "volume_ul": 32.0,
+    "location": "plate/A4",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "source": "master_mix_rack/A1",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "destination": "plate/A5",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p300",
+    "volume_ul": 32.0,
+    "location": "plate/A5",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "source": "master_mix_rack/A1",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "destination": "plate/A6",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p300",
+    "volume_ul": 32.0,
+    "location": "plate/A6",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "source": "master_mix_rack/A1",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "destination": "plate/A7",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p300",
+    "volume_ul": 32.0,
+    "location": "plate/A7",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "Aspirate",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "source": "master_mix_rack/A1",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Dispense",
+    "pipette": "p300",
+    "volume_ul": 40.0,
+    "destination": "plate/A8",
+    "reagent": "PCR master mix"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p300",
+    "volume_ul": 32.0,
+    "location": "plate/A8",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p300"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A1",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A2",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A3",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A4",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A5",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A6",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A7",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "PickUpTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "Mix",
+    "pipette": "p20",
+    "volume_ul": 8.0,
+    "location": "plate/A8",
+    "repetitions": 3
+  },
+  {
+    "op": "DropTip",
+    "pipette": "p20"
+  },
+  {
+    "op": "SetTemperature",
+    "temperature_c": 4.0
+  },
+  {
+    "op": "Incubate",
+    "location": "plate/A1",
+    "delay_seconds": 300.0,
+    "temperature_c": 4.0
+  }
+]

@@ -18,6 +18,26 @@
       }
     },
     {
+      "id": "unsafe_repaired_sim_pass",
+      "name": "Unsafe Input -> Auto Repair -> Simulation PASS",
+      "mode": "pipeline",
+      "classification": "repair_positive",
+      "status": "PASS",
+      "description": "Intentional unsafe IR violations are detected, auto-repaired to zero remaining violations, then compiled and simulator-validated.",
+      "evidence": {
+        "summary": "summary.txt",
+        "audit": "audit_report.md",
+        "certificate": "safety_certificate.json",
+        "risk": "risk_summary.json",
+        "dependency": "dependency_summary.json",
+        "unsafe_input": "input_protocol.txt",
+        "repairs_applied": "repairs_applied.txt",
+        "simulator_result": "simulator_result.json",
+        "ir_before_repair": "ir_before.json",
+        "ir_after_repair": "ir_after.json"
+      }
+    },
+    {
       "id": "baseline_compare",
       "name": "Baseline vs ProtocolIR",
       "mode": "comparison",

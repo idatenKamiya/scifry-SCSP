@@ -1,0 +1,54 @@
+{
+  "total_violations": 7,
+  "critical_count": 2,
+  "high_count": 0,
+  "medium_count": 3,
+  "total_impact_usd": 1130000,
+  "risk_level": "CRITICAL",
+  "violations_by_type": {
+    "ASPIRATE_NO_TIP": 1,
+    "DISPENSE_NO_TIP": 1,
+    "DROP_TIP_WITHOUT_TIP": 1,
+    "PIPETTE_RANGE_VIOLATION": 2,
+    "TIP_OVER_CAPACITY": 1,
+    "MISSING_MIX": 1
+  },
+  "severity_details": {
+    "ASPIRATE_NO_TIP": {
+      "count": 1,
+      "severity": "CRITICAL",
+      "impact_per_violation": 500000,
+      "reason": "Pipette can be contaminated and invalidate downstream samples."
+    },
+    "DISPENSE_NO_TIP": {
+      "count": 1,
+      "severity": "CRITICAL",
+      "impact_per_violation": 500000,
+      "reason": "Destination can be contaminated and invalidate the batch."
+    },
+    "DROP_TIP_WITHOUT_TIP": {
+      "count": 1,
+      "severity": "UNKNOWN",
+      "impact_per_violation": 0,
+      "reason": "Manual review required."
+    },
+    "PIPETTE_RANGE_VIOLATION": {
+      "count": 2,
+      "severity": "MEDIUM",
+      "impact_per_violation": 50000,
+      "reason": "Volume outside calibrated range makes measurements unreliable."
+    },
+    "TIP_OVER_CAPACITY": {
+      "count": 1,
+      "severity": "UNKNOWN",
+      "impact_per_violation": 0,
+      "reason": "Manual review required."
+    },
+    "MISSING_MIX": {
+      "count": 1,
+      "severity": "MEDIUM",
+      "impact_per_violation": 30000,
+      "reason": "Incomplete mixing can cause non-uniform concentrations."
+    }
+  }
+}

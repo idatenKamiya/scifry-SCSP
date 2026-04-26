@@ -1,0 +1,4 @@
+[46] HUMAN_REVIEW: TIP_OVER_CAPACITY: p20 would hold 40.0 uL.
+[48] Switched 5 operation(s) to a volume-compatible pipette.
+[7] Inserted PickUpTip before Aspirate.
+[9] Inserted Mix after dispense into plate/A1.

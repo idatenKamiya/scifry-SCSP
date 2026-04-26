@@ -1,0 +1,8 @@
+# Executive Summary
+
+Status: PASS
+Violations before repair: 7
+Violations after repair: 0
+Repairs applied: 4
+Reward improvement: +241128
+Commands to execute: 224

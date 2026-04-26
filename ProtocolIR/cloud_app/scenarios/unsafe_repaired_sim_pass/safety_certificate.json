@@ -1,0 +1,17 @@
+{
+  "protocol": "PCR plate setup",
+  "timestamp": "2026-04-26T20:52:19.455569+00:00",
+  "certified": true,
+  "coverage_guarantee": 0.95,
+  "violations_before": 7,
+  "violations_after": 0,
+  "violation_types_found": [
+    "ASPIRATE_NO_TIP",
+    "DISPENSE_NO_TIP",
+    "DROP_TIP_WITHOUT_TIP",
+    "MISSING_MIX",
+    "PIPETTE_RANGE_VIOLATION",
+    "TIP_OVER_CAPACITY"
+  ],
+  "verdict": "SAFE"
+}

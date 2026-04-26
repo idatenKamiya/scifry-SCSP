@@ -1,0 +1,13 @@
+
+PCR Master Mix Setup
+
+Materials:
+- DNA template samples
+- PCR master mix
+
+Steps:
+1. Prepare 8 samples in a 96-well PCR plate.
+2. Add 10 uL of DNA template to the corresponding sample well.
+3. Add 40 uL of PCR master mix to each well.
+4. Mix gently by pipetting up and down 3 times.
+5. Keep the plate on ice until thermal cycling.
