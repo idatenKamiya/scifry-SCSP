@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Any, Dict
@@ -139,6 +140,35 @@ def _read_json(base: Path, rel: str) -> Dict[str, Any]:
         return {"_error": f"invalid json in {path}: {exc}"}
 
 
+_PATH_PATTERNS = [
+    r"/projectnb/[^\s`]+",
+    r"/usr[^\s`]*",
+    r"/scratch/[^\s`]+",
+    r"/tmp/[^\s`]+",
+    r"/home/[^\s`]+",
+    r"/opt/[^\s`]+",
+    r"[A-Za-z]:\\[^\s`]+",
+    r"\b(?:judge_demo_output|demo_bundle_output|comparison_output|outputs_demo|results)[^\s`]*",
+]
+
+
+def _sanitize_text(text: str) -> str:
+    sanitized = text
+    for pattern in _PATH_PATTERNS:
+        sanitized = re.sub(pattern, "[redacted-path]", sanitized)
+    return sanitized
+
+
+def _sanitize_json(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {k: _sanitize_json(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_sanitize_json(v) for v in value]
+    if isinstance(value, str):
+        return _sanitize_text(value)
+    return value
+
+
 def _status_badge(status: str) -> str:
     color = {
         "PASS": "#16a34a",
@@ -149,6 +179,29 @@ def _status_badge(status: str) -> str:
         f"<span style='display:inline-block;padding:3px 8px;border-radius:10px;"
         f"background:{color};color:white;font-size:12px'>{status}</span>"
     )
+
+
+def _summarize_comparison_report(report_text: str) -> Dict[str, Any]:
+    summary: Dict[str, Any] = {
+        "protocolir_exit": "unknown",
+        "baseline_exit": "unknown",
+        "out_of_tips": False,
+        "labware_error": False,
+        "sim_fail": False,
+    }
+    for line in report_text.splitlines():
+        if "| Command exit code |" in line:
+            parts = [part.strip() for part in line.split("|") if part.strip()]
+            if len(parts) >= 3:
+                summary["baseline_exit"] = parts[1]
+                summary["protocolir_exit"] = parts[2]
+        if "OutOfTipsError" in line:
+            summary["out_of_tips"] = True
+        if "load_labware(" in line and ("bio-rad" in line or "biorad-" in line):
+            summary["labware_error"] = True
+        if "Status: FAIL" in line or "simulator status: fail" in line.lower():
+            summary["sim_fail"] = True
+    return summary
 
 
 def render_pipeline_result(pipeline: ProtocolPipeline) -> None:
@@ -268,36 +321,52 @@ def render_replay_mode() -> None:
     tabs = st.tabs(["Overview", "Evidence Files", "Raw JSON/Text"])
 
     with tabs[0]:
+        if scenario.get("status") == "EXPECTED_FAILURE":
+            st.warning(
+                "This scenario is intentionally included as a negative sanity case. "
+                "Failure traces are expected and demonstrate transparent error reporting."
+            )
         if "summary" in ev:
             st.subheader("Summary")
-            st.code(_read_text(scenario_dir, ev["summary"]), language="markdown")
+            st.code(_sanitize_text(_read_text(scenario_dir, ev["summary"])), language="markdown")
         if "comparison_report" in ev:
             st.subheader("Comparison Report")
-            st.markdown(_read_text(scenario_dir, ev["comparison_report"]))
+            report = _read_text(scenario_dir, ev["comparison_report"])
+            parsed = _summarize_comparison_report(report)
+            c1, c2, c3 = st.columns(3)
+            c1.metric("ProtocolIR exit", parsed["protocolir_exit"])
+            c2.metric("Baseline exit", parsed["baseline_exit"])
+            c3.metric("OutOfTips detected", "Yes" if parsed["out_of_tips"] else "No")
+            if parsed["labware_error"]:
+                st.info("Report includes a baseline labware-resolution error trace.")
+            if parsed["sim_fail"]:
+                st.info("Simulation failure is present in this scenario report.")
+            with st.expander("Open full comparison report"):
+                st.markdown(_sanitize_text(report))
         if "certificate" in ev:
             st.subheader("Safety Certificate")
-            st.json(_read_json(scenario_dir, ev["certificate"]))
+            st.json(_sanitize_json(_read_json(scenario_dir, ev["certificate"])))
         if "risk" in ev:
             st.subheader("Risk Summary")
-            st.json(_read_json(scenario_dir, ev["risk"]))
+            st.json(_sanitize_json(_read_json(scenario_dir, ev["risk"])))
         if "dependency" in ev:
             st.subheader("Dependency Summary")
-            st.json(_read_json(scenario_dir, ev["dependency"]))
+            st.json(_sanitize_json(_read_json(scenario_dir, ev["dependency"])))
 
     with tabs[1]:
         for label, rel in ev.items():
             path = scenario_dir / rel
             exists = path.exists()
-            st.write(f"- `{label}` -> `{path}` ({'ok' if exists else 'missing'})")
+            st.write(f"- `{label}` -> `{rel}` ({'ok' if exists else 'missing'})")
 
     with tabs[2]:
         for label, rel in ev.items():
             st.markdown(f"### {label}")
             path = scenario_dir / rel
             if path.suffix.lower() == ".json":
-                st.json(_read_json(scenario_dir, rel))
+                st.json(_sanitize_json(_read_json(scenario_dir, rel)))
             else:
-                st.code(_read_text(scenario_dir, rel))
+                st.code(_sanitize_text(_read_text(scenario_dir, rel)))
 
 
 def render_live_mode() -> None:
@@ -310,7 +379,7 @@ def render_live_mode() -> None:
     try:
         pipeline = run_cloud_pipeline(protocol_text, source_url="cloud://streamlit")
     except Exception as exc:
-        st.error(f"Pipeline failed: {exc}")
+        st.error(f"Pipeline failed: {_sanitize_text(str(exc))}")
         st.stop()
     render_pipeline_result(pipeline)
 
