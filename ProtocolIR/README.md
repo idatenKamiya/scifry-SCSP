@@ -66,6 +66,17 @@ python main.py --cell-culture-demo -o cell_culture_output
 streamlit run app_protocolir.py
 ```
 
+Or run a judge-ready bundle in one command:
+
+```powershell
+python run_judge_demo.py -o judge_demo_output
+```
+
+This writes:
+- `judge_demo_output/outputs_demo/` (pipeline outputs)
+- `judge_demo_output/comparison_output/` (baseline vs ProtocolIR report)
+- `judge_demo_output/JUDGE_DEMO_SUMMARY.md` (single-file run summary)
+
 Expected judge-facing evidence:
 
 - `check_openrouter.py`: `OPENROUTER OK`
@@ -73,6 +84,7 @@ Expected judge-facing evidence:
 - `outputs_demo/audit_report.md`: clean protocol, 0 verifier violations, real simulator PASS
 - `stress_output/audit_report.md`: unsafe IR errors repaired to 0 remaining violations
 - `comparison_output/comparison_report.md`: direct LLM baseline fails while ProtocolIR passes
+- `outputs_demo/safety_certificate.json`: machine-readable SAFE/UNSAFE verdict
 - Streamlit app: one-screen view of protocol, safety audit, reward posterior, and generated code
 
 ## Bayesian IRL
