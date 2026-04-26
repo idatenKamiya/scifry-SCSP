@@ -24,7 +24,6 @@ if str(ROOT) not in sys.path:
 
 from protocolir.analysis.dependency_analyzer import analyze_dependencies, get_recommended_fix
 from protocolir.analysis.flow_visualizer import ir_flow_mermaid
-from protocolir.analysis.risk_scoring import get_severity_color, score_violations
 from protocolir.audit import create_executive_summary, generate_audit_report
 from protocolir.certificate import generate_certificate
 from protocolir.compiler import compile_to_opentrons
@@ -169,6 +168,38 @@ def _sanitize_json(value: Any) -> Any:
     return value
 
 
+def _runtime_risk_summary_from_violations(violations: list[Any]) -> Dict[str, Any]:
+    by_type: Dict[str, int] = {}
+    for violation in violations:
+        vtype = getattr(violation, "violation_type", "UNKNOWN")
+        by_type[vtype] = by_type.get(vtype, 0) + 1
+    return {
+        "total_violations": len(violations),
+        "violation_types": len(by_type),
+        "violations_by_type": by_type,
+    }
+
+
+def _ui_clean_risk_dict(risk_obj: Dict[str, Any]) -> Dict[str, Any]:
+    by_type = risk_obj.get("violations_by_type", {}) if isinstance(risk_obj, dict) else {}
+    if not isinstance(by_type, dict):
+        by_type = {}
+    total = risk_obj.get("total_violations", sum(int(v) for v in by_type.values())) if isinstance(risk_obj, dict) else 0
+    return {
+        "total_violations": total,
+        "violation_types": len(by_type),
+        "violations_by_type": by_type,
+    }
+
+
+def _ui_clean_certificate(cert_obj: Dict[str, Any]) -> Dict[str, Any]:
+    if not isinstance(cert_obj, dict):
+        return {}
+    cleaned = dict(cert_obj)
+    cleaned.pop("coverage_guarantee", None)
+    return cleaned
+
+
 def _status_badge(status: str) -> str:
     color = {
         "PASS": "#16a34a",
@@ -207,19 +238,19 @@ def _summarize_comparison_report(report_text: str) -> Dict[str, Any]:
 def render_pipeline_result(pipeline: ProtocolPipeline) -> None:
     before = pipeline.violations_before_repair or pipeline.violations
     after = pipeline.violations_after_repair
-    risk = score_violations(before)
-    cert = generate_certificate(
+    risk = _runtime_risk_summary_from_violations(before)
+    cert = _ui_clean_certificate(generate_certificate(
         pipeline.parsed.goal if pipeline.parsed else "ProtocolIR cloud run",
         before,
         after,
-    )
+    ))
     deps = analyze_dependencies(before)
 
     c1, c2, c3, c4, c5 = st.columns(5)
     c1.metric("Before violations", len(before))
     c2.metric("After violations", len(after))
     c3.metric("Repairs", len(pipeline.repairs_applied))
-    c4.metric("Risk level", risk["risk_level"])
+    c4.metric("Violation types", risk["violation_types"])
     c5.metric("Status", "PASS" if len(after) == 0 else "REVIEW")
 
     tabs = st.tabs(
@@ -242,20 +273,10 @@ def render_pipeline_result(pipeline: ProtocolPipeline) -> None:
         st.code(create_executive_summary(pipeline), language="markdown")
 
     with tabs[1]:
-        rc1, rc2, rc3, rc4 = st.columns(4)
+        rc1, rc2 = st.columns(2)
         rc1.metric("Total", risk["total_violations"])
-        rc2.metric("Critical", risk["critical_count"])
-        rc3.metric("High", risk["high_count"])
-        rc4.metric("Medium", risk["medium_count"])
-        st.metric("Estimated impact if executed", f"${int(risk['total_impact_usd']):,}")
-        for vtype, details in risk["severity_details"].items():
-            st.markdown(
-                f"<div style='border-left:4px solid {get_severity_color(details['severity'])}; "
-                f"padding:8px 12px; margin:8px 0;'>"
-                f"<b>{vtype}</b> (x{details['count']}) - {details['severity']}<br/>"
-                f"<small>{details['reason']}</small></div>",
-                unsafe_allow_html=True,
-            )
+        rc2.metric("Violation types", risk["violation_types"])
+        st.json(risk["violations_by_type"])
 
     with tabs[2]:
         if not deps["chains"]:
@@ -321,15 +342,16 @@ def render_replay_mode() -> None:
     tabs = st.tabs(["Overview", "Artifacts", "Detailed Logs (Advanced)"])
 
     with tabs[0]:
-        cert_obj = _sanitize_json(_read_json(scenario_dir, ev["certificate"])) if "certificate" in ev else {}
-        risk_obj = _sanitize_json(_read_json(scenario_dir, ev["risk"])) if "risk" in ev else {}
+        cert_obj = _ui_clean_certificate(_sanitize_json(_read_json(scenario_dir, ev["certificate"]))) if "certificate" in ev else {}
+        raw_risk_obj = _sanitize_json(_read_json(scenario_dir, ev["risk"])) if "risk" in ev else {}
+        risk_obj = _ui_clean_risk_dict(raw_risk_obj) if "risk" in ev else {}
         total_v = risk_obj.get("total_violations", "N/A") if isinstance(risk_obj, dict) else "N/A"
-        risk_level = risk_obj.get("risk_level", "N/A") if isinstance(risk_obj, dict) else "N/A"
+        violation_types = risk_obj.get("violation_types", "N/A") if isinstance(risk_obj, dict) else "N/A"
         cert_status = cert_obj.get("verdict", "N/A") if isinstance(cert_obj, dict) else "N/A"
         c1, c2, c3 = st.columns(3)
         c1.metric("Verdict", cert_status)
-        c2.metric("Risk Level", risk_level)
-        c3.metric("Violations", total_v)
+        c2.metric("Violations", total_v)
+        c3.metric("Violation types", violation_types)
 
         scenario_class = scenario.get("classification")
         if scenario_class == "repair_positive":
@@ -377,11 +399,11 @@ def render_replay_mode() -> None:
         if "certificate" in ev:
             st.subheader("Safety Certificate")
             with st.expander("Open certificate details", expanded=False):
-                st.json(_sanitize_json(_read_json(scenario_dir, ev["certificate"])))
+                st.json(_ui_clean_certificate(_sanitize_json(_read_json(scenario_dir, ev["certificate"]))))
         if "risk" in ev:
             st.subheader("Risk Summary")
             with st.expander("Open risk details", expanded=False):
-                st.json(_sanitize_json(_read_json(scenario_dir, ev["risk"])))
+                st.json(_ui_clean_risk_dict(_sanitize_json(_read_json(scenario_dir, ev["risk"]))))
         if "dependency" in ev:
             st.subheader("Dependency Summary")
             with st.expander("Open dependency details", expanded=False):

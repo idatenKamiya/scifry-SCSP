@@ -12,13 +12,30 @@ import protocolir as pir
 from main import _demo_protocol, _load_reward_model, inject_demo_unsafe_errors
 from protocolir.analysis.dependency_analyzer import analyze_dependencies, get_recommended_fix
 from protocolir.analysis.flow_visualizer import ir_flow_mermaid
-from protocolir.analysis.risk_scoring import get_severity_color, score_violations
 from protocolir.certificate import generate_certificate
 from protocolir.contamination_graph import contamination_mermaid
 
 
 st.set_page_config(page_title="ProtocolIR", layout="wide")
 st.title("ProtocolIR: Verify-Then-Generate Lab Protocol Compiler")
+
+
+def _runtime_risk_summary_from_violations(violations):
+    by_type = {}
+    for violation in violations:
+        vtype = getattr(violation, "violation_type", "UNKNOWN")
+        by_type[vtype] = by_type.get(vtype, 0) + 1
+    return {
+        "total_violations": len(violations),
+        "violation_types": len(by_type),
+        "violations_by_type": by_type,
+    }
+
+
+def _ui_clean_certificate(cert):
+    cleaned = dict(cert)
+    cleaned.pop("coverage_guarantee", None)
+    return cleaned
 
 protocol_text = st.text_area("Protocol text", value=_demo_protocol(), height=220)
 stress = st.checkbox("Inject unsafe stress case", value=True)
@@ -38,18 +55,18 @@ if run:
 
     before = pipeline.violations_before_repair or pipeline.violations
     after = pipeline.violations_after_repair
-    risk = score_violations(before)
-    cert = generate_certificate(
+    risk = _runtime_risk_summary_from_violations(before)
+    cert = _ui_clean_certificate(generate_certificate(
         pipeline.parsed.goal if pipeline.parsed else "ProtocolIR run",
         before,
         after,
-    )
+    ))
 
     col1, col2, col3, col4, col5 = st.columns(5)
     col1.metric("Before violations", len(before))
     col2.metric("After violations", len(after))
     col3.metric("Repairs", len(pipeline.repairs_applied))
-    col4.metric("Risk level", risk["risk_level"])
+    col4.metric("Violation types", risk["violation_types"])
     col5.metric("Simulator", "PASS" if pipeline.simulation_result and pipeline.simulation_result.passed else "FAIL")
 
     tabs = st.tabs(
@@ -72,20 +89,10 @@ if run:
     with tabs[1]:
         st.json([op.model_dump() for op in (pipeline.ir_repaired or [])])
     with tabs[2]:
-        c1, c2, c3, c4 = st.columns(4)
+        c1, c2 = st.columns(2)
         c1.metric("Total", risk["total_violations"])
-        c2.metric("Critical", risk["critical_count"])
-        c3.metric("High", risk["high_count"])
-        c4.metric("Medium", risk["medium_count"])
-        st.metric("Estimated impact if executed", f"${int(risk['total_impact_usd']):,}")
-        for vtype, details in risk["severity_details"].items():
-            st.markdown(
-                f"<div style='border-left:4px solid {get_severity_color(details['severity'])}; "
-                f"padding:8px 12px; margin:8px 0;'>"
-                f"<b>{vtype}</b> (x{details['count']}) - {details['severity']}<br/>"
-                f"<small>{details['reason']}</small></div>",
-                unsafe_allow_html=True,
-            )
+        c2.metric("Violation types", risk["violation_types"])
+        st.json(risk["violations_by_type"])
     with tabs[3]:
         deps = analyze_dependencies(before)
         if not deps["chains"]:
