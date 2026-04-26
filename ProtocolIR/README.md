@@ -77,6 +77,30 @@ This writes:
 - `judge_demo_output/comparison_output/` (baseline vs ProtocolIR report)
 - `judge_demo_output/JUDGE_DEMO_SUMMARY.md` (single-file run summary)
 
+## Deploy a Live UI on Streamlit Community Cloud
+
+Use the cloud-safe app entrypoint in this repo:
+
+- App file: `ProtocolIR/cloud_app/app.py`
+- Requirements: `ProtocolIR/cloud_app/requirements.txt`
+- Runtime: `ProtocolIR/cloud_app/runtime.txt`
+
+Deployment steps:
+
+1. Push your latest `main` to GitHub.
+2. In Streamlit Community Cloud, create a new app from your repo.
+3. Set the app path to `ProtocolIR/cloud_app/app.py`.
+4. In app secrets/settings, add:
+
+```toml
+OPENROUTER_API_KEY = "your_key_here"
+PROTOCOLIR_MODEL = "inclusionai/ling-2.6-flash:free"
+```
+
+Notes:
+- This cloud app intentionally skips local Opentrons simulation and focuses on parse->verify->repair->compile->audit/certificate.
+- Use local/SCC runs (`run_judge_demo.py`) for full simulator-backed evidence.
+
 Expected judge-facing evidence:
 
 - `check_openrouter.py`: `OPENROUTER OK`
