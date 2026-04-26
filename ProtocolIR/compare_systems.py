@@ -84,6 +84,7 @@ def _build_summary(baseline, protocolir, baseline_dir: Path, protocolir_dir: Pat
     rows = [
         ("Command exit code", baseline.returncode, protocolir.returncode),
         ("Real simulator pass", baseline_metrics["real_sim_pass"], protocolir_metrics["real_sim_pass"]),
+        ("Safety certificate issued", "N/A", protocolir_metrics["certified"]),
         ("Static/built-in safety issues", baseline_metrics["static_issues"], protocolir_metrics["violations_after"]),
         ("Violations before repair", "N/A", protocolir_metrics["violations_before"]),
         ("Violations after repair", "N/A", protocolir_metrics["violations_after"]),
@@ -139,9 +140,17 @@ def _baseline_metrics(path: Path) -> dict:
 
 def _protocolir_metrics(path: Path) -> dict:
     summary = path / "summary.txt"
+    certificate = path / "safety_certificate.json"
+    cert_payload = {}
+    if certificate.exists():
+        try:
+            cert_payload = json.loads(certificate.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            cert_payload = {}
     if not summary.exists():
         return {
             "real_sim_pass": False,
+            "certified": "N/A",
             "violations_before": "N/A",
             "violations_after": "N/A",
             "repairs": "N/A",
@@ -150,6 +159,7 @@ def _protocolir_metrics(path: Path) -> dict:
     text = summary.read_text(encoding="utf-8", errors="replace")
     return {
         "real_sim_pass": "Status: PASS" in text,
+        "certified": bool(cert_payload.get("certified", False)),
         "violations_before": _line_value(text, "Violations before repair"),
         "violations_after": _line_value(text, "Violations after repair"),
         "repairs": _line_value(text, "Repairs applied"),

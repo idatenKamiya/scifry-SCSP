@@ -21,6 +21,8 @@ dist/
 
 # Local outputs/logs
 outputs/
+results/
+**/results/
 **/outputs/
 **/my_output/
 **/stress_output/
@@ -32,6 +34,8 @@ outputs/
 **/benchmark_output/
 **/ablation_output/
 *.log
+*.tmp
+*.bak
 
 # Local Python envs/caches (SCC/project-local)
 .uv-cache/
@@ -44,6 +48,7 @@ ProtocolIR/.ollama/
 # Batch-job logs and scratch outputs
 logs/
 ProtocolIR/logs/
+ProtocolIR/demo_artifacts/current/
 
 # Local scratch/context files kept off the final submission
 AIZU/

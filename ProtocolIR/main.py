@@ -10,7 +10,10 @@ from pathlib import Path
 from typing import Optional
 
 import protocolir as pir
+from protocolir.analysis.dependency_analyzer import analyze_dependencies
+from protocolir.analysis.risk_scoring import score_violations
 from protocolir.audit import create_executive_summary, generate_audit_report
+from protocolir.certificate import generate_certificate
 from protocolir.grounder import build_deck_layout
 from protocolir.ir_builder import ir_to_dict_list
 from protocolir.orchestration import run_protocol_graph
@@ -96,6 +99,8 @@ def main() -> None:
 def _save_artifacts(pipeline: ProtocolPipeline, output_dir: str) -> None:
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
+    before = pipeline.violations_before_repair or pipeline.violations
+    after = pipeline.violations_after_repair
 
     if pipeline.generated_script:
         (output_path / "protocol.py").write_text(pipeline.generated_script, encoding="utf-8")
@@ -107,6 +112,32 @@ def _save_artifacts(pipeline: ProtocolPipeline, output_dir: str) -> None:
 
     (output_path / "summary.txt").write_text(create_executive_summary(pipeline), encoding="utf-8")
     print(f"  Summary: {output_path / 'summary.txt'}")
+
+    protocol_name = (
+        (pipeline.parsed.goal if pipeline.parsed else None)
+        or pipeline.source_url
+        or "ProtocolIR run"
+    )
+    certificate = generate_certificate(protocol_name, before, after)
+    (output_path / "safety_certificate.json").write_text(
+        json.dumps(certificate, indent=2),
+        encoding="utf-8",
+    )
+    print(f"  Certificate: {output_path / 'safety_certificate.json'}")
+
+    risk_summary = score_violations(before)
+    (output_path / "risk_summary.json").write_text(
+        json.dumps(risk_summary, indent=2),
+        encoding="utf-8",
+    )
+    print(f"  Risk: {output_path / 'risk_summary.json'}")
+
+    dependency_summary = analyze_dependencies(before)
+    (output_path / "dependency_summary.json").write_text(
+        json.dumps(dependency_summary, indent=2),
+        encoding="utf-8",
+    )
+    print(f"  Dependencies: {output_path / 'dependency_summary.json'}")
 
     if pipeline.ir_original:
         (output_path / "ir_original.json").write_text(
