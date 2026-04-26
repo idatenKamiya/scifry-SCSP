@@ -1,163 +1,141 @@
-"""
-LAYER 9: Audit Report Generation
-Creates human-readable safety and compliance reports.
-"""
+"""Layer 9: human-readable audit and demo reports."""
 
-from typing import Optional, List
+from __future__ import annotations
+
 from datetime import datetime
-from protocolir.schemas import (
-    ParsedProtocol,
-    ProtocolPipeline,
-    Violation,
-    RewardScore,
-    SimulationResult,
-)
+from typing import List
+
+from protocolir.contamination_graph import contamination_mermaid
+from protocolir.schemas import ProtocolPipeline, Violation
 
 
 def generate_audit_report(pipeline: ProtocolPipeline) -> str:
-    """
-    Generate comprehensive audit report for a protocol.
+    report: List[str] = []
+    before = pipeline.violations_before_repair or pipeline.violations
+    after = pipeline.violations_after_repair
 
-    Args:
-        pipeline: Complete ProtocolPipeline with all stages executed
-
-    Returns:
-        Markdown-formatted audit report
-    """
-
-    report = []
-
-    report.append("# Protocol Safety Audit Report")
-    report.append(f"*Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*")
+    report.append("# ProtocolIR Safety Audit Report")
+    report.append(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    report.append("")
+    report.append("## Executive Claim")
+    report.append(
+        "Runnable robot code is not enough. ProtocolIR converts protocol text into a typed IR, "
+        "enforces hard physical invariants, optimizes a reward score, repairs unsafe behavior, "
+        "and compiles only the verified IR to Opentrons Python."
+    )
     report.append("")
 
-    # Input section
-    report.append("## Input Protocol")
+    report.append("## Input")
     if pipeline.parsed:
-        report.append(f"- **Goal:** {pipeline.parsed.goal}")
+        report.append(f"- Goal: {pipeline.parsed.goal}")
+        report.append(f"- Parser backend: {pipeline.parsed.parser_backend}")
+        report.append(f"- Samples/wells planned: {pipeline.parsed.sample_count}")
+        report.append(f"- Materials extracted: {len(pipeline.parsed.materials)}")
+        report.append(f"- Semantic actions extracted: {len(pipeline.parsed.actions)}")
+        if pipeline.parsed.ambiguities:
+            report.append("- Ambiguities:")
+            for ambiguity in pipeline.parsed.ambiguities[:8]:
+                report.append(f"  - {ambiguity}")
     if pipeline.source_url:
-        report.append(f"- **Source:** {pipeline.source_url}")
-
-    if pipeline.parsed and pipeline.parsed.ambiguities:
-        report.append(f"- **Ambiguities detected:** {len(pipeline.parsed.ambiguities)}")
-        for amb in pipeline.parsed.ambiguities[:3]:
-            report.append(f"  - {amb}")
-        if len(pipeline.parsed.ambiguities) > 3:
-            report.append(f"  - ... and {len(pipeline.parsed.ambiguities) - 3} more")
-
+        report.append(f"- Source: {pipeline.source_url}")
     report.append("")
 
-    # Violations section
-    report.append("## Safety Verification")
-
-    critical_violations = [v for v in pipeline.violations if v.severity == "CRITICAL"]
-    warning_violations = [v for v in pipeline.violations if v.severity == "WARNING"]
-
-    report.append(f"**Critical violations detected:** {len(critical_violations)}")
-    report.append(f"**Warnings:** {len(warning_violations)}")
-
-    if pipeline.violations:
-        report.append("\n### Violations Found (Before Repair)")
-        for v in pipeline.violations[:5]:
-            report.append(f"- **{v.violation_type}** (action {v.action_idx}): {v.message}")
-        if len(pipeline.violations) > 5:
-            report.append(f"- ... and {len(pipeline.violations) - 5} more violations")
-
+    report.append("## Hard Safety Verification")
+    report.append("| Stage | Critical | Warning | Total |")
+    report.append("|---|---:|---:|---:|")
+    report.append(f"| Before repair | {_count(before, 'CRITICAL')} | {_count(before, 'WARNING')} | {len(before)} |")
+    report.append(f"| After repair | {_count(after, 'CRITICAL')} | {_count(after, 'WARNING')} | {len(after)} |")
     report.append("")
 
-    # Repairs section
+    if before:
+        report.append("### Violations Before Repair")
+        for violation in before[:12]:
+            report.append(
+                f"- {violation.violation_type} at IR[{violation.action_idx}]: {violation.message}"
+            )
+        if len(before) > 12:
+            report.append(f"- ... {len(before) - 12} more")
+        report.append("")
+
     if pipeline.repairs_applied:
         report.append("### Repairs Applied")
-        for repair in pipeline.repairs_applied[:10]:
+        for repair in pipeline.repairs_applied[:20]:
             report.append(f"- {repair}")
-        if len(pipeline.repairs_applied) > 10:
-            report.append(
-                f"- ... and {len(pipeline.repairs_applied) - 10} more repairs"
-            )
+        if len(pipeline.repairs_applied) > 20:
+            report.append(f"- ... {len(pipeline.repairs_applied) - 20} more")
+        report.append("")
 
-    report.append("")
+    if after:
+        report.append("### Remaining Issues")
+        for violation in after:
+            report.append(f"- {violation.violation_type}: {violation.message}")
+        report.append("")
 
-    # Reward scoring section
-    report.append("## Reward Scoring")
-
-    report.append("| Metric | Before Repair | After Repair | Change |")
-    report.append("|--------|:---:|:---:|---:|")
+    report.append("## Reward Model")
+    report.append("| Metric | Before | After | Change |")
+    report.append("|---|---:|---:|---:|")
     report.append(
-        f"| Reward Score | {pipeline.reward_before:.0f} | {pipeline.reward_after:.0f} | {pipeline.reward_after - pipeline.reward_before:+.0f} |"
+        f"| Reward score | {pipeline.reward_before:.0f} | {pipeline.reward_after:.0f} | "
+        f"{pipeline.reward_after - pipeline.reward_before:+.0f} |"
     )
-    report.append(
-        f"| Violations | {len(pipeline.violations)} | 0 | ✓ |"
-    )
-
+    report.append(f"| Violations | {len(before)} | {len(after)} | {len(after) - len(before):+d} |")
     if pipeline.reward_score:
-        report.append("\n### Top Feature Contributors (After Repair)")
-        sorted_features = sorted(
+        report.append("")
+        report.append("### Largest Reward Contributors")
+        ranked = sorted(
             pipeline.reward_score.feature_scores.items(),
-            key=lambda x: abs(x[1]),
+            key=lambda item: abs(item[1]),
             reverse=True,
         )
-        for feature_name, score in sorted_features[:5]:
-            direction = "↑" if score > 0 else "↓"
-            report.append(f"- {feature_name}: {score:+.0f} {direction}")
-
+        for name, score in ranked[:8]:
+            report.append(f"- {name}: {score:+.0f}")
     report.append("")
 
-    # Simulation section
     report.append("## Simulator Validation")
-
     if pipeline.simulation_result:
         sim = pipeline.simulation_result
-        status_icon = "✓" if sim.passed else "✗"
-        report.append(f"{status_icon} **Status:** {'PASS' if sim.passed else 'FAIL'}")
-        report.append(f"- Commands executed: {sim.command_count}")
+        mode = "real Opentrons simulator" if sim.used_real_simulator else "simulator unavailable"
+        report.append(f"- Status: {'PASS' if sim.passed else 'FAIL'}")
+        report.append(f"- Mode: {mode}")
+        report.append(f"- Commands: {sim.command_count}")
         report.append(f"- Aspirates: {sim.aspirate_count}")
         report.append(f"- Dispenses: {sim.dispense_count}")
         report.append(f"- Tip operations: {sim.tip_count}")
-
-        if sim.errors:
-            report.append(f"\n**Errors:** {len(sim.errors)}")
-            for error in sim.errors[:3]:
-                report.append(f"- {error}")
-
         if sim.warnings:
-            report.append(f"\n**Warnings:** {len(sim.warnings)}")
-            for warning in sim.warnings[:3]:
-                report.append(f"- {warning}")
+            report.append("- Warnings:")
+            for warning in sim.warnings[:5]:
+                report.append(f"  - {warning}")
+        if sim.errors:
+            report.append("- Errors:")
+            for error in sim.errors[:5]:
+                report.append(f"  - {error}")
     else:
-        report.append("Simulation not performed")
-
+        report.append("- Status: not run")
     report.append("")
 
-    # Human escalations
-    if pipeline.human_escalations:
-        report.append("## Human Review Required")
-        report.append(f"**{len(pipeline.human_escalations)} escalations for manual review:**")
-        for escalation in pipeline.human_escalations:
-            report.append(f"- {escalation}")
+    if pipeline.ir_repaired:
+        report.append("## Contamination Graph")
+        report.append("```mermaid")
+        report.append(contamination_mermaid(pipeline.ir_repaired))
+        report.append("```")
+        report.append("")
 
-    report.append("")
-
-    # Conclusion
-    report.append("## Conclusion")
-
-    if pipeline.simulation_result and pipeline.simulation_result.passed:
-        if len(pipeline.violations) == 0:
-            report.append(
-                "✓ Protocol is verified safe and ready for execution."
-            )
-        else:
-            report.append(
-                f"⚠ Protocol was repaired ({len(pipeline.repairs_applied)} fixes applied) and is now ready for execution."
-            )
+    report.append("## Verdict")
+    if (
+        not after
+        and pipeline.simulation_result
+        and pipeline.simulation_result.passed
+        and pipeline.simulation_result.used_real_simulator
+    ):
+        report.append("PASS: no remaining verifier violations and real Opentrons simulation passes.")
+    elif after:
+        report.append("REVIEW: remaining verifier issues require human review before execution.")
+    elif pipeline.simulation_result and not pipeline.simulation_result.used_real_simulator:
+        report.append("REVIEW: simulator was skipped or unavailable; artifact is not a simulator-backed pass.")
     else:
-        report.append(
-            "✗ Protocol failed simulator validation. Review errors above."
-        )
-
+        report.append("REVIEW: simulator validation did not pass.")
     report.append("")
-    report.append("---")
-    report.append("*Generated by ProtocolIR v1.0 - Reward-Guided Protocol Compiler*")
-
+    report.append("Generated by ProtocolIR v2.0.")
     return "\n".join(report)
 
 
@@ -168,82 +146,45 @@ def generate_comparison_report(
     improved_score: float,
     repairs: List[str],
 ) -> str:
-    """
-    Generate a comparison report showing before/after improvements.
-
-    Args:
-        baseline_violations: Violations in original protocol
-        baseline_score: Reward score before repair
-        improved_violations: Violations after repair
-        improved_score: Reward score after repair
-        repairs: List of repairs applied
-
-    Returns:
-        Markdown-formatted comparison report
-    """
-
-    report = []
-
-    report.append("# Protocol Improvement Report")
-    report.append("")
-
-    report.append("## Violations")
-    report.append(f"| Status | Count |")
-    report.append("|--------|------:|")
-    report.append(f"| Before repair | {len(baseline_violations)} |")
-    report.append(f"| After repair | {len(improved_violations)} |")
-    report.append(f"| Resolved | {len(baseline_violations) - len(improved_violations)} ✓ |")
-    report.append("")
-
-    report.append("## Reward Score")
-    report.append(f"- **Before:** {baseline_score:.1f}")
-    report.append(f"- **After:** {improved_score:.1f}")
-    report.append(
-        f"- **Improvement:** {improved_score - baseline_score:+.1f} ({((improved_score - baseline_score) / abs(baseline_score) * 100) if baseline_score != 0 else 'N/A'}%)"
-    )
-    report.append("")
-
-    report.append("## Repairs Applied")
-    report.append(f"Total: {len(repairs)} repairs")
-    report.append("")
-    for i, repair in enumerate(repairs[:15], 1):
-        report.append(f"{i}. {repair}")
-    if len(repairs) > 15:
-        report.append(f"\n... and {len(repairs) - 15} more repairs")
-
-    return "\n".join(report)
+    resolved = len(baseline_violations) - len(improved_violations)
+    lines = [
+        "# ProtocolIR Improvement Report",
+        "",
+        "| Metric | Before | After | Change |",
+        "|---|---:|---:|---:|",
+        f"| Violations | {len(baseline_violations)} | {len(improved_violations)} | {resolved:+d} |",
+        f"| Reward score | {baseline_score:.0f} | {improved_score:.0f} | {improved_score - baseline_score:+.0f} |",
+        "",
+        "## Repairs",
+    ]
+    lines.extend(f"{idx}. {repair}" for idx, repair in enumerate(repairs, 1))
+    return "\n".join(lines)
 
 
-def export_report_to_file(report: str, output_path: str):
-    """Save report to file."""
-
-    with open(output_path, "w") as f:
-        f.write(report)
+def export_report_to_file(report: str, output_path: str) -> None:
+    with open(output_path, "w", encoding="utf-8") as handle:
+        handle.write(report)
 
 
 def create_executive_summary(pipeline: ProtocolPipeline) -> str:
-    """Create brief executive summary for quick review."""
+    before = len(pipeline.violations_before_repair or pipeline.violations)
+    after = len(pipeline.violations_after_repair)
+    sim = pipeline.simulation_result
+    status = "PASS" if sim and sim.passed and sim.used_real_simulator and after == 0 else "REVIEW"
+    lines = [
+        "# Executive Summary",
+        "",
+        f"Status: {status}",
+        f"Violations before repair: {before}",
+        f"Violations after repair: {after}",
+        f"Repairs applied: {len(pipeline.repairs_applied)}",
+        f"Reward improvement: {pipeline.reward_after - pipeline.reward_before:+.0f}",
+        f"Commands to execute: {sim.command_count if sim else 'N/A'}",
+    ]
+    if sim and not sim.used_real_simulator:
+        lines.append("Simulator mode: unavailable; install/fix Opentrons SDK and rerun.")
+    return "\n".join(lines)
 
-    summary = []
 
-    summary.append("# Executive Summary")
-    summary.append("")
-
-    if pipeline.simulation_result and pipeline.simulation_result.passed:
-        summary.append("✓ **Protocol PASSED verification**")
-    else:
-        summary.append("✗ **Protocol FAILED verification**")
-
-    summary.append(f"- Violations fixed: {len(pipeline.violations)}")
-    summary.append(
-        f"- Reward improvement: {pipeline.reward_after - pipeline.reward_before:+.0f}"
-    )
-    summary.append(f"- Repairs applied: {len(pipeline.repairs_applied)}")
-    summary.append(f"- Commands to execute: {pipeline.simulation_result.command_count if pipeline.simulation_result else 'N/A'}")
-
-    if pipeline.human_escalations:
-        summary.append(
-            f"- Requires human review: {len(pipeline.human_escalations)} items"
-        )
-
-    return "\n".join(summary)
+def _count(violations: List[Violation], severity: str) -> int:
+    return sum(1 for violation in violations if violation.severity == severity)

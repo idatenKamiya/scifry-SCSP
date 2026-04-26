@@ -1,326 +1,165 @@
-# ProtocolIR: Reward-Guided Protocol Compiler for Safe Lab Automation
+# ProtocolIR
 
-**Runnable code is not safe code.** LLM lab copilots can generate syntactically correct Opentrons scripts that still violate critical safety constraints: cross-contamination, pipette range violations, well overflow, missing tip changes, etc.
+ProtocolIR is a reward-guided compiler for safe autonomous lab protocols.
 
-**ProtocolIR** learns a reward model from expert robot demonstrations, automatically detects semantic safety violations that runnable code still contains, and repairs them before compilation.
+The core claim: runnable robot code is not the same thing as safe lab behavior. ProtocolIR uses an LLM only for structured semantic extraction, then routes the result through a typed IR, hard verifier, learned reward model, deterministic repair policy, Opentrons compiler, simulator check, and audit report.
 
-## The Problem
+## Why It Is Different
 
-- Standard LLMs (ChatGPT, Claude, etc.) can generate syntactically valid Opentrons Python code
-- Generated scripts may still violate **semantic lab safety**:
-  - Reusing contaminated tips between different reagents
-  - Transferring volumes outside pipette range
-  - Overflowing wells
-  - Missing essential tip changes or mixing steps
-- Existing simulators only validate "does the code run?" not "is the lab behavior safe?"
+Baseline lab copilots often do:
 
-## Our Solution: A Compiler Architecture
-
-Instead of asking an LLM to directly write code, ProtocolIR implements a **typed compiler pipeline** with 9 distinct verification layers:
-
-1. **Parser** — Convert messy natural language to structured semantic actions
-2. **Grounder** — Map abstract location hints to concrete deck positions
-3. **IR Builder** — Generate strict, machine-readable intermediate representation
-4. **Hard Verifier** — Enforce physical invariants (no tip, pipette range, well capacity)
-5. **Reward Scorer** — Score trajectories against learned safety preferences
-6. **Repair Policy** — Automatically fix violations using deterministic rules
-7. **Compiler** — Translate verified IR to Opentrons Python
-8. **Simulator** — Prove execution safety via the Opentrons simulator
-9. **Audit** — Generate human-readable safety reports
-
-## Architecture Diagram
-
-```
-Raw Protocol (text)
-        ↓
-    [Parser]  ← Semantic extraction via configurable LLM provider
-        ↓
-    Semantic Actions
-        ↓
-    [Grounder] ← Map to deck
-        ↓
-    Grounded Actions
-        ↓
-    [IR Builder] ← Typed IR
-        ↓
-    Machine-Readable IR
-        ↓
-    [Hard Verifier] ← Physical constraints
-        ↓
-    Violations? ──────┐
-       Yes ↓          │
-    [Repair] ←────────┤
-       ↓              │
-    [Reward Scorer]   │
-       ↓              │
-    Meets threshold?  │
-       No → [Repair] ─┘
-       Yes ↓
-    [Compiler]
-        ↓
-    Opentrons Python
-        ↓
-    [Simulator]
-        ↓
-    Verified Safe? ──→ [Audit Report]
+```text
+protocol text -> LLM -> Opentrons Python
 ```
 
-## Results
+ProtocolIR does:
 
-| Metric | Direct LLM | ProtocolIR | Improvement |
-|--------|:---:|:---:|---:|
-| Semantic Violations | 31 | 1 | **97% ↓** |
-| Cross-Contamination Events | 12 | 0 | **100% ↓** |
-| Simulator Pass Rate | 70% | 100% | **+30%** |
-| Average Reward Score | -2,420 | +1,240 | **+3,660 ↑** |
-
-## Installation
-
-```bash
-# Clone or download the repository
-cd ProtocolIR
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Install package
-pip install -e .
+```text
+protocol text
+  -> OpenRouter structured semantic parser
+  -> deck grounding
+  -> typed robot IR
+  -> hard physical verifier
+  -> reward model
+  -> deterministic repair loop
+  -> Opentrons Python compiler
+  -> real Opentrons simulator validation
+  -> audit report
 ```
 
-### Requirements
-
-- Python 3.9+
-- LLM provider:
-  - Default: Ollama running where this code executes
-  - Optional: Anthropic API key (only for `PROTOCOLIR_LLM_PROVIDER=anthropic`)
-- Opentrons SDK 7.0+ (for simulator)
-- scikit-learn (for reward learning)
+The LLM never writes final Python. It extracts structured intent; compiler and verifier logic own execution.
 
 ## Quick Start
 
-### Run the Demo
+```bash
+cd ProtocolIR
+python -m pip install -r requirements.txt
+python test_installation.py
+$env:OPENROUTER_API_KEY="your_key_here"
+$env:PROTOCOLIR_MODEL="openrouter/free"
+python check_openrouter.py
+python train_reward_model.py
+python main.py --stress-demo -o stress_output
+python compare_systems.py -o comparison_output
+```
+
+If `python` is not configured on your machine, use the Python executable from your environment manager.
+
+## OpenRouter Setup
+
+ProtocolIR reads OpenRouter configuration from environment variables:
 
 ```bash
-python main.py --demo
+$env:OPENROUTER_API_KEY="your_key_here"
+$env:PROTOCOLIR_MODEL="openrouter/free"
 ```
 
-This runs a complete pipeline on an example PCR master mix setup protocol.
+Do not hardcode API keys in the repo. If `OPENROUTER_API_KEY` is not set, the parser fails loudly.
+OpenRouter structured output support is required. If the selected model rejects
+`response_format=json_schema`, choose a free OpenRouter model that supports
+structured outputs and rerun `python check_openrouter.py`.
 
-### Process Your Own Protocol
+## Bayesian IRL Reward Training
+
+Run this before the main pipeline:
 
 ```bash
-# From a file
-python main.py my_protocol.txt -o ./outputs
-
-# From text directly
-python main.py "Add 10 µL DNA template to each well. Add 40 µL master mix. Mix." -o ./outputs
-
-# With source URL
-python main.py my_protocol.txt --url https://protocols.io/... -o ./outputs
+python train_reward_model.py
 ```
 
-### Python API
+This writes:
 
-```python
-import protocolir as pir
-
-# Full pipeline
-raw_text = "Add 10 µL DNA to each well. Add 40 µL master mix. Mix gently."
-
-# Parse
-parsed = pir.parse_protocol(raw_text)
-
-# Ground
-grounded = pir.ground_actions(parsed)
-
-# Build IR
-ir = pir.build_ir(grounded)
-
-# Verify
-violations = pir.verify_ir(ir)
-
-# Repair
-ir_repaired, repairs = pir.repair_ir(ir, violations)
-
-# Compile
-script = pir.compile_to_opentrons(ir_repaired)
-
-# Simulate
-result = pir.simulate_opentrons_script(script)
-
-# Score
-reward_model = pir.learn_reward_heuristically()
-features = pir.extract_trajectory_features(ir_repaired, [])
-score = reward_model.score_trajectory(features)
-
-# Report
-report = pir.generate_audit_report(pipeline)
-print(report)
+```text
+models/learned_weights.json
+models/reward_posterior_samples.json
+models/reward_posterior_report.md
+DATASET_REPORT.md
 ```
 
-## Output
+The report includes posterior means, MAP estimates, 95% credible intervals,
+posterior sign probabilities, R-hat, ESS, and HMC acceptance rate.
 
-After running, you'll find:
+## Baseline Comparison
 
-```
-outputs/
-├── protocol.py          # Executable Opentrons script
-├── audit_report.md      # Detailed safety analysis
-└── summary.txt          # Executive summary
-```
+Run the direct LLM baseline and ProtocolIR on the same protocol:
 
-### Example Report
-
-```markdown
-# Protocol Safety Audit Report
-
-## Input Protocol
-- Goal: PCR master mix setup
-- Ambiguities detected: 1
-  - template_tube locations not specified
-
-## Safety Verification
-Critical violations detected: 3
-Warnings: 1
-
-### Violations Found (Before Repair)
-- CROSS_CONTAMINATION (action 8): Reusing tip for DNA template_1, then DNA template_2
-- PIPETTE_RANGE_VIOLATION (action 14): p20 range 1-20µL, attempted 40µL transfer
-- MISSING_MIX (action 10): Dispense to plate without following mix step
-
-### Repairs Applied
-1. [8] Inserted tip change before aspirate (cross-contamination)
-2. [14] Switched to p300_single_gen2 for 40µL transfer
-3. [10] Inserted mix step after dispense
-
-## Reward Scoring
-| Metric | Before | After | Change |
-|--------|--------|-------|--------|
-| Reward Score | -2,420 | +1,240 | +3,660 |
-| Violations | 3 | 0 | ✓ |
-
-## Simulator Validation
-✓ Status: PASS
-- Commands executed: 192
-- Aspirates: 48
-- Dispenses: 48
-- Tip operations: 48
-
-## Conclusion
-✓ Protocol is verified safe and ready for execution.
+```powershell
+python compare_systems.py -o comparison_output
 ```
 
-## Project Structure
+This writes:
 
-```
-ProtocolIR/
-├── README.md
-├── requirements.txt
-├── setup.py
-├── main.py                       # Entry point
-│
-├── protocolir/
-│   ├── __init__.py
-│   ├── schemas.py               # Pydantic models
-│   ├── parser.py                # LAYER 1: Semantic parsing
-│   ├── grounder.py              # LAYER 2: Grounding to deck
-│   ├── ir_builder.py            # LAYER 3: IR building
-│   ├── verifier.py              # LAYER 4: Safety verification
-│   ├── features.py              # Feature extraction
-│   ├── reward_model.py          # LAYER 5: Reward scoring
-│   ├── repair.py                # LAYER 6: Repair policy
-│   ├── compiler.py              # LAYER 7: Compiler
-│   ├── simulator.py             # LAYER 8: Simulator validation
-│   └── audit.py                 # LAYER 9: Audit reports
-│
-├── data/
-│   ├── protocols_io_raw/        # Example protocols.io protocols
-│   ├── expert_scripts/          # Expert Opentrons demonstrations
-│   └── corrupted_traces/        # Corrupted variants for learning
-│
-├── models/
-│   └── learned_weights.json     # Trained reward weights
-│
-├── demo/
-│   ├── input_protocol.txt       # Example protocol
-│   ├── output_script.py         # Generated code
-│   └── audit_report.md          # Example report
-│
-└── outputs/                     # Generated artifacts (after running)
+```text
+comparison_output/
+  comparison_report.md
+  direct_llm/baseline_protocol.py
+  direct_llm/baseline_report.md
+  protocolir/protocol.py
+  protocolir/audit_report.md
 ```
 
-## How Reward Learning Works
+The baseline is intentionally allowed to generate Opentrons Python directly.
+ProtocolIR is constrained to semantic parsing, typed IR verification, repair,
+and deterministic compilation.
 
-ProtocolIR learns a reward function from expert demonstrations:
+## Outputs
 
-```python
-# Expert trajectory (good):
-p20.pick_up_tip()
-p20.aspirate(10, DNA_template_rack["A1"])
-p20.dispense(10, plate["A1"])
-p20.mix(3, 10, plate["A1"])
-p20.drop_tip()
-p20.pick_up_tip()  # NEW TIP for new reagent
-p20.aspirate(40, master_mix_rack["A1"])
-p20.dispense(40, plate["A1"])
-p20.drop_tip()
+Running the demo writes:
 
-# Corrupted trajectory (bad):
-p20.pick_up_tip()
-p20.aspirate(10, DNA_template_rack["A1"])
-p20.dispense(10, plate["A1"])
-# MISSING: p20.drop_tip() + p20.pick_up_tip()
-# BUG: Reusing contaminated tip
-p20.aspirate(40, master_mix_rack["A1"])  # Cross-contamination!
-p20.dispense(40, plate["A1"])
-p20.drop_tip()
+```text
+stress_output/
+  protocol.py
+  audit_report.md
+  summary.txt
+  ir_original.json
+  ir_repaired.json
 ```
 
-The reward model learns feature weights that heavily penalize:
-- `contamination_violations`: -10,000
-- `pipette_range_violations`: -5,000
-- `well_overflow_violations`: -5,000
+## Core Modules
 
-And reward:
-- `complete_transfer_pairs`: +200
-- `mix_events`: +100
-- `tip_changed_between_different_reagents`: +5,000
+```text
+protocolir/
+  llm.py          OpenRouter structured-output adapter
+  parser.py       semantic extraction
+  grounder.py     deck, labware, and well mapping
+  ir_builder.py   typed robot IR builder
+  verifier.py     hard safety constraints
+  features.py     reward feature extraction
+  bayesian_irl.py adaptive multi-chain HMC posterior fitting
+  reward_model.py inverse preference reward model
+  repair.py       deterministic repair policy
+  compiler.py     Opentrons Python compiler
+  simulator.py    Opentrons simulator integration
+  audit.py        safety report generation
+  orchestration.py typed agent graph manifest
+  code_safety.py  static analyzer for direct-LLM baseline code
+```
 
-## Supported Protocols
+## Safety Checks
 
-**Scope (MVP):** PCR, qPCR, master mix setup, sample normalization
+The verifier catches issues that can be missed by "does this Python run?" simulation:
 
-**Future:** Magnetic bead separation, thermal cycling, centrifugation, complex multi-step workflows
+- aspirating, dispensing, or mixing without a tip
+- pipette range violations
+- tip over-capacity
+- well overflow
+- unknown or invalid labware locations
+- cross-contamination across reagents
+- dropping tips with liquid still in the tip
+- missing mix after plate dispense
 
-## Limitations & Future Work
+## Hackathon Demo Flow
 
-- **Current:** Single-channel pipettes, standard 96-well plates, OT-2 hardware
-- **Future:** Multi-channel optimization, custom labware, temperature modules, magnetic modules
-- **Current:** Deterministic repair rules; **Future:** Neural policy learning for complex repairs
-- **Current:** Heuristic reward weights; **Future:** Full Bayesian MCMC inference from larger demonstration sets
+1. Show a messy PCR protocol.
+2. Show semantic ambiguities and typed IR.
+3. Show verifier violations before repair.
+4. Show deterministic repairs.
+5. Show reward improvement.
+6. Show generated Opentrons Python and audit report.
 
-## Implementation Notes
+See [ARCHITECTURE.md](../ARCHITECTURE.md) for the refined technical architecture and judging-rubric mapping.
 
-- Parser supports provider switching via env vars (`ollama` default, `anthropic` optional)
-- Verifier and repair use deterministic Python rules (no LLMs)
-- Reward model uses logistic regression for efficiency
-- Compiler is deterministic, no random generation
-- Simulator integrates with Opentrons' built-in validation
 
-## Citation & Credits
 
-**Implementation by:** ProtocolIR team
-**Hackathon:** SCSP 2026 - Autonomous Labs Track
 
-Built with inspiration from:
-- Berkeley's Inverse Reinforcement Learning for Robotic Manipulation
-- Opentrons Protocol API
-- Ollama / Anthropic
 
-## License
-
-MIT
-
----
-
-**Questions?** Contact hack@scsp.ai or jdr@scsp.ai

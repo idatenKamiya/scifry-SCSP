@@ -1,19 +1,19 @@
-"""
-LAYER 2: Grounding Engine
-Maps abstract location hints to concrete deck positions and labware.
-"""
+"""Layer 2: map semantic actions to concrete OT-2 deck locations."""
 
-from typing import List, Dict, Optional, Tuple
+from __future__ import annotations
+
+from copy import deepcopy
+from typing import Dict, List, Optional
+
 from protocolir.schemas import (
     GroundedAction,
-    SemanticAction,
-    ParsedProtocol,
     Material,
+    ParsedProtocol,
     ReagentClass,
+    SemanticActionType,
 )
 
 
-# Default deck layout for PCR/qPCR protocols
 DEFAULT_DECK = {
     "PCR_plate": {
         "labware": "biorad_96_wellplate_200ul_pcr",
@@ -55,224 +55,206 @@ DEFAULT_DECK = {
         "max_volume_ul": 300,
         "well_count": 96,
     },
+    "template_plate": {
+        "labware": "nest_96_wellplate_100ul_pcr_full_skirt",
+        "opentrons_name": "nest_96_wellplate_100ul_pcr_full_skirt",
+        "slot": 6,
+        "alias": "template_plate",
+        "max_volume_ul": 100,
+        "well_count": 96,
+    },
 }
+
+
+def build_deck_layout(num_samples: int = 8) -> Dict:
+    """Build a conservative PCR/qPCR deck layout."""
+
+    deck = deepcopy(DEFAULT_DECK)
+    if num_samples <= 24:
+        # Keep the 96-well source plate out of small demos to simplify the deck.
+        deck.pop("template_plate", None)
+    return deck
+
+
+def ground_actions(parsed: ParsedProtocol, deck: Dict = None) -> List[GroundedAction]:
+    """Ground semantic actions to deck aliases and well addresses."""
+
+    deck = deepcopy(deck) if deck is not None else build_deck_layout(parsed.sample_count)
+    destination_wells = plate_wells(parsed.sample_count)
+    grounded: List[GroundedAction] = []
+
+    for action in parsed.actions:
+        reagent_class = _class_for_reagent(action.reagent, parsed.materials)
+
+        if action.action_type == SemanticActionType.TRANSFER:
+            sources = _sources_for_transfer(action.source_hint, reagent_class, parsed.sample_count)
+            destinations = _destinations_for_transfer(action.destination_hint, parsed.sample_count)
+            grounded.append(
+                GroundedAction(
+                    action_type=action.action_type,
+                    reagent=action.reagent,
+                    volume_ul=action.volume_ul,
+                    source=sources[0] if sources else None,
+                    destination=destinations[0] if destinations else None,
+                    sources=sources,
+                    destinations=destinations,
+                    repetitions=action.repetitions,
+                    constraints=action.constraints,
+                    source_location_type=get_location_type(sources[0], deck) if sources else None,
+                    dest_location_type=get_location_type(destinations[0], deck) if destinations else None,
+                )
+            )
+            continue
+
+        if action.action_type == SemanticActionType.MIX:
+            grounded.append(
+                GroundedAction(
+                    action_type=action.action_type,
+                    reagent=action.reagent,
+                    volume_ul=action.volume_ul,
+                    destination=destination_wells[0],
+                    destinations=destination_wells,
+                    repetitions=action.repetitions,
+                    constraints=action.constraints,
+                    dest_location_type="plate",
+                )
+            )
+            continue
+
+        location = resolve_location(action.destination_hint or action.source_hint, deck, parsed.materials)
+        grounded.append(
+            GroundedAction(
+                action_type=action.action_type,
+                reagent=action.reagent,
+                volume_ul=action.volume_ul,
+                source=location,
+                destination=location,
+                sources=[location] if location else [],
+                destinations=[location] if location else [],
+                repetitions=action.repetitions,
+                constraints=action.constraints,
+                source_location_type=get_location_type(location, deck),
+                dest_location_type=get_location_type(location, deck),
+            )
+        )
+
+    return grounded
 
 
 def resolve_location(
     location_hint: Optional[str], deck: Dict = None, materials: List[Material] = None
 ) -> Optional[str]:
-    """
-    Resolve an abstract location hint to a concrete deck position.
-
-    Examples:
-        "DNA template" -> "template_rack/A1"
-        "PCR plate" -> "plate/A1"
-        "master mix tube" -> "master_mix_rack/A1"
-
-    Args:
-        location_hint: Abstract location description
-        deck: Deck layout dictionary
-        materials: List of materials for context
-
-    Returns:
-        Resolved location string (e.g., "template_rack/A1") or None if unresolvable
-    """
+    """Resolve a natural-language location hint to an alias/well string."""
 
     if not location_hint:
         return None
 
-    if deck is None:
-        deck = DEFAULT_DECK
-
-    location_hint_lower = location_hint.lower()
-
-    # Direct mappings
-    location_maps = {
-        "pcr plate": "plate/A1",
-        "pcr_plate": "plate/A1",
-        "96-well plate": "plate/A1",
-        "96 well plate": "plate/A1",
-        "dna template": "template_rack/A1",
-        "template": "template_rack/A1",
-        "template tube": "template_rack/A1",
-        "master mix": "master_mix_rack/A1",
-        "master_mix": "master_mix_rack/A1",
-        "master mix tube": "master_mix_rack/A1",
-    }
-
-    for hint, location in location_maps.items():
-        if hint in location_hint_lower:
-            return location
-
-    # If it already looks like a well location, return as-is
+    hint = location_hint.lower()
     if "/" in location_hint:
         return location_hint
-
-    # Fallback
+    if "plate" in hint or "well" in hint:
+        return "plate/A1"
+    if "master" in hint or "mix" in hint or "water" in hint:
+        return "master_mix_rack/A1"
+    if "primer" in hint:
+        return "template_rack/B1"
+    if "template" in hint or "dna" in hint or "sample" in hint:
+        return "template_rack/A1"
     return None
-
-
-def ground_actions(
-    parsed: ParsedProtocol, deck: Dict = None
-) -> List[GroundedAction]:
-    """
-    Ground semantic actions to concrete deck locations.
-
-    Args:
-        parsed: ParsedProtocol with semantic actions
-        deck: Optional custom deck layout
-
-    Returns:
-        List of GroundedAction objects with resolved locations
-    """
-
-    if deck is None:
-        deck = DEFAULT_DECK
-
-    grounded = []
-
-    for action in parsed.actions:
-        source_location = resolve_location(action.source_hint, deck, parsed.materials)
-        dest_location = resolve_location(
-            action.destination_hint, deck, parsed.materials
-        )
-
-        # Infer well indices based on materials and action type
-        if source_location and "/" not in source_location:
-            source_location = infer_well_index(
-                source_location, action.reagent, "source", parsed.materials
-            )
-
-        if dest_location and "/" not in dest_location:
-            dest_location = infer_well_index(
-                dest_location, action.reagent, "destination", parsed.materials
-            )
-
-        grounded_action = GroundedAction(
-            action_type=action.action_type,
-            reagent=action.reagent,
-            volume_ul=action.volume_ul,
-            source=source_location,
-            destination=dest_location,
-            repetitions=action.repetitions,
-            constraints=action.constraints,
-            source_location_type=get_location_type(source_location, deck),
-            dest_location_type=get_location_type(dest_location, deck),
-        )
-
-        grounded.append(grounded_action)
-
-    return grounded
-
-
-def infer_well_index(
-    location: str, reagent: Optional[str], direction: str, materials: List[Material]
-) -> str:
-    """
-    Infer specific well index if not explicitly provided.
-
-    Args:
-        location: Location string (may be partial)
-        reagent: Reagent name for context
-        direction: "source" or "destination"
-        materials: List of materials
-
-    Returns:
-        Location with well index (e.g., "template_rack/A1")
-    """
-
-    if "/" in location:
-        return location
-
-    # For template racks, distribute materials across A1, A2, A3, etc.
-    if "template_rack" in location:
-        if reagent:
-            # Find which template this is
-            template_materials = [
-                m
-                for m in materials
-                if m.reagent_class in [ReagentClass.TEMPLATE, ReagentClass.PRIMER]
-            ]
-            for i, mat in enumerate(template_materials):
-                if mat.name.lower() in reagent.lower():
-                    well = f"A{i+1}"
-                    return f"template_rack/{well}"
-        return f"template_rack/A1"
-
-    # For master mix, typically A1
-    if "master_mix_rack" in location:
-        return f"master_mix_rack/A1"
-
-    # For PCR plate, start at A1 and distribute across plate
-    if "plate" in location:
-        return f"plate/A1"
-
-    return location
-
-
-def get_location_type(location: Optional[str], deck: Dict = None) -> Optional[str]:
-    """Determine the type of location (e.g., 'plate', 'tube_rack', 'tiprack')."""
-
-    if not location:
-        return None
-
-    if deck is None:
-        deck = DEFAULT_DECK
-
-    rack_name = location.split("/")[0]
-
-    for deck_item in deck.values():
-        if deck_item.get("alias") == rack_name:
-            if "tiprack" in deck_item.get("labware", "").lower():
-                return "tiprack"
-            elif "96" in deck_item.get("labware", "").lower() or "plate" in deck_item.get(
-                "labware", ""
-            ).lower():
-                return "plate"
-            else:
-                return "tube_rack"
-
-    return None
-
-
-def build_deck_layout(num_samples: int = 8) -> Dict:
-    """
-    Build a deck layout based on number of samples.
-
-    Args:
-        num_samples: Number of DNA samples to process
-
-    Returns:
-        Customized deck layout dictionary
-    """
-
-    deck = DEFAULT_DECK.copy()
-
-    # Could customize based on sample count
-    # For now, return default which works for up to 96 samples
-
-    return deck
 
 
 def validate_deck_compatibility(grounded: List[GroundedAction], deck: Dict) -> List[str]:
-    """
-    Validate that all grounded locations exist in the deck.
+    """Validate that grounded aliases exist in the selected deck."""
 
-    Returns:
-        List of validation errors, empty if valid
-    """
-
+    aliases = {item["alias"] for item in deck.values()}
     errors = []
-
     for action in grounded:
-        if action.source and action.source not in ["unknown", "user_input"]:
-            rack_name = action.source.split("/")[0]
-            if rack_name not in [v.get("alias") for v in deck.values()]:
-                errors.append(f"Unknown source rack: {rack_name}")
-
-        if action.destination and action.destination not in ["unknown", "user_input"]:
-            rack_name = action.destination.split("/")[0]
-            if rack_name not in [v.get("alias") for v in deck.values()]:
-                errors.append(f"Unknown destination rack: {rack_name}")
-
+        for location in action.sources + action.destinations:
+            if not location or "/" not in location:
+                continue
+            alias = location.split("/", 1)[0]
+            if alias not in aliases:
+                errors.append(f"Unknown deck alias '{alias}' in {location}")
     return errors
+
+
+def plate_wells(count: int) -> List[str]:
+    return [f"plate/{well}" for well in well_names(96)[:count]]
+
+
+def source_wells(count: int) -> List[str]:
+    if count <= 24:
+        return [f"template_rack/{well}" for well in well_names(24)[:count]]
+    return [f"template_plate/{well}" for well in well_names(96)[:count]]
+
+
+def well_names(well_count: int) -> List[str]:
+    if well_count == 24:
+        rows, cols = "ABCD", range(1, 7)
+    elif well_count == 384:
+        rows, cols = "ABCDEFGHIJKLMNOP", range(1, 25)
+    else:
+        rows, cols = "ABCDEFGH", range(1, 13)
+    return [f"{row}{col}" for row in rows for col in cols]
+
+
+def get_location_type(location: Optional[str], deck: Dict = None) -> Optional[str]:
+    if not location or "/" not in location:
+        return None
+    deck = deck or DEFAULT_DECK
+    alias = location.split("/", 1)[0]
+    for item in deck.values():
+        if item.get("alias") != alias:
+            continue
+        labware = item.get("labware", "").lower()
+        if "tiprack" in labware:
+            return "tiprack"
+        if "plate" in labware:
+            return "plate"
+        return "tube_rack"
+    return None
+
+
+def _destinations_for_transfer(destination_hint: Optional[str], sample_count: int) -> List[str]:
+    resolved = resolve_location(destination_hint)
+    if resolved and resolved.startswith("plate/"):
+        return plate_wells(sample_count)
+    if resolved:
+        return [resolved]
+    return plate_wells(sample_count)
+
+
+def _sources_for_transfer(
+    source_hint: Optional[str], reagent_class: ReagentClass, sample_count: int
+) -> List[str]:
+    if reagent_class in {ReagentClass.TEMPLATE, ReagentClass.PRIMER}:
+        if reagent_class == ReagentClass.PRIMER and sample_count <= 24:
+            return ["template_rack/B1"] * sample_count
+        return source_wells(sample_count)
+
+    resolved = resolve_location(source_hint)
+    if resolved:
+        return [resolved] * sample_count
+
+    if reagent_class in {ReagentClass.MASTER_MIX, ReagentClass.WATER, ReagentClass.BUFFER}:
+        return ["master_mix_rack/A1"] * sample_count
+
+    return ["master_mix_rack/A1"] * sample_count
+
+
+def _class_for_reagent(reagent: Optional[str], materials: List[Material]) -> ReagentClass:
+    if not reagent:
+        return ReagentClass.UNKNOWN
+    reagent_lower = reagent.lower()
+    for material in materials:
+        if material.name.lower() in reagent_lower or reagent_lower in material.name.lower():
+            return material.reagent_class
+    if "template" in reagent_lower or "dna" in reagent_lower or "sample" in reagent_lower:
+        return ReagentClass.TEMPLATE
+    if "primer" in reagent_lower:
+        return ReagentClass.PRIMER
+    if "master" in reagent_lower or "mix" in reagent_lower:
+        return ReagentClass.MASTER_MIX
+    if "water" in reagent_lower:
+        return ReagentClass.WATER
+    return ReagentClass.UNKNOWN

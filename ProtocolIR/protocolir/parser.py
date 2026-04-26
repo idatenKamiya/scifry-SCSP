@@ -1,258 +1,453 @@
-"""
-LAYER 1: Semantic Protocol Parser
-Converts messy protocols.io text into structured semantic actions.
-Uses configurable LLM providers for structured extraction.
-"""
+"""Layer 1: semantic protocol parsing with OpenRouter structured output."""
 
-import os
-import json
-from typing import Optional, List, Dict, Any
+from __future__ import annotations
 
-import requests
+import re
+from typing import Any, Dict, Iterable, Optional
+
+from protocolir.llm import OpenRouterUnavailable, openrouter_json
+from protocolir.rag import context_block
+from protocolir.biosecurity import screen_materials
 from protocolir.schemas import (
+    Material,
     ParsedProtocol,
+    ReagentClass,
     SemanticAction,
     SemanticActionType,
-    Material,
-    ReagentClass,
 )
 
-try:
-    from dotenv import load_dotenv
 
-    load_dotenv(".env.local")
-except ImportError:
-    pass
+SYSTEM_PROMPT = """
+You are ProtocolIR's semantic lab protocol extractor.
 
+Return one strict JSON object. Do not write markdown. The JSON must match:
+{
+  "goal": "short protocol goal",
+  "title": "optional title",
+  "sample_count": 8,
+  "materials": [
+    {
+      "name": "DNA template",
+      "class": "template",
+      "volume_ul": 80,
+      "location_hint": "template rack",
+      "notes": "optional"
+    }
+  ],
+  "actions": [
+    {
+      "action_type": "transfer",
+      "reagent": "DNA template",
+      "volume_ul": 10,
+      "source_hint": "template rack",
+      "destination_hint": "PCR plate",
+      "repetitions": null,
+      "constraints": ["fresh tip for each sample"],
+      "description": "original step text"
+    }
+  ],
+  "ambiguities": ["missing well map"]
+}
 
-class LLMClient:
-    """Provider-agnostic LLM client for protocol parsing."""
+Allowed reagent classes: template, master_mix, primer, water, buffer, enzyme,
+dye, salt, unknown.
+Allowed action types: transfer, mix, delay, temperature, centrifuge, vortex,
+incubate, comment.
 
-    def __init__(self) -> None:
-        self.provider = os.getenv("PROTOCOLIR_LLM_PROVIDER", "ollama").strip().lower()
-        self.temperature = float(os.getenv("PROTOCOLIR_TEMPERATURE", "0"))
-        self.max_tokens = int(os.getenv("PROTOCOLIR_MAX_TOKENS", "2048"))
-        self.timeout_seconds = int(os.getenv("PROTOCOLIR_LLM_TIMEOUT", "120"))
-        self.model = self._resolve_model()
-        self._anthropic_client = None
-
-    def _resolve_model(self) -> str:
-        configured_model = os.getenv("PROTOCOLIR_MODEL")
-        if configured_model:
-            return configured_model
-
-        if self.provider == "anthropic":
-            return "claude-sonnet-4-5"
-
-        # Default for local inference.
-        return os.getenv("OLLAMA_MODEL", "llama3.1:8b")
-
-    def chat(self, messages: List[Dict[str, str]], max_tokens: Optional[int] = None) -> str:
-        target_max_tokens = max_tokens or self.max_tokens
-
-        if self.provider == "anthropic":
-            return self._chat_anthropic(messages, target_max_tokens)
-        if self.provider == "ollama":
-            return self._chat_ollama(messages)
-
-        raise ValueError(
-            "Unsupported PROTOCOLIR_LLM_PROVIDER. Use 'ollama' or 'anthropic'."
-        )
-
-    def _chat_anthropic(self, messages: List[Dict[str, str]], max_tokens: int) -> str:
-        if self._anthropic_client is None:
-            try:
-                from anthropic import Anthropic
-            except ImportError as exc:
-                raise ImportError(
-                    "anthropic package is required for provider='anthropic'. "
-                    "Install with: pip install anthropic"
-                ) from exc
-            self._anthropic_client = Anthropic()
-
-        response = self._anthropic_client.messages.create(
-            model=self.model,
-            max_tokens=max_tokens,
-            temperature=self.temperature,
-            messages=messages,
-        )
-
-        text_chunks = [block.text for block in response.content if hasattr(block, "text")]
-        return "\n".join(text_chunks).strip()
-
-    def _chat_ollama(self, messages: List[Dict[str, str]]) -> str:
-        base_url = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434").rstrip("/")
-        endpoint = f"{base_url}/api/chat"
-        api_key = os.getenv("OLLAMA_API_KEY", "").strip()
-
-        headers: Dict[str, str] = {"Content-Type": "application/json"}
-        if api_key:
-            headers["Authorization"] = f"Bearer {api_key}"
-
-        payload: Dict[str, Any] = {
-            "model": self.model,
-            "messages": messages,
-            "stream": False,
-            "options": {"temperature": self.temperature},
-        }
-
-        response = requests.post(
-            endpoint,
-            headers=headers,
-            json=payload,
-            timeout=self.timeout_seconds,
-        )
-
-        if response.status_code >= 400:
-            raise ValueError(
-                f"Ollama request failed ({response.status_code}): {response.text[:300]}"
-            )
-
-        data = response.json()
-        message = data.get("message", {})
-        content = message.get("content", "")
-        if not content:
-            raise ValueError("Ollama response did not include message.content")
-        return content.strip()
-
-
-client = LLMClient()
-
-
-def _parse_json_response(response_text: str) -> dict:
-    """Best-effort JSON extraction for LLM responses."""
-    try:
-        return json.loads(response_text)
-    except json.JSONDecodeError:
-        if "```json" in response_text:
-            candidate = response_text.split("```json", 1)[1].split("```", 1)[0]
-            return json.loads(candidate)
-        if "```" in response_text:
-            candidate = response_text.split("```", 1)[1].split("```", 1)[0]
-            return json.loads(candidate)
-        raise ValueError(f"Could not parse LLM response as JSON: {response_text}")
+Important:
+- Extract structure only. Never generate Python code.
+- Preserve ambiguity instead of guessing hidden scientific details.
+- If a protocol says "each sample", "each well", or "corresponding well",
+  set sample_count if it is stated; otherwise use 8 and add an ambiguity.
+- Use microliters for volume_ul.
+"""
 
 
 def parse_protocol(raw_text: str, source_url: Optional[str] = None) -> ParsedProtocol:
     """
-    Parse a messy natural-language protocol into structured semantic actions.
+    Parse protocol text into typed semantic actions.
 
-    Args:
-        raw_text: Raw protocol text from protocols.io or user input
-        source_url: Optional URL of the source protocol
-
-    Returns:
-        ParsedProtocol with extracted goal, materials, actions, and ambiguities
+    OpenRouter is required. The parser intentionally fails loudly if the API key,
+    model, schema support, or network call is unavailable.
     """
 
-    extraction_prompt = f"""
-You are an expert lab protocol parser. Extract structured information from this protocol.
-
-PROTOCOL TEXT:
-{raw_text}
-
-Output a JSON object with these fields:
-1. goal: One-line description of what this protocol achieves
-2. materials: List of reagents/materials (name, class, estimated volume)
-   - Classes: template, master_mix, primer, water, buffer, enzyme, dye, salt, unknown
-3. steps: List of semantic actions
-   - For each step, extract: action_type, reagent, volume_ul, source_hint, destination_hint, constraints
-   - action_types: transfer, mix, delay, temperature, centrifuge, vortex, incubate, comment
-4. ambiguities: List of missing details (unknown well numbers, unspecified temperatures, etc.)
-
-Be precise. If a detail is missing, flag it in ambiguities.
-
-Return ONLY valid JSON, no markdown, no explanations.
-"""
-
-    response_text = client.chat([{"role": "user", "content": extraction_prompt}], max_tokens=2048)
-    data = _parse_json_response(response_text)
-
-    # Convert to Pydantic models
-    materials = [
-        Material(
-            name=m.get("name", "unknown"),
-            reagent_class=ReagentClass(m.get("class", "unknown").lower()),
-            volume_ul=m.get("volume_ul"),
-            notes=m.get("notes"),
+    try:
+        data = openrouter_json(
+            SYSTEM_PROMPT,
+            _parser_user_prompt(raw_text),
         )
-        for m in data.get("materials", [])
-    ]
+        parsed = _parsed_from_llm_data(data, raw_text, source_url)
+        if parsed.actions:
+            return parsed
+        raise OpenRouterUnavailable("OpenRouter returned zero executable actions")
+    except OpenRouterUnavailable:
+        raise
 
-    actions = [
-        SemanticAction(
-            action_type=SemanticActionType(s.get("action_type", "comment").lower()),
-            reagent=s.get("reagent"),
-            volume_ul=s.get("volume_ul"),
-            source_hint=s.get("source_hint"),
-            destination_hint=s.get("destination_hint"),
-            repetitions=s.get("repetitions"),
-            constraints=s.get("constraints", []),
-            description=s.get("description", ""),
-        )
-        for s in data.get("steps", [])
-    ]
 
-    parsed = ParsedProtocol(
-        goal=data.get("goal", "Unknown protocol"),
-        source=source_url,
-        materials=materials,
-        actions=actions,
-        ambiguities=data.get("ambiguities", []),
+def parse_protocol_with_llm_detail(raw_text: str) -> Dict[str, Any]:
+    """Return the raw OpenRouter JSON parse for inspection/debugging."""
+
+    return openrouter_json(
+        SYSTEM_PROMPT,
+        _parser_user_prompt(raw_text, detail=True),
     )
 
-    return parsed
+
+def _parser_user_prompt(raw_text: str, *, detail: bool = False) -> str:
+    retrieved = context_block(raw_text, top_k=5)
+    task = "detailed JSON" if detail else "JSON"
+    if retrieved:
+        return (
+            f"{retrieved}\n\n"
+            f"Now parse this target protocol into {task} for ProtocolIR. "
+            f"Use retrieved context only to resolve labware/action conventions; "
+            f"do not copy unrelated protocol steps.\n\n{raw_text}"
+        )
+    return f"Parse this protocol into {task} for ProtocolIR:\n\n{raw_text}"
+
+def _parsed_from_llm_data(
+    data: Dict[str, Any], raw_text: str, source_url: Optional[str]
+) -> ParsedProtocol:
+    sample_count = _coerce_sample_count(data.get("sample_count"), raw_text)
+
+    materials = []
+    for item in _as_list(data.get("materials")):
+        if not isinstance(item, dict):
+            continue
+        materials.append(
+            Material(
+                name=str(item.get("name") or "unknown"),
+                reagent_class=_coerce_reagent_class(item.get("class") or item.get("reagent_class")),
+                volume_ul=_coerce_float(item.get("volume_ul")),
+                location_hint=_clean_optional(item.get("location_hint")),
+                notes=_clean_optional(item.get("notes")),
+            )
+        )
+
+    actions = []
+    for item in _as_list(data.get("actions") or data.get("steps")):
+        if not isinstance(item, dict):
+            continue
+        actions.append(
+            SemanticAction(
+                action_type=_coerce_action_type(item.get("action_type") or item.get("type")),
+                reagent=_clean_optional(item.get("reagent")),
+                volume_ul=_coerce_float(item.get("volume_ul")),
+                source_hint=_clean_optional(item.get("source_hint") or item.get("source")),
+                destination_hint=_clean_optional(item.get("destination_hint") or item.get("destination")),
+                repetitions=_coerce_int(item.get("repetitions")),
+                constraints=[str(v) for v in _as_list(item.get("constraints"))],
+                description=str(item.get("description") or ""),
+            )
+        )
+
+    ambiguities = [str(v) for v in _as_list(data.get("ambiguities"))]
+    if sample_count == 8 and _mentions_each_sample(raw_text) and not _sample_count_explicit(raw_text):
+        ambiguities.append("Sample count not specified; defaulted to 8 demo wells.")
+    biosecurity_findings = screen_materials(materials)
+    ambiguities.extend(biosecurity_findings)
+
+    return ParsedProtocol(
+        goal=str(data.get("goal") or _infer_goal(raw_text)),
+        title=_clean_optional(data.get("title")),
+        source=source_url,
+        parser_backend="openrouter",
+        sample_count=sample_count,
+        materials=materials,
+        actions=actions,
+        ambiguities=ambiguities,
+    )
 
 
-def parse_protocol_with_llm_detail(raw_text: str) -> dict:
-    """
-    Extended parsing with more LLM interaction for clarification.
-    Used when protocol is particularly ambiguous.
-    """
-    conversation_history = []
+def training_parse_pcr_text(raw_text: str, source_url: Optional[str] = None) -> ParsedProtocol:
+    text = " ".join(raw_text.split())
+    lower = text.lower()
+    sample_count = _coerce_sample_count(None, raw_text)
+    ambiguities = []
+    materials = []
+    actions = []
 
-    # First pass: get baseline parse
-    first_prompt = f"""
-Parse this lab protocol step-by-step. Be very detailed about each step.
+    if _mentions_each_sample(raw_text) and not _sample_count_explicit(raw_text):
+        ambiguities.append("Sample count not specified; defaulted to 8 demo wells.")
+    if "well" in lower and not re.search(r"\b[a-h]\s*0?\d{1,2}\b", lower):
+        ambiguities.append("Specific well map not specified; defaulted to row-major wells.")
 
-PROTOCOL:
-{raw_text}
+    template_volume = _volume_near(lower, ["dna template", "template", "sample"])
+    if "template" in lower or "dna" in lower or "sample" in lower:
+        volume = template_volume or 10.0
+        materials.append(
+            Material(
+                name="DNA template",
+                reagent_class=ReagentClass.TEMPLATE,
+                volume_ul=volume * sample_count,
+                location_hint="template rack",
+            )
+        )
+        actions.append(
+            SemanticAction(
+                action_type=SemanticActionType.TRANSFER,
+                reagent="DNA template",
+                volume_ul=volume,
+                source_hint="template rack",
+                destination_hint="PCR plate",
+                constraints=["fresh tip for each sample"],
+                description=_matching_sentence(raw_text, ["template", "dna", "sample"]),
+            )
+        )
 
-For each step, extract:
-1. Action type (transfer, mix, incubate, etc.)
-2. What reagents/items are involved
-3. Volumes (if specified)
-4. Source and destination (specific tubes/wells if named)
-5. Any special conditions (temperature, time, etc.)
-6. Ambiguities or missing information
+    master_mix_volume = _volume_near(lower, ["master mix", "pcr mix"])
+    if "master mix" in lower or "pcr mix" in lower:
+        volume = master_mix_volume or 40.0
+        materials.append(
+            Material(
+                name="PCR master mix",
+                reagent_class=ReagentClass.MASTER_MIX,
+                volume_ul=volume * sample_count,
+                location_hint="master mix rack",
+            )
+        )
+        actions.append(
+            SemanticAction(
+                action_type=SemanticActionType.TRANSFER,
+                reagent="PCR master mix",
+                volume_ul=volume,
+                source_hint="master mix tube",
+                destination_hint="PCR plate",
+                constraints=["mix after dispense"],
+                description=_matching_sentence(raw_text, ["master mix", "pcr mix"]),
+            )
+        )
 
-Format as a numbered list, one step per line.
-"""
+    primer_volume = _volume_near(lower, ["primer"])
+    if "primer" in lower:
+        volume = primer_volume or 1.0
+        materials.append(
+            Material(
+                name="Primer",
+                reagent_class=ReagentClass.PRIMER,
+                volume_ul=volume * sample_count,
+                location_hint="template rack",
+            )
+        )
+        actions.append(
+            SemanticAction(
+                action_type=SemanticActionType.TRANSFER,
+                reagent="Primer",
+                volume_ul=volume,
+                source_hint="primer tube",
+                destination_hint="PCR plate",
+                constraints=["fresh tip for each sample"],
+                description=_matching_sentence(raw_text, ["primer"]),
+            )
+        )
 
-    conversation_history.append({"role": "user", "content": first_prompt})
+    water_volume = _volume_near(lower, ["water", "nuclease-free water"])
+    if "water" in lower:
+        volume = water_volume or 10.0
+        materials.append(
+            Material(
+                name="Nuclease-free water",
+                reagent_class=ReagentClass.WATER,
+                volume_ul=volume * sample_count,
+                location_hint="master mix rack",
+            )
+        )
+        actions.append(
+            SemanticAction(
+                action_type=SemanticActionType.TRANSFER,
+                reagent="Nuclease-free water",
+                volume_ul=volume,
+                source_hint="water tube",
+                destination_hint="PCR plate",
+                constraints=["fresh tip for each sample"],
+                description=_matching_sentence(raw_text, ["water"]),
+            )
+        )
 
-    parse_result = client.chat(conversation_history, max_tokens=1024)
-    conversation_history.append({"role": "assistant", "content": parse_result})
+    if "mix" in lower:
+        actions.append(
+            SemanticAction(
+                action_type=SemanticActionType.MIX,
+                volume_ul=min(template_volume or 10.0, 20.0),
+                destination_hint="PCR plate",
+                repetitions=_repetition_count(lower) or 3,
+                constraints=["mix gently"],
+                description=_matching_sentence(raw_text, ["mix"]),
+            )
+        )
 
-    # Second pass: ask for JSON
-    json_prompt = """
-Now, convert your analysis above into a single JSON object with these fields:
-{
-  "goal": "...",
-  "materials": [{"name": "...", "class": "...", "volume_ul": ...}],
-  "steps": [{"action_type": "...", "reagent": "...", "volume_ul": ..., "source_hint": "...", "destination_hint": "...", "constraints": [...]}],
-  "ambiguities": ["..."]
-}
+    if "ice" in lower or "cold" in lower:
+        actions.append(
+            SemanticAction(
+                action_type=SemanticActionType.INCUBATE,
+                destination_hint="PCR plate",
+                constraints=["keep cold", "manual ice handling may be required"],
+                description=_matching_sentence(raw_text, ["ice", "cold"]),
+            )
+        )
+        ambiguities.append("Cold storage/ice step requires module or manual handling decision.")
 
-Return ONLY the JSON object, no markdown or explanation.
-"""
+    if not actions:
+        actions.append(
+            SemanticAction(
+                action_type=SemanticActionType.COMMENT,
+                description="No liquid-handling step could be extracted deterministically.",
+            )
+        )
+        ambiguities.append("Could not extract executable liquid-handling actions.")
 
-    conversation_history.append({"role": "user", "content": json_prompt})
+    return ParsedProtocol(
+        goal=_infer_goal(raw_text),
+        title=_infer_title(raw_text),
+        source=source_url,
+        parser_backend="training_parser",
+        sample_count=sample_count,
+        materials=materials,
+        actions=actions,
+        ambiguities=ambiguities,
+    )
 
-    json_text = client.chat(conversation_history, max_tokens=1024).strip()
+
+def _coerce_reagent_class(value: Any) -> ReagentClass:
+    text = str(value or "unknown").strip().lower().replace(" ", "_")
+    return ReagentClass(text) if text in {item.value for item in ReagentClass} else ReagentClass.UNKNOWN
+
+
+def _coerce_action_type(value: Any) -> SemanticActionType:
+    text = str(value or "comment").strip().lower().replace(" ", "_")
+    return (
+        SemanticActionType(text)
+        if text in {item.value for item in SemanticActionType}
+        else SemanticActionType.COMMENT
+    )
+
+
+def _coerce_float(value: Any) -> Optional[float]:
     try:
-        data = _parse_json_response(json_text)
-    except ValueError:
-        data = {}
+        if value is None or value == "":
+            return None
+        return float(value)
+    except (TypeError, ValueError):
+        return None
 
-    return data
+
+def _coerce_int(value: Any) -> Optional[int]:
+    try:
+        if value is None or value == "":
+            return None
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _coerce_sample_count(value: Any, raw_text: str) -> int:
+    explicit = _explicit_sample_count(raw_text)
+    if explicit:
+        return max(1, min(96, explicit))
+    coerced = _coerce_int(value)
+    return max(1, min(96, coerced or 8))
+
+
+def _explicit_sample_count(raw_text: str) -> Optional[int]:
+    lower = raw_text.lower()
+    patterns = [
+        r"\b(\d{1,2})\s+(?:samples?|wells?|reactions?)\b",
+        r"\bfor\s+(\d{1,2})\s+(?:samples?|wells?|reactions?)\b",
+        r"\b(\d{1,2})-well\b",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, lower)
+        if match:
+            value = int(match.group(1))
+            if value in {24, 48, 96} and "plate" in lower and "sample" not in lower:
+                continue
+            return value
+    if "96-well" in lower and ("each well" in lower or "96 samples" in lower):
+        return 96
+    return None
+
+
+def _sample_count_explicit(raw_text: str) -> bool:
+    return _explicit_sample_count(raw_text) is not None
+
+
+def _mentions_each_sample(raw_text: str) -> bool:
+    lower = raw_text.lower()
+    return any(term in lower for term in ["each sample", "each well", "corresponding well"])
+
+
+def _volume_near(lower_text: str, terms: Iterable[str]) -> Optional[float]:
+    best_value = None
+    best_distance = None
+    for term in terms:
+        for term_match in re.finditer(re.escape(term), lower_text):
+            idx = term_match.start()
+            start = max(0, idx - 120)
+            window = lower_text[start : idx + len(term) + 120]
+            matches = list(
+                re.finditer(
+                    r"(\d+(?:\.\d+)?)\s*(?:ul|\u00b5l|microliter|microliters)",
+                    window,
+                    re.I,
+                )
+            )
+            for match in matches:
+                distance = abs((start + match.start()) - idx)
+                if best_distance is None or distance < best_distance:
+                    best_distance = distance
+                    best_value = float(match.group(1))
+    if best_value is not None:
+        return best_value
+    match = re.search(
+        r"(\d+(?:\.\d+)?)\s*(?:ul|\u00b5l|microliter|microliters)",
+        lower_text,
+        re.I,
+    )
+    return float(match.group(1)) if match else None
+
+
+def _repetition_count(lower_text: str) -> Optional[int]:
+    match = re.search(r"(\d+)\s+times", lower_text)
+    return int(match.group(1)) if match else None
+
+
+def _matching_sentence(raw_text: str, terms: Iterable[str]) -> str:
+    sentences = re.split(r"(?<=[.!?])\s+|\n+", raw_text.strip())
+    for sentence in sentences:
+        if any(term.lower() in sentence.lower() for term in terms):
+            return sentence.strip()
+    return ""
+
+
+def _infer_goal(raw_text: str) -> str:
+    lower = raw_text.lower()
+    if "qpcr" in lower:
+        return "qPCR plate setup"
+    if "pcr" in lower:
+        return "PCR plate setup"
+    if "plate" in lower:
+        return "Plate preparation"
+    return "Lab protocol execution"
+
+
+def _infer_title(raw_text: str) -> Optional[str]:
+    for line in raw_text.splitlines():
+        stripped = line.strip(" #\t")
+        if stripped:
+            return stripped[:120]
+    return None
+
+
+def _clean_optional(value: Any) -> Optional[str]:
+    if value is None:
+        return None
+    text = str(value).strip()
+    return text or None
+
+
+def _as_list(value: Any) -> list:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return value
+    return [value]

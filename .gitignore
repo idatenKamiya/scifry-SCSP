@@ -5,8 +5,11 @@
 **/.env
 **/.env.*
 !**/.env.example
+.idea/
 
 # Python cache/build artifacts
+.venv/
+**/.venv/
 __pycache__/
 *.py[cod]
 *.so
@@ -18,6 +21,13 @@ dist/
 
 # Local outputs/logs
 outputs/
+**/outputs/
+**/my_output/
+**/stress_output/
+**/stress_output_check/
+**/outputs_demo/
+**/comparison_output/
+**/baseline_output/
 *.log
 
 # Local Python envs/caches (SCC/project-local)

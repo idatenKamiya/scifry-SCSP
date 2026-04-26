@@ -1,86 +1,79 @@
 #!/usr/bin/env python3
-"""
-Test script to verify ProtocolIR installation and dependencies.
-Run with: python3 test_installation.py
-"""
+"""Verify that ProtocolIR imports and the demo path are usable."""
 
-import sys
 import importlib
+import sys
 
-print("=" * 70)
-print("PROTOCOLIR INSTALLATION TEST")
-print("=" * 70)
 
-dependencies = [
-    "pydantic",
-    "numpy",
-    "sklearn",
-    "pandas",
-    "matplotlib",
-    "requests",
-]
-
-print("\nChecking dependencies...")
-
-all_ok = True
-for dep in dependencies:
-    try:
-        if dep == "sklearn":
-            importlib.import_module("sklearn")
-        else:
-            importlib.import_module(dep)
-        print(f"  ✓ {dep}")
-    except ImportError as e:
-        print(f"  ✗ {dep}: {e}")
-        all_ok = False
-
-print("\nChecking ProtocolIR modules...")
-
-protocolir_modules = [
+REQUIRED_DEPENDENCIES = ["pydantic", "numpy", "opentrons"]
+OPTIONAL_DEPENDENCIES = ["requests", "dotenv"]
+MODULES = [
     "protocolir.schemas",
+    "protocolir.llm",
     "protocolir.parser",
+    "protocolir.rag",
+    "protocolir.biosecurity",
     "protocolir.grounder",
     "protocolir.ir_builder",
     "protocolir.verifier",
     "protocolir.features",
+    "protocolir.bayesian_irl",
+    "protocolir.bayesian_irl_pymc",
     "protocolir.reward_model",
     "protocolir.repair",
     "protocolir.compiler",
     "protocolir.simulator",
     "protocolir.audit",
+    "protocolir.orchestration",
+    "protocolir.code_safety",
+    "protocolir.ast_extractor",
+    "protocolir.precise_repair",
+    "protocolir.human_gate",
+    "protocolir.contamination_graph",
 ]
 
-for module in protocolir_modules:
-    try:
-        importlib.import_module(module)
-        print(f"  ✓ {module}")
-    except ImportError as e:
-        print(f"  ✗ {module}: {e}")
-        all_ok = False
 
-print("\nChecking optional providers...")
-try:
-    importlib.import_module("anthropic")
-    print("  ✓ anthropic (optional)")
-except ImportError:
-    print("  • anthropic not installed (optional; needed only for provider=anthropic)")
+def main() -> int:
+    print("=" * 72)
+    print("PROTOCOLIR INSTALLATION TEST")
+    print("=" * 72)
 
-print("\n" + "=" * 70)
+    ok = True
+    print("\nRequired dependencies:")
+    for dep in REQUIRED_DEPENDENCIES:
+        try:
+            importlib.import_module(dep)
+            print(f"  OK {dep}")
+        except ImportError as exc:
+            print(f"  FAIL {dep}: {exc}")
+            ok = False
 
-if all_ok:
-    print("✓ ALL CHECKS PASSED - Ready to use ProtocolIR!")
-    print("\nNext steps:")
-    print("  1. Default provider is Ollama (local): ensure ollama is running")
-    print("     export PROTOCOLIR_LLM_PROVIDER='ollama'")
-    print("  2. Optional cloud provider:")
-    print("     export PROTOCOLIR_LLM_PROVIDER='anthropic'")
-    print("     export ANTHROPIC_API_KEY='your_key'")
-    print("  3. Run demo: python3 main.py --demo")
-    print("  4. Read QUICKSTART.md for usage examples")
-    print("=" * 70)
-    sys.exit(0)
-else:
-    print("✗ SOME CHECKS FAILED - Please install missing dependencies")
-    print("  Run: pip install -r requirements.txt")
-    print("=" * 70)
-    sys.exit(1)
+    print("\nOptional dependencies:")
+    for dep in OPTIONAL_DEPENDENCIES:
+        try:
+            importlib.import_module(dep)
+            print(f"  OK {dep}")
+        except ImportError:
+            print(f"  SKIP {dep} (only needed for data fetching)")
+
+    print("\nProtocolIR modules:")
+    for module in MODULES:
+        try:
+            importlib.import_module(module)
+            print(f"  OK {module}")
+        except ImportError as exc:
+            print(f"  FAIL {module}: {exc}")
+            ok = False
+
+    print("\nOpenRouter configuration:")
+    print("  Set OPENROUTER_API_KEY for strict live LLM extraction.")
+    print("  The main parser stops the run if OpenRouter is missing or invalid.")
+
+    print("\n" + "=" * 72)
+    print("ALL CHECKS PASSED" if ok else "SOME CHECKS FAILED")
+    print("=" * 72)
+    return 0 if ok else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

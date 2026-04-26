@@ -1,258 +1,384 @@
-"""
-LAYER 4: Hard Safety Verifier
-Enforces physical invariants and lab safety constraints.
-These violations CANNOT be bypassed.
-"""
+"""Layer 4: hard physical and semantic safety verification."""
 
-from typing import List, Dict, Optional
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from typing import Dict, List, Optional
+
+from protocolir.grounder import well_names
 from protocolir.schemas import IROp, IROpType, Violation
 
 
+@dataclass
 class LabState:
-    """Tracks current state of the lab during IR verification."""
-
-    def __init__(self):
-        self.tip_attached = {"p20_single_gen2": False, "p300_single_gen2": False}
-        self.tip_reagent = {"p20_single_gen2": None, "p300_single_gen2": None}
-        self.current_volume = {"p20_single_gen2": 0.0, "p300_single_gen2": 0.0}
-        self.well_volumes = {}  # well_id -> current volume
-        self.loaded_labware = {}  # alias -> spec
-        self.loaded_instruments = {}  # name -> spec
-        self.last_action = None
+    tip_attached: Dict[str, bool] = field(default_factory=dict)
+    tip_reagent: Dict[str, Optional[str]] = field(default_factory=dict)
+    current_volume: Dict[str, float] = field(default_factory=dict)
+    loaded_labware: Dict[str, IROp] = field(default_factory=dict)
+    loaded_instruments: Dict[str, IROp] = field(default_factory=dict)
+    well_volumes: Dict[str, float] = field(default_factory=dict)
 
 
 def verify_ir(ir_ops: List[IROp]) -> List[Violation]:
-    """
-    Verify IR operations against hard safety constraints.
-
-    Args:
-        ir_ops: List of IR operations to verify
-
-    Returns:
-        List of Violation objects representing constraint violations
-    """
+    """Verify IR operations against constraints that reward cannot override."""
 
     state = LabState()
-    violations = []
+    violations: List[Violation] = []
 
-    for action_idx, action in enumerate(ir_ops):
-        # Track loaded labware and instruments
+    for idx, action in enumerate(ir_ops):
         if action.op == IROpType.LOAD_LABWARE:
+            if not action.alias:
+                violations.append(_violation("MISSING_LABWARE_ALIAS", idx, "Labware load missing alias."))
+                continue
             state.loaded_labware[action.alias] = action
-            state.well_volumes[action.alias] = {}
+            continue
 
-        elif action.op == IROpType.LOAD_INSTRUMENT:
+        if action.op == IROpType.LOAD_INSTRUMENT:
+            if not action.name:
+                violations.append(_violation("MISSING_INSTRUMENT_NAME", idx, "Instrument load missing name."))
+                continue
             state.loaded_instruments[action.name] = action
+            state.tip_attached[action.name] = False
+            state.tip_reagent[action.name] = None
+            state.current_volume[action.name] = 0.0
+            continue
 
-        # Verify pick up tip
-        elif action.op == IROpType.PICK_UP_TIP:
+        if action.op == IROpType.PICK_UP_TIP:
             pipette = action.pipette
-            if pipette not in state.tip_attached:
+            if _unknown_pipette(pipette, state):
+                violations.append(_unknown_pipette_violation(idx, pipette))
+                continue
+            if state.tip_attached[pipette]:
                 violations.append(
-                    Violation(
-                        violation_type="UNKNOWN_PIPETTE",
-                        severity="CRITICAL",
-                        action_idx=action_idx,
-                        message=f"Unknown pipette: {pipette}",
+                    _violation(
+                        "PICKUP_WITH_TIP_ATTACHED",
+                        idx,
+                        f"{pipette} already has a tip attached.",
+                        severity="WARNING",
                     )
                 )
-            else:
-                state.tip_attached[pipette] = True
-                state.tip_reagent[pipette] = None
-                state.current_volume[pipette] = 0.0
+            state.tip_attached[pipette] = True
+            state.tip_reagent[pipette] = None
+            state.current_volume[pipette] = 0.0
+            continue
 
-        # Verify drop tip
-        elif action.op == IROpType.DROP_TIP:
+        if action.op == IROpType.DROP_TIP:
             pipette = action.pipette
+            if _unknown_pipette(pipette, state):
+                violations.append(_unknown_pipette_violation(idx, pipette))
+                continue
+            if not state.tip_attached[pipette]:
+                violations.append(
+                    _violation(
+                        "DROP_TIP_WITHOUT_TIP",
+                        idx,
+                        f"{pipette} attempted to drop a tip when no tip is attached.",
+                        severity="WARNING",
+                    )
+                )
             if state.current_volume[pipette] > 0:
                 violations.append(
-                    Violation(
-                        violation_type="DROP_TIP_WITH_LIQUID",
-                        severity="CRITICAL",
-                        action_idx=action_idx,
-                        message=f"Dropping {pipette} while containing {state.current_volume[pipette]:.1f} µL",
-                        suggested_fix="Dispense remaining liquid before dropping tip",
+                    _violation(
+                        "DROP_TIP_WITH_LIQUID",
+                        idx,
+                        f"{pipette} drops a tip containing {state.current_volume[pipette]:.1f} uL.",
+                        "Dispense remaining liquid before dropping the tip.",
+                        repairable=False,
                     )
                 )
             state.tip_attached[pipette] = False
             state.tip_reagent[pipette] = None
+            state.current_volume[pipette] = 0.0
+            continue
 
-        # Verify aspirate
-        elif action.op == IROpType.ASPIRATE:
-            pipette = action.pipette
+        if action.op == IROpType.ASPIRATE:
+            _verify_aspirate(action, idx, state, violations)
+            continue
 
-            # Check: Tip attached?
-            if not state.tip_attached.get(pipette, False):
-                violations.append(
-                    Violation(
-                        violation_type="ASPIRATE_NO_TIP",
-                        severity="CRITICAL",
-                        action_idx=action_idx,
-                        message=f"{pipette} aspirating without attached tip",
-                        suggested_fix=f"Insert 'pick_up_tip()' before aspirate",
-                    )
-                )
+        if action.op == IROpType.DISPENSE:
+            _verify_dispense(action, idx, state, violations)
+            continue
 
-            # Check: Pipette range
-            instr = state.loaded_instruments.get(pipette)
-            if instr and (
-                action.volume_ul < instr.min_volume
-                or action.volume_ul > instr.max_volume
-            ):
-                violations.append(
-                    Violation(
-                        violation_type="PIPETTE_RANGE_VIOLATION",
-                        severity="CRITICAL",
-                        action_idx=action_idx,
-                        message=f"{pipette} range {instr.min_volume}-{instr.max_volume} µL, attempted {action.volume_ul:.1f} µL",
-                        suggested_fix=f"Use p300_single_gen2 for volumes >20 µL",
-                    )
-                )
+        if action.op == IROpType.MIX:
+            _verify_mix(action, idx, state, violations)
+            continue
 
-            # Check: Source exists
-            if action.source:
-                source_rack = action.source.split("/")[0]
-                if source_rack not in state.loaded_labware:
-                    violations.append(
-                        Violation(
-                            violation_type="UNKNOWN_SOURCE",
-                            severity="CRITICAL",
-                            action_idx=action_idx,
-                            message=f"Source rack '{source_rack}' not loaded",
-                        )
-                    )
-
-            # Check: Cross-contamination (different reagent on same tip)
-            if action.reagent and state.tip_reagent[pipette]:
-                if (
-                    state.tip_reagent[pipette] != action.reagent
-                    and state.tip_reagent[pipette] is not None
-                ):
-                    violations.append(
-                        Violation(
-                            violation_type="CROSS_CONTAMINATION",
-                            severity="CRITICAL",
-                            action_idx=action_idx,
-                            message=f"Reusing tip: had {state.tip_reagent[pipette]}, now aspirating {action.reagent}",
-                            suggested_fix="Change tip before aspirating different reagent",
-                        )
-                    )
-
-            # Update state
-            state.current_volume[pipette] = action.volume_ul or 0.0
-            state.tip_reagent[pipette] = action.reagent
-
-        # Verify dispense
-        elif action.op == IROpType.DISPENSE:
-            pipette = action.pipette
-
-            # Check: Tip attached?
-            if not state.tip_attached.get(pipette, False):
-                violations.append(
-                    Violation(
-                        violation_type="DISPENSE_NO_TIP",
-                        severity="CRITICAL",
-                        action_idx=action_idx,
-                        message=f"{pipette} dispensing without attached tip",
-                        suggested_fix="Pick up tip before dispense",
-                    )
-                )
-
-            # Check: Destination exists
-            if action.destination:
-                dest_rack = action.destination.split("/")[0]
-                if dest_rack not in state.loaded_labware:
-                    violations.append(
-                        Violation(
-                            violation_type="UNKNOWN_DESTINATION",
-                            severity="CRITICAL",
-                            action_idx=action_idx,
-                            message=f"Destination rack '{dest_rack}' not loaded",
-                        )
-                    )
-
-            # Check: Well overflow
-            if action.destination:
-                dest_labware = state.loaded_labware.get(
-                    action.destination.split("/")[0]
-                )
-                if dest_labware:
-                    current_well_volume = state.well_volumes.get(action.destination, 0.0)
-                    if (
-                        current_well_volume + (action.volume_ul or 0.0)
-                        > dest_labware.max_volume_ul
-                    ):
-                        violations.append(
-                            Violation(
-                                violation_type="WELL_OVERFLOW",
-                                severity="CRITICAL",
-                                action_idx=action_idx,
-                                message=f"Well {action.destination} max {dest_labware.max_volume_ul} µL, would have {current_well_volume + (action.volume_ul or 0.0):.1f} µL",
-                                suggested_fix="Reduce transfer volume or split across multiple wells",
-                            )
-                        )
-                    # Update state
-                    state.well_volumes[action.destination] = (
-                        current_well_volume + (action.volume_ul or 0.0)
-                    )
-
-            # Update state
-            state.current_volume[pipette] = max(
-                0.0, (state.current_volume[pipette] or 0.0) - (action.volume_ul or 0.0)
-            )
-
+    violations.extend(check_semantic_safety(ir_ops))
     return violations
 
 
 def check_semantic_safety(ir_ops: List[IROp]) -> List[Violation]:
-    """
-    Check for semantic safety issues (not purely physical).
+    """Check semantic issues that can pass syntax-level robot simulation."""
 
-    Examples:
-    - Missing mix after reagent addition
-    - Not keeping samples on ice
-    - Incorrect order of reagent additions
-    """
-
-    violations = []
-
-    # Check for aspirate-dispense pairs
-    for i, op in enumerate(ir_ops):
-        if op.op == IROpType.DISPENSE:
-            # Look for preceding aspirate for same pipette
-            found_aspirate = False
-            for j in range(i - 1, max(0, i - 5), -1):
-                if (
-                    ir_ops[j].op == IROpType.ASPIRATE
-                    and ir_ops[j].pipette == op.pipette
-                ):
-                    found_aspirate = True
-                    break
-
-            if not found_aspirate:
-                violations.append(
-                    Violation(
-                        violation_type="DISPENSE_WITHOUT_ASPIRATE",
-                        severity="WARNING",
-                        action_idx=i,
-                        message="Dispense without preceding aspirate",
-                    )
+    violations: List[Violation] = []
+    for idx, action in enumerate(ir_ops):
+        if action.op != IROpType.DISPENSE or not action.destination:
+            continue
+        if "plate/" not in action.destination:
+            continue
+        window = ir_ops[idx + 1 : idx + 4]
+        has_mix = any(
+            op.op == IROpType.MIX and op.location == action.destination for op in window
+        )
+        if not has_mix:
+            violations.append(
+                _violation(
+                    "MISSING_MIX",
+                    idx,
+                    f"Dispense into {action.destination} is not followed by a mix step.",
+                    "Insert a mix at the destination well after dispense.",
+                    severity="WARNING",
+                    repairable=True,
                 )
-
+            )
     return violations
 
 
 def count_violations_by_type(violations: List[Violation]) -> Dict[str, int]:
-    """Count violations grouped by type."""
-
-    counts = {}
-    for v in violations:
-        counts[v.violation_type] = counts.get(v.violation_type, 0) + 1
-
+    counts: Dict[str, int] = {}
+    for violation in violations:
+        counts[violation.violation_type] = counts.get(violation.violation_type, 0) + 1
     return counts
 
 
 def critical_violations_only(violations: List[Violation]) -> List[Violation]:
-    """Filter to only critical violations."""
+    return [violation for violation in violations if violation.severity == "CRITICAL"]
 
-    return [v for v in violations if v.severity == "CRITICAL"]
+
+def _verify_aspirate(
+    action: IROp, idx: int, state: LabState, violations: List[Violation]
+) -> None:
+    pipette = action.pipette
+    if _unknown_pipette(pipette, state):
+        violations.append(_unknown_pipette_violation(idx, pipette))
+        return
+
+    volume = action.volume_ul or 0.0
+    if not state.tip_attached[pipette]:
+        violations.append(
+            _violation(
+                "ASPIRATE_NO_TIP",
+                idx,
+                f"{pipette} aspirates without an attached tip.",
+                "Insert PickUpTip before aspirating.",
+                repairable=True,
+            )
+        )
+
+    _verify_pipette_range(action, idx, state, violations)
+    _verify_location(action.source, idx, state, violations, "UNKNOWN_SOURCE", "INVALID_SOURCE")
+
+    if state.current_volume[pipette] + volume > (state.loaded_instruments[pipette].max_volume or 0):
+        violations.append(
+            _violation(
+                "TIP_OVER_CAPACITY",
+                idx,
+                f"{pipette} would hold {state.current_volume[pipette] + volume:.1f} uL.",
+                "Dispense before aspirating more liquid.",
+                repairable=False,
+            )
+        )
+
+    existing_reagent = state.tip_reagent[pipette]
+    if existing_reagent and action.reagent and existing_reagent != action.reagent:
+        violations.append(
+            _violation(
+                "CROSS_CONTAMINATION",
+                idx,
+                f"Tip used for {existing_reagent} is reused for {action.reagent}.",
+                "Drop the tip and pick up a fresh tip before this aspirate.",
+                repairable=True,
+            )
+        )
+
+    state.current_volume[pipette] += volume
+    if action.reagent:
+        state.tip_reagent[pipette] = action.reagent
+
+
+def _verify_dispense(
+    action: IROp, idx: int, state: LabState, violations: List[Violation]
+) -> None:
+    pipette = action.pipette
+    if _unknown_pipette(pipette, state):
+        violations.append(_unknown_pipette_violation(idx, pipette))
+        return
+
+    volume = action.volume_ul or 0.0
+    if not state.tip_attached[pipette]:
+        violations.append(
+            _violation(
+                "DISPENSE_NO_TIP",
+                idx,
+                f"{pipette} dispenses without an attached tip.",
+                "Insert PickUpTip before dispensing.",
+                repairable=True,
+            )
+        )
+
+    if volume > state.current_volume[pipette] + 1e-9:
+        violations.append(
+            _violation(
+                "DISPENSE_MORE_THAN_ASPIRATED",
+                idx,
+                f"{pipette} dispenses {volume:.1f} uL but only holds {state.current_volume[pipette]:.1f} uL.",
+                "Check the transfer pair and volume.",
+                repairable=False,
+            )
+        )
+
+    _verify_location(
+        action.destination, idx, state, violations, "UNKNOWN_DESTINATION", "INVALID_DESTINATION"
+    )
+    _verify_well_capacity(action.destination, volume, idx, state, violations)
+
+    state.current_volume[pipette] = max(0.0, state.current_volume[pipette] - volume)
+    if action.destination:
+        state.well_volumes[action.destination] = state.well_volumes.get(action.destination, 0.0) + volume
+
+
+def _verify_mix(action: IROp, idx: int, state: LabState, violations: List[Violation]) -> None:
+    pipette = action.pipette
+    if _unknown_pipette(pipette, state):
+        violations.append(_unknown_pipette_violation(idx, pipette))
+        return
+
+    if not state.tip_attached[pipette]:
+        violations.append(
+            _violation(
+                "MIX_NO_TIP",
+                idx,
+                f"{pipette} mixes without an attached tip.",
+                "Insert PickUpTip before mixing.",
+                repairable=True,
+            )
+        )
+    _verify_pipette_range(action, idx, state, violations)
+    _verify_location(action.location, idx, state, violations, "UNKNOWN_MIX_LOCATION", "INVALID_MIX_LOCATION")
+
+
+def _verify_pipette_range(
+    action: IROp, idx: int, state: LabState, violations: List[Violation]
+) -> None:
+    pipette = action.pipette
+    instrument = state.loaded_instruments.get(pipette or "")
+    if not instrument or action.volume_ul is None:
+        return
+    min_volume = instrument.min_volume or 0
+    max_volume = instrument.max_volume or float("inf")
+    if action.volume_ul < min_volume or action.volume_ul > max_volume:
+        violations.append(
+            _violation(
+                "PIPETTE_RANGE_VIOLATION",
+                idx,
+                f"{pipette} range is {min_volume:g}-{max_volume:g} uL; attempted {action.volume_ul:g} uL.",
+                "Switch pipette or split the transfer volume.",
+                repairable=True,
+                details={"volume_ul": action.volume_ul, "pipette": pipette},
+            )
+        )
+
+
+def _verify_location(
+    location: Optional[str],
+    idx: int,
+    state: LabState,
+    violations: List[Violation],
+    unknown_type: str,
+    invalid_type: str,
+) -> None:
+    if not location:
+        violations.append(
+            _violation(
+                unknown_type,
+                idx,
+                "Operation is missing a source/destination location.",
+                "Ground the action to a concrete deck location.",
+                repairable=False,
+            )
+        )
+        return
+    if "/" not in location:
+        violations.append(_violation(invalid_type, idx, f"Location '{location}' is not alias/well formatted."))
+        return
+    alias, well = location.split("/", 1)
+    labware = state.loaded_labware.get(alias)
+    if labware is None:
+        violations.append(
+            _violation(
+                unknown_type,
+                idx,
+                f"Location alias '{alias}' is not loaded on the deck.",
+                "Load the referenced labware or update grounding.",
+                repairable=False,
+            )
+        )
+        return
+    valid_wells = set(well_names(labware.well_count or 96))
+    if well not in valid_wells:
+        violations.append(
+            _violation(
+                invalid_type,
+                idx,
+                f"Well '{well}' is invalid for {alias}.",
+                "Use a valid well address for the labware.",
+                repairable=False,
+            )
+        )
+
+
+def _verify_well_capacity(
+    destination: Optional[str],
+    volume: float,
+    idx: int,
+    state: LabState,
+    violations: List[Violation],
+) -> None:
+    if not destination or "/" not in destination:
+        return
+    alias = destination.split("/", 1)[0]
+    labware = state.loaded_labware.get(alias)
+    if labware is None:
+        return
+    current = state.well_volumes.get(destination, 0.0)
+    max_volume = labware.max_volume_ul or float("inf")
+    if current + volume > max_volume:
+        violations.append(
+            _violation(
+                "WELL_OVERFLOW",
+                idx,
+                f"{destination} would contain {current + volume:.1f} uL, above {max_volume:g} uL capacity.",
+                "Reduce volume or route excess to another well.",
+                repairable=False,
+                details={"destination": destination, "projected_volume_ul": current + volume},
+            )
+        )
+
+
+def _unknown_pipette(pipette: Optional[str], state: LabState) -> bool:
+    return pipette is None or pipette not in state.loaded_instruments
+
+
+def _unknown_pipette_violation(idx: int, pipette: Optional[str]) -> Violation:
+    return _violation("UNKNOWN_PIPETTE", idx, f"Unknown pipette '{pipette}'.", repairable=False)
+
+
+def _violation(
+    violation_type: str,
+    idx: int,
+    message: str,
+    suggested_fix: Optional[str] = None,
+    *,
+    severity: str = "CRITICAL",
+    repairable: bool = False,
+    details: Optional[Dict] = None,
+) -> Violation:
+    return Violation(
+        violation_type=violation_type,
+        severity=severity,  # type: ignore[arg-type]
+        action_idx=idx,
+        message=message,
+        suggested_fix=suggested_fix,
+        repairable=repairable,
+        details=details or {},
+    )

@@ -1,15 +1,18 @@
-"""
-Pydantic schemas for ProtocolIR pipeline.
-Defines strict type contracts between each layer.
-"""
+"""Typed contracts for the ProtocolIR compiler pipeline."""
 
-from pydantic import BaseModel, Field
-from typing import List, Optional, Literal, Dict, Any
 from enum import Enum
+from typing import Any, Dict, List, Literal, Optional
+
+from pydantic import BaseModel, ConfigDict, Field
+
+
+class StrictModel(BaseModel):
+    """Base model that keeps layer boundaries explicit."""
+
+    model_config = ConfigDict(extra="forbid")
 
 
 class ReagentClass(str, Enum):
-    """Allowed reagent classifications."""
     TEMPLATE = "template"
     MASTER_MIX = "master_mix"
     PRIMER = "primer"
@@ -21,16 +24,15 @@ class ReagentClass(str, Enum):
     UNKNOWN = "unknown"
 
 
-class Material(BaseModel):
-    """A reagent/material used in the protocol."""
-    name: str = Field(..., description="Name of the reagent")
-    reagent_class: ReagentClass = Field(..., description="Classification of reagent")
-    volume_ul: Optional[float] = Field(None, description="Estimated volume needed in µL")
+class Material(StrictModel):
+    name: str = Field(..., description="Human-readable reagent or material name.")
+    reagent_class: ReagentClass = ReagentClass.UNKNOWN
+    volume_ul: Optional[float] = Field(None, description="Estimated total volume needed.")
+    location_hint: Optional[str] = None
     notes: Optional[str] = None
 
 
 class SemanticActionType(str, Enum):
-    """Types of semantic actions in a protocol."""
     TRANSFER = "transfer"
     MIX = "mix"
     DELAY = "delay"
@@ -41,63 +43,61 @@ class SemanticActionType(str, Enum):
     COMMENT = "comment"
 
 
-class SemanticAction(BaseModel):
-    """A semantic action extracted from natural language."""
-    action_type: SemanticActionType
-    reagent: Optional[str] = Field(None, description="Reagent involved")
-    volume_ul: Optional[float] = Field(None, description="Volume in µL")
-    source_hint: Optional[str] = Field(None, description="Source location hint (e.g., 'DNA template tube')")
-    destination_hint: Optional[str] = Field(None, description="Destination location hint")
-    repetitions: Optional[int] = None
-    constraints: List[str] = Field(default_factory=list, description="Physical constraints (e.g., 'keep on ice')")
-    description: str = Field("", description="Original text from protocol")
-
-
-class ParsedProtocol(BaseModel):
-    """Output of semantic parser layer."""
-    goal: str = Field(..., description="One-liner of what the protocol achieves")
-    source: Optional[str] = None
-    materials: List[Material]
-    actions: List[SemanticAction]
-    ambiguities: List[str] = Field(default_factory=list, description="Missing details flagged during parsing")
-
-
-class GroundedAction(BaseModel):
-    """Action with resolved deck locations."""
+class SemanticAction(StrictModel):
     action_type: SemanticActionType
     reagent: Optional[str] = None
     volume_ul: Optional[float] = None
-    source: Optional[str] = Field(None, description="Resolved source location (e.g., 'template_rack/A1')")
-    destination: Optional[str] = Field(None, description="Resolved destination location")
+    source_hint: Optional[str] = None
+    destination_hint: Optional[str] = None
+    repetitions: Optional[int] = None
+    constraints: List[str] = Field(default_factory=list)
+    description: str = ""
+
+
+class ParsedProtocol(StrictModel):
+    goal: str
+    source: Optional[str] = None
+    title: Optional[str] = None
+    parser_backend: str = "unknown"
+    sample_count: int = Field(8, ge=1, le=96)
+    materials: List[Material] = Field(default_factory=list)
+    actions: List[SemanticAction] = Field(default_factory=list)
+    ambiguities: List[str] = Field(default_factory=list)
+
+
+class GroundedAction(StrictModel):
+    action_type: SemanticActionType
+    reagent: Optional[str] = None
+    volume_ul: Optional[float] = None
+    source: Optional[str] = None
+    destination: Optional[str] = None
+    sources: List[str] = Field(default_factory=list)
+    destinations: List[str] = Field(default_factory=list)
     repetitions: Optional[int] = None
     constraints: List[str] = Field(default_factory=list)
     source_location_type: Optional[str] = None
     dest_location_type: Optional[str] = None
 
 
-class LabwareSpec(BaseModel):
-    """Labware specification."""
+class LabwareSpec(StrictModel):
     name: str
-    opentrons_name: str = Field(..., description="Name in Opentrons API")
+    opentrons_name: str
     slot: int
     alias: str
     max_volume_ul: float
     well_count: int
-    well_volume_ul: Optional[List[float]] = None
 
 
-class InstrumentSpec(BaseModel):
-    """Instrument specification."""
+class InstrumentSpec(StrictModel):
     name: str
     opentrons_name: str
     mount: Literal["left", "right"]
     min_volume_ul: float
     max_volume_ul: float
-    tipracks: List[str] = Field(..., description="List of tiprack aliases")
+    tipracks: List[str]
 
 
 class IROpType(str, Enum):
-    """Types of IR operations."""
     LOAD_LABWARE = "LoadLabware"
     LOAD_INSTRUMENT = "LoadInstrument"
     PICK_UP_TIP = "PickUpTip"
@@ -109,83 +109,79 @@ class IROpType(str, Enum):
     SET_TEMPERATURE = "SetTemperature"
     INCUBATE = "Incubate"
     CENTRIFUGE = "Centrifuge"
+    COMMENT = "Comment"
 
 
-class IROp(BaseModel):
-    """Single IR operation - machine-readable lab instruction."""
+class IROp(StrictModel):
     op: IROpType
 
-    # LoadLabware / LoadInstrument fields
+    # LoadLabware / LoadInstrument fields.
     name: Optional[str] = None
     opentrons_name: Optional[str] = None
     slot: Optional[int] = None
     alias: Optional[str] = None
     mount: Optional[Literal["left", "right"]] = None
     tipracks: Optional[List[str]] = None
-
-    # Instrument specs
     min_volume: Optional[float] = None
     max_volume: Optional[float] = None
-
-    # Labware specs
     max_volume_ul: Optional[float] = None
     well_count: Optional[int] = None
 
-    # Aspirate/Dispense/Mix fields
+    # Liquid-handling fields.
     pipette: Optional[str] = None
     volume_ul: Optional[float] = None
-    source: Optional[str] = Field(None, description="Source well (e.g., 'template_rack/A1')")
-    destination: Optional[str] = Field(None, description="Destination well")
+    source: Optional[str] = None
+    destination: Optional[str] = None
     location: Optional[str] = None
     reagent: Optional[str] = None
     repetitions: Optional[int] = None
 
-    # Other
+    # Timing / module fields.
     delay_seconds: Optional[float] = None
     temperature_c: Optional[float] = None
+    comment: Optional[str] = None
 
 
-class Violation(BaseModel):
-    """Safety violation detected during verification."""
-    violation_type: str = Field(..., description="Type of violation")
+class Violation(StrictModel):
+    violation_type: str
     severity: Literal["CRITICAL", "WARNING", "INFO"] = "WARNING"
-    action_idx: int = Field(..., description="Index of IR operation that caused violation")
-    message: str = Field(..., description="Human-readable description")
+    action_idx: int
+    message: str
     suggested_fix: Optional[str] = None
+    repairable: bool = False
+    details: Dict[str, Any] = Field(default_factory=dict)
 
 
-class TrajectoryFeatures(BaseModel):
-    """Extracted features for reward scoring."""
+class TrajectoryFeatures(StrictModel):
     contamination_violations: int = 0
     pipette_range_violations: int = 0
     well_overflow_violations: int = 0
     aspirate_no_tip_violations: int = 0
     dispense_no_tip_violations: int = 0
+    mix_no_tip_violations: int = 0
     unknown_location_violations: int = 0
+    invalid_location_violations: int = 0
     drop_tip_with_liquid_violations: int = 0
-    total_violations: int = 0
+    missing_mix_events: int = 0
 
     tip_changes: int = 0
-    transfer_count: int = 0
     mix_events: int = 0
     aspirate_events: int = 0
     dispense_events: int = 0
+    total_operations: int = 0
 
     tip_changed_between_different_reagents: int = 0
     complete_transfer_pairs: int = 0
-    missing_mix_events: int = 0
 
 
-class RewardScore(BaseModel):
-    """Reward score and breakdown."""
+class RewardScore(StrictModel):
     total_score: float
     feature_scores: Dict[str, float] = Field(default_factory=dict)
     violations_count: int = 0
     threshold_passed: bool = False
 
 
-class SimulationResult(BaseModel):
-    """Result of Opentrons simulator validation."""
+class SimulationResult(StrictModel):
     passed: bool
     command_count: int = 0
     aspirate_count: int = 0
@@ -194,12 +190,13 @@ class SimulationResult(BaseModel):
     errors: List[str] = Field(default_factory=list)
     warnings: List[str] = Field(default_factory=list)
     log: Optional[str] = None
+    used_real_simulator: bool = False
 
 
-class ProtocolPipeline(BaseModel):
-    """Complete state through the pipeline."""
+class ProtocolPipeline(StrictModel):
     raw_text: str
     source_url: Optional[str] = None
+    deck_layout: Dict[str, Any] = Field(default_factory=dict)
 
     parsed: Optional[ParsedProtocol] = None
     grounded: Optional[List[GroundedAction]] = None
@@ -208,6 +205,8 @@ class ProtocolPipeline(BaseModel):
     ir_repaired: Optional[List[IROp]] = None
 
     violations: List[Violation] = Field(default_factory=list)
+    violations_before_repair: List[Violation] = Field(default_factory=list)
+    violations_after_repair: List[Violation] = Field(default_factory=list)
     repairs_applied: List[str] = Field(default_factory=list)
 
     reward_before: float = 0.0
@@ -218,5 +217,4 @@ class ProtocolPipeline(BaseModel):
     simulation_result: Optional[SimulationResult] = None
 
     audit_report: Optional[str] = None
-
     human_escalations: List[str] = Field(default_factory=list)

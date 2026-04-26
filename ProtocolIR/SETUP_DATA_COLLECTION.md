@@ -166,8 +166,8 @@ pip install python-dotenv
 
 The trained model gives you talking points:
 
-**Before**: "Heuristic reward weights from domain knowledge"
-**After**: "Learned reward function from real protocol data"
+**Before**: "Domain-prior reward weights"
+**After**: "Bayesian IRL posterior learned from expert and counterfactual traces"
 
 Show in your demo:
 ```bash
@@ -181,7 +181,7 @@ cat models/learned_weights.json | jq '.accuracy'
 
 # Show improvement in scoring
 python3 main.py --demo
-# Output shows reward score with trained vs heuristic weights
+# Output shows reward score using the trained Bayesian posterior mean
 ```
 
 ## Next Steps

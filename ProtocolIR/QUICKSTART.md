@@ -1,206 +1,108 @@
-# ProtocolIR Quick Start Guide
+# ProtocolIR Quick Start
 
-Get up and running in 5 minutes.
-
-## 1. Installation
+## 1. Verify The Environment
 
 ```bash
 cd ProtocolIR
-pip install -r requirements.txt
-pip install -e .
+python test_installation.py
 ```
 
-## 2. Configure LLM Provider
+Required for the core demo:
 
-### Option A (default, recommended): Ollama on this machine
+- Python 3.11 recommended
+- pydantic
+- numpy
+- Opentrons SDK
 
-```bash
-export PROTOCOLIR_LLM_PROVIDER="ollama"
-export OLLAMA_BASE_URL="http://127.0.0.1:11434"
-export PROTOCOLIR_MODEL="llama3.1:8b"
+Optional for data collection:
+
+- requests/python-dotenv for protocols.io fetch scripts
+
+## 2. Configure OpenRouter
+
+Do not hardcode real keys in this repo. Set the key in your shell:
+
+```powershell
+$env:OPENROUTER_API_KEY="your_key_here"
+$env:PROTOCOLIR_MODEL="openrouter/free"
 ```
 
-Start Ollama if needed:
+Use `openrouter/free` for faster/cheaper extraction.
 
-```bash
-ollama serve
-ollama pull llama3.1:8b
+Then verify the live model supports strict JSON schema output:
+
+```powershell
+python check_openrouter.py
 ```
 
-### Option B: Anthropic
+If the key or model is wrong, this command stops with the exact OpenRouter error.
 
-```bash
-export PROTOCOLIR_LLM_PROVIDER="anthropic"
-export ANTHROPIC_API_KEY="your_api_key_here"
+## 3. Train Bayesian IRL Reward Posterior
+
+```powershell
+python train_reward_model.py
 ```
 
-Or create a `.env` file:
+This writes the learned reward posterior mean, full samples, credible intervals,
+R-hat, ESS, and dataset report.
 
-```bash
-cp .env.example .env
-# Edit .env and add your API key
+## 4. Run The Demo
+
+```powershell
+python main.py --stress-demo -o stress_output
 ```
 
-## 3. Run the Demo
+Outputs:
 
-```bash
-python main.py --demo
+```text
+stress_output/
+  protocol.py
+  audit_report.md
+  summary.txt
+  ir_original.json
+  ir_repaired.json
 ```
 
-This will:
-- Parse an example PCR protocol
-- Build and verify the IR
-- Auto-repair any violations
-- Compile to Opentrons code
-- Simulate execution
-- Generate an audit report
+## 5. Run Your Own Protocol
 
-Output goes to `./outputs/`:
-- `protocol.py` — Executable Opentrons script
-- `audit_report.md` — Safety analysis
-- `summary.txt` — Executive summary
-
-## 4. Test with Your Own Protocol
-
-```bash
-python main.py "Add 10 µL DNA to plate. Add 40 µL master mix. Mix." -o ./my_output
+```powershell
+python main.py "Prepare 8 samples. Add 10 uL DNA template to each well. Add 40 uL PCR master mix. Mix gently." -o my_output
 ```
 
 Or from a file:
 
-```bash
-python main.py my_protocol.txt -o ./my_output
+```powershell
+python main.py my_protocol.txt -o my_output
 ```
 
-## 5. Python API
+## 6. Python API
 
 ```python
 import protocolir as pir
 
-# Parse
-parsed = pir.parse_protocol("Add 10 µL DNA. Add 40 µL master mix.")
-
-# Ground
+parsed = pir.parse_protocol("Prepare 8 samples. Add 10 uL DNA. Add 40 uL master mix. Mix.")
 grounded = pir.ground_actions(parsed)
-
-# Build IR
 ir = pir.build_ir(grounded)
-
-# Verify & Repair
 violations = pir.verify_ir(ir)
-ir_repaired, repairs = pir.repair_ir(ir, violations)
-
-# Compile
-script = pir.compile_to_opentrons(ir_repaired)
-
-# Simulate
+fixed_ir, repairs, remaining = pir.repair_iteratively(ir, violations)
+script = pir.compile_to_opentrons(fixed_ir)
 result = pir.simulate_opentrons_script(script)
 
-# Score
-model = pir.learn_reward_heuristically()
-features = pir.extract_trajectory_features(ir_repaired, [])
-score = model.score_trajectory(features)
-
-print(f"Status: {'✓ PASS' if result.passed else '✗ FAIL'}")
-print(f"Reward: {score.total_score:.0f}")
+print(result.passed)
+print(repairs)
 ```
 
-## 6. Project Structure
+## 7. Demo Talking Points
 
-```
-ProtocolIR/
-├── main.py                    # Entry point
-├── protocolir/                # Core package
-│   ├── parser.py              # Parse text → semantic actions
-│   ├── grounder.py            # Map to deck positions
-│   ├── ir_builder.py          # Build typed IR
-│   ├── verifier.py            # Check safety constraints
-│   ├── reward_model.py        # Score trajectories
-│   ├── repair.py              # Auto-fix violations
-│   ├── compiler.py            # Generate Opentrons code
-│   ├── simulator.py           # Run simulator
-│   └── audit.py               # Generate reports
-├── data/
-│   ├── protocols_io_raw/      # Example protocols
-│   ├── expert_scripts/        # Good Opentrons examples
-│   └── corrupted_traces/      # Bad examples (for learning)
-└── outputs/                   # Generated artifacts
-```
+1. LLMs can generate runnable code that is still unsafe.
+2. ProtocolIR makes the LLM produce structured JSON, not Python.
+3. The typed IR is verified against physical invariants.
+4. Repair is deterministic and auditable.
+5. The final artifact is an Opentrons script plus a safety report.
 
-## 7. Troubleshooting
+See `../ARCHITECTURE.md` for the full system design and source-backed SOTA rationale.
 
-### "ANTHROPIC_API_KEY not found"
 
-```bash
-export PROTOCOLIR_LLM_PROVIDER="anthropic"
-export ANTHROPIC_API_KEY="your_key"
-```
 
-### "Ollama is not reachable"
 
-```bash
-export PROTOCOLIR_LLM_PROVIDER="ollama"
-export OLLAMA_BASE_URL="http://127.0.0.1:11434"
-ollama serve
-```
 
-### "Opentrons simulator not found"
-
-The simulator is optional. ProtocolIR will do basic validation instead:
-
-```python
-result = pir.simulate_opentrons_script(script)
-# Returns SimulationResult with .passed = True/False
-```
-
-### "Pydantic validation error"
-
-Make sure you're using Python 3.9+:
-
-```bash
-python --version
-```
-
-## 8. Next Steps
-
-- Read [README.md](README.md) for full documentation
-- Check [demo/](demo/) for example inputs and outputs
-- Explore the [data/](data/) directory for sample protocols
-- Run tests: `pytest tests/`
-
-## 9. Hackathon Tips
-
-**For the 5-minute demo:**
-
-1. Show raw messy protocol text
-2. Run it through ProtocolIR
-3. Show the baseline LLM output (has violations)
-4. Show ProtocolIR output (violations fixed)
-5. Run simulator, show it passes
-6. Display audit report with improvements
-
-**Key metrics to highlight:**
-
-- Violations found and fixed
-- Reward score improvement
-- Simulator pass rate
-- Repairs applied
-
-**Example demo script:**
-
-```bash
-# Terminal 1: Show input
-cat data/protocols_io_raw/example_pcr_protocol.txt
-
-# Terminal 2: Run pipeline
-python main.py data/protocols_io_raw/example_pcr_protocol.txt -o demo_output
-
-# Terminal 3: Show output
-cat demo_output/summary.txt
-cat demo_output/audit_report.md
-cat demo_output/protocol.py
-```
-
----
-
-**Questions?** Contact hack@scsp.ai

@@ -1,94 +1,86 @@
-"""
-LAYER 5: Learned Reward Model
-Trains a reward function from expert vs corrupted demonstrations.
-Uses logistic regression for efficiency in hackathon context.
-"""
+"""Layer 5: learned/preference reward model for lab trajectories."""
+
+from __future__ import annotations
 
 import json
-from typing import List, Dict, Tuple, Optional
-from pathlib import Path
+from typing import Dict, List, Optional, Tuple
+
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from protocolir.schemas import TrajectoryFeatures, RewardScore, IROp, Violation
+
 from protocolir.features import extract_trajectory_features
+from protocolir.schemas import IROp, RewardScore, TrajectoryFeatures, Violation
 
 
-# Default reward weights (before learning)
 DEFAULT_REWARD_WEIGHTS = {
-    "contamination_violations": -10000,
-    "pipette_range_violations": -5000,
-    "well_overflow_violations": -5000,
-    "aspirate_no_tip_violations": -10000,
-    "dispense_no_tip_violations": -5000,
-    "unknown_location_violations": -3000,
-    "drop_tip_with_liquid_violations": -10000,
-    "total_violations": -100,
-    "tip_changes": -2,
-    "aspirate_events": 0,
-    "dispense_events": 0,
-    "transfer_count": +50,
-    "mix_events": +100,
-    "tip_changed_between_different_reagents": +500,
-    "complete_transfer_pairs": +200,
-    "missing_mix_events": -50,
+    "contamination_violations": -100000.0,
+    "pipette_range_violations": -50000.0,
+    "well_overflow_violations": -50000.0,
+    "aspirate_no_tip_violations": -50000.0,
+    "dispense_no_tip_violations": -50000.0,
+    "mix_no_tip_violations": -25000.0,
+    "unknown_location_violations": -10000.0,
+    "invalid_location_violations": -10000.0,
+    "drop_tip_with_liquid_violations": -50000.0,
+    "missing_mix_events": -500.0,
+    "tip_changes": -2.0,
+    "aspirate_events": 10.0,
+    "dispense_events": 10.0,
+    "mix_events": 250.0,
+    "total_operations": -0.2,
+    "tip_changed_between_different_reagents": 5000.0,
+    "complete_transfer_pairs": 500.0,
+}
+
+
+LEGACY_FEATURE_MAP = {
+    "violation_count": "contamination_violations",
+    "missing_mix_violations": "missing_mix_events",
+    "total_operations": "total_operations",
+    "aspirate_count": "aspirate_events",
+    "dispense_count": "dispense_events",
+    "mix_count": "mix_events",
 }
 
 
 class RewardModel:
-    """Learned reward function for lab trajectory scoring."""
+    """Linear reward function over verified IR trajectory features."""
 
     def __init__(self, weights: Optional[Dict[str, float]] = None):
-        """
-        Initialize reward model.
-
-        Args:
-            weights: Dictionary of feature weights. If None, uses defaults.
-        """
-
-        self.weights = weights or DEFAULT_REWARD_WEIGHTS.copy()
+        self.weights = dict(DEFAULT_REWARD_WEIGHTS)
+        if weights:
+            for name, value in weights.items():
+                self.weights[name] = float(value)
         self.feature_names = list(self.weights.keys())
 
     def score_trajectory(self, features: TrajectoryFeatures) -> RewardScore:
-        """
-        Score a trajectory using the reward function.
-
-        Args:
-            features: TrajectoryFeatures extracted from IR trajectory
-
-        Returns:
-            RewardScore with total score and feature breakdown
-        """
-
-        score = RewardScore(total_score=0.0, violations_count=features.total_violations)
-
-        feature_dict = features.model_dump(exclude_unset=False)
-
+        values = features.model_dump(exclude_unset=False)
+        violation_count = _feature_violation_count(values)
         total = 0.0
-        for feature_name, weight in self.weights.items():
-            feature_value = feature_dict.get(feature_name, 0)
-            contribution = feature_value * weight
-            score.feature_scores[feature_name] = contribution
+        breakdown: Dict[str, float] = {}
+        for name, weight in self.weights.items():
+            contribution = float(values.get(name, 0)) * weight
+            breakdown[name] = contribution
             total += contribution
+        return RewardScore(
+            total_score=total,
+            feature_scores=breakdown,
+            violations_count=violation_count,
+            threshold_passed=violation_count == 0 and total >= 0,
+        )
 
-        score.total_score = total
-        score.threshold_passed = total >= -100  # Threshold: allow some violations but penalize severely
-
-        return score
-
-    def save(self, path: str):
-        """Save learned weights to JSON."""
-
-        with open(path, "w") as f:
-            json.dump(self.weights, f, indent=2)
+    def save(self, path: str) -> None:
+        with open(path, "w", encoding="utf-8") as handle:
+            json.dump({"weights": self.weights, "feature_names": self.feature_names}, handle, indent=2)
 
     @staticmethod
     def load(path: str) -> "RewardModel":
-        """Load learned weights from JSON."""
-
-        with open(path, "r") as f:
-            weights = json.load(f)
-
-        return RewardModel(weights)
+        with open(path, "r", encoding="utf-8") as handle:
+            data = json.load(handle)
+        if "weights" in data:
+            return RewardModel({str(k): float(v) for k, v in data["weights"].items()})
+        if "coefficients" in data and "feature_names" in data:
+            return RewardModel(_weights_from_legacy_coefficients(data))
+        return RewardModel({str(k): float(v) for k, v in data.items() if isinstance(v, (int, float))})
 
 
 def train_reward_model(
@@ -96,86 +88,58 @@ def train_reward_model(
     corrupted_trajectories: List[Tuple[List[IROp], List[Violation]]],
 ) -> RewardModel:
     """
-    Train a reward model from expert vs corrupted demonstration pairs.
+    Learn reward weights from expert-vs-corrupted preference pairs.
 
-    Uses logistic regression to learn P(expert > corrupted).
-
-    Args:
-        expert_trajectories: List of (ir_ops, violations) tuples for good trajectories
-        corrupted_trajectories: List of (ir_ops, violations) tuples for bad trajectories
-
-    Returns:
-        Trained RewardModel
+    This is inverse preference learning: for each pair, optimize weights so
+    score(expert) > score(corrupted). It avoids a heavyweight sklearn dependency
+    while preserving the publishable framing: reward learning from demonstrations
+    and counterfactual unsafe variants.
     """
 
-    # Extract features from all trajectories
-    expert_features_list = []
-    for ir_ops, violations in expert_trajectories:
-        features = extract_trajectory_features(ir_ops, violations)
-        expert_features_list.append(features.model_dump(exclude_unset=False))
+    if not expert_trajectories or not corrupted_trajectories:
+        raise ValueError("Reward learning requires expert and corrupted trajectories")
 
-    corrupted_features_list = []
-    for ir_ops, violations in corrupted_trajectories:
-        features = extract_trajectory_features(ir_ops, violations)
-        corrupted_features_list.append(features.model_dump(exclude_unset=False))
+    feature_names = list(DEFAULT_REWARD_WEIGHTS.keys())
+    pair_vectors = []
+    for expert, corrupted in zip(expert_trajectories, corrupted_trajectories):
+        expert_features = extract_trajectory_features(*expert).model_dump(exclude_unset=False)
+        corrupted_features = extract_trajectory_features(*corrupted).model_dump(exclude_unset=False)
+        pair_vectors.append(
+            [expert_features.get(name, 0) - corrupted_features.get(name, 0) for name in feature_names]
+        )
 
-    # Build feature matrix and labels
-    feature_names = list(expert_features_list[0].keys())
+    if not pair_vectors:
+        raise ValueError("Reward learning produced no preference pairs")
 
-    # Stack features: expert first (label=1), corrupted second (label=0)
-    X_expert = np.array([[f.get(name, 0) for name in feature_names] for f in expert_features_list])
-    X_corrupted = np.array(
-        [[f.get(name, 0) for name in feature_names] for f in corrupted_features_list]
-    )
+    x = np.asarray(pair_vectors, dtype=float)
+    scale = np.maximum(np.std(x, axis=0), 1.0)
+    x_scaled = x / scale
 
-    X = np.vstack([X_expert, X_corrupted])
-    y = np.array([1] * len(expert_features_list) + [0] * len(corrupted_features_list))
+    weights = np.asarray([DEFAULT_REWARD_WEIGHTS[name] for name in feature_names], dtype=float)
+    weights = weights / np.maximum(np.linalg.norm(weights), 1.0)
 
-    # Train logistic regression: P(expert > corrupted) = sigmoid(w · features)
-    model = LogisticRegression(max_iter=1000, random_state=42)
-    model.fit(X, y)
+    learning_rate = 0.2
+    l2 = 0.01
+    for _ in range(400):
+        margins = x_scaled @ weights
+        gradients = -(x_scaled.T @ (1.0 / (1.0 + np.exp(margins)))) / len(x_scaled)
+        gradients += l2 * weights
+        weights -= learning_rate * gradients
 
-    # Extract learned weights
-    weights = {
-        name: float(coef) for name, coef in zip(feature_names, model.coef_[0])
-    }
+    learned = {name: float(w / s * 1000.0) for name, w, s in zip(feature_names, weights, scale)}
 
-    return RewardModel(weights)
+    # Keep safety invariants dominated by domain priors; let data tune softer terms.
+    combined = dict(DEFAULT_REWARD_WEIGHTS)
+    for name, value in learned.items():
+        if "violations" in name or "contamination" in name or "overflow" in name:
+            combined[name] = min(combined[name], value)
+        else:
+            combined[name] = 0.7 * combined[name] + 0.3 * value
+    return RewardModel(combined)
 
 
-def learn_reward_heuristically() -> RewardModel:
-    """
-    Return a heuristic reward model based on domain knowledge.
-    Used when we don't have enough training data.
-
-    The heuristics encode what makes a good lab protocol:
-    - Avoid contamination at all costs
-    - Respect pipette ranges
-    - Don't overflow wells
-    - Change tips appropriately
-    - Mix after reagent addition
-    """
-
-    heuristic_weights = {
-        "contamination_violations": -100000,  # Absolute worst
-        "pipette_range_violations": -50000,   # Severe
-        "well_overflow_violations": -50000,   # Severe
-        "aspirate_no_tip_violations": -50000, # Severe
-        "dispense_no_tip_violations": -50000, # Severe
-        "unknown_location_violations": -10000,
-        "drop_tip_with_liquid_violations": -50000,
-        "total_violations": -1000,
-        "tip_changes": -5,  # Slightly penalize unnecessary changes
-        "aspirate_events": 10,  # Bonus for each action
-        "dispense_events": 10,
-        "transfer_count": 100,  # Bonus for complete transfers
-        "mix_events": 500,  # Big bonus for mixing (critical safety)
-        "tip_changed_between_different_reagents": 5000,  # Huge bonus for safety
-        "complete_transfer_pairs": 500,  # Bonus for well-formed transfers
-        "missing_mix_events": -500,  # Penalize missing mixes
-    }
-
-    return RewardModel(heuristic_weights)
+def domain_prior_reward_model() -> RewardModel:
+    return RewardModel(DEFAULT_REWARD_WEIGHTS)
 
 
 def compare_trajectories(
@@ -183,20 +147,16 @@ def compare_trajectories(
     corrupted_features: TrajectoryFeatures,
     model: RewardModel,
 ) -> Dict:
-    """
-    Compare expert vs corrupted trajectory scores.
-    Returns comparison report.
-    """
-
     expert_score = model.score_trajectory(expert_features)
     corrupted_score = model.score_trajectory(corrupted_features)
-
+    expert_values = expert_features.model_dump(exclude_unset=False)
+    corrupted_values = corrupted_features.model_dump(exclude_unset=False)
     return {
         "expert_score": expert_score.total_score,
         "corrupted_score": corrupted_score.total_score,
         "difference": expert_score.total_score - corrupted_score.total_score,
-        "expert_violations": expert_features.total_violations,
-        "corrupted_violations": corrupted_features.total_violations,
+        "expert_violations": _feature_violation_count(expert_values),
+        "corrupted_violations": _feature_violation_count(corrupted_values),
         "expert_passed": expert_score.threshold_passed,
         "corrupted_passed": corrupted_score.threshold_passed,
     }
@@ -208,46 +168,40 @@ def update_weights_bayesian(
     corrupted_trajectories: List[Tuple[List[IROp], List[Violation]]],
     learning_rate: float = 0.01,
 ) -> Dict[str, float]:
-    """
-    Update weights using gradient-based Bayesian learning.
-    Simpler than full MCMC, sufficient for hackathon.
+    """Lightweight posterior-style update around prior weights."""
 
-    Args:
-        prior_weights: Initial weights
-        expert_trajectories: Good examples
-        corrupted_trajectories: Bad examples
-        learning_rate: Step size for updates
+    trained = train_reward_model(expert_trajectories, corrupted_trajectories)
+    updated = dict(prior_weights)
+    for name, value in trained.weights.items():
+        prior = updated.get(name, DEFAULT_REWARD_WEIGHTS.get(name, 0.0))
+        updated[name] = (1.0 - learning_rate) * prior + learning_rate * value
+    return updated
 
-    Returns:
-        Updated weights
-    """
 
-    model = RewardModel(prior_weights)
-    updated_weights = prior_weights.copy()
+def _weights_from_legacy_coefficients(data: Dict) -> Dict[str, float]:
+    weights = dict(DEFAULT_REWARD_WEIGHTS)
+    for name, coefficient in zip(data.get("feature_names", []), data.get("coefficients", [])):
+        mapped = LEGACY_FEATURE_MAP.get(name, name)
+        if mapped in weights:
+            weights[mapped] = float(coefficient) * 1000.0
+    return weights
 
-    # Simple learning loop
-    for expert_ir, expert_viol in expert_trajectories[:5]:  # Limit iterations
-        expert_features = extract_trajectory_features(expert_ir, expert_viol)
-        expert_score = model.score_trajectory(expert_features).total_score
 
-        # Increase weight of features that appear in good trajectories
-        feature_dict = expert_features.model_dump(exclude_unset=False)
-        for feature_name, value in feature_dict.items():
-            if value > 0:
-                updated_weights[feature_name] = (
-                    updated_weights[feature_name] + learning_rate * value
-                )
-
-    for corrupted_ir, corrupted_viol in corrupted_trajectories[:5]:
-        corrupted_features = extract_trajectory_features(corrupted_ir, corrupted_viol)
-        corrupted_score = model.score_trajectory(corrupted_features).total_score
-
-        # Decrease weight of features that appear in bad trajectories
-        feature_dict = corrupted_features.model_dump(exclude_unset=False)
-        for feature_name, value in feature_dict.items():
-            if value > 0 and corrupted_viol:
-                updated_weights[feature_name] = (
-                    updated_weights[feature_name] - learning_rate * value
-                )
-
-    return updated_weights
+def _feature_violation_count(values: Dict[str, float]) -> int:
+    return int(
+        sum(
+            float(values.get(name, 0.0))
+            for name in [
+                "contamination_violations",
+                "pipette_range_violations",
+                "well_overflow_violations",
+                "aspirate_no_tip_violations",
+                "dispense_no_tip_violations",
+                "mix_no_tip_violations",
+                "unknown_location_violations",
+                "invalid_location_violations",
+                "drop_tip_with_liquid_violations",
+                "missing_mix_events",
+            ]
+        )
+    )

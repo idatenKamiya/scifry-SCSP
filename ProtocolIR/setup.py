@@ -10,7 +10,7 @@ with open("requirements.txt", "r", encoding="utf-8") as f:
 
 setup(
     name="protocolir",
-    version="1.0.0",
+    version="2.0.0",
     author="ProtocolIR Team",
     author_email="hack@scsp.ai",
     description="Reward-Guided Protocol Compiler for Safe Lab Automation",
@@ -18,6 +18,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/scsp/ProtocolIR",
     packages=find_packages(),
+    py_modules=["main"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
