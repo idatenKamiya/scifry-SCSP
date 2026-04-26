@@ -1,7 +1,7 @@
 # ProtocolIR
 
 Team name: AIZU
-Team members name: Kaukik Khade, Sreeram Maguluri, Skanda Nadig
+Team members name: Laukik Khade, Sreeram Maguluri, Skanda Nadig
 Track: Autonomous Labs
 
 What you built:
