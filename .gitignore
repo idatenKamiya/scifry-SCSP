@@ -70,3 +70,6 @@ ProtocolIR/fetch_protocols_io.py
 ProtocolIR/setup_complete.sh
 ProtocolIR/train_on_real_data.py
 ARCHITECTURE.md
+
+ProtocolIR/judge_demo_output/
+ProtocolIR/demo_artifacts/presentation/
