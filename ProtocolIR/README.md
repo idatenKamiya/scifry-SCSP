@@ -22,16 +22,16 @@ ProtocolIR separates concerns:
 
 ```mermaid
 flowchart LR
-  A[Protocol Text] --> B[Semantic Parser\n(OpenRouter + schema)]
-  B --> C[Grounding Engine]
-  C --> D[Typed IR Builder]
-  D --> E[Hard Verifier]
+  A["Protocol Text"] --> B["Semantic Parser<br/>(OpenRouter + schema)"]
+  B --> C["Grounding Engine"]
+  C --> D["Typed IR Builder"]
+  D --> E["Hard Verifier"]
   E -->|violations| F[Deterministic Repair]
   F --> E
-  E -->|verified IR| G[Reward Scoring\n(Bayesian IRL)]
-  G --> H[Opentrons Compiler]
-  H --> I[Simulation / Validation]
-  I --> J[Audit + Certificate + Summaries]
+  E -->|verified IR| G["Reward Scoring<br/>(Bayesian IRL)"]
+  G --> H["Opentrons Compiler"]
+  H --> I["Simulation / Validation"]
+  I --> J["Audit + Certificate + Summaries"]
 ```
 
 ## Safety Guarantees Enforced
