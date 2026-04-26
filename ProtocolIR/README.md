@@ -81,6 +81,7 @@ This writes:
 
 Use the cloud-safe app entrypoint in this repo:
 
+- Live app URL: `https://scifry-scspgit-cusv4klr3xnmzoy7hyjhpc.streamlit.app/`
 - App file: `ProtocolIR/cloud_app/app.py`
 - Requirements: `ProtocolIR/cloud_app/requirements.txt`
 - Runtime: `ProtocolIR/cloud_app/runtime.txt`

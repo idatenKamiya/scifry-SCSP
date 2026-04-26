@@ -30,7 +30,7 @@ LICENSE
 
 ## Live Demo
 
-- Streamlit app: `https://<your-app>.streamlit.app`
+- Streamlit app: `https://scifry-scspgit-cusv4klr3xnmzoy7hyjhpc.streamlit.app/`
 - Cloud app path: `ProtocolIR/cloud_app/app.py`
 - Secrets needed in Streamlit Cloud settings:
   - `OPENROUTER_API_KEY`
