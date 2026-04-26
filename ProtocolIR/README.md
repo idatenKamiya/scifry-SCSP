@@ -95,7 +95,7 @@ streamlit run app_protocolir.py
 ### One-command end-to-end run
 
 ```bash
-python run_judge_demo.py -o run_output
+python run_demo_bundle.py -o demo_bundle_output
 ```
 
 This command generates a complete run bundle, including logs and output artifacts.

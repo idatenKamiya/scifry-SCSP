@@ -153,7 +153,7 @@ def _save_artifacts(pipeline: ProtocolPipeline, output_dir: str) -> None:
 
 def inject_demo_unsafe_errors(ir_ops):
     """
-    Create a deliberately unsafe trajectory for judge-facing repair demos.
+    Create a deliberately unsafe trajectory for repair demonstrations.
 
     This simulates the kind of direct-LLM robot code that runs syntactically but
     violates lab semantics: missing tip setup, wrong pipette for 40 uL, and no

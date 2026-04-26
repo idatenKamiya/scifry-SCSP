@@ -21,10 +21,10 @@ ProtocolIR/
   data/                    Expert protocols and protocol text used for reward learning/RAG
   models/                  Learned reward weights and posterior report
   benchmarks/              Benchmark cases and ablation runners
-  app_protocolir.py        Streamlit judge-facing UI
+  app_protocolir.py        Streamlit interactive demo UI
   cloud_app/app.py         Streamlit Community Cloud entrypoint
   main.py                  Main CLI pipeline
-  run_judge_demo.py        One-command judge demo runner
+  run_demo_bundle.py       One-command end-to-end demo runner
   compare_systems.py       Direct-LLM baseline vs ProtocolIR comparison
   train_reward_model.py    Bayesian IRL reward training
 LICENSE
@@ -38,7 +38,7 @@ LICENSE
   - `OPENROUTER_API_KEY`
   - `PROTOCOLIR_MODEL` (optional override)
 - Full simulator-backed fallback run (local/SCC):
-  - `python run_judge_demo.py -o judge_demo_output`
+  - `python run_demo_bundle.py -o demo_bundle_output`
 
 ## Run The Final Demo
 

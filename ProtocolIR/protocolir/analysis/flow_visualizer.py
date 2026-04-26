@@ -1,4 +1,4 @@
-"""IR flow visualization helpers for judge-facing UI."""
+"""IR flow visualization helpers for the interactive UI."""
 
 from __future__ import annotations
 
@@ -59,4 +59,3 @@ def _detail(op: IROp) -> str:
     if op.name and op.mount:
         parts.append(f"{op.name}@{op.mount}")
     return " | ".join(parts)
-

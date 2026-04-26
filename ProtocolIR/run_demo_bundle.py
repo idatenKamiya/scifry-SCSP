@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-command judge demo runner for ProtocolIR."""
+"""One-command end-to-end demo runner for ProtocolIR."""
 
 from __future__ import annotations
 
@@ -11,11 +11,11 @@ from pathlib import Path
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run a judge-ready ProtocolIR demo bundle.")
+    parser = argparse.ArgumentParser(description="Run an end-to-end ProtocolIR demo bundle.")
     parser.add_argument(
         "-o",
         "--output",
-        default="judge_demo_output",
+        default="demo_bundle_output",
         help="Output directory for logs and artifacts.",
     )
     parser.add_argument(
@@ -65,7 +65,7 @@ def main() -> int:
             break
 
     summary_lines = [
-        "# Judge Demo Summary",
+        "# ProtocolIR Demo Summary",
         "",
         f"- Output directory: {output}",
         "",
@@ -89,7 +89,7 @@ def main() -> int:
         ]
     )
 
-    summary_path = output / "JUDGE_DEMO_SUMMARY.md"
+    summary_path = output / "DEMO_SUMMARY.md"
     summary_path.write_text("\n".join(summary_lines) + "\n", encoding="utf-8")
     print(f"\nSummary: {summary_path}")
 
@@ -98,4 +98,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
