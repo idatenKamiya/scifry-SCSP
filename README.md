@@ -1,5 +1,7 @@
 # ProtocolIR
 
+Live app URL: `https://scifry-scspgit-cusv4klr3xnmzoy7hyjhpc.streamlit.app/`
+
 ProtocolIR is a safety-first compiler for autonomous wet-lab protocols. It converts natural-language lab instructions into verified Opentrons Python by forcing the LLM to produce structured intent, then passing that intent through a typed intermediate representation, deterministic hard-safety verification, Bayesian reward scoring, repair, simulation, and audit reporting.
 
 The core research claim is simple: simulator-passing robot code is not enough. ProtocolIR verifies lab semantics before code generation, then uses the Opentrons simulator only as the final execution check.
