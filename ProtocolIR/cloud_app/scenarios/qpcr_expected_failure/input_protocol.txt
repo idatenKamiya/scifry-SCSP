@@ -1,0 +1,14 @@
+
+qPCR Reaction Setup
+
+Materials:
+- DNA template samples
+- qPCR master mix
+- nuclease-free water
+
+Steps:
+1. Prepare 12 qPCR reactions in a 96-well optical plate.
+2. Add 5 uL DNA template to each reaction well.
+3. Add 15 uL qPCR master mix to each reaction well.
+4. Add 5 uL nuclease-free water to each well.
+5. Mix each reaction gently 3 times.

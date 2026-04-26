@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """Streamlit Community Cloud entrypoint for ProtocolIR.
 
-This app intentionally runs a cloud-safe pipeline path that skips the local
-Opentrons simulator step while preserving parsing, grounding, IR verification,
-repair, reward scoring, compilation, and audit/certificate generation.
+This app provides two modes:
+- Replay: deterministic, baked-in evidence scenarios for reliable review.
+- Live: real cloud-safe execution path (no local Opentrons simulator).
 """
 
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
+from typing import Any, Dict
 
 import streamlit as st
 
@@ -35,6 +37,8 @@ from protocolir.reward_model import RewardModel, domain_prior_reward_model
 from protocolir.schemas import ProtocolPipeline, SimulationResult
 from protocolir.verifier import verify_ir
 
+SCENARIO_ROOT = ROOT / "cloud_app" / "scenarios"
+SCENARIO_INDEX = SCENARIO_ROOT / "index.json"
 
 DEMO_TEXT = """
 PCR Master Mix Setup
@@ -112,25 +116,42 @@ def run_cloud_pipeline(raw_text: str, source_url: str) -> ProtocolPipeline:
     return pipeline
 
 
-st.set_page_config(page_title="ProtocolIR Cloud Demo", layout="wide")
-st.title("ProtocolIR Cloud Demo")
-st.caption(
-    "Live, cloud-safe judge UI: parse -> verify -> repair -> compile -> audit/certificate."
-)
-st.info(
-    "Simulation is intentionally skipped in cloud mode. Full simulator-backed demo is available in local/SCC runs."
-)
+def _load_scenario_index() -> Dict[str, Any]:
+    if not SCENARIO_INDEX.exists():
+        return {"scenarios": []}
+    return json.loads(SCENARIO_INDEX.read_text(encoding="utf-8"))
 
-protocol_text = st.text_area("Protocol text", value=DEMO_TEXT, height=220)
-run = st.button("Run ProtocolIR", type="primary")
 
-if run:
+def _read_text(base: Path, rel: str) -> str:
+    path = base / rel
+    if not path.exists():
+        return f"[missing] {path}"
+    return path.read_text(encoding="utf-8", errors="replace")
+
+
+def _read_json(base: Path, rel: str) -> Dict[str, Any]:
+    path = base / rel
+    if not path.exists():
+        return {"_error": f"missing file: {path}"}
     try:
-        pipeline = run_cloud_pipeline(protocol_text, source_url="cloud://streamlit")
-    except Exception as exc:
-        st.error(f"Pipeline failed: {exc}")
-        st.stop()
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return {"_error": f"invalid json in {path}: {exc}"}
 
+
+def _status_badge(status: str) -> str:
+    color = {
+        "PASS": "#16a34a",
+        "EXPECTED_FAILURE": "#ea580c",
+        "FAIL": "#dc2626",
+    }.get(status, "#334155")
+    return (
+        f"<span style='display:inline-block;padding:3px 8px;border-radius:10px;"
+        f"background:{color};color:white;font-size:12px'>{status}</span>"
+    )
+
+
+def render_pipeline_result(pipeline: ProtocolPipeline) -> None:
     before = pipeline.violations_before_repair or pipeline.violations
     after = pipeline.violations_after_repair
     risk = score_violations(before)
@@ -201,19 +222,14 @@ if run:
 
     with tabs[3]:
         st.json(pipeline.parsed.model_dump() if pipeline.parsed else {})
-
     with tabs[4]:
         st.json([op.model_dump() for op in (pipeline.ir_repaired or [])])
-
     with tabs[5]:
         st.write(pipeline.repairs_applied or ["No repairs applied."])
-
     with tabs[6]:
         st.code(pipeline.generated_script or "", language="python")
-
     with tabs[7]:
         st.markdown(pipeline.audit_report or "")
-
     with tabs[8]:
         st.json(cert)
         st.download_button(
@@ -222,10 +238,93 @@ if run:
             file_name="safety_certificate.json",
             mime="application/json",
         )
-
     with tabs[9]:
         st.code(contamination_mermaid(pipeline.ir_repaired or []), language="mermaid")
-
     with tabs[10]:
         st.code(ir_flow_mermaid(pipeline.ir_repaired or [], before), language="mermaid")
 
+
+def render_replay_mode() -> None:
+    index = _load_scenario_index()
+    scenarios = index.get("scenarios", [])
+    if not scenarios:
+        st.error("No replay scenarios found.")
+        return
+
+    ids = {scenario["name"]: scenario for scenario in scenarios}
+    selected_name = st.selectbox("Scenario", list(ids.keys()))
+    scenario = ids[selected_name]
+    scenario_dir = SCENARIO_ROOT / scenario["id"]
+
+    st.markdown(
+        f"**Type:** `{scenario.get('classification', 'unknown')}`  \n"
+        f"**Mode:** `{scenario.get('mode', 'unknown')}`  \n"
+        f"**Status:** {_status_badge(scenario.get('status', 'UNKNOWN'))}",
+        unsafe_allow_html=True,
+    )
+    st.write(scenario.get("description", ""))
+
+    ev = scenario.get("evidence", {})
+    tabs = st.tabs(["Overview", "Evidence Files", "Raw JSON/Text"])
+
+    with tabs[0]:
+        if "summary" in ev:
+            st.subheader("Summary")
+            st.code(_read_text(scenario_dir, ev["summary"]), language="markdown")
+        if "comparison_report" in ev:
+            st.subheader("Comparison Report")
+            st.markdown(_read_text(scenario_dir, ev["comparison_report"]))
+        if "certificate" in ev:
+            st.subheader("Safety Certificate")
+            st.json(_read_json(scenario_dir, ev["certificate"]))
+        if "risk" in ev:
+            st.subheader("Risk Summary")
+            st.json(_read_json(scenario_dir, ev["risk"]))
+        if "dependency" in ev:
+            st.subheader("Dependency Summary")
+            st.json(_read_json(scenario_dir, ev["dependency"]))
+
+    with tabs[1]:
+        for label, rel in ev.items():
+            path = scenario_dir / rel
+            exists = path.exists()
+            st.write(f"- `{label}` -> `{path}` ({'ok' if exists else 'missing'})")
+
+    with tabs[2]:
+        for label, rel in ev.items():
+            st.markdown(f"### {label}")
+            path = scenario_dir / rel
+            if path.suffix.lower() == ".json":
+                st.json(_read_json(scenario_dir, rel))
+            else:
+                st.code(_read_text(scenario_dir, rel))
+
+
+def render_live_mode() -> None:
+    if not os.getenv("OPENROUTER_API_KEY"):
+        st.warning("`OPENROUTER_API_KEY` is not set. Live mode will fail until the secret is configured.")
+    protocol_text = st.text_area("Protocol text", value=DEMO_TEXT, height=220)
+    run = st.button("Run Live Pipeline", type="primary")
+    if not run:
+        return
+    try:
+        pipeline = run_cloud_pipeline(protocol_text, source_url="cloud://streamlit")
+    except Exception as exc:
+        st.error(f"Pipeline failed: {exc}")
+        st.stop()
+    render_pipeline_result(pipeline)
+
+
+st.set_page_config(page_title="ProtocolIR Cloud Demo", layout="wide")
+st.title("ProtocolIR Cloud Demo")
+st.caption("Replay deterministic scenarios or run live cloud-safe execution.")
+st.info(
+    "Replay mode is deterministic and recommended for quick sanity checks. "
+    "Live mode performs real parsing/verification/compilation in cloud-safe mode."
+)
+
+mode = st.radio("Execution mode", ["Replay Scenarios", "Live Run"], horizontal=True)
+if mode == "Replay Scenarios":
+    render_replay_mode()
+else:
+    render_live_mode()

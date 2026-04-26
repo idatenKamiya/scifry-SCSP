@@ -34,6 +34,9 @@ LICENSE
 
 - Streamlit app: `https://scifry-scspgit-cusv4klr3xnmzoy7hyjhpc.streamlit.app/`
 - Cloud app path: `ProtocolIR/cloud_app/app.py`
+- Cloud UI modes:
+  - Replay Scenarios (deterministic evidence cases)
+  - Live Run (real cloud-safe execution)
 - Secrets needed in Streamlit Cloud settings:
   - `OPENROUTER_API_KEY`
   - `PROTOCOLIR_MODEL` (optional override)

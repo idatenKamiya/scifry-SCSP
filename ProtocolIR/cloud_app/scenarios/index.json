@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "generated_date": "2026-04-26",
+  "scenarios": [
+    {
+      "id": "safe_demo_pass",
+      "name": "Safe PCR Demo (PASS)",
+      "mode": "pipeline",
+      "classification": "positive",
+      "status": "PASS",
+      "description": "End-to-end demo pipeline run with safety artifacts generated.",
+      "evidence": {
+        "summary": "summary.txt",
+        "audit": "audit_report.md",
+        "certificate": "safety_certificate.json",
+        "risk": "risk_summary.json",
+        "dependency": "dependency_summary.json"
+      }
+    },
+    {
+      "id": "baseline_compare",
+      "name": "Baseline vs ProtocolIR",
+      "mode": "comparison",
+      "classification": "sanity_check",
+      "status": "PASS",
+      "description": "Comparison report showing direct baseline failure versus ProtocolIR pipeline success.",
+      "evidence": {
+        "comparison_report": "comparison_report.md",
+        "protocolir_summary": "protocolir_summary.txt",
+        "certificate": "safety_certificate.json"
+      }
+    },
+    {
+      "id": "qpcr_expected_failure",
+      "name": "qPCR Variant (Expected Failure)",
+      "mode": "comparison",
+      "classification": "negative",
+      "status": "EXPECTED_FAILURE",
+      "description": "Benchmark variant demonstrating transparent failure behavior (OutOfTipsError path).",
+      "evidence": {
+        "input": "input_protocol.txt",
+        "comparison_report": "comparison_report.md"
+      }
+    },
+    {
+      "id": "elisa_expected_failure",
+      "name": "ELISA Variant (Expected Failure)",
+      "mode": "comparison",
+      "classification": "negative",
+      "status": "EXPECTED_FAILURE",
+      "description": "Benchmark variant demonstrating transparent failure behavior (OutOfTipsError path).",
+      "evidence": {
+        "input": "input_protocol.txt",
+        "comparison_report": "comparison_report.md"
+      }
+    }
+  ]
+}

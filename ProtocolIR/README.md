@@ -119,6 +119,7 @@ Use the cloud-safe app:
 - App file: `ProtocolIR/cloud_app/app.py`
 - Requirements: `ProtocolIR/cloud_app/requirements.txt`
 - Runtime: `ProtocolIR/cloud_app/runtime.txt`
+- Replay scenarios data: `ProtocolIR/cloud_app/scenarios/`
 
 In Streamlit app secrets, set:
 
@@ -128,6 +129,11 @@ PROTOCOLIR_MODEL = "inclusionai/ling-2.6-flash:free"
 ```
 
 Note: the cloud app is designed for broad compatibility and may skip local Opentrons simulation depending on environment constraints.
+
+Cloud UI modes:
+
+- **Replay Scenarios**: deterministic, baked-in evidence cases (including expected-failure variants).
+- **Live Run**: real cloud-safe execution on user-provided protocol text.
 
 ## Core Modules
 

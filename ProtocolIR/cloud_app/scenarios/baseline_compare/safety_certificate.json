@@ -1,0 +1,10 @@
+{
+  "protocol": "Prepare a 96-well PCR plate with DNA templates and PCR master mix for thermal cycling.",
+  "timestamp": "2026-04-26T18:24:18.445192+00:00",
+  "certified": true,
+  "coverage_guarantee": 0.95,
+  "violations_before": 0,
+  "violations_after": 0,
+  "violation_types_found": [],
+  "verdict": "SAFE"
+}

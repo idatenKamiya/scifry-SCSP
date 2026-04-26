@@ -1,0 +1,14 @@
+
+ELISA Plate Liquid Handling
+
+Materials:
+- diluted serum samples
+- assay buffer
+- enzyme conjugate
+
+Steps:
+1. Prepare 8 ELISA wells in a 96-well plate.
+2. Add 50 uL diluted serum sample to each assigned well.
+3. Add 50 uL assay buffer to each well.
+4. Add 20 uL enzyme conjugate to each well.
+5. Mix gently after each addition.

@@ -1,0 +1,10 @@
+{
+  "total_violations": 0,
+  "critical_count": 0,
+  "high_count": 0,
+  "medium_count": 0,
+  "total_impact_usd": 0,
+  "risk_level": "SAFE",
+  "violations_by_type": {},
+  "severity_details": {}
+}
