@@ -5,6 +5,7 @@
 #$ -o logs/qsub/$JOB_NAME.$JOB_ID.log
 #$ -l h_rt=04:00:00
 #$ -pe omp 8
+#$ -binding linear:8
 
 set -euo pipefail
 
@@ -13,6 +14,30 @@ cd "$PROJECT_DIR"
 mkdir -p logs/qsub .uv-cache .ollama/models models
 
 module load python3/3.12.4 uv/0.7.3
+
+# Respect scheduler allocation and avoid CPU oversubscription.
+export OMP_NUM_THREADS="${NSLOTS:-8}"
+export OPENBLAS_NUM_THREADS="${NSLOTS:-8}"
+export MKL_NUM_THREADS="${NSLOTS:-8}"
+export NUMEXPR_NUM_THREADS="${NSLOTS:-8}"
+export VECLIB_MAXIMUM_THREADS="${NSLOTS:-8}"
+export BLIS_NUM_THREADS="${NSLOTS:-8}"
+export OLLAMA_NUM_PARALLEL=1
+export OLLAMA_MAX_LOADED_MODELS=1
+
+# If binding info exists, pin heavy processes to allocated cores.
+CPUSET=""
+if [ -n "${SGE_BINDING:-}" ]; then
+  CPUSET="$(echo "${SGE_BINDING}" | tr ' ' ',')"
+fi
+
+run_bound() {
+  if [ -n "$CPUSET" ]; then
+    taskset -c "$CPUSET" "$@"
+  else
+    "$@"
+  fi
+}
 
 export UV_CACHE_DIR="$PROJECT_DIR/.uv-cache"
 if [ ! -d .venv ]; then
@@ -29,21 +54,53 @@ if [ ! -x "$OLLAMA_BIN" ]; then
   exit 1
 fi
 
-export OLLAMA_HOST=127.0.0.1:11434
+BASE_PORT=$((15000 + JOB_ID % 20000))
+OLLAMA_PORT=$(BASE_PORT="$BASE_PORT" python - <<'PY'
+import os
+import socket
+
+base = int(os.environ["BASE_PORT"])
+for port in range(base, base + 200):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        sock.bind(("127.0.0.1", port))
+        print(port)
+        break
+    except OSError:
+        pass
+    finally:
+        sock.close()
+else:
+    raise SystemExit(1)
+PY
+)
+
+if [ -z "$OLLAMA_PORT" ]; then
+  echo "Failed to find free localhost port for Ollama."
+  exit 1
+fi
+
+export OLLAMA_HOST="127.0.0.1:$OLLAMA_PORT"
 export OLLAMA_MODELS="$PROJECT_DIR/.ollama/models"
 export PROTOCOLIR_LLM_PROVIDER=ollama
-export OLLAMA_BASE_URL="http://127.0.0.1:11434"
+export OLLAMA_BASE_URL="http://127.0.0.1:$OLLAMA_PORT"
 export PROTOCOLIR_MODEL="${PROTOCOLIR_MODEL:-qwen2.5:1.5b}"
 export PROTOCOLIR_LLM_TIMEOUT="${PROTOCOLIR_LLM_TIMEOUT:-600}"
 
-"$OLLAMA_BIN" serve > "logs/qsub/ollama.$JOB_ID.log" 2>&1 &
+run_bound "$OLLAMA_BIN" serve > "logs/qsub/ollama.$JOB_ID.log" 2>&1 &
 OLLAMA_PID=$!
 trap 'kill $OLLAMA_PID >/dev/null 2>&1 || true' EXIT
 
-sleep 5
+for _ in $(seq 1 60); do
+  if curl -sf "$OLLAMA_BASE_URL/api/tags" >/dev/null; then
+    break
+  fi
+  sleep 2
+done
+
 curl -sf "$OLLAMA_BASE_URL/api/tags" >/dev/null
 "$OLLAMA_BIN" pull "$PROTOCOLIR_MODEL"
 
-python train_reward_model.py
+run_bound python train_reward_model.py
 
 echo "Training complete: models/learned_weights.json"
