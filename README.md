@@ -20,12 +20,23 @@ ProtocolIR/
   models/                  Learned reward weights and posterior report
   benchmarks/              Benchmark cases and ablation runners
   app_protocolir.py        Streamlit judge-facing UI
+  cloud_app/app.py         Streamlit Community Cloud entrypoint
   main.py                  Main CLI pipeline
+  run_judge_demo.py        One-command judge demo runner
   compare_systems.py       Direct-LLM baseline vs ProtocolIR comparison
   train_reward_model.py    Bayesian IRL reward training
-ARCHITECTURE.md            System architecture and pitch narrative
 LICENSE
 ```
+
+## Live Demo
+
+- Streamlit app: `https://<your-app>.streamlit.app`
+- Cloud app path: `ProtocolIR/cloud_app/app.py`
+- Secrets needed in Streamlit Cloud settings:
+  - `OPENROUTER_API_KEY`
+  - `PROTOCOLIR_MODEL` (optional override)
+- Full simulator-backed fallback run (local/SCC):
+  - `python run_judge_demo.py -o judge_demo_output`
 
 ## Run The Final Demo
 
