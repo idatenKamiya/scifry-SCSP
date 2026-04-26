@@ -1,73 +1,85 @@
 # ProtocolIR
 
-ProtocolIR is a reward-guided compiler for safe autonomous lab protocols.
+ProtocolIR is a verified compiler for autonomous lab protocols. It does not let an LLM write final robot code directly. The LLM only extracts structured semantic intent; ProtocolIR then grounds the protocol, builds a typed robot IR, verifies hard physical invariants, scores the trajectory with a learned Bayesian reward model, repairs unsafe IR, compiles verified IR to Opentrons Python, runs the real Opentrons simulator, and writes an audit report.
 
-The core claim: runnable robot code is not the same thing as safe lab behavior. ProtocolIR uses an LLM only for structured semantic extraction, then routes the result through a typed IR, hard verifier, learned reward model, deterministic repair policy, Opentrons compiler, simulator check, and audit report.
+## Why This Beats Direct LLM Codegen
 
-## Why It Is Different
-
-Baseline lab copilots often do:
+Most lab-code agents follow:
 
 ```text
-protocol text -> LLM -> Opentrons Python
+protocol text -> LLM -> Opentrons Python -> simulator loop
 ```
 
-ProtocolIR does:
+ProtocolIR follows:
 
 ```text
 protocol text
-  -> OpenRouter structured semantic parser
-  -> deck grounding
-  -> typed robot IR
-  -> hard physical verifier
-  -> reward model
-  -> deterministic repair loop
-  -> Opentrons Python compiler
-  -> real Opentrons simulator validation
-  -> audit report
+  -> OpenRouter structured JSON parser + local RAG
+  -> semantic grounding
+  -> typed IR
+  -> hard verifier
+  -> Bayesian IRL reward scoring
+  -> typed repair loop
+  -> deterministic Opentrons compiler
+  -> real Opentrons simulator
+  -> audit certificate
 ```
 
-The LLM never writes final Python. It extracts structured intent; compiler and verifier logic own execution.
+The differentiator is verify-then-generate. The simulator is a final check, not the first safety mechanism.
 
-## Quick Start
+## Fresh Setup
 
-```bash
-cd ProtocolIR
+Use Python 3.11 on Windows. Python 3.14 can break scientific packages and Opentrons wheels.
+
+```powershell
+cd "C:\Users\sreer\OneDrive\Documents\scifry-SCSP\ProtocolIR"
+
+Remove-Item -Recurse -Force .venv -ErrorAction SilentlyContinue
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+```
+
+Set OpenRouter for live parsing:
+
+```powershell
+$env:OPENROUTER_API_KEY="YOUR_OPENROUTER_KEY"
+$env:PROTOCOLIR_MODEL="inclusionai/ling-2.6-flash:free"
+```
+
+Never commit `.env` files or pasted API keys.
+
+## Final Demo Commands
+
+Run these in order:
+
+```powershell
 python test_installation.py
-$env:OPENROUTER_API_KEY="your_key_here"
-$env:PROTOCOLIR_MODEL="openrouter/free"
 python check_openrouter.py
 python train_reward_model.py
+python main.py --demo -o outputs_demo
 python main.py --stress-demo -o stress_output
-python compare_systems.py -o comparison_output
+python compare_systems.py --demo -o comparison_output
+python main.py --cell-culture-demo -o cell_culture_output
+streamlit run app_protocolir.py
 ```
 
-If `python` is not configured on your machine, use the Python executable from your environment manager.
+Expected judge-facing evidence:
 
-## OpenRouter Setup
+- `check_openrouter.py`: `OPENROUTER OK`
+- `train_reward_model.py`: `Inference method: MAP + Laplace`, `Diagnostic status: PASS`
+- `outputs_demo/audit_report.md`: clean protocol, 0 verifier violations, real simulator PASS
+- `stress_output/audit_report.md`: unsafe IR errors repaired to 0 remaining violations
+- `comparison_output/comparison_report.md`: direct LLM baseline fails while ProtocolIR passes
+- Streamlit app: one-screen view of protocol, safety audit, reward posterior, and generated code
 
-ProtocolIR reads OpenRouter configuration from environment variables:
+## Bayesian IRL
 
-```bash
-$env:OPENROUTER_API_KEY="your_key_here"
-$env:PROTOCOLIR_MODEL="openrouter/free"
-```
+ProtocolIR uses a monotonic safety-constrained Bayesian preference model. The default inference method is MAP estimation with a Gaussian Laplace posterior approximation from the stabilized Hessian at the MAP. This is intentionally reported as Laplace inference, not MCMC.
 
-Do not hardcode API keys in the repo. If `OPENROUTER_API_KEY` is not set, the parser fails loudly.
-OpenRouter structured output support is required. If the selected model rejects
-`response_format=json_schema`, choose a free OpenRouter model that supports
-structured outputs and rerun `python check_openrouter.py`.
-
-## Bayesian IRL Reward Training
-
-Run this before the main pipeline:
-
-```bash
-python train_reward_model.py
-```
-
-This writes:
+Training writes:
 
 ```text
 models/learned_weights.json
@@ -76,71 +88,37 @@ models/reward_posterior_report.md
 DATASET_REPORT.md
 ```
 
-The report includes posterior means, MAP estimates, 95% credible intervals,
-posterior sign probabilities, R-hat, ESS, and HMC acceptance rate.
-
-## Baseline Comparison
-
-Run the direct LLM baseline and ProtocolIR on the same protocol:
-
-```powershell
-python compare_systems.py -o comparison_output
-```
-
-This writes:
-
-```text
-comparison_output/
-  comparison_report.md
-  direct_llm/baseline_protocol.py
-  direct_llm/baseline_report.md
-  protocolir/protocol.py
-  protocolir/audit_report.md
-```
-
-The baseline is intentionally allowed to generate Opentrons Python directly.
-ProtocolIR is constrained to semantic parsing, typed IR verification, repair,
-and deterministic compilation.
-
-## Outputs
-
-Running the demo writes:
-
-```text
-stress_output/
-  protocol.py
-  audit_report.md
-  summary.txt
-  ir_original.json
-  ir_repaired.json
-```
+The posterior report includes MAP weights, posterior means, 95% credible intervals, and sign probabilities for reward features.
 
 ## Core Modules
 
 ```text
 protocolir/
-  llm.py          OpenRouter structured-output adapter
-  parser.py       semantic extraction
-  grounder.py     deck, labware, and well mapping
-  ir_builder.py   typed robot IR builder
-  verifier.py     hard safety constraints
-  features.py     reward feature extraction
-  bayesian_irl.py adaptive multi-chain HMC posterior fitting
-  reward_model.py inverse preference reward model
-  repair.py       deterministic repair policy
-  compiler.py     Opentrons Python compiler
-  simulator.py    Opentrons simulator integration
-  audit.py        safety report generation
-  orchestration.py typed agent graph manifest
-  code_safety.py  static analyzer for direct-LLM baseline code
+  llm.py                 OpenRouter structured-output adapter
+  rag.py                 Local retrieval context for parser prompts
+  parser.py              Natural-language protocol -> structured semantic JSON
+  biosecurity.py         Material/sequence review hooks
+  grounder.py            Labware, deck, and well grounding
+  ir_builder.py          Typed robot IR construction
+  verifier.py            Hard physical and semantic safety checks
+  features.py            Trajectory feature extraction
+  bayesian_irl.py        MAP + Laplace Bayesian IRL
+  reward_model.py        Reward scoring from learned weights
+  repair.py              Deterministic typed-IR repair policy
+  precise_repair.py      Targeted IR patch utilities
+  compiler.py            Verified IR -> Opentrons Python
+  simulator.py           Real Opentrons simulator integration
+  contamination_graph.py Contamination-flow graph for audits
+  audit.py               Markdown safety certificate
+  orchestration.py       Typed graph executor for the full pipeline
 ```
 
 ## Safety Checks
 
-The verifier catches issues that can be missed by "does this Python run?" simulation:
+The verifier catches failures that a runtime-only simulator loop can miss or catch too late:
 
-- aspirating, dispensing, or mixing without a tip
-- pipette range violations
+- aspirate, dispense, or mix without a tip
+- pipette volume/range violations
 - tip over-capacity
 - well overflow
 - unknown or invalid labware locations
@@ -148,18 +126,13 @@ The verifier catches issues that can be missed by "does this Python run?" simula
 - dropping tips with liquid still in the tip
 - missing mix after plate dispense
 
-## Hackathon Demo Flow
+## Demo Script
 
-1. Show a messy PCR protocol.
-2. Show semantic ambiguities and typed IR.
-3. Show verifier violations before repair.
-4. Show deterministic repairs.
-5. Show reward improvement.
-6. Show generated Opentrons Python and audit report.
+Tell judges:
 
-See [ARCHITECTURE.md](../ARCHITECTURE.md) for the refined technical architecture and judging-rubric mapping.
-
-
-
-
-
+1. Direct LLM code generation is the baseline. It can fail before producing simulator-valid robot behavior.
+2. ProtocolIR constrains the LLM to structured intent and never trusts it with final Python.
+3. Hard verifier catches unsafe typed IR before compilation.
+4. Repair is deterministic and auditable, not another black-box LLM rewrite.
+5. Bayesian IRL gives a learned reward with uncertainty, used to score the before/after safety improvement.
+6. The final generated Python passes the real Opentrons simulator and comes with an audit certificate.

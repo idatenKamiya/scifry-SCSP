@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 
@@ -30,15 +32,16 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Compare ProtocolIR with direct LLM baseline.")
     parser.add_argument("input", nargs="?", default=None, help="Input protocol file or raw text.")
     parser.add_argument("-o", "--output", default="comparison_output", help="Output directory.")
+    parser.add_argument("--demo", action="store_true", help="Use built-in PCR demo protocol.")
     args = parser.parse_args()
 
     output = Path(args.output)
     output.mkdir(parents=True, exist_ok=True)
     protocol_path = output / "input_protocol.txt"
-    protocol_path.write_text(_load_input(args.input), encoding="utf-8")
+    protocol_path.write_text(_load_input(args.input, args.demo), encoding="utf-8")
 
-    baseline_dir = output / "direct_llm"
-    protocolir_dir = output / "protocolir"
+    baseline_dir = _fresh_dir(output / "direct_llm")
+    protocolir_dir = _fresh_dir(output / "protocolir")
 
     baseline_cmd = [sys.executable, "baseline_direct_llm.py", str(protocol_path), "-o", str(baseline_dir)]
     protocolir_cmd = [sys.executable, "main.py", str(protocol_path), "-o", str(protocolir_dir)]
@@ -52,8 +55,8 @@ def main() -> int:
     return 0 if protocolir.returncode == 0 else 1
 
 
-def _load_input(input_arg: str | None) -> str:
-    if not input_arg:
+def _load_input(input_arg: str | None, demo: bool = False) -> str:
+    if demo or not input_arg:
         return DEMO_PROTOCOL
     path = Path(input_arg)
     if path.exists():
@@ -63,6 +66,16 @@ def _load_input(input_arg: str | None) -> str:
 
 def _run(cmd: list[str]) -> subprocess.CompletedProcess:
     return subprocess.run(cmd, capture_output=True, text=True, timeout=240)
+
+
+def _fresh_dir(path: Path) -> Path:
+    if path.exists():
+        try:
+            shutil.rmtree(path)
+        except PermissionError:
+            path = path.with_name(f"{path.name}_{time.strftime('%Y%m%d_%H%M%S')}")
+    path.mkdir(parents=True, exist_ok=True)
+    return path
 
 
 def _build_summary(baseline, protocolir, baseline_dir: Path, protocolir_dir: Path) -> str:

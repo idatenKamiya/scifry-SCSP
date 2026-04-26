@@ -26,13 +26,14 @@ outputs/
 **/stress_output/
 **/stress_output_check/
 **/outputs_demo/
+**/cell_culture_output/
 **/comparison_output/
 **/baseline_output/
+**/benchmark_output/
+**/ablation_output/
 *.log
 
 # Local Python envs/caches (SCC/project-local)
-.venv/
-**/.venv/
 .uv-cache/
 **/.uv-cache/
 
@@ -43,3 +44,23 @@ ProtocolIR/.ollama/
 # Batch-job logs and scratch outputs
 logs/
 ProtocolIR/logs/
+
+# Local scratch/context files kept off the final submission
+AIZU/
+SAMPLE_OUTPUTS/
+DATA_ACQUISITION_COMPLETE.md
+FINAL_SUMMARY.txt
+HackathonQuickStartGuide_Full.docx
+PIPELINE_RESULTS_DEMO.md
+PROTOCOLIR_SUMMARY.txt
+READY_TO_RUN.md
+START_HERE.md
+pt.txt
+ProtocolIR/IMPLEMENTATION_COMPLETE.md
+ProtocolIR/QUICKSTART.md
+ProtocolIR/SETUP_DATA_COLLECTION.md
+ProtocolIR/data_fetcher.py
+ProtocolIR/fetch_expert_scripts.py
+ProtocolIR/fetch_protocols_io.py
+ProtocolIR/setup_complete.sh
+ProtocolIR/train_on_real_data.py

@@ -16,7 +16,7 @@ SMOKE_PROTOCOL = (
 
 
 def main() -> int:
-    model = os.getenv("PROTOCOLIR_MODEL", "openrouter/free")
+    model = os.getenv("PROTOCOLIR_MODEL", "inclusionai/ling-2.6-flash:free")
     if not os.getenv("OPENROUTER_API_KEY"):
         print("FAIL: OPENROUTER_API_KEY is not set")
         return 1

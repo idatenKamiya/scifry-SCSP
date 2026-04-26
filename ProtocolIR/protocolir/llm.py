@@ -17,7 +17,7 @@ class OpenRouterUnavailable(RuntimeError):
 @dataclass(frozen=True)
 class OpenRouterConfig:
     api_key: str
-    model: str = "openrouter/free"
+    model: str = "inclusionai/ling-2.6-flash:free"
     base_url: str = "https://openrouter.ai/api/v1"
     max_tokens: int = 4096
     timeout_seconds: int = 90
@@ -114,7 +114,7 @@ def load_openrouter_config(
 
     return OpenRouterConfig(
         api_key=api_key,
-        model=model or os.getenv("PROTOCOLIR_MODEL", "openrouter/free"),
+        model=model or os.getenv("PROTOCOLIR_MODEL", "inclusionai/ling-2.6-flash:free"),
         base_url=os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/"),
         max_tokens=max_tokens or int(os.getenv("PROTOCOLIR_MAX_TOKENS", "4096")),
         timeout_seconds=timeout_seconds,
@@ -133,8 +133,9 @@ def openrouter_json(
     Call OpenRouter Chat Completions with strict JSON-schema output.
 
     OpenRouter normalizes the OpenAI Chat Completions schema at
-    https://openrouter.ai/api/v1/chat/completions. The free router can be used
-    as model "openrouter/free"; OpenRouter will route to a compatible free model.
+    https://openrouter.ai/api/v1/chat/completions. Use a concrete model that
+    supports response_format/json_schema; the generic openrouter/free router can
+    intermittently fail with strict structured-output parameters.
     """
 
     config = load_openrouter_config(model, max_tokens, timeout_seconds)

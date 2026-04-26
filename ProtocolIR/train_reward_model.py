@@ -75,9 +75,14 @@ def main() -> None:
     max_rhat = _max_finite(posterior.r_hat)
     min_ess = _min_finite(posterior.effective_sample_size)
     print(f"Inference method: {posterior.inference_method}")
-    print(f"Acceptance rate: {posterior.acceptance_rate:.3f}")
-    print(f"Max R-hat: {max_rhat:.3f}")
-    print(f"Min ESS: {min_ess:.1f}")
+    if posterior.inference_method == "MAP + Laplace":
+        print("Posterior approximation: stabilized Hessian at MAP")
+        print("MCMC diagnostics: not applicable to Laplace approximation")
+    else:
+        print(f"Acceptance rate: {posterior.acceptance_rate:.3f}")
+        print(f"Max R-hat: {max_rhat:.3f}")
+        print(f"Min ESS: {min_ess:.1f}")
+    print(f"Diagnostic status: {posterior.diagnostic_status}")
     if posterior.diagnostic_status != "PASS":
         if learned_weights_path.exists():
             try:

@@ -9,17 +9,16 @@ import subprocess
 import sys
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
-CASES = [
-    "Prepare 8 PCR samples. Add 10 uL DNA template to each well. Add 40 uL PCR master mix. Mix gently 3 times.",
-    "Set up 12 qPCR reactions. Add 5 uL template, 15 uL qPCR master mix, and mix each reaction.",
-    "Prepare 6 PCR wells. Add 2 uL primer, 8 uL water, 10 uL template, and 30 uL master mix. Mix after dispense.",
-]
+from benchmarks.protocol_cases import get_cases
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run ProtocolIR benchmark suite.")
-    parser.add_argument("--cases", type=int, default=len(CASES), help="Number of built-in cases to run.")
+    parser.add_argument("--cases", type=int, default=5, help="Number of built-in cases to run.")
     parser.add_argument("--output", default="benchmarks/results", help="Output directory.")
     args = parser.parse_args()
 
@@ -27,11 +26,11 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=True)
     rows = []
 
-    for idx, protocol in enumerate(CASES[: args.cases], 1):
-        case_dir = output / f"case_{idx:02d}"
+    for idx, case in enumerate(get_cases(args.cases), 1):
+        case_dir = output / f"{idx:02d}_{case.case_id}"
         case_dir.mkdir(parents=True, exist_ok=True)
         input_path = case_dir / "protocol.txt"
-        input_path.write_text(protocol, encoding="utf-8")
+        input_path.write_text(case.text, encoding="utf-8")
         result = subprocess.run(
             [sys.executable, "compare_systems.py", str(input_path), "-o", str(case_dir / "comparison")],
             capture_output=True,
@@ -41,6 +40,8 @@ def main() -> int:
         rows.append(
             {
                 "case": idx,
+                "case_id": case.case_id,
+                "protocol_class": case.protocol_class,
                 "returncode": result.returncode,
                 "comparison_report": str(case_dir / "comparison" / "comparison_report.md"),
                 "stdout_tail": result.stdout[-1000:],
@@ -62,11 +63,13 @@ def _summary(rows: list[dict]) -> str:
         f"- Cases: {len(rows)}",
         f"- ProtocolIR successful comparisons: {passed}/{len(rows)}",
         "",
-        "| Case | Exit Code | Report |",
-        "|---:|---:|---|",
+        "| Case | Protocol Class | Exit Code | Report |",
+        "|---:|---|---:|---|",
     ]
     for row in rows:
-        lines.append(f"| {row['case']} | {row['returncode']} | {row['comparison_report']} |")
+        lines.append(
+            f"| {row['case']} | {row['protocol_class']} | {row['returncode']} | {row['comparison_report']} |"
+        )
     return "\n".join(lines) + "\n"
 
 

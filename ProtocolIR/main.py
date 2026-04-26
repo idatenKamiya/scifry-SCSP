@@ -55,6 +55,11 @@ def main() -> None:
         action="store_true",
         help="Run demo with injected unsafe IR errors so repair is visible.",
     )
+    parser.add_argument(
+        "--cell-culture-demo",
+        action="store_true",
+        help="Run a cell culture passaging demo (multi-protocol evaluation).",
+    )
     args = parser.parse_args()
 
     if args.demo or args.stress_demo:
@@ -63,6 +68,15 @@ def main() -> None:
             source_url="demo://pcr_setup",
             output_dir=args.output,
             stress_test=args.stress_demo,
+        )
+        return
+
+    if args.cell_culture_demo:
+        process_protocol(
+            _cell_culture_demo_protocol(),
+            source_url="demo://cell_culture_passaging",
+            output_dir=args.output,
+            stress_test=False,
         )
         return
 
@@ -189,6 +203,23 @@ Steps:
 3. Add 40 uL of PCR master mix to each well.
 4. Mix gently by pipetting up and down 3 times.
 5. Keep the plate on ice until thermal cycling.
+"""
+
+
+def _cell_culture_demo_protocol() -> str:
+    return """
+Cell Culture Plate Media Exchange
+
+Materials:
+- cell culture samples
+- fresh media
+- PBS buffer
+
+Steps:
+1. Prepare 6 wells containing adherent cells in a 96-well plate.
+2. Add 50 uL PBS buffer to each well.
+3. Add 100 uL fresh media to each well.
+4. Mix gently without disturbing cells.
 """
 
 

@@ -152,6 +152,9 @@ def fit_bayesian_irl(
             seed=seed,
         )
         inference_method = "MAP + Laplace"
+        r_hat: Dict[str, float] = {}
+        ess: Dict[str, float] = {}
+        diagnostic_status = "PASS"
     elif method in {"ensemble", "emcee"}:
         raw_chain_samples, acceptance_rate = _fit_ensemble_mcmc(
             x_scaled,
@@ -165,6 +168,9 @@ def fit_bayesian_irl(
             seed=seed,
         )
         inference_method = "Affine-invariant ensemble MCMC"
+        r_hat = _gelman_rubin_rhat(raw_chain_samples, feature_names)
+        ess = _effective_sample_size(raw_chain_samples, feature_names)
+        diagnostic_status = _diagnostic_status(method, r_hat, ess)
     else:
         raise ValueError("method must be 'laplace' or 'ensemble'")
 
@@ -187,10 +193,6 @@ def fit_bayesian_irl(
         name: float(np.mean(raw_samples[:, idx] > 0.0))
         for idx, name in enumerate(feature_names)
     }
-    r_hat = _gelman_rubin_rhat(raw_chain_samples, feature_names)
-    ess = _effective_sample_size(raw_chain_samples, feature_names)
-    diagnostic_status = _diagnostic_status(method, r_hat, ess)
-
     return BayesianIRLResult(
         feature_names=feature_names,
         samples=raw_samples,
@@ -221,27 +223,49 @@ def save_posterior_report(result: BayesianIRLResult, path: str) -> None:
         f"- Inference method: {result.inference_method}",
         f"- Pairwise preferences: {result.pair_count}",
         f"- Total possible preferences: {result.total_possible_pairs}",
-        f"- Chains: {result.chains}",
-        f"- Draws per chain: {result.draws}",
-        f"- Warmup per chain: {result.warmup}",
         f"- Posterior samples: {result.samples.shape[0]}",
-        f"- Acceptance rate: {result.acceptance_rate:.3f}",
         f"- Diagnostic status: {result.diagnostic_status}",
-        f"- Max R-hat: {max_rhat:.3f}",
-        f"- Min ESS: {min_ess:.1f}",
         "- Prior: monotonic safety-constrained Bayesian preference model",
         "- Removed collinear learned features: total_violations, transfer_count",
-        "",
-        "| Feature | MAP | Posterior Mean | 95% Credible Interval | P(weight > 0) | R-hat | ESS |",
-        "|---|---:|---:|---:|---:|---:|---:|",
     ]
+    if result.inference_method == "MAP + Laplace":
+        lines.extend(
+            [
+                "- Approximation: Gaussian Laplace approximation centered at MAP",
+                "- Credible intervals: Hessian-based 95% credible intervals from stabilized inverse Hessian",
+                "- MCMC diagnostics: not applicable to MAP + Laplace approximation",
+                "",
+                "| Feature | MAP | Posterior Mean | 95% Credible Interval | P(weight > 0) |",
+                "|---|---:|---:|---:|---:|",
+            ]
+        )
+    else:
+        lines.extend(
+            [
+                f"- Chains: {result.chains}",
+                f"- Draws per chain: {result.draws}",
+                f"- Warmup per chain: {result.warmup}",
+                f"- Acceptance rate: {result.acceptance_rate:.3f}",
+                f"- Max R-hat: {max_rhat:.3f}",
+                f"- Min ESS: {min_ess:.1f}",
+                "",
+                "| Feature | MAP | Posterior Mean | 95% Credible Interval | P(weight > 0) | R-hat | ESS |",
+                "|---|---:|---:|---:|---:|---:|---:|",
+            ]
+        )
     for name in result.feature_names:
         low, high = result.credible_intervals_95[name]
-        lines.append(
-            f"| {name} | {result.map_estimate[name]:.3f} | {result.posterior_mean[name]:.3f} | "
-            f"[{low:.3f}, {high:.3f}] | {result.posterior_probability_positive[name]:.3f} | "
-            f"{result.r_hat[name]:.3f} | {result.effective_sample_size[name]:.1f} |"
-        )
+        if result.inference_method == "MAP + Laplace":
+            lines.append(
+                f"| {name} | {result.map_estimate[name]:.3f} | {result.posterior_mean[name]:.3f} | "
+                f"[{low:.3f}, {high:.3f}] | {result.posterior_probability_positive[name]:.3f} |"
+            )
+        else:
+            lines.append(
+                f"| {name} | {result.map_estimate[name]:.3f} | {result.posterior_mean[name]:.3f} | "
+                f"[{low:.3f}, {high:.3f}] | {result.posterior_probability_positive[name]:.3f} | "
+                f"{result.r_hat[name]:.3f} | {result.effective_sample_size[name]:.1f} |"
+            )
     Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

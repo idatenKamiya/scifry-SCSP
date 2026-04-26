@@ -50,23 +50,31 @@ def main() -> int:
     output_dir = Path(args.output)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    response = openrouter_text(
-        BASELINE_SYSTEM_PROMPT,
-        f"Convert this protocol to Opentrons Python:\n\n{raw_text}",
-        max_tokens=4096,
-        timeout_seconds=120,
-    )
-    script = _extract_python(response)
+    response = ""
+    script = ""
+    failure_reason = ""
+    static_issues = []
+    simulation = None
+    try:
+        response = openrouter_text(
+            BASELINE_SYSTEM_PROMPT,
+            f"Convert this protocol to Opentrons Python:\n\n{raw_text}",
+            max_tokens=4096,
+            timeout_seconds=120,
+        )
+        script = _extract_python(response)
+        static_issues = analyze_opentrons_code(script)
+        simulation = simulate_opentrons_script(script, timeout_seconds=60)
+    except Exception as exc:
+        failure_reason = str(exc)
+
     (output_dir / "baseline_protocol.py").write_text(script, encoding="utf-8")
     (output_dir / "baseline_raw_response.txt").write_text(response, encoding="utf-8")
 
-    static_issues = analyze_opentrons_code(script)
-    simulation = simulate_opentrons_script(script, timeout_seconds=60)
-
-    report = _report(script, static_issues, simulation)
+    report = _report(script, static_issues, simulation, failure_reason)
     (output_dir / "baseline_report.md").write_text(report, encoding="utf-8")
     print(report)
-    return 0 if simulation.passed else 1
+    return 0 if simulation and simulation.passed else 1
 
 
 def _load_input(input_arg: str | None, demo: bool) -> str:
@@ -88,15 +96,18 @@ def _extract_python(response: str) -> str:
     return script + "\n"
 
 
-def _report(script: str, issues: List, simulation) -> str:
+def _report(script: str, issues: List, simulation, failure_reason: str = "") -> str:
     counts = issue_counts(issues)
+    sim_passed = bool(simulation and simulation.passed)
+    real_simulator_used = bool(simulation and simulation.used_real_simulator)
+    command_count = simulation.command_count if simulation else 0
     lines = [
         "# Direct LLM Baseline Report",
         "",
         f"- Generated script bytes: {len(script)}",
-        f"- Simulator status: {'PASS' if simulation.passed else 'FAIL'}",
-        f"- Real simulator used: {simulation.used_real_simulator}",
-        f"- Simulator commands: {simulation.command_count}",
+        f"- Simulator status: {'PASS' if sim_passed else 'FAIL'}",
+        f"- Real simulator used: {real_simulator_used}",
+        f"- Simulator commands: {command_count}",
         f"- Static safety issues: {len(issues)}",
         "",
         "## Static Safety Issue Counts",
@@ -115,17 +126,21 @@ def _report(script: str, issues: List, simulation) -> str:
     if not issues:
         lines.append("- None detected by static baseline analyzer.")
 
-    if simulation.errors:
+    if failure_reason:
+        lines.extend(["", "## Baseline Failure", "", f"- {failure_reason}"])
+
+    if simulation and simulation.errors:
         lines.extend(["", "## Simulator Errors", ""])
         for error in simulation.errors[:10]:
             lines.append(f"- {error}")
 
     payload = {
-        "simulator_passed": simulation.passed,
-        "real_simulator_used": simulation.used_real_simulator,
-        "command_count": simulation.command_count,
+        "simulator_passed": sim_passed,
+        "real_simulator_used": real_simulator_used,
+        "command_count": command_count,
         "static_issue_count": len(issues),
         "static_issue_counts": counts,
+        "failure_reason": failure_reason,
     }
     lines.extend(["", "## Machine Summary", "", "```json", json.dumps(payload, indent=2), "```"])
     return "\n".join(lines) + "\n"
