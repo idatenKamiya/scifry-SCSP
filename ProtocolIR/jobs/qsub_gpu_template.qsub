@@ -1,0 +1,34 @@
+#!/bin/bash -l
+#$ -N pir_gpu_template
+#$ -cwd
+#$ -j y
+#$ -o logs/qsub/$JOB_NAME.$JOB_ID.log
+#$ -l h_rt=02:00:00
+#$ -pe omp 8
+# Queue/GPU flags vary by SCC queue configuration.
+# Example candidates (uncomment and adapt to your environment):
+#$ -l gpu=1
+#$ -l gpus=1
+
+set -euo pipefail
+
+PROJECT_DIR="/projectnb/se740/scifry-SCSP/ProtocolIR"
+cd "$PROJECT_DIR"
+mkdir -p logs/qsub .uv-cache
+
+module load python3/3.12.4 uv/0.7.3 cuda/12.8
+
+export UV_CACHE_DIR="$PROJECT_DIR/.uv-cache"
+if [ ! -d .venv ]; then
+  uv venv .venv --python 3.12
+fi
+source .venv/bin/activate
+
+uv pip install -r requirements.txt
+uv pip install -e .
+
+nvidia-smi || true
+
+# Put your GPU-heavy command below:
+# python your_gpu_training_script.py
+echo "GPU template job ran. Add your training/inference command."

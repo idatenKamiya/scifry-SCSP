@@ -2,24 +2,41 @@
 
 Your complete ProtocolIR system is built and ready. Follow these 3 steps to run it:
 
-## Step 1: Get Your Anthropic API Key
+## SCC Batch Mode (Recommended)
 
-If you don't have one, get it free:
-1. Go to https://console.anthropic.com
-2. Sign up or log in
-3. Create an API key in Settings
-4. Copy the key
-
-## Step 2: Set API Key (30 seconds)
+For SCC, submit intensive jobs via `qsub` instead of running interactively:
 
 ```bash
-export ANTHROPIC_API_KEY="sk-ant-your-actual-key-here"
+cd ProtocolIR
+qsub jobs/qsub_demo_ollama.qsub
+qsub jobs/qsub_train_reward_ollama.qsub
+qsub jobs/qsub_train_on_real_data.qsub
 ```
 
-**Verify it's set:**
+Details: `ProtocolIR/jobs/README_QSUB.md`
+
+## Step 1: Start Ollama (Default Path)
+
+Run on the same machine where you run ProtocolIR:
+
 ```bash
-echo $ANTHROPIC_API_KEY
-# Should print: sk-ant-your-actual-key-here
+ollama serve
+ollama pull llama3.1:8b
+```
+
+## Step 2: Set Provider Config (30 seconds)
+
+```bash
+export PROTOCOLIR_LLM_PROVIDER="ollama"
+export OLLAMA_BASE_URL="http://127.0.0.1:11434"
+export PROTOCOLIR_MODEL="llama3.1:8b"
+```
+
+**Verify settings:**
+```bash
+echo $PROTOCOLIR_LLM_PROVIDER
+echo $OLLAMA_BASE_URL
+echo $PROTOCOLIR_MODEL
 ```
 
 ## Step 3: Run the Demo (2 minutes)
@@ -123,8 +140,12 @@ python3 test_installation.py
 
 ## Troubleshooting
 
-### "invalid x-api-key"
-Your API key is wrong. Get a new one from https://console.anthropic.com
+### "Ollama is not reachable"
+Start/check Ollama:
+```bash
+ollama serve
+curl http://127.0.0.1:11434/api/tags
+```
 
 ### "ModuleNotFoundError"
 Run installation check:
@@ -138,8 +159,9 @@ pip install -r requirements.txt
 ```
 
 ### "ANTHROPIC_API_KEY not found"
-Make sure you set it:
+You only need this if using Anthropic provider:
 ```bash
+export PROTOCOLIR_LLM_PROVIDER="anthropic"
 export ANTHROPIC_API_KEY="your_actual_key"
 echo $ANTHROPIC_API_KEY  # Verify
 ```
@@ -173,7 +195,9 @@ The system will automatically use the trained model for better scoring.
 Everything is built. Now just:
 
 ```bash
-export ANTHROPIC_API_KEY="your_actual_key"
+export PROTOCOLIR_LLM_PROVIDER="ollama"
+export OLLAMA_BASE_URL="http://127.0.0.1:11434"
+export PROTOCOLIR_MODEL="llama3.1:8b"
 python3 main.py --demo
 ```
 
@@ -182,6 +206,6 @@ Then show those judges what a SOTA safety compiler looks like!
 ---
 
 **Questions?**
-- API key: https://console.anthropic.com
+- Anthropic key (optional): https://console.anthropic.com
 - ProtocolIR docs: See `README.md`
 - Quick start: See `QUICKSTART.md`

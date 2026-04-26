@@ -10,9 +10,27 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-## 2. Set Up API Key
+## 2. Configure LLM Provider
+
+### Option A (default, recommended): Ollama on this machine
 
 ```bash
+export PROTOCOLIR_LLM_PROVIDER="ollama"
+export OLLAMA_BASE_URL="http://127.0.0.1:11434"
+export PROTOCOLIR_MODEL="llama3.1:8b"
+```
+
+Start Ollama if needed:
+
+```bash
+ollama serve
+ollama pull llama3.1:8b
+```
+
+### Option B: Anthropic
+
+```bash
+export PROTOCOLIR_LLM_PROVIDER="anthropic"
 export ANTHROPIC_API_KEY="your_api_key_here"
 ```
 
@@ -114,7 +132,16 @@ ProtocolIR/
 ### "ANTHROPIC_API_KEY not found"
 
 ```bash
+export PROTOCOLIR_LLM_PROVIDER="anthropic"
 export ANTHROPIC_API_KEY="your_key"
+```
+
+### "Ollama is not reachable"
+
+```bash
+export PROTOCOLIR_LLM_PROVIDER="ollama"
+export OLLAMA_BASE_URL="http://127.0.0.1:11434"
+ollama serve
 ```
 
 ### "Opentrons simulator not found"

@@ -1,0 +1,49 @@
+#!/bin/bash -l
+#$ -N pir_train_reward
+#$ -cwd
+#$ -j y
+#$ -o logs/qsub/$JOB_NAME.$JOB_ID.log
+#$ -l h_rt=04:00:00
+#$ -pe omp 8
+
+set -euo pipefail
+
+PROJECT_DIR="/projectnb/se740/scifry-SCSP/ProtocolIR"
+cd "$PROJECT_DIR"
+mkdir -p logs/qsub .uv-cache .ollama/models models
+
+module load python3/3.12.4 uv/0.7.3
+
+export UV_CACHE_DIR="$PROJECT_DIR/.uv-cache"
+if [ ! -d .venv ]; then
+  uv venv .venv --python 3.12
+fi
+source .venv/bin/activate
+
+uv pip install -r requirements.txt
+uv pip install -e .
+
+OLLAMA_BIN="$PROJECT_DIR/.tools/ollama/bin/ollama"
+if [ ! -x "$OLLAMA_BIN" ]; then
+  echo "Missing Ollama binary at $OLLAMA_BIN"
+  exit 1
+fi
+
+export OLLAMA_HOST=127.0.0.1:11434
+export OLLAMA_MODELS="$PROJECT_DIR/.ollama/models"
+export PROTOCOLIR_LLM_PROVIDER=ollama
+export OLLAMA_BASE_URL="http://127.0.0.1:11434"
+export PROTOCOLIR_MODEL="${PROTOCOLIR_MODEL:-qwen2.5:1.5b}"
+export PROTOCOLIR_LLM_TIMEOUT="${PROTOCOLIR_LLM_TIMEOUT:-600}"
+
+"$OLLAMA_BIN" serve > "logs/qsub/ollama.$JOB_ID.log" 2>&1 &
+OLLAMA_PID=$!
+trap 'kill $OLLAMA_PID >/dev/null 2>&1 || true' EXIT
+
+sleep 5
+curl -sf "$OLLAMA_BASE_URL/api/tags" >/dev/null
+"$OLLAMA_BIN" pull "$PROTOCOLIR_MODEL"
+
+python train_reward_model.py
+
+echo "Training complete: models/learned_weights.json"

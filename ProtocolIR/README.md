@@ -33,7 +33,7 @@ Instead of asking an LLM to directly write code, ProtocolIR implements a **typed
 ```
 Raw Protocol (text)
         ↓
-    [Parser]  ← Semantic extraction via LLM
+    [Parser]  ← Semantic extraction via configurable LLM provider
         ↓
     Semantic Actions
         ↓
@@ -90,7 +90,9 @@ pip install -e .
 ### Requirements
 
 - Python 3.9+
-- Anthropic API key (for semantic parsing)
+- LLM provider:
+  - Default: Ollama running where this code executes
+  - Optional: Anthropic API key (only for `PROTOCOLIR_LLM_PROVIDER=anthropic`)
 - Opentrons SDK 7.0+ (for simulator)
 - scikit-learn (for reward learning)
 
@@ -299,7 +301,7 @@ And reward:
 
 ## Implementation Notes
 
-- Parser uses Anthropic Claude for structured extraction
+- Parser supports provider switching via env vars (`ollama` default, `anthropic` optional)
 - Verifier and repair use deterministic Python rules (no LLMs)
 - Reward model uses logistic regression for efficiency
 - Compiler is deterministic, no random generation
@@ -313,7 +315,7 @@ And reward:
 Built with inspiration from:
 - Berkeley's Inverse Reinforcement Learning for Robotic Manipulation
 - Opentrons Protocol API
-- Anthropic Claude
+- Ollama / Anthropic
 
 ## License
 

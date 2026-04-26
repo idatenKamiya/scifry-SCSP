@@ -12,12 +12,12 @@ print("PROTOCOLIR INSTALLATION TEST")
 print("=" * 70)
 
 dependencies = [
-    "anthropic",
     "pydantic",
     "numpy",
     "sklearn",
     "pandas",
     "matplotlib",
+    "requests",
 ]
 
 print("\nChecking dependencies...")
@@ -58,14 +58,25 @@ for module in protocolir_modules:
         print(f"  ✗ {module}: {e}")
         all_ok = False
 
+print("\nChecking optional providers...")
+try:
+    importlib.import_module("anthropic")
+    print("  ✓ anthropic (optional)")
+except ImportError:
+    print("  • anthropic not installed (optional; needed only for provider=anthropic)")
+
 print("\n" + "=" * 70)
 
 if all_ok:
     print("✓ ALL CHECKS PASSED - Ready to use ProtocolIR!")
     print("\nNext steps:")
-    print("  1. Set your API key: export ANTHROPIC_API_KEY='your_key'")
-    print("  2. Run demo: python3 main.py --demo")
-    print("  3. Read QUICKSTART.md for usage examples")
+    print("  1. Default provider is Ollama (local): ensure ollama is running")
+    print("     export PROTOCOLIR_LLM_PROVIDER='ollama'")
+    print("  2. Optional cloud provider:")
+    print("     export PROTOCOLIR_LLM_PROVIDER='anthropic'")
+    print("     export ANTHROPIC_API_KEY='your_key'")
+    print("  3. Run demo: python3 main.py --demo")
+    print("  4. Read QUICKSTART.md for usage examples")
     print("=" * 70)
     sys.exit(0)
 else:

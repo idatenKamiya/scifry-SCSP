@@ -1,12 +1,14 @@
 """
 LAYER 1: Semantic Protocol Parser
 Converts messy protocols.io text into structured semantic actions.
-Uses Claude for reliable structured extraction.
+Uses configurable LLM providers for structured extraction.
 """
 
+import os
 import json
-from typing import Optional
-from anthropic import Anthropic
+from typing import Optional, List, Dict, Any
+
+import requests
 from protocolir.schemas import (
     ParsedProtocol,
     SemanticAction,
@@ -15,7 +17,120 @@ from protocolir.schemas import (
     ReagentClass,
 )
 
-client = Anthropic()
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(".env.local")
+except ImportError:
+    pass
+
+
+class LLMClient:
+    """Provider-agnostic LLM client for protocol parsing."""
+
+    def __init__(self) -> None:
+        self.provider = os.getenv("PROTOCOLIR_LLM_PROVIDER", "ollama").strip().lower()
+        self.temperature = float(os.getenv("PROTOCOLIR_TEMPERATURE", "0"))
+        self.max_tokens = int(os.getenv("PROTOCOLIR_MAX_TOKENS", "2048"))
+        self.timeout_seconds = int(os.getenv("PROTOCOLIR_LLM_TIMEOUT", "120"))
+        self.model = self._resolve_model()
+        self._anthropic_client = None
+
+    def _resolve_model(self) -> str:
+        configured_model = os.getenv("PROTOCOLIR_MODEL")
+        if configured_model:
+            return configured_model
+
+        if self.provider == "anthropic":
+            return "claude-sonnet-4-5"
+
+        # Default for local inference.
+        return os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+
+    def chat(self, messages: List[Dict[str, str]], max_tokens: Optional[int] = None) -> str:
+        target_max_tokens = max_tokens or self.max_tokens
+
+        if self.provider == "anthropic":
+            return self._chat_anthropic(messages, target_max_tokens)
+        if self.provider == "ollama":
+            return self._chat_ollama(messages)
+
+        raise ValueError(
+            "Unsupported PROTOCOLIR_LLM_PROVIDER. Use 'ollama' or 'anthropic'."
+        )
+
+    def _chat_anthropic(self, messages: List[Dict[str, str]], max_tokens: int) -> str:
+        if self._anthropic_client is None:
+            try:
+                from anthropic import Anthropic
+            except ImportError as exc:
+                raise ImportError(
+                    "anthropic package is required for provider='anthropic'. "
+                    "Install with: pip install anthropic"
+                ) from exc
+            self._anthropic_client = Anthropic()
+
+        response = self._anthropic_client.messages.create(
+            model=self.model,
+            max_tokens=max_tokens,
+            temperature=self.temperature,
+            messages=messages,
+        )
+
+        text_chunks = [block.text for block in response.content if hasattr(block, "text")]
+        return "\n".join(text_chunks).strip()
+
+    def _chat_ollama(self, messages: List[Dict[str, str]]) -> str:
+        base_url = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434").rstrip("/")
+        endpoint = f"{base_url}/api/chat"
+        api_key = os.getenv("OLLAMA_API_KEY", "").strip()
+
+        headers: Dict[str, str] = {"Content-Type": "application/json"}
+        if api_key:
+            headers["Authorization"] = f"Bearer {api_key}"
+
+        payload: Dict[str, Any] = {
+            "model": self.model,
+            "messages": messages,
+            "stream": False,
+            "options": {"temperature": self.temperature},
+        }
+
+        response = requests.post(
+            endpoint,
+            headers=headers,
+            json=payload,
+            timeout=self.timeout_seconds,
+        )
+
+        if response.status_code >= 400:
+            raise ValueError(
+                f"Ollama request failed ({response.status_code}): {response.text[:300]}"
+            )
+
+        data = response.json()
+        message = data.get("message", {})
+        content = message.get("content", "")
+        if not content:
+            raise ValueError("Ollama response did not include message.content")
+        return content.strip()
+
+
+client = LLMClient()
+
+
+def _parse_json_response(response_text: str) -> dict:
+    """Best-effort JSON extraction for LLM responses."""
+    try:
+        return json.loads(response_text)
+    except json.JSONDecodeError:
+        if "```json" in response_text:
+            candidate = response_text.split("```json", 1)[1].split("```", 1)[0]
+            return json.loads(candidate)
+        if "```" in response_text:
+            candidate = response_text.split("```", 1)[1].split("```", 1)[0]
+            return json.loads(candidate)
+        raise ValueError(f"Could not parse LLM response as JSON: {response_text}")
 
 
 def parse_protocol(raw_text: str, source_url: Optional[str] = None) -> ParsedProtocol:
@@ -50,25 +165,8 @@ Be precise. If a detail is missing, flag it in ambiguities.
 Return ONLY valid JSON, no markdown, no explanations.
 """
 
-    message = client.messages.create(
-        model="claude-opus-4-7",
-        max_tokens=2048,
-        messages=[{"role": "user", "content": extraction_prompt}],
-    )
-
-    response_text = message.content[0].text.strip()
-
-    # Parse JSON response
-    try:
-        data = json.loads(response_text)
-    except json.JSONDecodeError:
-        # Try to extract JSON from markdown code blocks
-        if "```json" in response_text:
-            data = json.loads(response_text.split("```json")[1].split("```")[0])
-        elif "```" in response_text:
-            data = json.loads(response_text.split("```")[1].split("```")[0])
-        else:
-            raise ValueError(f"Could not parse LLM response as JSON: {response_text}")
+    response_text = client.chat([{"role": "user", "content": extraction_prompt}], max_tokens=2048)
+    data = _parse_json_response(response_text)
 
     # Convert to Pydantic models
     materials = [
@@ -133,13 +231,7 @@ Format as a numbered list, one step per line.
 
     conversation_history.append({"role": "user", "content": first_prompt})
 
-    response1 = client.messages.create(
-        model="claude-opus-4-7",
-        max_tokens=1024,
-        messages=conversation_history,
-    )
-
-    parse_result = response1.content[0].text
+    parse_result = client.chat(conversation_history, max_tokens=1024)
     conversation_history.append({"role": "assistant", "content": parse_result})
 
     # Second pass: ask for JSON
@@ -157,20 +249,10 @@ Return ONLY the JSON object, no markdown or explanation.
 
     conversation_history.append({"role": "user", "content": json_prompt})
 
-    response2 = client.messages.create(
-        model="claude-opus-4-7",
-        max_tokens=1024,
-        messages=conversation_history,
-    )
-
-    json_text = response2.content[0].text.strip()
-
+    json_text = client.chat(conversation_history, max_tokens=1024).strip()
     try:
-        data = json.loads(json_text)
-    except json.JSONDecodeError:
-        if "```json" in json_text:
-            data = json.loads(json_text.split("```json")[1].split("```")[0])
-        else:
-            data = {}
+        data = _parse_json_response(json_text)
+    except ValueError:
+        data = {}
 
     return data

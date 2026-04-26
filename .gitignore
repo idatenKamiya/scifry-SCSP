@@ -19,3 +19,17 @@ dist/
 # Local outputs/logs
 outputs/
 *.log
+
+# Local Python envs/caches (SCC/project-local)
+.venv/
+**/.venv/
+.uv-cache/
+**/.uv-cache/
+
+# Local Ollama binaries/models/cache (large artifacts)
+ProtocolIR/.tools/
+ProtocolIR/.ollama/
+
+# Batch-job logs and scratch outputs
+logs/
+ProtocolIR/logs/
