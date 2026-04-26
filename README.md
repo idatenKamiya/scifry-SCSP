@@ -1,5 +1,12 @@
 # ProtocolIR
 
+Team name: AIZU
+Team members name: Kaukik Khade, Sreeram Maguluri, Skanda Nadig
+Track: Autonomous Labs
+
+What you built:
+
+
 Live app URL: `https://scifry-scspgit-cusv4klr3xnmzoy7hyjhpc.streamlit.app/`
 
 ProtocolIR is a safety-first compiler for autonomous wet-lab protocols. It converts natural-language lab instructions into verified Opentrons Python by forcing the LLM to produce structured intent, then passing that intent through a typed intermediate representation, deterministic hard-safety verification, Bayesian reward scoring, repair, simulation, and audit reporting.
@@ -12,6 +19,24 @@ The core research claim is simple: simulator-passing robot code is not enough. P
 - ProtocolIR: OpenRouter JSON parse -> RAG context -> typed IR -> verifier -> repair -> compiler -> Opentrons simulator -> audit.
 - Stress demo: injects unsafe IR errors and repairs them from verifier evidence.
 - Bayesian IRL: trains a MAP + Laplace reward posterior from expert Opentrons scripts and counterfactual unsafe traces.
+
+## Datasets Used
+
+All datasets used in this project are under `ProtocolIR/data/` and summarized in `ProtocolIR/DATASET_REPORT.md`.
+
+| Dataset slice | Count | Source / path | How we use it |
+|---|---:|---|---|
+| Expert Opentrons scripts | 318 | `ProtocolIR/data/expert_scripts/` | Positive examples for reward learning and safety feature extraction |
+| Corrupted traces | 52 | `ProtocolIR/data/corrupted_traces/` | Negative examples for verifier + repair evaluation |
+| Generated counterfactuals | 1272 | Generated from expert/corrupted traces during training | Pairwise preference training for Bayesian IRL |
+| protocols.io protocol text | 1 | `ProtocolIR/data/protocols_io_raw/` | Parser grounding demo on real protocol text |
+| protocols.io protocol JSONs | 14 | `ProtocolIR/data/protocols_io_raw/json/` | Structured protocol corpus for parsing/inspection |
+| protocols.io steps | 14 | Extracted from protocols.io JSONs | Step-level semantic extraction checks |
+| Opentrons library text corpus | 300 | `ProtocolIR/data/opentrons_library/` | Local RAG context during semantic parsing |
+
+Notes:
+- Current validated scope is strongest on PCR/qPCR liquid-handling workflows.
+- Data mix is sufficient for demo + benchmark claims, but not broad biology generalization claims.
 
 ## Repository Layout
 
