@@ -318,9 +318,34 @@ def render_replay_mode() -> None:
     st.write(scenario.get("description", ""))
 
     ev = scenario.get("evidence", {})
-    tabs = st.tabs(["Overview", "Evidence Files", "Raw JSON/Text"])
+    tabs = st.tabs(["Overview", "Artifacts", "Detailed Logs (Advanced)"])
 
     with tabs[0]:
+        cert_obj = _sanitize_json(_read_json(scenario_dir, ev["certificate"])) if "certificate" in ev else {}
+        risk_obj = _sanitize_json(_read_json(scenario_dir, ev["risk"])) if "risk" in ev else {}
+        total_v = risk_obj.get("total_violations", "N/A") if isinstance(risk_obj, dict) else "N/A"
+        risk_level = risk_obj.get("risk_level", "N/A") if isinstance(risk_obj, dict) else "N/A"
+        cert_status = cert_obj.get("verdict", "N/A") if isinstance(cert_obj, dict) else "N/A"
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Verdict", cert_status)
+        c2.metric("Risk Level", risk_level)
+        c3.metric("Violations", total_v)
+
+        if scenario.get("status") == "PASS":
+            st.success(
+                "Interpretation: This run is a positive sanity case. The protocol completed "
+                "with a SAFE verdict and auditable artifacts."
+            )
+        elif scenario.get("status") == "EXPECTED_FAILURE":
+            st.warning(
+                "Interpretation: This is an intentional negative sanity case. Failure traces are "
+                "expected and demonstrate transparent error handling."
+            )
+        else:
+            st.info(
+                "Interpretation: Review the artifacts below to confirm safety and execution behavior."
+            )
+
         if scenario.get("status") == "EXPECTED_FAILURE":
             st.warning(
                 "This scenario is intentionally included as a negative sanity case. "
@@ -345,13 +370,16 @@ def render_replay_mode() -> None:
                 st.markdown(_sanitize_text(report))
         if "certificate" in ev:
             st.subheader("Safety Certificate")
-            st.json(_sanitize_json(_read_json(scenario_dir, ev["certificate"])))
+            with st.expander("Open certificate details", expanded=False):
+                st.json(_sanitize_json(_read_json(scenario_dir, ev["certificate"])))
         if "risk" in ev:
             st.subheader("Risk Summary")
-            st.json(_sanitize_json(_read_json(scenario_dir, ev["risk"])))
+            with st.expander("Open risk details", expanded=False):
+                st.json(_sanitize_json(_read_json(scenario_dir, ev["risk"])))
         if "dependency" in ev:
             st.subheader("Dependency Summary")
-            st.json(_sanitize_json(_read_json(scenario_dir, ev["dependency"])))
+            with st.expander("Open dependency details", expanded=False):
+                st.json(_sanitize_json(_read_json(scenario_dir, ev["dependency"])))
 
     with tabs[1]:
         for label, rel in ev.items():
@@ -360,6 +388,7 @@ def render_replay_mode() -> None:
             st.write(f"- `{label}` -> `{rel}` ({'ok' if exists else 'missing'})")
 
     with tabs[2]:
+        st.caption("Advanced artifacts for technical review and debugging.")
         for label, rel in ev.items():
             st.markdown(f"### {label}")
             path = scenario_dir / rel
