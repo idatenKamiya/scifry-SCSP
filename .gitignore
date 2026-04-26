@@ -69,3 +69,4 @@ ProtocolIR/fetch_expert_scripts.py
 ProtocolIR/fetch_protocols_io.py
 ProtocolIR/setup_complete.sh
 ProtocolIR/train_on_real_data.py
+ARCHITECTURE.md
